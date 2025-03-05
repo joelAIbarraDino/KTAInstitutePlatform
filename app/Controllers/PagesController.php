@@ -7,7 +7,7 @@ use DinoEngine\Http\Response;
 class PagesController
 {
     public static function index(string $nameApp): void{
-        Response::render('pages/indexExample', [
+        Response::render('pages/index', [
             'nameApp'=>$nameApp, 
             'title' => 'Inicio'
         ]);

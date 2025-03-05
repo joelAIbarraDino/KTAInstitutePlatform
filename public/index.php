@@ -19,7 +19,7 @@ $emailConfig = [
     "port"=>$_ENV['MAIL_DEBUG_PORT']
 ];
 
-$dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, $emailConfig);
+$dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, null, $emailConfig);
 
 $dino->router->get('/', [PagesController::class, 'index']);
 

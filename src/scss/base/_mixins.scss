@@ -22,10 +22,9 @@
 
     display: $display;
     background-color: $bgColor;
-    padding: 1.5rem 4rem;
+    padding: .5rem 2rem;
     color: $textColor;
-    margin-top: 2rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: v.$bold;
     text-align: center;
     border: none;
@@ -38,8 +37,8 @@
     }
 
     &:hover{
-        background-color: $hoverTextColor;
-        color: $textColor;
+        background-color: $hoverColor;
+        color: $hoverTextColor;
         cursor: pointer;
     }
 }
