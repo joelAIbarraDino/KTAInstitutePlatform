@@ -18,15 +18,15 @@ const sass = gulpSass(dartSass);
 const paths = {
   sass: {
     src: './src/scss/**/*.scss', // Ruta de los archivos Sass
-    dest: './dist/css' // Ruta de destino del CSS compilado
+    dest: './public/assets/css' // Ruta de destino del CSS compilado
   },
   js: {
     src: './src/js/**/*.js', // Ruta de los archivos JS
-    dest: './dist/js' // Ruta de destino del JS minificado
+    dest: './public/assets/js' // Ruta de destino del JS minificado
   },
   images: {
     src: './src/images/**/*.{jpg,png,gif,svg}', // Ruta de las imágenes originales
-    dest: './dist/images' // Ruta de destino de las imágenes optimizadas
+    dest: './public/assets/images' // Ruta de destino de las imágenes optimizadas
   }
 };
 

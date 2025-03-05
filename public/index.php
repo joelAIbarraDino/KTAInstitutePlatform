@@ -22,6 +22,5 @@ $emailConfig = [
 $dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, $emailConfig);
 
 $dino->router->get('/', [PagesController::class, 'index']);
-$dino->router->get('/', [PagesController::class, 'index']);
 
 $dino->router->dispatch();
