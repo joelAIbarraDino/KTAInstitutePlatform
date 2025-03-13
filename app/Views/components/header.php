@@ -1,12 +1,7 @@
 <header>
     <div class="header-top">
-        <p class="header-top__msg">Ayudando al inmigrante en su integración total y exitosa en los Estados Unidos</p>
-
-
-        <a class="header-top__login-btn" href="/login">
-            <i class='bx bxs-user'></i>
-            iniciar sesión
-        </a>        
+            <p class="header-top__msg">Ayudando al inmigrante en su integración total y exitosa en los Estados Unidos</p>
+            <a class="header-top__login-btn" href="/login"><i class='bx bxs-user'></i>iniciar sesión</a>
     </div>
 
     <div class="header-middle">
@@ -40,6 +35,27 @@
             <div class="search__btn" id="btn-search">
                 <i class='bx bx-search'></i>
             </div>
+        </div>
+    </div>
+
+    <div class="header-bottom">
+        <nav class="nav">
+            <ul class="nav__items">
+                <li class="nav__items-link"><a href="/">Home</a></li>
+                <li class="nav__items-link"><a href="/curses">Cursos</a></li>
+                <li class="nav__items-link"><a href="/about">Sobre nosotros</a></li>
+                <li class="nav__items-link"><a href="/memberships">Membresias</a></li>
+            </ul>
+        </nav>
+
+        <div class="contact">
+            <ul class="contact__social">
+                <li class="contact__social-item"><a href="/"><i class='bx bxl-facebook-circle'></i></a></li>
+                <li class="contact__social-item"><a href="/"><i class='bx bxl-instagram'></i></a></li>
+                <li class="contact__social-item"><a href="/"><i class='bx bxl-youtube'></i></a></li>
+            </ul>
+
+            <a class="contact__tel" href=""><i class='bx bxs-phone-call bx-tada' ></i> (888)5921822</a>
         </div>
     </div>
 
