@@ -29,8 +29,8 @@
     width: 90%;
     margin: 0 auto;
     display: flex;
-    justify-content:space-evenly;
-    padding: 3rem 4rem;
+    justify-content:space-between;
+    padding: 3rem 1rem;
 
     .main-logo{
         width: 11rem;
@@ -78,14 +78,21 @@
 
         &__input{
             border-radius: .5rem 0 0 .5rem;
-            border: .2rem solid v.$border_input;
+            border-top: .2rem solid v.$border_input;
+            border-bottom: .2rem solid v.$border_input;
+            border-left: .2rem solid v.$border_input;
             border-right: 0;
+
             padding-left: 1rem;
             background-color: v.$fondo_input;
             outline: none;
             height: 4.5rem;
+
             &:focus{
-                border: .2rem solid v.$dorado;
+                border-top: .2rem solid v.$dorado;
+                border-bottom: .2rem solid v.$dorado;
+                border-left: .2rem solid v.$dorado;
+                border-right: 0;
             }
         }
 
@@ -100,6 +107,11 @@
             align-items: center;
             font-size: 1.8rem;
             font-weight: v.$bold;
+            transition: background-color .5s ease;
+            &:hover{
+                cursor: pointer;
+                background-color: v.$dorado_darken;
+            }
         }
     }
 }

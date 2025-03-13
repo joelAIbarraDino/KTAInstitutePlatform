@@ -37,7 +37,7 @@
 
         <div class="search">
             <input class="search__input" type="text" name="buscador" id="buscador" placeholder="buscar curso">
-            <div class="search__btn">
+            <div class="search__btn" id="btn-search">
                 <i class='bx bx-search'></i>
             </div>
         </div>
