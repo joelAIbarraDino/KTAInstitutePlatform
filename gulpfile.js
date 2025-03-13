@@ -66,8 +66,8 @@ function optimizeImages() {
     .pipe(gulp.dest(paths.images.dest))
     .pipe(webp())
     .pipe(gulp.dest(paths.images.dest))
-    .pipe(avif())
-    .pipe(gulp.dest(paths.images.dest));
+    //.pipe(avif())
+    //.pipe(gulp.dest(paths.images.dest));
 }
 
 // Crear versiones pequeñas de las imágenes
@@ -83,13 +83,13 @@ function createThumbnails() {
 function watchFiles() {
   gulp.watch(paths.sass.src, compileSass);
   gulp.watch(paths.js.src, minifyJS);
-  gulp.watch(paths.images.src, gulp.parallel(optimizeImages, createThumbnails));
+  //gulp.watch(paths.images.src, gulp.parallel(optimizeImages, createThumbnails));
 }
 
 // Tareas principales
-const build = gulp.parallel(compileSass, minifyJS, optimizeImages, createThumbnails);
+const build = gulp.parallel(compileSass, minifyJS);
 const watch = gulp.series(build, watchFiles);
 
 // Exportar tareas
-export { compileSass, minifyJS, optimizeImages, createThumbnails, watch, build };
+export { compileSass, minifyJS, watch, build };
 export default build;
