@@ -40,21 +40,25 @@
     margin: 0 auto;
     justify-content: space-between;
     gap: 3rem;
-    padding: 3rem 1rem 9rem 1rem;
-    display: none;
+    padding: 3rem 1rem;
+    display: flex;
 
     @include m.computadora{
-        display: flex;
+        padding: 3rem 1rem 9rem 1rem;
     }
 
     .main-logo{
-        width: 11rem;
+        width: 8rem;
     }
 
     .information{
-        display: flex;
+        display: none;
         align-items: center;
         gap: 1.5rem;
+
+        @include m.computadora{
+            display: flex;
+        }
 
         &__icon{
             display: flex;
@@ -86,10 +90,14 @@
     }
 
     .search{
-        display: flex;
+        display: none;
         align-items:center;
         justify-content: center;
         gap: 0rem;
+
+        @include m.computadora{
+            display: flex;
+        }
 
         &__input{
             border-radius: .5rem 0 0 .5rem;
