@@ -30,7 +30,7 @@
     transition-duration: .3s;
     width: 100%;
 
-    @include tablet{
+    @include telefono(){
         width: auto;
     }
 

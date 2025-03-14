@@ -1,3 +1,76 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
 .banner{
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
+    background: -webkit-linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
+    background: linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#b99331",GradientType=1);
+    padding: 10rem 3rem 0 3rem;
+    margin-bottom: 10rem;
+    display: flex;
+    justify-content: center;
+
+    @include m.computadora{
+        padding: 20rem 5rem 0 5rem;
+    }
     
+
+    &__content{
+        text-align: left;
+        padding-bottom: 3rem;
+        width: 90%;
+
+        @include m.computadora{
+            width: 40%;
+        }
+
+        h2{
+            text-align: left;
+            color: v.$blanco;
+            font-size: 6rem;
+        }
+
+        p{
+            color: v.$blanco;
+            font-size: 2rem;
+
+            span{
+                background-color: v.$dorado;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                border-radius: 1rem;
+                margin-left: 1rem;
+            }
+        }
+
+        a{
+            padding: 2rem 1rem;
+            border-radius: .5rem;
+            font-size: 1.8rem;
+            @include m.boton(v.$negro, v.$blanco, v.$blanco, v.$negro, inline-block)
+        }
+    }
+
+    &__image{
+        z-index: 1;
+        position: relative;
+        display: none;
+
+        @include m.computadora{
+            display: block;
+        }
+        &-fundador{
+            width: 70rem;
+        }
+
+        &-circle{
+            position: absolute;
+            top: -7rem;
+            left: -4rem;
+            width: 60rem;
+            z-index: -1;
+        }
+    }
 }

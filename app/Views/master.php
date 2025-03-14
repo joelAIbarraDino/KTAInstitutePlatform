@@ -20,7 +20,7 @@
 <body>
     
     <?= $content ?>
-    <script src="/assets/js/noInspect.js"></script>
     <?= $scripts??''; ?>
+    <script src="/assets/js/noInspect.js"></script>
 </body>
 </html>
