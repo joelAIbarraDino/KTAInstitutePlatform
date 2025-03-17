@@ -2,7 +2,7 @@
 
 <section class="banner">
     <div class="banner__content">
-        <p>Bienvenidos a <span>KTA Insititute Platform</span></p>
+        <p>Bienvenidos a <span>KTA Insititute</span></p>
         <h2>Aprende de profesionales con +de 30 años de experiencia</h2>  
         <p>se parte de los +de 2500 estudiantes exitosos e inicia tu propio Negocio.</p>
         <a href="/cursos">Explorar cursos</a>
