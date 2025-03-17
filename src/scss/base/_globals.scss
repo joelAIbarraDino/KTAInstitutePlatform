@@ -16,6 +16,10 @@ body {
     @include m.tablet{
         height: 100%;
     }
+
+    &.no-scroll{
+        overflow-y: hidden;
+    }
 }
 *, *:before, *:after {
     box-sizing: inherit;
