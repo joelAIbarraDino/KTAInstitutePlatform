@@ -161,7 +161,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;    
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 1rem;
     margin-top: -5rem;
     margin-bottom: -3.5rem;
     position: relative;
@@ -191,7 +191,7 @@
             list-style: none;
             list-style-position: inside;
             display: flex;
-            gap: 1.5rem;
+            gap: 1.2rem;
 
             &-link a{
                 color: v.$blanco;

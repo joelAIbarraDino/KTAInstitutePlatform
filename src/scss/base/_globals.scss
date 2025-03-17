@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     font-family: v.$fuente_principal;
     font-size: 1.6rem;
+    overflow-x: hidden;
     
     @include m.tablet{
         height: 100%;
