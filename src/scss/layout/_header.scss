@@ -260,15 +260,19 @@
     top: 0;
     left: 0;
     height: 100vh;
+    opacity: 0;
     width: 100%;
-    display: none;
+    visibility: hidden;
+    transition: all .8s ease;
 
     &__content{
         padding: 3rem 1rem;
         background-color: v.$blanco;
         height: 100vh;
         width: 22rem;
+        left: -110%;
         position: relative;
+        transition: left 1s ease;
 
         .btn-close{
             display: flex;
@@ -332,6 +336,15 @@
             font-size: 1.4rem;
 
             @include m.boton(v.$dorado, v.$dorado_darken, v.$blanco, v.$blanco, block);
+        }
+    }
+
+    &.active{
+        opacity: 1;
+        visibility: visible;
+
+        .menu-mobile__content{
+            left: 0;
         }
     }
 }

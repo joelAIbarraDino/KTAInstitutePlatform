@@ -27,5 +27,6 @@
 <?php 
     $scripts ='
         <script src="/assets/js/rotateImage.js"></script>
+        <script src="/assets/js/mobileMenu.js"></script>
     ';
 ?>

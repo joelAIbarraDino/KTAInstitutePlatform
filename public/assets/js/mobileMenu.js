@@ -1,0 +1,1 @@
+!function(){const c=document.querySelector(".menu-btn"),e=document.querySelector(".btn-close"),t=document.querySelector(".menu-mobile");t.onclick=function(c){c.target.classList.contains("menu-mobile")&&t.classList.remove("active")},c.onclick=function(){t.classList.add("active")},e.onclick=function(){t.classList.remove("active")}}();
