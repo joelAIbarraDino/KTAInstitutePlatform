@@ -8,7 +8,6 @@
     background: linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#b99331",GradientType=1);
     padding: 5rem 1rem 0 1rem;
-    margin-bottom: 10rem;
     display: flex;
     justify-content: space-between;
 
@@ -75,6 +74,68 @@
             left: 2rem;
             z-index: -1;
             width: 65rem;
+        }
+    }
+}
+
+.why-us{
+    text-align: center;
+    padding: 5rem 3rem;
+    background-color: v.$fondo_claro;
+
+    &__title{
+        font-size: 4.5rem;
+    }
+
+    &__text{
+        font-size: 1.7rem;
+        width: 70%;
+        max-width: 70rem;
+        margin: 3rem auto;
+        color: v.$gris;
+    }
+
+    &__grid{
+        
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+
+        @include m.tablet{
+            width: 90%;
+            @include m.grid(2, 3rem);
+        }
+
+        @include m.computadora{
+            width: 90%;
+            @include m.grid(4, 3rem);
+        }
+    }
+
+    .razon{
+        padding: 3rem;
+        border-radius: 1rem;
+        background-color: v.$blanco;
+        margin-bottom: 3rem;
+        border-bottom: .3rem solid v.$dorado;
+
+        @include m.computadora{
+            margin-bottom: 0;
+        }
+
+        &__sub{
+            border-top: .2rem solid v.$dorado;
+            border-style: dashed none none none;
+            text-align: left;
+            font-size: 2rem;
+            color: v.$gris;
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+
+        &__title{
+            text-align: left;
+            font-size: 2.8rem;
         }
     }
 }
