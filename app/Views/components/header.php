@@ -36,6 +36,41 @@
                 <i class='bx bx-search'></i>
             </div>
         </div>
+
+        <div class="menu-btn">
+            <i class='bx bx-menu'></i>
+        </div>
+
+        <div class="menu-mobile">
+            
+            <div class="menu-mobile__content">
+                
+                <div class="btn-close">
+                    <i class='bx bx-x'></i>
+                </div>
+
+                <div class="main-logo">
+                    <a href="/">
+                        <img src="/assets/images/logoKTA.jpg" alt="logo de KTA">
+                    </a>
+                </div>
+
+                <div class="menu-cont">
+                    <nav class="nav-mobile">
+                        <ul class="nav-mobile__items">
+                            <li class="nav-mobile__items-link"><a href="/">Home</a></li>
+                            <li class="nav-mobile__items-link"><a href="/curses">Cursos</a></li>
+                            <li class="nav-mobile__items-link"><a href="/about">Sobre nosotros</a></li>
+                            <li class="nav-mobile__items-link"><a href="/memberships">Membresias</a></li>
+                        </ul>
+                    </nav>
+
+                    <a class="login-btn" href="/login">
+                        <i class='bx bxs-user'></i>iniciar sesión
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="header-bottom">
