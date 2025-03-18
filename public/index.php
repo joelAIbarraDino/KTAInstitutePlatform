@@ -9,21 +9,10 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
-$emailConfig = [
-    "from"=>$_ENV['MAIL_DEBUG_FROM'],
-    "to"=>$_ENV['MAIL_DEBUG_TO'],
-    "name"=>$_ENV['MAIL_DEBUG_NAME'],
-    "host"=>$_ENV['MAIL_DEBUG_HOST'],
-    "user"=>$_ENV['MAIL_DEBUG_USER'],
-    "password"=>$_ENV['MAIL_DEBUG_PASS'],
-    "port"=>$_ENV['MAIL_DEBUG_PORT']
-];
-
-$dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, null, $emailConfig);
+$dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, null, null);
 
 $dino->router->get('/', [PagesController::class, 'index']);
-$dino->router->get('/cursos', [PagesController::class, 'cursos']);
-$dino->router->get('/cursos/{categoria}', [PagesController::class, 'cursoCategoria']);
-$dino->router->get('/detalleCurso', [PagesController::class, 'cursoInfo']);
+$dino->router->get('/login', [PagesController::class, 'login']);
+$dino->router->post('/login', [PagesController::class, 'login']);
 
 $dino->router->dispatch();

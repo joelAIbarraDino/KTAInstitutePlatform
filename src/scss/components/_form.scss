@@ -1,0 +1,136 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.form{
+    -webkit-box-shadow: 16px 11px 37px 12px rgba(207,207,207,1);
+    -moz-box-shadow: 16px 11px 37px 12px rgba(207,207,207,1);
+    box-shadow: 16px 11px 37px 12px rgba(207,207,207,1);
+
+    border-radius: 1rem;
+    padding: 3rem;
+    
+    &__title{
+        width: 100%;
+        font-size: 3rem;
+        text-align: left;
+        font-weight: v.$bold;
+    }
+
+    &__instructions{
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+        text-align: left;
+    }
+
+    &__input{
+        margin-top: 2.5rem;
+
+        &:first-of-type{
+            margin-top: 0;
+        }
+
+        label{
+            display: block;
+            margin-bottom: .5rem;
+        }
+        
+        .field{
+            background-color: v.$fondo_input;
+            width: 100%;
+            height: 4.5rem;
+            border: .2rem solid v.$border_input;
+            border-radius: .5rem;
+            outline: none;
+
+            &:focus{
+                border: .2rem solid v.$dorado;
+            }
+        }
+
+        .icon-left,
+        .icon-right{
+            display: flex;
+
+            .field{
+                width: calc(100% - 4.5rem);
+            }
+
+            i{
+                color: v.$blanco;
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: v.$dorado;
+                height: 4.5rem;
+                width: 4.5rem;
+
+                &.is-btn:hover{
+                    background-color: v.$dorado_darken;
+                }
+            }
+        }
+
+        .icon-left .field{
+
+            border-top: .2rem solid v.$border_input;
+            border-bottom: .2rem solid v.$border_input;
+            border-right: .2rem solid v.$border_input;
+            border-left: none;
+
+            border-radius: 0 .5rem .5rem 0;
+
+            &:focus{
+                border-top: .2rem solid v.$dorado;
+                border-bottom: .2rem solid v.$dorado;
+                border-right: .2rem solid v.$dorado;
+                border-left: none;
+            }
+        
+            ~ i{
+                border-radius: .5rem 0 0 .5rem;
+            }
+        }
+
+        .icon-right .field{
+            border-top: .2rem solid v.$border_input;
+            border-bottom: .2rem solid v.$border_input;
+            border-right: none;
+            border-left: .2rem solid v.$border_input;
+
+            border-radius:  .5rem 0 0 .5rem;
+
+            &:focus{
+                border-top: .2rem solid v.$dorado;
+                border-bottom: .2rem solid v.$dorado;
+                border-right: none;
+                border-left: .2rem solid v.$dorado;
+            }
+        
+            ~ i{
+                border-radius: 0 .5rem .5rem 0;                
+            }
+        }
+
+    }
+
+    .submit{
+        padding: 1rem 2rem;
+        margin-top: 2.5rem;
+        border-radius: .5rem;
+        font-size: 1.5rem;
+        @include m.boton(v.$dorado, v.$dorado_darken, v.$blanco, v.$blanco, inline-block);
+
+        &-center{
+            text-align: center;
+        }
+
+        &-left{
+            text-align: left;
+        }
+
+        &-right{
+            text-align: right;
+        }
+    }
+}

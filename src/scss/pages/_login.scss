@@ -1,0 +1,53 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.login-header{
+    padding: 2rem 5rem;
+    background-color: v.$fondo_claro;
+    img{
+        width: 8rem;
+    }
+}
+
+.login{
+    min-height: 70vh;
+    padding: 5rem 0;
+    background-color: v.$fondo_claro;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-cont{
+        width: 90%;
+        padding: 7rem 2rem;
+        margin-bottom: 4rem;
+
+        .enlace-forgot{
+            padding-top: 1rem;
+            color: v.$azul;
+
+            &:hover{
+                color: v.$azul_darken;
+            }
+        }
+        @include m.tablet{
+            width: 70%;
+        }
+
+        @include m.computadora{
+            width: 30%;
+        }
+    }
+
+    &-signin{
+        color: v.$negro;
+        font-size: 1.6rem;
+
+        span{
+            color: v.$azul;
+            margin-left: 1rem;
+            text-transform: lowercase;
+        }
+    }
+}
