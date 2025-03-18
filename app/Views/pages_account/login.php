@@ -1,8 +1,4 @@
-<header class="login-header">
-    <a href="/">
-        <img src="/assets/images/logoKTA.jpg" alt="logo de KTA">
-    </a>
-</header>
+<?php include_once __DIR__.'/../components/header.php'; ?>
 
 <section class="login">
     <form method="post" class="form login-cont">
@@ -11,7 +7,7 @@
         <p class="form__instructions">Ingresa tu correo electronico y tu contraseña</p>
 
         <div class="form__input">
-            <label for="email">Correo de usuario</label>
+            <label for="email">Correo</label>
             <input 
                 type="email"
                 name="email"

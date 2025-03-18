@@ -1,14 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.login-header{
-    padding: 2rem 5rem;
-    background-color: v.$fondo_claro;
-    img{
-        width: 8rem;
-    }
-}
-
 .login{
     min-height: 70vh;
     padding: 5rem 0;
@@ -41,8 +33,10 @@
     }
 
     &-signin{
+        margin-top: 1.5rem;
         color: v.$negro;
         font-size: 1.6rem;
+        text-align: center;
 
         span{
             color: v.$azul;
