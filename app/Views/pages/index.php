@@ -16,7 +16,6 @@
         <div class="banner__image-circle" id="banner__image-circle">
             <img src="/assets/images/bannerCircle.jpg" alt="imagen para animar de fondo">
         </div>
-
     </div>
 
 </section>
@@ -36,17 +35,19 @@
             <p class="razon__sub" >Razón-01</p>
             <h3 class="razon__title">Maestros altamente especializados</h3>
         </div>
+        
         <div class="razon">
             <img class="razon__img" src="/assets/images/case-img-2.jpg" alt="imagen de razon 1">
             <p class="razon__sub" >Razón-02</p>
             <h3 class="razon__title">+2500 estudiantes exitosos</h3>
         </div>
+        
         <div class="razon">
             <img class="razon__img" src="/assets/images/case-img-3.jpg" alt="imagen de razon 1">
             <p class="razon__sub" >Razón-03</p>
             <h3 class="razon__title">Multiples modalidades en nuestros cursos</h3>
         </div>
-
+        
         <div class="razon">
             <img class="razon__img" src="/assets/images/case-img-4.jpg" alt="imagen de razon 1">
             <p class="razon__sub" >Razón-04</p>
@@ -54,6 +55,33 @@
         </div>
     </div>
 
+</section>
+
+<section class="about">
+    <div class="about__grid">
+
+        <div class="foto-fundador-1"></div>
+
+        <div class="info-1">
+            <i class='bx bx-chalkboard bx-tada' ></i>
+            <p>5 años de experiencia</p>
+        </div>
+
+        <div class="info-2">
+            <i class='bx bxs-graduation bx-tada' ></i>
+            <p>+70 cursos</p>
+        </div>
+
+        <div class="foto-fundador-2"></div>
+    </div>
+
+    <div class="about__cont">
+
+        <h2 class="about__cont-title">Sobre nosotros</h2>
+        <p class="about__cont-sub">Para nosotros, enseñar es mas importante que asistir</p>
+        <a class="about__cont-btn" href="/nosotros">Mas sobre nosotros</a>
+
+    </div>
 </section>
 
 <?php include_once __DIR__.'/../components/footer.php'; ?>
