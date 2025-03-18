@@ -242,6 +242,12 @@
         }
 
         &__tel{
+            
+            i{
+                font-size: 2.2rem;
+                margin-right: 1rem;
+            }
+
             color: v.$blanco;
             font-size: 1.8rem;
             font-weight: v.$bold;

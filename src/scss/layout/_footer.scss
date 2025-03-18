@@ -1,0 +1,170 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.footer{
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
+    background: -webkit-linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
+    background: linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#b99331",GradientType=1);
+
+    color: v.$blanco;
+    padding: 5rem 3rem;
+    display: block;
+
+    @include m.tablet{
+        @include m.grid(2, 2rem);
+    }
+
+    @include m.computadora{
+        @include m.grid(3, 2rem);
+    }
+
+
+    .KTA{
+        padding: 1rem;
+        &-logo{
+            width: 50%;
+            max-width: 15rem;
+        }
+
+        &-texto{
+            color: v.$blanco;
+            font-size: 1.6rem;
+            width: 90%;
+            text-align: justify;
+        }
+
+        &-social{
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: start;
+            gap: 3rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            
+            &__item a{
+                color: v.$blanco;
+                padding: 2rem 1.2rem 1.2rem 1.2rem;
+                background-color: v.$negro;
+                border-radius: 1rem;
+
+                &:hover{
+                    background-color: v.$dorado;
+                }
+                i{
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    }
+
+    .menu{
+        padding: 1rem;
+
+        &__title{
+            color: v.$blanco;
+            text-align: left;
+            font-size: 2.5rem;
+            
+            &::after{
+                content: '';
+                display: block;
+                margin-top: 1rem;
+                background-color: v.$dorado;
+                width: 5rem;
+                height: .3rem;
+            }
+        }
+
+        .nav{
+            list-style: none;
+            padding: 0;
+            
+            &__link {
+                margin-bottom: 1.5rem;
+
+                &:last-of-type{
+                    margin-bottom: 0;
+                    border-bottom: none;
+                }
+
+                
+
+                a{
+                    color: v.$blanco;
+                    font-size: 1.8rem;
+
+                    &:hover{
+                        color: v.$dorado;
+                    }
+                }
+            }
+                
+        }
+    }
+
+    .contact{
+        padding: 1rem;
+
+        &__title{
+            color: v.$blanco;
+            text-align: left;
+            font-size: 2.5rem;
+            
+            &::after{
+                content: '';
+                display: block;
+                margin-top: 1rem;
+                background-color: v.$dorado;
+                width: 5rem;
+                height: .3rem;
+            }
+        }
+
+        .information{
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+
+            @include m.tablet{
+                gap: 3rem;
+            }
+
+            &__icon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                background-color: v.$negro;
+                border-radius: 1rem;
+                i{
+                    font-size: 2.8rem;
+                }
+            }
+
+            &__data{
+                &-name{
+                    color: v.$blanco;
+                    font-size: 1.8rem;
+                }
+
+                &-label{
+                    color: v.$blanco;
+                    margin-top: 1rem;
+                    margin-bottom: 0;
+                    font-size: 1.7rem;
+                    font-weight: v.$bold;
+
+                    @include m.tablet{
+                        font-size: 2.2rem;
+                    }
+                }
+            }
+        }
+
+    }
+}
