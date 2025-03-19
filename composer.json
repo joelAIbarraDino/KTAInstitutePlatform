@@ -16,7 +16,8 @@
     },
 
     "require": {
-        "joel/dino-framework":"*"
+        "joel/dino-framework":"*",
+        "vimeo/vimeo-api": "^3.0"
     },
     "repositories": [
         {
