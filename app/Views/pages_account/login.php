@@ -28,7 +28,7 @@
                     class="field"
                     placeholder="Ingrese su contraseña"
                 >
-                <i class='bx bx-show is-btn'></i>
+                <i id="btn-showPass" class='bx bx-show is-btn'></i>
             </div>    
         </div>
 
@@ -46,3 +46,9 @@
 
 
 <?php include_once __DIR__.'/../components/footer.php'; ?>
+
+<?php 
+    $scripts ='
+        <script src="/assets/js/showPassword.js"></script>
+    ';
+?>
