@@ -80,7 +80,7 @@
                 width: 4.5rem;
 
                 &.is-btn:hover{
-                    background-color: v.$dorado_darken;
+                    background-color: v.$negro;
                 }
             }
         }
@@ -133,7 +133,7 @@
         margin-top: 2.5rem;
         border-radius: .5rem;
         font-size: 1.5rem;
-        @include m.boton(v.$dorado, v.$dorado_darken, v.$blanco, v.$blanco, inline-block);
+        @include m.boton(v.$dorado, v.$negro, v.$blanco, v.$blanco, inline-block);
 
         &-center{
             text-align: center;

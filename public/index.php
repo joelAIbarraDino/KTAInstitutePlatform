@@ -32,8 +32,8 @@ $dino->router->post('/login', [AccountController::class, 'login']);
 $dino->router->get('/forgot', [AccountController::class, 'forgot']);
 $dino->router->post('/forgot', [AccountController::class, 'forgot']);
 
-$dino->router->get('/signin', [AccountController::class, 'signin']);
-$dino->router->post('/signin', [AccountController::class, 'signin']);
+$dino->router->get('/sign-in', [AccountController::class, 'signin']);
+$dino->router->post('/sign-in', [AccountController::class, 'signin']);
 
 
 $dino->router->dispatch();
