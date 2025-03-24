@@ -5,13 +5,23 @@ require __DIR__ . '/../vendor/autoload.php';
 use App\Controllers\AccountController;
 use App\Controllers\AdminController;
 use App\Controllers\PagesController;
+use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
-$dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, null, null);
+$dbConfig = [
+    "host"=>$_ENV['DB_HOST'],
+    "port"=>$_ENV['DB_PORT'],
+    "user"=>$_ENV['DB_USER'],
+    "password"=>$_ENV['DB_PASS'],
+    "database"=>$_ENV['DB_DATABASE'],
+    "driver"=>Database::PDO_DRIVER
+];
+
+$dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 
 $dino->router->get('/', [PagesController::class, 'index']);
 
