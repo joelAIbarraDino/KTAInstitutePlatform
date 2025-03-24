@@ -8,7 +8,7 @@ class AccountController
 {
     public static function login(string $nameApp): void{
 
-        Response::render('pages_account/login', [
+        Response::render('account/login', [
             'nameApp'=>$nameApp, 
             'title' => 'Login'
         ]);
@@ -16,9 +16,17 @@ class AccountController
 
     public static function forgot(string $nameApp): void{
 
-        Response::render('pages_account/forgot', [
+        Response::render('account/forgot', [
             'nameApp'=>$nameApp, 
             'title' => 'Login'
+        ]);
+    }
+
+    public static function signin(string $nameApp): void{
+
+        Response::render('account/signin', [
+            'nameApp'=>$nameApp, 
+            'title' => 'Sign in'
         ]);
     }
 

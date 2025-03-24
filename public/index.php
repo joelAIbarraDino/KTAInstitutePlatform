@@ -32,9 +32,8 @@ $dino->router->post('/login', [AccountController::class, 'login']);
 $dino->router->get('/forgot', [AccountController::class, 'forgot']);
 $dino->router->post('/forgot', [AccountController::class, 'forgot']);
 
-$dino->router->get('/upload', [AdminController::class , 'index']);
-$dino->router->post('/upload', [AdminController::class, 'index']);
+$dino->router->get('/signin', [AccountController::class, 'signin']);
+$dino->router->post('/signin', [AccountController::class, 'signin']);
 
-$dino->router->get('/test', [AdminController::class , 'test']);
 
 $dino->router->dispatch();
