@@ -6,14 +6,14 @@ class Lesson extends Model {
     
     protected static $table = 'lesson';
     protected static $PK_name = 'id_lesson';
-    protected static $columns = ['id_lesson', 'name', 'description', 'id_video', 'order', 'id_module'];
-    protected static $fillable = ['name', 'description', 'order'];
+    protected static $columns = ['id_lesson', 'name', 'description', 'id_video', 'order_lesson', 'id_module'];
+    protected static $fillable = ['name', 'description', 'order_lesson'];
 
     public ?int $id_lesson;
     public string $name;
     public string $description;
     public string $id_video;
-    public int $order;
+    public int $order_lesson;
     public string $id_module;
     public string $clave;
 
@@ -22,7 +22,7 @@ class Lesson extends Model {
         $this->name = $args["name"]??"";
         $this->description = $args["description"]??"";
         $this->id_video = $args["id_video"]??"";
-        $this->order = $args["order"]??0;
+        $this->order_lesson = $args["order_lesson"]??0;
         $this->id_module = $args["id_module"]??null;
         $this->clave = $args["clave"]??null;
     }

@@ -8,9 +8,9 @@ class AdminController
 {
     public static function index(string $nameApp): void{
 
-        Response::render('pages_admin/upload', [
+        Response::render('admin/index', [
             'nameApp'=>$nameApp, 
-            'title' => 'Inicio'
+            'title' => 'Admin KTA'
         ]);
 
     }

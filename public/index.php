@@ -3,6 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\AccountController;
+use App\Controllers\AdminController;
 use App\Controllers\PagesController;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
@@ -22,9 +23,10 @@ $dbConfig = [
 
 $dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 
+//public zone
 $dino->router->get('/', [PagesController::class, 'index']);
 
-
+//login sign-in and sign-up
 $dino->router->get('/login', [AccountController::class, 'login']);
 $dino->router->post('/login', [AccountController::class, 'login']);
 
@@ -33,6 +35,8 @@ $dino->router->post('/forgot', [AccountController::class, 'forgot']);
 
 $dino->router->get('/sign-in', [AccountController::class, 'signin']);
 $dino->router->post('/sign-in', [AccountController::class, 'signin']);
+
+$dino->router->get('/admin', [AdminController::class, 'index']);
 
 
 $dino->router->dispatch();
