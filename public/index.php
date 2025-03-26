@@ -3,7 +3,6 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\AccountController;
-use App\Controllers\AdminController;
 use App\Controllers\PagesController;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
