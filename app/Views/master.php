@@ -15,6 +15,8 @@
     <link rel="preload" href="/assets/css/app.css" as="style"> 
     <link rel="stylesheet" href="/assets/css/app.css">
 
+    <link rel="shortcut icon" href="/assets/images/logoKTA.ico" />
+
     <title><?=$nameApp." | ".$title??""?></title>
 </head>
 <body>
