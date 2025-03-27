@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Classes\Helpers;
 use DinoEngine\Http\Response;
 
 class AdminController
@@ -10,7 +11,19 @@ class AdminController
 
         Response::render('admin/index', [
             'nameApp'=>$nameApp, 
-            'title' => 'Admin KTA'
+            'title' => 'Admin KTA',
+            'bienvenida' => Helpers::saludo()
+        ]);
+
+    }
+
+    public static function courses(string $nameApp):void{
+
+        
+
+        Response::render('admin/cursos', [
+            'nameApp' => $nameApp,
+            'title' => 'Admin cursos'
         ]);
 
     }

@@ -6,7 +6,8 @@
     display: flex;
     justify-content: space-between;
     padding: 2rem;
-    min-height: 8vh;
+    height: 7vh;
+    width: 100%;
 
     &-left{
         display: flex;
@@ -78,15 +79,16 @@
         transition: all .8s ease;
     
         &__content{
-            background-color: v.$blanco;
+            background-color: v.$fondo_claro;
             height: 100vh;
             width: 28rem;
             left: -110%;
             position: relative;
             transition: left .8s ease;
+            padding-right: 2rem;
             overflow-y: scroll;
             scrollbar-width: thin;
-            scrollbar-color: v.$border_input v.$blanco;
+            scrollbar-color: v.$border_input v.$fondo_claro;
     
             &-top{
                 display: flex;
@@ -133,7 +135,7 @@
                     &__title{
                         margin: 0;
                         font-size: 1.8rem;
-                        color: v.$dorado;
+                        color: v.$negro;
                         font-weight: v.$bold;
                     }
                     &__link{
@@ -144,7 +146,7 @@
                         font-size: 1.6rem;
 
                         &:hover{
-                            background-color: v.$fondo_claro;
+                            background-color: #e9e9e9;
                             border-radius: .5rem;
                         }
                     }
@@ -176,15 +178,30 @@
 
 .main{
     background-color: v.$fondo_claro;
-    min-height: 92vh;
     padding: 3rem;
+    height: 93vh;
 
     &__container{
         background-color: v.$blanco;
-        border-radius: .5rem;
         width: 100%;
         height: 100%;
-        padding: 3rem;
+        padding: 1rem;
         border: .1rem solid v.$dorado;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: v.$blanco v.$blanco;
+
+        @include m.tablet{
+            padding: 3rem;
+        }
+
     }
+
+    &__title{
+        font-weight: v.$regular;
+        text-align: left;
+        font-size: 2rem;
+        color: v.$dorado;
+    }
+
 }

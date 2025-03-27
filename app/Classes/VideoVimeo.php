@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Clases;
+namespace App\Classes;
 
 use DinoEngine\Http\Response;
 use InvalidArgumentException;

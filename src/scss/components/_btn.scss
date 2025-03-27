@@ -1,0 +1,14 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.btn{
+    padding: 1rem;
+    border-radius: .5rem;
+    align-items: center; 
+    justify-content: center;
+
+    i{
+        margin-right: .5rem;
+    }
+    @include m.boton(v.$azul, v.$negro, v.$blanco, v.$blanco, flex);
+}

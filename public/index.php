@@ -21,6 +21,8 @@ $dbConfig = [
     "driver"=>Database::PDO_DRIVER
 ];
 
+date_default_timezone_set('America/Mexico_City');
+
 $dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 
 //public zone
@@ -37,6 +39,7 @@ $dino->router->get('/sign-in', [AccountController::class, 'signin']);
 $dino->router->post('/sign-in', [AccountController::class, 'signin']);
 
 $dino->router->get('/admin', [AdminController::class, 'index']);
+$dino->router->get('/cursos', [AdminController::class, 'courses']);
 
 
 $dino->router->dispatch();
