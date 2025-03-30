@@ -1,12 +1,14 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Attempt extends Model {
     
-    protected static $table = 'attempt';
-    protected static $PK_name = 'id_attempt';
-    protected static $columns = ['id_attempt', 'time', 'score', 'is_approved', 'id_enrollment', 'id_quizz'];
+    protected static string  $table = 'attempt';
+    protected static string  $PK_name = 'id_attempt';
+    protected static array $columns = ['id_attempt', 'time', 'score', 'is_approved', 'id_enrollment', 'id_quizz'];
 
     public ?int $id_attempt;
     public float $time;

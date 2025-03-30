@@ -1,15 +1,17 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class User extends Model {
     
-    protected static $table = 'user';
-    protected static $PK_name = 'id_user';
-    protected static $columns = ['id_user', 'name', 'email', 'password', 'token', 'clave'];
-    protected static $fillable = ['name', 'email', 'password'];
-    protected static $nullable = ['token', 'clave'];
-    protected static $hidden = ['password'];
+    protected static string $table = 'user';
+    protected static string $PK_name = 'id_user';
+    protected static array $columns = ['id_user', 'name', 'email', 'password', 'token', 'clave'];
+    protected static array $fillable = ['name', 'email', 'password'];
+    protected static array $nullable = ['token', 'clave'];
+    protected static array $hidden = ['password'];
 
     public ?int $id_user;
     public string $name;

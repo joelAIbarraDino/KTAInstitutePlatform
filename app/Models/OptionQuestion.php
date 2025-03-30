@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class OptionQuestion extends Model {
     
-    protected static $table = 'option_question';
-    protected static $PK_name = 'id_option';
-    protected static $columns = ['id_option', 'text_option', 'point', 'id_question'];
-    protected static $fillable = ['text_option', 'point'];
+    protected static string $table = 'option_question';
+    protected static string $PK_name = 'id_option';
+    protected static array $columns = ['id_option', 'text_option', 'point', 'id_question'];
+    protected static array $fillable = ['text_option', 'point'];
 
     public ?int $id_option;
     public string $text_option;

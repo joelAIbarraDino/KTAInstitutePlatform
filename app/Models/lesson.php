@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Lesson extends Model {
     
-    protected static $table = 'lesson';
-    protected static $PK_name = 'id_lesson';
-    protected static $columns = ['id_lesson', 'name', 'description', 'id_video', 'order_lesson', 'id_module'];
-    protected static $fillable = ['name', 'description', 'order_lesson'];
+    protected static string $table = 'lesson';
+    protected static string $PK_name = 'id_lesson';
+    protected static array $columns = ['id_lesson', 'name', 'description', 'id_video', 'order_lesson', 'id_module'];
+    protected static array $fillable = ['name', 'description', 'order_lesson'];
 
     public ?int $id_lesson;
     public string $name;

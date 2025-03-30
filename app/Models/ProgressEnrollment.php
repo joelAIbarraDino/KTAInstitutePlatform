@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class ProgressEnrollment extends Model {
     
-    protected static $table = 'progress_enrollment';
-    protected static $PK_name = 'id_progress';
-    protected static $columns = ['id_progress', 'completed', 'id_enrollment', 'id_lesson'];
-    protected static $fillable = ['completed'];
+    protected static string $table = 'progress_enrollment';
+    protected static string $PK_name = 'id_progress';
+    protected static array $columns = ['id_progress', 'completed', 'id_enrollment', 'id_lesson'];
+    protected static array $fillable = ['completed'];
 
     public ?int $id_progress;
     public bool $completed;

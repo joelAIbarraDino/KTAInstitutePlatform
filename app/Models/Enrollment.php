@@ -1,12 +1,14 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Enrollment extends Model {
     
-    protected static $table = 'enrollment';
-    protected static $PK_name = 'id_enrollment';
-    protected static $columns = ['id_enrollment', 'enrollment_at', 'id_course', 'id_student', 'id_payment'];
+    protected static string $table = 'enrollment';
+    protected static string $PK_name = 'id_enrollment';
+    protected static array $columns = ['id_enrollment', 'enrollment_at', 'id_course', 'id_student', 'id_payment'];
 
     public ?int $id_enrollment;
     public string $enrollment_at;

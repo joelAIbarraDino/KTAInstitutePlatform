@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Payment extends Model {
     
-    protected static $table = 'payment';
-    protected static $PK_name = 'id_payment';
-    protected static $columns = ['id_payment', 'method', 'amount', 'currency', 'status', 'id_transition'];
-    protected static $fillable = ['method', 'amount', 'currency', 'status', 'id_transition'];
+    protected static string $table = 'payment';
+    protected static string $PK_name = 'id_payment';
+    protected static array $columns = ['id_payment', 'method', 'amount', 'currency', 'status', 'id_transition'];
+    protected static array $fillable = ['method', 'amount', 'currency', 'status', 'id_transition'];
 
     public ?int $id_payment;
     public string $method;

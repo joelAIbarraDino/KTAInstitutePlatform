@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Quizz extends Model {
     
-    protected static $table = 'quizz';
-    protected static $PK_name = 'id_quizz';
-    protected static $columns = ['id_quizz', 'name', 'min_score', 'max_time', 'max_attempts', 'id_course'];
-    protected static $fillable = ['name', 'min_score', 'max_time', 'max_attempts'];
+    protected static string $table = 'quizz';
+    protected static string $PK_name = 'id_quizz';
+    protected static array $columns = ['id_quizz', 'name', 'min_score', 'max_time', 'max_attempts', 'id_course'];
+    protected static array $fillable = ['name', 'min_score', 'max_time', 'max_attempts'];
 
     public ?int $id_quizz;
     public string $name;

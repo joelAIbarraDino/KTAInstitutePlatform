@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Membership extends Model {
     
-    protected static $table = 'membership';
-    protected static $PK_name = 'id_membership';
-    protected static $columns = ['id_membership', 'start_at', 'ends_at', 'type', 'id_payment'];
-    protected static $fillable = ['start_at', 'ends_at', 'type'];
+    protected static string $table = 'membership';
+    protected static string $PK_name = 'id_membership';
+    protected static array $columns = ['id_membership', 'start_at', 'ends_at', 'type', 'id_payment'];
+    protected static array $fillable = ['start_at', 'ends_at', 'type'];
 
     public ?int $id_membership;
     public string $start_at;

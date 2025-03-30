@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use DinoEngine\Core\Model;
 
 class Admin extends Model{
     
-    protected static $table = 'admin';
-    protected static $PK_name = 'id_admin';
-    protected static $columns = ['id_admin', 'id_user', 'id_rol'];
-    protected static $fillable = ['id_user', 'id_rol'];
+    protected static string $table = 'admin';
+    protected static string $PK_name = 'id_admin';
+    protected static array $columns = ['id_admin', 'id_user', 'id_rol'];
+    protected static array $fillable = ['id_user', 'id_rol'];
 
     public ?int $id_admin;
     public int $id_user;

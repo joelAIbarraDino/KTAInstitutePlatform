@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Material extends Model {
     
-    protected static $table = 'material';
-    protected static $PK_name = 'id_material';
-    protected static $columns = ['id_material', 'type', 'url_file', 'id_lesson'];
-    protected static $fillable = ['type', 'url_file'];
+    protected static string $table = 'material';
+    protected static string $PK_name = 'id_material';
+    protected static array $columns = ['id_material', 'type', 'url_file', 'id_lesson'];
+    protected static array $fillable = ['type', 'url_file'];
 
     public ?int $id_material;
     public string $type;

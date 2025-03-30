@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use DinoEngine\Core\Model;
 
 class Permission extends Model{
     
-    protected static $table = 'permission';
-    protected static $PK_name = 'id_permission';
-    protected static $columns = ['id_permission', 'nivel'];
-    protected static $fillable = ['nivel'];
+    protected static string $table = 'permission';
+    protected static string $PK_name = 'id_permission';
+    protected static array $columns = ['id_permission', 'nivel'];
+    protected static array $fillable = ['nivel'];
 
     public ?int $id_permission;
     public string $nivel;
