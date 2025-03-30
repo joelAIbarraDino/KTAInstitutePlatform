@@ -6,26 +6,26 @@ use DinoEngine\Http\Response;
 
 class AccountController
 {
-    public static function login(string $nameApp): void{
+    public static function login(): void{
 
         Response::render('account/login', [
-            'nameApp'=>$nameApp, 
+            'nameApp'=>APP_NAME, 
             'title' => 'Login'
         ]);
     }
 
-    public static function forgot(string $nameApp): void{
+    public static function forgot(): void{
 
         Response::render('account/forgot', [
-            'nameApp'=>$nameApp, 
+            'nameApp'=>APP_NAME, 
             'title' => 'Login'
         ]);
     }
 
-    public static function signin(string $nameApp): void{
+    public static function signin(): void{
 
         Response::render('account/signin', [
-            'nameApp'=>$nameApp, 
+            'nameApp'=>APP_NAME, 
             'title' => 'Sign in'
         ]);
     }

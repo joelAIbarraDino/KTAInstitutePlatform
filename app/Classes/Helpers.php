@@ -12,9 +12,9 @@ class Helpers{
         
         if($hora > 0 && $hora < 12)
             $mensaje = "Buenos dias";
-        elseif($hora >12 && $hora < 18)
+        elseif($hora >=12 && $hora < 18)
             $mensaje = "Buenas tardes";
-        elseif($hora > 18 && $hora < 23)
+        elseif($hora >= 18 && $hora < 23)
             $mensaje = "Buenas noches";
 
         return $mensaje;

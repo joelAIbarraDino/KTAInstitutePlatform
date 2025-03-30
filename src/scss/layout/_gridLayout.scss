@@ -1,0 +1,30 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.grid-elements{
+    display: block;
+
+    @include m.computadora{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 2rem;
+    }
+}
+
+[class*="col-"] {
+    grid-column: span var(--cols);
+  }
+  
+  .col-1 { --cols: 1; }
+  .col-2 { --cols: 2; }
+  .col-3 { --cols: 3; }
+  .col-4 { --cols: 4; }
+  .col-5 { --cols: 5; }
+  .col-6 { --cols: 6; }
+  .col-7 { --cols: 7; }
+  .col-8 { --cols: 8; }
+  .col-9 { --cols: 9; }
+  .col-10 { --cols: 10; }
+  .col-11 { --cols: 311 }
+  .col-12 { --cols: 12; }

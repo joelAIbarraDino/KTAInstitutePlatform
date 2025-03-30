@@ -7,22 +7,22 @@ use DinoEngine\Http\Response;
 
 class AdminController
 {
-    public static function index(string $nameApp): void{
+    public static function index(): void{
 
         Response::render('admin/index', [
-            'nameApp'=>$nameApp, 
+            'nameApp'=>APP_NAME, 
             'title' => 'Admin KTA',
             'bienvenida' => Helpers::saludo()
         ]);
 
     }
 
-    public static function courses(string $nameApp):void{
+    public static function courses():void{
 
         
 
-        Response::render('admin/cursos', [
-            'nameApp' => $nameApp,
+        Response::render('admin/cursos/index', [
+            'nameApp' => APP_NAME,
             'title' => 'Admin cursos'
         ]);
 

@@ -1,1 +1,24 @@
-!function(){const o=document.querySelector("body"),c=document.querySelector(".toolbar-left__btn"),e=document.querySelector(".btn-close"),t=document.querySelector(".toolbar-menu");t.onclick=function(c){c.target.classList.contains("toolbar-menu")&&(t.classList.remove("active"),o.classList.remove("no-scroll"))},c.onclick=function(){t.classList.add("active"),o.classList.add("no-scroll")},e.onclick=function(){t.classList.remove("active"),o.classList.remove("no-scroll")}}();
+(function(){
+    const page = document.querySelector("body");
+    const menuBtn = document.querySelector(".toolbar-left__btn");
+    const menuClose = document.querySelector(".btn-close");
+    const menu = document.querySelector(".toolbar-menu");
+
+    menu.onclick = function(e){
+        var target = e.target;
+        if(target.classList.contains("toolbar-menu")){
+            menu.classList.remove("active");
+            page.classList.remove("no-scroll");
+        }
+    }
+
+    menuBtn.onclick = function(){
+        menu.classList.add("active");
+        page.classList.add("no-scroll");
+    }
+
+    menuClose.onclick = function(){
+        menu.classList.remove("active");
+        page.classList.remove("no-scroll");
+    }
+})();

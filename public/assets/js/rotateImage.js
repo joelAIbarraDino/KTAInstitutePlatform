@@ -1,1 +1,24 @@
-document.addEventListener("DOMContentLoaded",(function(){!function(){const e=document.querySelector("#banner__image-circle");e.style.translate="none",e.style.rotate="none",e.style.scale="none";let t=0;setInterval((()=>{e.style.transform=`translate3d(0px, 0px, 0px) rotate(${t}deg)`,t+=.8,t>=360&&(t=0)}),50)}()}));
+(function(){
+    
+    document.addEventListener('DOMContentLoaded', function(){
+        app();
+    });
+
+
+    function app(){
+        const img = document.querySelector('#banner__image-circle');
+
+        img.style.translate = 'none';
+        img.style.rotate = 'none';
+        img.style.scale = 'none';
+
+        let grade = 0;
+        
+        setInterval(() => {
+            img.style.transform = `translate3d(0px, 0px, 0px) rotate(${grade}deg)`;
+            grade +=0.8;
+            if(grade >= 360)
+                grade = 0;
+        }, 50);
+    }
+})();

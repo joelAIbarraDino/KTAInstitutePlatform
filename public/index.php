@@ -4,6 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\AccountController;
 use App\Controllers\AdminController;
+use App\Controllers\CourseController;
 use App\Controllers\PagesController;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
@@ -11,6 +12,9 @@ use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
+
+date_default_timezone_set('America/Mexico_City');
+define('APP_NAME','KTA Institute');
 
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],
@@ -21,9 +25,8 @@ $dbConfig = [
     "driver"=>Database::PDO_DRIVER
 ];
 
-date_default_timezone_set('America/Mexico_City');
 
-$dino = new Dino("KTA Institute", dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
+$dino = new Dino(dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 
 //public zone
 $dino->router->get('/', [PagesController::class, 'index']);
@@ -40,6 +43,10 @@ $dino->router->post('/sign-in', [AccountController::class, 'signin']);
 
 $dino->router->get('/admin', [AdminController::class, 'index']);
 $dino->router->get('/cursos', [AdminController::class, 'courses']);
+
+//administración de cursos
+$dino->router->get('/admin/curso/new', [CourseController::class, 'create']);
+$dino->router->post('/admin/curso/new', [CourseController::class, 'create']);
 
 
 $dino->router->dispatch();

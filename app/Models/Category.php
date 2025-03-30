@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Category extends Model {
     
-    protected static $table = 'category';
-    protected static $PK_name = 'id_category';
-    protected static $columns = ['id_category', 'name'];
-    protected static $fillable = ['name'];
+    protected static string $table = 'category';
+    protected static string $PK_name = 'id_category';
+    protected static array $columns = ['id_category', 'name'];
+    protected static array $fillable = ['name'];
 
     public ?int $id_category;
     public string $name;

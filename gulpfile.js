@@ -54,7 +54,7 @@ function compileSass() {
 function minifyJS() {
   return gulp.src(paths.js.src)
     .pipe(plumber({ errorHandler: handleError }))
-    .pipe(terser())
+    //.pipe(terser())
     .pipe(gulp.dest(paths.js.dest));
 }
 

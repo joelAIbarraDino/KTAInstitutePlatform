@@ -1,25 +1,27 @@
 <?php
 
+namespace App\Models;
+
 use DinoEngine\Core\Model;
 
 class Course extends Model {
     
-    protected static $table = 'course';
-    protected static $PK_name = 'id_course';
-    protected static $columns = [
+    protected static string $table = 'course';
+    protected static string $PK_name = 'id_course';
+    protected static array $columns = [
         'id_course', 'name', 'watchword', 'thumbnail', 
         'description', 'price', 'max_months_enroll', 
         'created_at', 'privacy', 'id_category', 'id_promo', 
         'id_teacher'
     ];
 
-    protected static $fillable = [
+    protected static array $fillable = [
         'name', 'watchword', 'thumbnail', 
         'description', 'price', 'max_months_enroll',
         'privacy', 'id_category', 'id_promo', 
         'id_teacher'
     ];
-    protected static $nullable = ['id_promo'];
+    protected static array $nullable = ['id_promo'];
 
     public ?int $id_course;
     public string $name;

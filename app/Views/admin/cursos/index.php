@@ -1,11 +1,11 @@
-<?php include_once __DIR__.'/../components/adminToolbar.php'; ?>
+<?php include_once __DIR__.'/../../components/adminToolbar.php'; ?>
 
 <main class="main">
     <div class="main__container">
 
         <div class="top-main">
             <h1 class="main__title">Cursos registrados</h1>
-            <a class="btn nuevo" href="/cursos/new"><i class='bx bx-plus'></i> Nuevo curso</a>
+            <a class="btn nuevo" href="/admin/curso/new"><i class='bx bx-plus'></i> Nuevo curso</a>
         </div>
 
         <div class="records">

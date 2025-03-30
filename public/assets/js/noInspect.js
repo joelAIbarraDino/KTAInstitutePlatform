@@ -1,1 +1,9 @@
-document.addEventListener("contextmenu",(e=>e.preventDefault())),document.addEventListener("copy",(function(e){e.clipboardData.setData("text/plain","No se permite copiar en esta página web"),e.preventDefault()}),!1);
+(function(){
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    
+    document.addEventListener("copy", function(event){
+        event.clipboardData.setData("text/plain", "No se permite copiar en esta página web");
+        event.preventDefault();
+    }, false);
+})();
+
