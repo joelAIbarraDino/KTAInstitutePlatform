@@ -15,6 +15,7 @@ $dotenv->safeLoad();
 
 date_default_timezone_set('America/Mexico_City');
 define('APP_NAME','KTA Institute');
+define('DIR_CARATULAS',__DIR__.'/assets/thumbnails');
 
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],

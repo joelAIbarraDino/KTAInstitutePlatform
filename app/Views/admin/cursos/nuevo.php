@@ -29,10 +29,9 @@
                                 id="thumbnail"
                                 accept="image/*"
                                 hidden
-                                required
                             >
                             <button type="button" id="thumbnail-btn" class="form__file-btn">Seleccionar caratula</button>
-                            <span class="form__file-msg">No se ha seleccionado ningún archivo</span>
+                            <span id="msg-thumbnail" class="form__input-msg"></span>
                         </div>
                     </div>
 
@@ -46,7 +45,7 @@
                                 id="name"
                                 class="field"
                                 placeholder="Nombre del curso"
-                                required
+                                
                             >
                             <span id="msg-name" class="form__input-msg"></span>
                         </div>
@@ -59,7 +58,7 @@
                                 id="watchword"
                                 class="field"
                                 placeholder="Frase llamativa del curso que aparecera debajo del nombre del curso"
-                                required
+                                
                             >
                             <span id="msg-watchword" class="form__input-msg"></span>
                         </div>
@@ -91,7 +90,7 @@
                                     id="price"
                                     class="field"
                                     placeholder="Precio del curso"
-                                    required
+                                    
                                 >
                             </div>    
                             <span id="msg-price" class="form__input-msg"></span>
@@ -126,22 +125,22 @@
                     </div>
 
                     <div class="form__input">
-                        <label for="desc">Descripción (minimo 80 caracteres)</label>
+                        <label for="description">Descripción (minimo 80 caracteres)</label>
                         <textarea 
-                            name="desc" 
-                            id="desc"
+                            name="description" 
+                            id="description"
                             class="text-area"
                             placeholder="Descripción detallada del curso, que se aprendera y que puede hacer despues de tomar este curso"
-                            required
+                            
                         ></textarea>
-                        <span id="msg-desc" class="form__input-msg"></span>
+                        <span id="msg-description" class="form__input-msg"></span>
                     </div>
 
                     <div class="grid-elements">
                         
                         <div class="form__input  col-4">
                             <label for="privacy">Estado de publicación(obligatorio)</label>
-                                <select name="privacy" id="privacy" class="field" required>
+                                <select name="privacy" id="privacy" class="field" >
                                     <option value="" disabled selected>Selecciona estado de publicación</option>
                                     <?php include_once __DIR__.'/../../components/statusPublicCB.php' ?>
                                 </select>
@@ -150,7 +149,7 @@
 
                         <div class="form__input col-4">
                             <label for="id_teacher">Maestro(obligatorio)</label>
-                                <select name="id_teacher" id="id_teacher" class="field" required>
+                                <select name="id_teacher" id="id_teacher" class="field" >
                                     <option value="" disabled selected>Seleccionar maestro</option>
                                     <?php include_once __DIR__.'/../../components/teacherCB.php' ?>
                                 </select>
@@ -159,7 +158,7 @@
 
                         <div class="form__input col-4">
                             <label for="id_category">Categoría(obligatorio)</label>
-                                <select name="id_category" id="id_category" class="field" required>
+                                <select name="id_category" id="id_category" class="field" >
                                     <option value="" disabled selected>Seleccionar</option>
                                     <?php include_once __DIR__.'/../../components/categories.php' ?>
                                 </select>
@@ -201,8 +200,9 @@
 
 <?php
     $scripts = '
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/newCourse.js"></script>
-        <script src="/assets/js/btnFile.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
     ';
 ?>
