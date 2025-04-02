@@ -21,7 +21,7 @@ class Teacher extends Model{
     public function __construct($args = [])
     {
         $this->id_teacher = $args['id_teacher']??null;
-        $this->id_user = $args['id_user']??null;
+        $this->id_user = $args['id_user']??0;
         $this->photo = $args['photo']??'';
         $this->speciality = $args['speciality']??'';
         $this->experience = $args['experience']??0;

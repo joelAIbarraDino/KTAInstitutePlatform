@@ -2,11 +2,13 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Controllers\AccountController;
-use App\Controllers\AdminController;
+use App\Middlewares\ExistsCategoryMiddleware;
+use App\Middlewares\ExistsTeacherMiddleware;
 use App\Controllers\CategoryController;
+use App\Controllers\AccountController;
 use App\Controllers\CourseController;
 use App\Controllers\PagesController;
+use App\Controllers\AdminController;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
@@ -48,7 +50,11 @@ $dino->router->get('/cursos', [AdminController::class, 'courses']);
 $dino->router->get('/categorias', [AdminController::class, 'categories']);
 
 //administración de cursos
-$dino->router->get('/admin/curso/create', [CourseController::class, 'formCreate']);
+$dino->router->get('/admin/curso/create', [CourseController::class, 'formCreate'], 
+[
+    new ExistsCategoryMiddleware('/admin/categoria/create'), 
+    new ExistsTeacherMiddleware('/admin/maestro/create')
+]);
 $dino->router->post('/api/curso/create', [CourseController::class, 'create']);
 $dino->router->post('/api/curso/update/{id}', [CourseController::class, 'update']);
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
