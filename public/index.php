@@ -44,10 +44,10 @@ $dino->router->post('/sign-in', [AccountController::class, 'signin']);
 
 $dino->router->get('/admin', [AdminController::class, 'index']);
 $dino->router->get('/cursos', [AdminController::class, 'courses']);
+$dino->router->get('/categorias', [AdminController::class, 'categories']);
 
 //administración de cursos
 $dino->router->get('/admin/curso/create', [CourseController::class, 'formCreate']);
-
 $dino->router->post('/api/curso/create', [CourseController::class, 'create']);
 $dino->router->post('/api/curso/update/{id}', [CourseController::class, 'update']);
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);

@@ -51,7 +51,7 @@
                     <div class="nav">
                         <p class="nav__title">Administración</p>
                         <a class="nav__link" href="/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-category'></i> Categorias</a>
+                        <a class="nav__link" href="/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                         <a class="nav__link" href="/admin"> <i class='bx bxs-certification'></i> Membresias</a>
                         <a class="nav__link" href="/admin"> <i class='bx bxs-school'></i> Inscripciones</a>
                         <a class="nav__link" href="/admin"> <i class='bx bxs-message-rounded-dots'></i> Anuncios</a>

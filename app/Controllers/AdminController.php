@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Classes\Helpers;
+use App\Models\Category;
 use App\Models\CourseView;
 use DinoEngine\Http\Response;
 
@@ -28,5 +29,16 @@ class AdminController
             'courses'=>$courses
         ]);
 
+    }
+
+    public static function categories():void{
+        
+        $categories = Category::all();
+
+        Response::render('admin/categorias/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin categorias',
+            'categories'=>$categories
+        ]);
     }
 }

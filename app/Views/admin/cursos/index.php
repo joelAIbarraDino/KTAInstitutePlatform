@@ -1,8 +1,4 @@
-<?php
-
-use App\Models\Course;
-
- include_once __DIR__.'/../../components/adminToolbar.php'; ?>
+<?php include_once __DIR__.'/../../components/adminToolbar.php'; ?>
 
 <main class="main">
     <div class="main__container">

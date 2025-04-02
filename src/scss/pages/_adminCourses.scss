@@ -71,12 +71,11 @@
     margin: 2rem auto;
     border-top: .1rem solid v.$gris;
     
-    
     .record{
         padding:.5rem;
         border-bottom: .1rem solid v.$gris;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
 
         @include m.computadora{
@@ -230,5 +229,74 @@
             
         }
 
+    }
+
+    .record-flex{
+        padding:.5rem;
+        border-bottom: .1rem solid v.$gris;
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+
+        &.empty{
+            display: block;
+            border-bottom: none;
+            p{
+                color: v.$rojo;
+                text-align: center;
+                font-weight: v.$bold;
+            }
+        }
+
+        &:hover{
+            background-color: v.$fondo_claro;
+        }
+
+        &__col-info{
+            display: flex;
+            flex-direction: column;
+            justify-content:start;
+            align-items: center;
+
+            &-title{
+                margin: 0;
+                font-size: 1.8rem;
+                color: v.$dorado;
+                font-weight: v.$bold;
+            }
+
+            &-date{
+                margin: 0;
+                margin-top: .5rem;
+                font-size: 1.5rem;
+                
+                &--link{
+                    color: v.$negro;
+                    margin-top: .5rem;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        &__col-action{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            
+            &-link{
+                background-color: v.$rojo;
+                color: v.$blanco;
+                padding: .5rem 1rem;
+                border-radius: .5rem;
+                border: none;
+
+                &:hover{
+                    background-color: #964646;
+                }
+            }
+            
+        }
     }
 }
