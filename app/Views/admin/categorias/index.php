@@ -15,8 +15,8 @@
                     <div class="record-flex">
 
                         <div class="record-flex__col-info">
-                            <p class="record-flex__col-info-title">Categoria</p>
-                            <p class="record-flex__col-info-date"><?=$category->name?></p>
+                            <p class="record-flex__col-info-title" >Categoria</p>
+                            <a class="record-flex__col-info-date--link" href="/admin/categoria/update/<?=$category->id_category?>"><?=$category->name?></a>
                         </div>
 
                         <div class="record-flex__col-action">
@@ -41,6 +41,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/menuDashboard.js"></script>
-        <script src="/assets/js/deleteCourse.js"></script>
+        <script src="/assets/js/deleteCategory.js"></script>
     ';
 ?>

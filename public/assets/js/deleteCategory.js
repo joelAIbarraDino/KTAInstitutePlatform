@@ -4,8 +4,8 @@
     const alertaEliminar = (e) => {
         const id = e.target.dataset.id;
         Swal.fire({
-            title: "¿esta seguro que quiere eliminar este curso?",
-            text: "Tambien se eliminara todo el contenido del curso y es inreversible",
+            title: "¿esta seguro que quiere eliminar esta categoria?",
+            text: "Este proceso no es reversible",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -14,9 +14,7 @@
             cancelButtonText: "Cancelar"
           }).then((result) => {
             if (result.isConfirmed)
-                eliminarCurso(id);
-              
-            
+                eliminarCategoria(id);
           });
     }
 
@@ -24,11 +22,11 @@
         btn.addEventListener('click', alertaEliminar);
     });
 
-    async function eliminarCurso(id){
+    async function eliminarCategoria(id){
 
         if(!id) return;
 
-        const url = `/api/curso/delete/${id}`;
+        const url = `/api/categoria/delete/${id}`;
 
         const response = await fetch(url,{
             method:'delete'
@@ -38,15 +36,15 @@
 
         if(result.ok){
             Swal.fire({
-                title: `curso eliminado con exito`,
+                title: `categoria eliminado con exito`,
                 icon: "success",
             }).then(() =>{
                 location.reload();
             });
         }else{
             Swal.fire({
-                title: `error al eliminar categoria`,
-                text:"Intente mas tarde",
+                title: `error al eliminar la categoria`,
+                text:"Esta categoria esta asignado a cursos",
                 icon: "error",
             })
         }

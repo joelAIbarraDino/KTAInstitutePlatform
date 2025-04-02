@@ -4,6 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\AccountController;
 use App\Controllers\AdminController;
+use App\Controllers\CategoryController;
 use App\Controllers\CourseController;
 use App\Controllers\PagesController;
 use DinoEngine\Core\Database;
@@ -51,6 +52,14 @@ $dino->router->get('/admin/curso/create', [CourseController::class, 'formCreate'
 $dino->router->post('/api/curso/create', [CourseController::class, 'create']);
 $dino->router->post('/api/curso/update/{id}', [CourseController::class, 'update']);
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
+
+//administración de categoria
+$dino->router->get('/admin/categoria/create', [CategoryController::class, 'formCreate']);
+$dino->router->get('/admin/categoria/update/{id}', [CategoryController::class, 'formUpdate']);
+
+$dino->router->post('/api/categoria/create', [CategoryController::class, 'create']);
+$dino->router->post('/api/categoria/update/{id}', [CategoryController::class, 'update']);
+$dino->router->delete('/api/categoria/delete/{id}', [CategoryController::class, 'delete']);
 
 
 $dino->router->dispatch();

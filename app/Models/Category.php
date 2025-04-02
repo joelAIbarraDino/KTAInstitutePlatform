@@ -21,5 +21,12 @@ class Category extends Model {
 
     public function validate(){
 
+        if(!$this->name)
+            self::setAlerts('name', 'El nombre de la categoria es obligatorio');
+
+        if(strlen($this->name) > 30)
+            self::setAlerts('name', 'El nombre de la categoria no debe tener mas de 30 caracteres');
+
+        return self::$alerts;
     }
 }

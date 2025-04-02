@@ -45,7 +45,7 @@
             });
         }else{
             Swal.fire({
-                title: `curso ${id} eliminado`,
+                title: `error al eliminar categoria`,
                 text:"Intente mas tarde",
                 icon: "error",
             })

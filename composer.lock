@@ -668,7 +668,7 @@
             "dist": {
                 "type": "path",
                 "url": "/home/joel/workspace/DinoFramework",
-                "reference": "2333f283523d93dd2f7bff47ccd73282718a277f"
+                "reference": "edaad81135f004673a7e4b44450c119771084b56"
             },
             "require": {
                 "filp/whoops": "^2.17",
