@@ -7,7 +7,7 @@
             <a class="btn nuevo" href="javascript:history.back()"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 
-        <form id="form-category" class="form" enctype="multipart/form-data">
+        <form id="form-category" class="form tabs__container" enctype="multipart/form-data">
             <legend class="form__title">Actualizar categoria</legend>
             
             <p class="form__instructions">Completa los campos para crear una nueva categoria</p>
