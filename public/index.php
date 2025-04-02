@@ -15,7 +15,7 @@ $dotenv->safeLoad();
 
 date_default_timezone_set('America/Mexico_City');
 define('APP_NAME','KTA Institute');
-define('DIR_CARATULAS',__DIR__.'/assets/thumbnails');
+define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
 
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],
@@ -46,8 +46,11 @@ $dino->router->get('/admin', [AdminController::class, 'index']);
 $dino->router->get('/cursos', [AdminController::class, 'courses']);
 
 //administración de cursos
-$dino->router->get('/admin/curso/new', [CourseController::class, 'create']);
-$dino->router->post('/admin/curso/new', [CourseController::class, 'create']);
+$dino->router->get('/admin/curso/create', [CourseController::class, 'formCreate']);
+
+$dino->router->post('/api/curso/create', [CourseController::class, 'create']);
+$dino->router->post('/api/curso/update/{id}', [CourseController::class, 'update']);
+$dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
 
 
 $dino->router->dispatch();

@@ -71,6 +71,7 @@
     margin: 2rem auto;
     border-top: .1rem solid v.$gris;
     
+    
     .record{
         padding:.5rem;
         border-bottom: .1rem solid v.$gris;
@@ -79,8 +80,18 @@
         gap: 1rem;
 
         @include m.computadora{
-            grid-template-columns: repeat(7, 1fr);
+            grid-template-columns: repeat(8, 1fr);
             padding: 1.5rem;
+        }
+
+        &.empty{
+            display: block;
+            border-bottom: none;
+            p{
+                color: v.$rojo;
+                text-align: center;
+                font-weight: v.$bold;
+            }
         }
 
         &:hover{
@@ -171,6 +182,7 @@
             display: none;
             flex-direction: column;
             justify-content:start;
+            align-items: center;
 
             @include m.computadora{
                 display: flex;
@@ -196,6 +208,26 @@
                     }
                 }
             }
+        }
+
+        &__col-action{
+            display: flex;
+            justify-content:center;
+            align-items: start;
+            
+            
+            &-link{
+                background-color: v.$rojo;
+                color: v.$blanco;
+                padding: .5rem 1rem;
+                border-radius: .5rem;
+                border: none;
+
+                &:hover{
+                    background-color: #964646;
+                }
+            }
+            
         }
 
     }

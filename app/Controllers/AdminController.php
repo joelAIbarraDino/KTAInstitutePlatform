@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Classes\Helpers;
+use App\Models\CourseView;
 use DinoEngine\Http\Response;
 
 class AdminController
@@ -19,11 +20,12 @@ class AdminController
 
     public static function courses():void{
 
-        
+        $courses = CourseView::all();
 
         Response::render('admin/cursos/index', [
             'nameApp' => APP_NAME,
-            'title' => 'Admin cursos'
+            'title' => 'Admin cursos',
+            'courses'=>$courses
         ]);
 
     }

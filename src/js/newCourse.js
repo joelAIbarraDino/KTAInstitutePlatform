@@ -19,6 +19,8 @@
     };
 
     let course = {};
+    let modeUpdateCourse = false;
+    let courseID;   
     // ============== ELEMENTOS DEL DOM ==============
     const DOM = {
         thumbnailBtn: document.querySelector('#thumbnail-btn'),
@@ -34,7 +36,7 @@
 
     // ============== REGLAS DE VALIDACIÓN ==============
     const regexRules = {
-        textRule: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+        textRule: /^(?!\d)[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\s]+$/,
         positiveIntRule: /^\d+$/,
         floatRule: /^(\d+)(\.\d{1,2})*$/,
         dateRule: /^\d{4}-\d{2}-\d{2}$/,
@@ -62,12 +64,12 @@
             field.value = "";
         }
 
-        if(['name', 'watchword', 'max_months_enroll', 'price'].contains(name)){
+        if(['name', 'watchword', 'max_months_enroll', 'price'].includes(name)){
             validateRegex(field);
             return;
         }  
 
-        if(['privacy', 'id_teacher', 'id_category'].contains(name)){
+        if(['privacy', 'id_teacher', 'id_category'].includes(name)){
             validateCB(field);
             return;
         }  
@@ -136,31 +138,9 @@
             state.maxReachedStep = nextStep;
             const nextTab = document.querySelector(`[data-step="${nextStep}"]`);
             nextTab.classList.remove("tabs__tab--disable");
+            state.step = state.step + 1;
+            showSection();
         }
-    }
-
-    // ============== HELPERS ==============
-    function showError(element, message) {
-        element.textContent = message;
-        element.classList.add("error", "show");
-        element.classList.remove("correct");
-    }
-
-    function showSuccess(element, message = "") {
-        element.textContent = message;
-        element.classList.add("correct", "show");
-        element.classList.remove("error");
-    }
-
-    function getErrorMessage(fieldName) {
-        const messages = {
-            name: "Solo se admite texto en este campo",
-            watchword: "Solo se admite texto en este campo",
-            max_months_enroll: "Solo se admite números enteros",
-            price: "Solo se admite formato decimal (ej: 19.99)",
-            discount: "Solo se admite porcentaje válido (0-100)"
-        };
-        return messages[fieldName] || "Campo inválido";
     }
 
     function showSection() {
@@ -212,6 +192,30 @@
                 inline: 'center'
             });
         }
+    }
+
+    // ============== HELPERS ==============
+    function showError(element, message) {
+        element.textContent = message;
+        element.classList.add("error", "show");
+        element.classList.remove("correct");
+    }
+
+    function showSuccess(element, message = "") {
+        element.textContent = message;
+        element.classList.add("correct", "show");
+        element.classList.remove("error");
+    }
+
+    function getErrorMessage(fieldName) {
+        const messages = {
+            name: "Solo se admite texto en este campo",
+            watchword: "Solo se admite texto en este campo",
+            max_months_enroll: "Solo se admite números enteros",
+            price: "Solo se admite formato decimal (ej: 19.99)",
+            discount: "Solo se admite porcentaje válido (0-100)"
+        };
+        return messages[fieldName] || "Campo inválido";
     }
 
     function validateDiscount(){
@@ -346,6 +350,101 @@
         return formData;
     }
     
+    async function createCourse(data){
+        const url = "/api/curso/create";
+
+        try{
+            const response = await fetch(url, {
+                method: 'POST',
+                body: data
+            });
+
+            const result = await response.json();
+
+            if(result.id){
+                //muestro alerta de que se creo el curso
+                Swal.fire({
+                    title: "Curso creado correctamente",
+                    icon: "success"
+                });
+
+                //guardo el ID del nuevo registro del curso
+                courseID = result.id;
+                
+                modeUpdateCourse = true;
+                //desbloqueo la nueva pestaña
+                unlockNextStep();
+                const btnFile = document.querySelector("#thumbnail");
+                btnFile.disabled = true;
+            }else{
+                //ocurrio un error al guardar los datos
+                Swal.fire({
+                    title: "Error al crear curso",
+                    text: "intente mas tarde",
+                    icon: "error"
+                });
+                //mostramos los mensajes en cada campo señalado por la api si es que hay
+                if(result.alerts){
+                    Object.entries(result.alerts).forEach(([name, msg]) =>{    
+                        const labelMessage = document.querySelector(`#msg-${name}`);
+                        showError(labelMessage, msg);
+                        state.correctFieldsCourse[name] = false;
+                    });
+                }
+            }
+        }catch(e){
+            console.log("Error: ", e);
+        }
+    }
+
+    async function  updateCourse(id, data) {
+        const url = `/api/curso/update/${id}`;
+
+        try{
+            const response = await fetch(url, {
+                method: 'POST',
+                body: data
+            });
+
+            const result = await response.json();
+
+            if(result.row === 1){
+                //muestro alerta de que se creo el curso
+                Swal.fire({
+                    title: "Curso actualizado correctamente",
+                    icon: "success"
+                });
+                //desbloqueo la nueva pestaña
+                unlockNextStep();
+            }else if(result.find){
+                //ocurrio un error al guardar los datos
+                Swal.fire({
+                    title: "Error al actualizar el curso",
+                    text: "intente mas tarde",
+                    icon: "warning"
+                });
+
+                //mostramos los mensajes en cada campo señalado por la api si es que hay
+                if(result.alerts){
+                    Object.entries(result.alerts).forEach(([name, msg]) =>{   
+                        const labelMessage = document.querySelector(`#msg-${name}`);
+                        showError(labelMessage, msg);
+                        state.correctFieldsCourse[name] = false;
+                    });
+                }
+            }else{
+                //no se encontro el curso
+                Swal.fire({
+                    title: "Curso no encontrado",
+                    text: "revise que el curso sigue registrado",
+                    icon: "error"
+                });
+            }
+        }catch(e){
+            console.log("Error: ", e);
+        }
+    }
+
     // ============== INICIALIZACIÓN ==============
     function init() {
 
@@ -377,31 +476,11 @@
             
             if(allFieldsCorrect()){                
                 const data = fieldsToDataForm();
-
-                try{
-                    const response = await fetch('/admin/curso/new', {
-                        method: 'POST',
-                        body: data
-                    });
-    
-                    const result = await response.json();
-
-                    if(result.correct){
-                        Swal.fire({
-                            title: "Curso creado correctamente",
-                            icon: "success"
-                        });
-                        unlockNextStep();
-                    }else{
-                        Swal.fire({
-                            title: "Error al crear curso",
-                            text: "intente mas tarde",
-                            icon: "error"
-                        });
-                    }
-                }catch(e){
-                    console.log("Error: ", e);
-                }
+                if(modeUpdateCourse)
+                    updateCourse(courseID, data);
+                else
+                    createCourse(data);
+                
             }else{
                 Swal.fire({
                     title: "Campos incompletos",

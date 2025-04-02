@@ -65,9 +65,15 @@ class Course extends Model {
         if(!$this->name)
             self::setAlerts("name", "debe ingresar el nombre del curso");
         
+        if(strlen($this->name) > 100)
+            self::setAlerts("name", "el nombre debe tener menos de 50 caracteres");
+
         if(!$this->watchword)
             self::setAlerts("watchword", "debe ingresar un lema al curso");
 
+        if(strlen($this->watchword) > 200)
+            self::setAlerts("watchword", "el lema debe tener menos de 50 caracteres");
+        
         if(!$this->description)
             self::setAlerts("description", "debe ingresar una descripción");
 
