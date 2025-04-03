@@ -2,7 +2,7 @@
 
 <main class="main">
     <div class="main__container">
-        <h1 class="main__title"><?=$bienvenida?></h1>
+        <h1 class="top-main__title"><?=$bienvenida?></h1>
     </div>
 </main>
 
