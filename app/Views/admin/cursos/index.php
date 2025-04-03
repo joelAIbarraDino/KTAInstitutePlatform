@@ -25,7 +25,7 @@
                 <?php foreach($courses as $course):?>
                     <div class="row">
 
-                        <div>
+                        <div class="cell">
                             <div class="col-main">
                                 <a class="col-main-thumbnail" href="/curso/<?=$course->id_course?>">
                                     <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="caratula de curso">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="cell">
                             <div class="col-main-2">
                                 <a href="/admin/curso/edit/<?=$course->id_course?>" class="col-main-2-title"><?=$course->name?></a>
                                 <p class="col-main-2-category"><?=$course->category?></p>
@@ -51,31 +51,31 @@
                             </div>
                         </div>
                         
-                        <div class="hidden">
+                        <div class="cell hidden">
                             <div class="col-info">
                                 <p class="col-info-date"><?=$course->created_at?></p>
                             </div>
                         </div>
                         
-                        <div class="hidden">
+                        <div class="cell hidden">
                             <div class="col-info">
                                 <p class="col-info-date"><?=$course->privacy ?></p>
                             </div>
                         </div>
                         
-                        <div class="hidden">
+                        <div class="cell hidden">
                             <div class="col-info">
                                 <a href="/maestro/10" class="col-info-date--link"><?=$course->enrollment?></a>
                             </div>
                         </div>
                         
-                        <div class="hidden">
+                        <div class="cell hidden">
                             <div class="col-info">
                                 <p class="col-info-date"><?=$course->max_months_enroll ?> meses</p>
                             </div>
                         </div>
                         
-                        <div class="hidden">
+                        <div class="cell hidden">
                             <div class="col-info">
                                 <a href="/admin/maestro/<?=$course->id_teacher ?>" class="col-info-date--link"><?=$course->teacher ?></a>
                             </div>
@@ -90,8 +90,8 @@
                 <?php endforeach;?>
 
             <?php else: ?>
-                <div class="record empty">
-                    <p>No hay cursos registrados</p>
+                <div class="empty">
+                    <p class="text">No hay cursos registrados</p>
                 </div>
             <?php endif; ?>
 

@@ -41,6 +41,10 @@
         &:hover{
             background-color: v.$fondo_claro;
         }
+
+        .cell{
+            padding: 1rem;
+        }
     }
 
     .hidden{
@@ -48,6 +52,14 @@
 
         @include m.computadora{
             display: block;
+        }
+    }
+
+    .empty{
+        text-align: center;
+        .text{
+            color: v.$rojo;
+            font-weight: v.$bold;
         }
     }
 }
