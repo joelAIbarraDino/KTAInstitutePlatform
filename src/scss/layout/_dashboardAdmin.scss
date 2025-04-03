@@ -195,13 +195,25 @@
             padding: 3rem;
         }
 
+
+        .top-main{
+            display: block;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        
+            @include m.tablet{
+                display: flex;
+            }
+
+            &__title{
+                font-weight: v.$regular;
+                text-align: left;
+                font-size: 2rem;
+                color: v.$dorado;
+            }
+        }
     }
 
-    &__title{
-        font-weight: v.$regular;
-        text-align: left;
-        font-size: 2rem;
-        color: v.$dorado;
-    }
+
 
 }

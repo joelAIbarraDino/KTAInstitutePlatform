@@ -4,7 +4,7 @@
     <div class="main__container">
 
         <div class="top-main">
-            <h1 class="main__title">Cursos registrados</h1>
+            <h1 class="top-main__title">Cursos registrados</h1>
             <a class="btn nuevo" href="/admin/curso/create"><i class='bx bx-plus'></i> Nuevo curso</a>
         </div>
 

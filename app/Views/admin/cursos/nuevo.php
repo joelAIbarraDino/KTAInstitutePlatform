@@ -2,8 +2,9 @@
 
 <main class="main">
     <div class="main__container">
+
         <div class="top-main">
-            <h1 class="main__title">Gestión de cursos</h1>
+            <h1 class="top-main__title">Gestión de cursos</h1>
             <a class="btn nuevo" href="javascript:history.back()"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 

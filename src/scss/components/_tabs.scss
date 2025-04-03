@@ -1,0 +1,57 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.tabs{
+    display: flex;
+    justify-content: start;
+
+    &__tab{
+        padding: 1rem 2rem;
+        margin-right: .5rem;
+        border: none;
+        color: v.$negro;
+
+        &:hover{
+            background-color: v.$gris;
+        }
+
+        &--active{
+            background-color: v.$dorado;
+            color: v.$blanco;
+
+            &:hover{
+                background-color: v.$dorado_darken;
+                cursor: pointer;
+            }
+        }
+
+        &--disable{
+            background-color: v.$fondo_claro;
+            color: v.$gris;
+
+            &:hover{
+                background-color: v.$fondo_claro;
+                color: v.$gris;
+            }
+        }
+    }
+
+    &__section{
+        background-color: v.$fondo_claro;
+        padding: 2rem;
+        display: none;
+
+        &.active{
+            display: block;
+        }
+    }
+
+    &__container{
+        width: 90%;
+        margin: 0 auto;
+
+        @include m.computadora{
+            width: 70%;
+        }
+    }
+}
