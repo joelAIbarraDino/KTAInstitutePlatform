@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\CourseView;
+use App\Models\Enrollment;
 use DinoEngine\Http\Response;
 
 class AdminController
@@ -39,6 +40,17 @@ class AdminController
             'nameApp' => APP_NAME,
             'title' => 'Admin categorias',
             'categories'=>$categories
+        ]);
+    }
+
+    public static function enrollment():void{
+
+        $enrollment = Enrollment::all();
+
+        Response::render('admin/enrollment/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin inscripciones',
+            'enrollment' => $enrollment
         ]);
     }
 }

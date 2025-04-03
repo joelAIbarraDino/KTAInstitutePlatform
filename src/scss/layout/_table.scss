@@ -1,0 +1,74 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+[class*="table-"] {
+    width: 100%;
+    margin: 2rem auto;
+
+    .header{
+        background-color: v.$dorado;
+        padding: .5rem;
+        display: grid;
+        grid-template-columns: repeat(var(--show), 1fr);
+        gap: 1rem;
+        
+        @include m.computadora{
+            grid-template-columns: repeat(var(--cols), 1fr);
+        }
+
+        .title-header{
+            color: v.$blanco;
+            text-align: center;
+            margin: 0;
+            font-size: 1.6rem;
+            padding: .1rem 0;
+        }
+    }
+
+    .row{
+
+        &:nth-of-type(odd){
+            background-color: v.$fondo_input;
+        }
+        display: grid;
+        grid-template-columns: repeat(var(--show), 1fr);
+        gap: 1rem;
+        
+        @include m.computadora{
+            grid-template-columns: repeat(var(--cols), 1fr);
+        }
+
+        &:hover{
+            background-color: v.$fondo_claro;
+        }
+    }
+
+    .hidden{
+        display: none;
+
+        @include m.computadora{
+            display: block;
+        }
+    }
+}
+
+.table-1 { --cols: 1; }
+.table-2 { --cols: 2; }
+.table-3 { --cols: 3; }
+.table-4 { --cols: 4; }
+.table-5 { --cols: 5; }
+.table-6 { --cols: 6; }
+.table-7 { --cols: 7; }
+.table-8 { --cols: 8; }
+.table-9 { --cols: 9; }
+.table-10 { --cols: 10; }
+
+.show-1{--show: 1;}
+.show-2{--show: 2;}
+.show-3{--show: 3;}
+.show-4{--show: 4;}
+.show-5{--show: 5;}
+
+
+
+  

@@ -66,237 +66,142 @@
     }
 }
 
-.records{
-    width: 100%;
-    margin: 2rem auto;
-    border-top: .1rem solid v.$gris;
-    
-    .record{
-        padding:.5rem;
-        border-bottom: .1rem solid v.$gris;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-
-        @include m.computadora{
-            grid-template-columns: repeat(8, 1fr);
-            padding: 1.5rem;
+.col{
+    &-main{
+        
+        &-thumbnail img{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 22rem;
         }
+    }
 
-        &.empty{
-            display: block;
-            border-bottom: none;
-            p{
-                color: v.$rojo;
-                text-align: center;
-                font-weight: v.$bold;
+    &-main-2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        height: 100%;
+        &-title{
+            font-size: 1.4rem;
+            color: v.$dorado;
+            font-weight: v.$bold;
+            margin: 0;
+            
+            @include m.computadora{
+                font-size: 1.8rem;
+            }
+
+            &:hover{
+                text-decoration: underline;
             }
         }
 
-        &:hover{
-            background-color: v.$fondo_claro;
-        }
-    
-        &__col-main{
+        &-category{
+            margin: 0;
+            margin-top: .5rem;
+            font-size: 1.1rem;
+            background-color: v.$dorado;
+            padding: .5rem;
+            color: v.$blanco;
+            font-weight: v.$bold;
+            width: 10rem;
+            text-align: center;
+            border-radius: .8rem;
 
-            &-thumbnail img{
-                width: 22rem;
+            @include m.computadora{
+                font-size: 1.5rem;
             }
         }
 
-        &__col-main-2{
+        &-prices{
+            
+            margin-top: .5rem;
+            display: flex;
+            gap: .5rem;
+            align-items: center;
 
-            &-title{
-                font-size: 1.4rem;
-                color: v.$dorado;
-                font-weight: v.$bold;
+            &-price{
                 margin: 0;
-                
+                font-size: 1.1rem;
+
                 @include m.computadora{
                     font-size: 1.8rem;
                 }
 
-                &:hover{
-                    text-decoration: underline;
-                }
-            }
-
-            &-category{
-                margin: 0;
-                margin-top: .5rem;
-                font-size: 1.1rem;
-                background-color: v.$dorado;
-                padding: .5rem;
-                color: v.$blanco;
-                font-weight: v.$bold;
-                width: 10rem;
-                text-align: center;
-                border-radius: .8rem;
-
-                @include m.computadora{
-                    font-size: 1.5rem;
-                }
-            }
-
-            &-prices{
-                
-                margin-top: .5rem;
-                display: flex;
-                gap: .5rem;
-                align-items: center;
-
-                &-price{
-                    margin: 0;
-                    font-size: 1.1rem;
-
-                    @include m.computadora{
-                        font-size: 1.8rem;
-                    }
-
-                    &.disc{
-                        text-decoration: line-through;
-                        text-decoration-color: v.$rojo;
-                        font-weight: v.$bold;
-                        font-size: 1.1rem;
-
-                        @include m.computadora{
-                            font-size: 1.4rem;
-                        }
-                    }
-                }
-
-                &-disc{
-                    color: v.$rojo;
+                &.disc{
+                    text-decoration: line-through;
+                    text-decoration-color: v.$rojo;
                     font-weight: v.$bold;
                     font-size: 1.1rem;
 
                     @include m.computadora{
-                        font-size: 1.8rem;
+                        font-size: 1.4rem;
                     }
                 }
             }
-        }
 
-        &__col-info{
-            display: none;
-            flex-direction: column;
-            justify-content:start;
-            align-items: center;
-
-            @include m.computadora{
-                display: flex;
-            }
-            
-            &-title{
-                margin: 0;
-                font-size: 1.8rem;
-                color: v.$dorado;
-                font-weight: v.$bold;
-            }
-
-            &-date{
-                margin: 0;
-                margin-top: .5rem;
-                font-size: 1.5rem;
-                
-                &--link{
-                    color: v.$negro;
-                    margin-top: .5rem;
-                    &:hover{
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-
-        &__col-action{
-            display: flex;
-            justify-content:center;
-            align-items: start;
-            
-            
-            &-link{
-                background-color: v.$rojo;
-                color: v.$blanco;
-                padding: .5rem 1rem;
-                border-radius: .5rem;
-                border: none;
-
-                &:hover{
-                    background-color: #964646;
-                }
-            }
-            
-        }
-
-    }
-
-    .record-flex{
-        padding:.5rem;
-        border-bottom: .1rem solid v.$gris;
-        display: flex;
-        align-items: start;
-        justify-content: space-between;
-
-        &.empty{
-            display: block;
-            border-bottom: none;
-            p{
+            &-disc{
                 color: v.$rojo;
-                text-align: center;
                 font-weight: v.$bold;
-            }
-        }
+                font-size: 1.1rem;
 
-        &:hover{
-            background-color: v.$fondo_claro;
-        }
-
-        &__col-info{
-            display: flex;
-            flex-direction: column;
-            justify-content:start;
-            align-items: start;
-
-            &-title{
-                margin: 0;
-                font-size: 1.8rem;
-                color: v.$dorado;
-                font-weight: v.$bold;
-            }
-
-            &-date{
-                margin: 0;
-                margin-top: .5rem;
-                font-size: 1.5rem;
-                
-                &--link{
-                    color: v.$negro;
-                    margin-top: .5rem;
-                    &:hover{
-                        text-decoration: underline;
-                    }
+                @include m.computadora{
+                    font-size: 1.8rem;
                 }
             }
-        }
-
-        &__col-action{
-            display: flex;
-            justify-content:center;
-            align-items: center;
-            
-            &-link{
-                background-color: v.$rojo;
-                color: v.$blanco;
-                padding: .5rem 1rem;
-                border-radius: .5rem;
-                border: none;
-
-                &:hover{
-                    background-color: #964646;
-                }
-            }
-            
         }
     }
+
+    &-info{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        height: 100%;
+
+        &-title{
+            margin: 0;
+            font-size: 1.8rem;
+            color: v.$dorado;
+            font-weight: v.$bold;
+        }
+
+        &-date{
+            margin: 0;
+            margin-top: .5rem;
+            font-size: 1.5rem;
+            
+            &--link{
+                color: v.$negro;
+                margin-top: .5rem;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &-action{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        height: 100%;
+        
+        &-link{
+            background-color: v.$rojo;
+            color: v.$blanco;
+            padding: .5rem 1rem;
+            border-radius: .5rem;
+            border: none;
+
+            &:hover{
+                background-color: #964646;
+            }
+        }
+        
+    }
+
 }
