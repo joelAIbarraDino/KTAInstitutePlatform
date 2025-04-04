@@ -7,13 +7,14 @@ use DinoEngine\Http\Response;
 use App\Models\TeacherView;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Teacher;
 use DinoEngine\Http\Request;
 
 class CourseController{
 
     public static function formCreate():void{
         
-        $teachers = TeacherView::all();
+        $teachers = Teacher::all();
         $categories = Category::all();
 
         Response::render('/admin/cursos/nuevo', [

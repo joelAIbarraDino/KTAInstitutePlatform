@@ -50,6 +50,8 @@ $dino->router->get('/cursos', [AdminController::class, 'courses']);
 $dino->router->get('/categorias', [AdminController::class, 'categories']);
 $dino->router->get('/inscripciones', [AdminController::class, 'enrollment']);
 
+$dino->router->get('/maestros', [AdminController::class, 'teachers']);
+
 //administración de cursos
 $dino->router->get('/admin/curso/create', 
     [CourseController::class, 'formCreate'], 

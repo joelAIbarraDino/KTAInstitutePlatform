@@ -67,9 +67,9 @@
                     
                     <div class="nav">
                         <p class="nav__title">Usuarios</p>
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-user-detail'></i> Maestros</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-graduation'></i> Estudiantes</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-user'></i> Administradores</a>
+                        <a class="nav__link" href="/maestros"> <i class='bx bxs-user-detail'></i> Maestros</a>
+                        <a class="nav__link" href="/estudiantes"> <i class='bx bxs-graduation'></i> Estudiantes</a>
+                        <a class="nav__link" href="/administradores"> <i class='bx bxs-user'></i> Administradores</a>
                     </div>
 
                 </div>

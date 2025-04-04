@@ -5,12 +5,12 @@ namespace App\Controllers;
 use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\CourseView;
-use App\Models\Enrollment;
 use App\Models\EnrollmentView;
+use App\Models\Teacher;
 use DinoEngine\Http\Response;
 
-class AdminController
-{
+class AdminController{
+    
     public static function index(): void{
 
         Response::render('admin/index', [
@@ -52,6 +52,17 @@ class AdminController
             'nameApp' => APP_NAME,
             'title' => 'Admin inscripciones',
             'enrollment' => $enrollment
+        ]);
+    }
+
+    public static function teachers():void{
+        
+        $teachers = Teacher::all();
+
+        Response::render('admin/maestros/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin maestros',
+            'teachers' => $teachers
         ]);
     }
 }

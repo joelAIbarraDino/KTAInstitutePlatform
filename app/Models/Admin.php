@@ -8,18 +8,22 @@ class Admin extends Model{
     
     protected static string $table = 'admin';
     protected static string $PK_name = 'id_admin';
-    protected static array $columns = ['id_admin', 'id_user', 'id_rol'];
-    protected static array $fillable = ['id_user', 'id_rol'];
+    protected static array $columns = ['id_admin', 'name', 'pasword', 'url', 'token'];
+    protected static array $fillable = ['name', 'pasword', 'url', 'token'];
 
     public ?int $id_admin;
-    public int $id_user;
-    public int $id_rol;
+    public string $name;
+    public string $password;
+    public ?string $url;
+    public ?string $token;
 
     public function __construct($args = [])
     {
         $this->id_admin = $args['id_admin']??null;
-        $this->id_user = $args['id_user']??0;
-        $this->id_rol = $args['id_rol']??0;
+        $this->name = $args['name']??"";
+        $this->password = $args['password']??"";
+        $this->url = $args['url']??null;
+        $this->token = $args['token']??null;
     }
 
     public function validate(){
