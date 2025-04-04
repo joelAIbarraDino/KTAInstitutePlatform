@@ -6,6 +6,7 @@ use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\CourseView;
 use App\Models\Enrollment;
+use App\Models\EnrollmentView;
 use DinoEngine\Http\Response;
 
 class AdminController
@@ -45,7 +46,7 @@ class AdminController
 
     public static function enrollment():void{
 
-        $enrollment = Enrollment::all();
+        $enrollment = EnrollmentView::all();
 
         Response::render('admin/enrollment/index', [
             'nameApp' => APP_NAME,
