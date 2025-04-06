@@ -43,7 +43,7 @@ class CourseController{
                 Response::json(['alerts'=>$alerts]);
             
             //guardo imagen
-            $course->saveFile($file);        
+            $course->uploadImage($_FILES['thumbnail'], 1200, 600);
             
             //guardo registro
             $id = $course->save();
