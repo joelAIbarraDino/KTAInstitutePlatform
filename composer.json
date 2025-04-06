@@ -16,18 +16,8 @@
     },
 
     "require": {
-        "joel/dino-framework":"*",
+        "dinozign/dino-framework":"*",
         "vimeo/vimeo-api": "^3.0",
         "intervention/image": "^3.11"
-    },
-    "repositories": [
-        {
-            "type":"path",
-            "url":"/home/joel/workspace/DinoFramework",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
-    
+    }
 }

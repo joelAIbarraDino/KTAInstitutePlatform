@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use DinoEngine\Classes\Storage;
 use DinoEngine\Core\Model;
 use DinoEngine\Http\Response;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class Course extends Model {
     
@@ -114,20 +117,30 @@ class Course extends Model {
         return self::$alerts;
     }
 
-    public function saveFile(array $file){
-        //genero un nombre a la caratula
-        $fileName = uniqid() . '-' . basename($file['thumbnail']['name']);
-        $targetPath = DIR_CARATULAS.$fileName;
+
+    public function uploadImage(array $imagen, $ancho = null, $alto = null):void{   
+        // Eliminar la imagen anterior si existe
+        if ($this->thumbnail && Storage::exists(DIR_CARATULAS.'/'.$this->thumbnail))
+            Storage::delete(DIR_PROFESORES.'/'.$this->thumbnail);
         
-        //si no existe la carpeta se crea una nueva carpeta
+        // Generar un nombre único para la imagen
+        $nombreImagen = Storage::uniqName(".png");
+        
+        // Procesar la imagen con Intervention Image
+        $manager = new ImageManager(Driver::class);
+        $processImage = $manager->read($imagen['tmp_name']);
+
+        // Redimensionar si se especifican dimensiones
+        if ($ancho && $alto)
+            $processImage->cover($ancho, $alto);
+
         if(!is_dir(DIR_CARATULAS))
-            mkdir(DIR_CARATULAS);
+            mkdir(DIR_PRODIR_CARATULASFESORES);
+        
+        $processImage->toPng()->save(DIR_CARATULAS.'/'.$nombreImagen);
 
-        //se mueve el archivo, en caso de que no se guarda en servidor se configura una nueva alerta
-        if(!move_uploaded_file($file['thumbnail']['tmp_name'], $targetPath))
-            Response::json(['thumbnail'=>"ocurrió un error al guardar la imagen, intente mas tarde"]);
-
-        $this->thumbnail = $fileName;
+        // Actualizar el atributo del modelo
+        $this->photo = $nombreImagen;
     }
 
 }
