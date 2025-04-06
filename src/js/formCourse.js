@@ -1,0 +1,1 @@
+!function(){const e=document.querySelector("#thumbnail"),t=document.querySelector("#thumbnail-btn"),n=document.querySelector("#file-name");t.addEventListener("click",(()=>{e.click()})),e.addEventListener("change",(()=>{e.files.length>0?(n.textContent=e.files[0].name,n.classList.add("selected")):n.textContent="No se ha seleccionado ningún archivo"}))}();

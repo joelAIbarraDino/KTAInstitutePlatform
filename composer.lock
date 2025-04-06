@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1616779274e06e4c79dd49861fc8cd0",
+    "content-hash": "1c3d44c875160e9957f02c69c79b8efe",
     "packages": [
         {
             "name": "ankitpokhrel/tus-php",
@@ -203,6 +203,54 @@
                 }
             ],
             "time": "2024-02-09T16:56:22+00:00"
+        },
+        {
+            "name": "dinozign/dino-framework",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joelAIbarraDino/DinoFramework.git",
+                "reference": "17d387c0fb01b6b26842a1b25c5736eeb8e6a7e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joelAIbarraDino/DinoFramework/zipball/17d387c0fb01b6b26842a1b25c5736eeb8e6a7e3",
+                "reference": "17d387c0fb01b6b26842a1b25c5736eeb8e6a7e3",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.17",
+                "monolog/monolog": "^3.8",
+                "phpmailer/phpmailer": "^6.9",
+                "symfony/filesystem": "^7.2",
+                "vlucas/phpdotenv": "^5.6"
+            },
+            "bin": [
+                "bin/dino-install"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DinoFrame\\": "public/",
+                    "DinoEngine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joel Alejandro Ibarra Villar",
+                    "email": "joelvillar35@gmail.com"
+                }
+            ],
+            "description": "Framework chido para aplicaciones web chidas",
+            "support": {
+                "issues": "https://github.com/joelAIbarraDino/DinoFramework/issues",
+                "source": "https://github.com/joelAIbarraDino/DinoFramework/tree/v1.0.6"
+            },
+            "time": "2025-04-06T11:24:08+00:00"
         },
         {
             "name": "filp/whoops",
@@ -805,46 +853,6 @@
                 }
             ],
             "time": "2025-02-27T13:08:55+00:00"
-        },
-        {
-            "name": "joel/dino-framework",
-            "version": "1.0.5",
-            "dist": {
-                "type": "path",
-                "url": "/home/joel/workspace/DinoFramework",
-                "reference": "feb390c3a076886e3d93d157751f2c9a8f0ec3c3"
-            },
-            "require": {
-                "filp/whoops": "^2.17",
-                "monolog/monolog": "^3.8",
-                "phpmailer/phpmailer": "^6.9",
-                "symfony/filesystem": "^7.2",
-                "vlucas/phpdotenv": "^5.6"
-            },
-            "bin": [
-                "bin/dino-install"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DinoEngine\\": "./src",
-                    "DinoFrame\\": "./public"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joel Alejandro Ibarra Villar",
-                    "email": "joelvillar35@gmail.com"
-                }
-            ],
-            "description": "Framework chido para aplicaciones web chidas",
-            "transport-options": {
-                "symlink": true,
-                "relative": false
-            }
         },
         {
             "name": "monolog/monolog",

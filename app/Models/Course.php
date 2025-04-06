@@ -4,7 +4,6 @@ namespace App\Models;
 
 use DinoEngine\Classes\Storage;
 use DinoEngine\Core\Model;
-use DinoEngine\Http\Response;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
