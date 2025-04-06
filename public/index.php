@@ -9,6 +9,7 @@ use App\Controllers\AccountController;
 use App\Controllers\CourseController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
+use App\Controllers\TeacherController;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
@@ -19,6 +20,7 @@ $dotenv->safeLoad();
 date_default_timezone_set('America/Mexico_City');
 define('APP_NAME','KTA Institute');
 define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
+define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
 
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],
@@ -70,7 +72,12 @@ $dino->router->post('/api/categoria/create', [CategoryController::class, 'create
 $dino->router->post('/api/categoria/update/{id}', [CategoryController::class, 'update']);
 $dino->router->delete('/api/categoria/delete/{id}', [CategoryController::class, 'delete']);
 
-//administración de inscripciones
+//administración de maestros
+$dino->router->get('/admin/maestro/create', [TeacherController::class, 'formCreate']);
+$dino->router->get('/admin/maestro/update/{id}', [TeacherController::class, 'formUpdate']);
 
+$dino->router->post('/api/maestro/create', [TeacherController::class, 'create']);
+$dino->router->post('/api/maestro/update/{id}', [TeacherController::class, 'update']);
+$dino->router->delete('/api/maestro/delete/{id}', [TeacherController::class, 'delete']);
 
 $dino->router->dispatch();

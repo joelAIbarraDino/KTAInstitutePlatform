@@ -5,6 +5,7 @@
 
         <div class="top-main">
             <h1 class="top-main__title">Maestros registrados</h1>
+            <a class="btn nuevo" href="/admin/maestro/create"><i class='bx bx-plus'></i> Nuevo maestro</a>
         </div>
 
         <div class="table-6 show-4">
@@ -14,7 +15,7 @@
                 <div class="header">
                     <p class="title-header" >Foto</p>
                     <p class="title-header">Nombre</p>
-                    <p class="title-header" >Email</p>
+                    <p class="title-header hidden" >Email</p>
                     <p class="title-header hidden">Especialidad</p>
                     <p class="title-header hidden">Experiencia</p>
                     <p class="title-header">Acciones</p>
@@ -24,7 +25,7 @@
 
                         <div class="cell">
                             <div class="col-main">
-                                <img src="/assets/teachers/<?=$teacher->phone?>" alt="caratula de curso">
+                                <img src="/assets/teachers/<?=$teacher->photo?>" alt="caratula de curso">
                             </div>
                         </div>
 
@@ -42,19 +43,19 @@
 
                         <div class="cell hidden">
                             <div class="col-info">
-                                <p class="col-info-date"><?=$enroll->speciality ?></p>
+                                <p class="col-info-date"><?=$teacher->speciality ?></p>
                             </div>
                         </div>
                         
                         <div class="cell hidden">
                             <div class="col-info">
-                                <p class="col-info-date"><?=$enroll->experience?></p>
+                                <p class="col-info-date"><?=$teacher->experience?> años</p>
                             </div>
                         </div>
                         
-                        <div>
+                        <div class="cell">
                             <div class="col-action">
-                                <button class="col-action-link delete-course" data-id="<?=$enroll->id_teacher?>">Eliminar</button>
+                                <button class="col-action-link delete-course" data-id="<?=$teacher->id_teacher?>">Eliminar</button>
                             </div>
                         </div>
                     </div>
