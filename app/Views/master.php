@@ -23,6 +23,5 @@
     
     <?= $content ?>
     <?= $scripts??''; ?>
-    <script src="/assets/js/noInspect.js"></script>
 </body>
 </html>

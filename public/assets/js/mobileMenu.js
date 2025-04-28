@@ -1,24 +1,37 @@
 (function(){
-    const page = document.querySelector("body");
-    const menuBtn = document.querySelector(".menu-btn");
-    const menuClose = document.querySelector(".btn-close");
-    const menu = document.querySelector(".menu-mobile");
-
-    menu.onclick = function(e){
-        var target = e.target;
-        if(target.classList.contains("menu-mobile")){
-            menu.classList.remove("active");
-            page.classList.remove("no-scroll");
+    document.addEventListener('DOMContentLoaded', function() {
+        // Menú hamburguesa
+        const hamburguesa = document.getElementById('hamburguesa');
+        const menu = document.getElementById('menu');
+        const navegacion = document.querySelector('.navegacion');
+        
+        hamburguesa.addEventListener('click', function() {
+            navegacion.classList.toggle('activo');
+        });
+        
+        // Slider básico
+        const slides = document.querySelectorAll('.hero__slide');
+        const prevBtn = document.querySelector('.hero__control--previo');
+        const nextBtn = document.querySelector('.hero__control--siguiente');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('hero__slide--activo'));
+            slides[index].classList.add('hero__slide--activo');
+            currentSlide = index;
         }
-    }
-
-    menuBtn.onclick = function(){
-        menu.classList.add("active");
-        page.classList.add("no-scroll");
-    }
-
-    menuClose.onclick = function(){
-        menu.classList.remove("active");
-        page.classList.remove("no-scroll");
-    }
+        
+        prevBtn.addEventListener('click', function() {
+            let newIndex = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(newIndex);
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            let newIndex = (currentSlide + 1) % slides.length;
+            showSlide(newIndex);
+        });
+        
+        // Mostrar el primer slide al cargar
+        showSlide(0);
+    });
 })();

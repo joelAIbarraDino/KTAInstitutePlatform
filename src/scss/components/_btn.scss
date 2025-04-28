@@ -12,3 +12,48 @@
     }
     @include m.boton(v.$azul, v.$negro, v.$blanco, v.$blanco, flex);
 }
+
+/* Botones */
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: v.$bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+    gap: 0.8rem;
+    
+    i {
+        font-size: 1.4rem;
+    }
+    
+    &--login {
+        background-color: v.$azul;
+        color: v.$blanco;
+        
+        &:hover {
+            background-color: v.$azul_darken;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    }
+    
+    &--dorado {
+        background-color: v.$dorado;
+        color: v.$blanco;
+        padding: 1.2rem 2.5rem;
+        font-size: 1.8rem;
+        
+        &:hover {
+            background-color: v.$dorado_darken;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
