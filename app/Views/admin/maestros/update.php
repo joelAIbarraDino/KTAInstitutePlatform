@@ -7,14 +7,16 @@
             <a class="btn nuevo" href="javascript:history.back()"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 
-        <form id="form-teacher" class="form" enctype="multipart/form-data">
-            <legend class="form__title">Nuevo maestro</legend>
+        <img src="/assets/teachers/<?=$teacher->photo?>" alt="foto de maestro" style="width:20rem; border-radius: 50%;">
+
+        <form id="form-teacher" class="form" enctype="multipart/form-data" style="width:70%; margin: 0 auto;">
+            <legend class="form__title">Editar maestro maestro</legend>
             
-            <p class="form__instructions">Completa los campos para registrar un nuevo maestro</p>
+            <p class="form__instructions">Edite los campos que quiere cambiar</p>
             
             <div class="grid-elements">
                 <div class="form__file col-4">
-                    <label for="photo-btn"> Foto de maestro (requerido)</label>
+                    <label for="photo-btn"> Foto de maestro</label>
                     <input 
                         type="file"
                         name="photo"
@@ -22,7 +24,7 @@
                         accept="image/*"
                         hidden
                     >
-                    <button type="button" id="photo-btn" class="form__file-btn">Seleccionar foto</button>
+                    <button type="button" id="photo-btn" class="form__file-btn">Actualizar foto</button>
                     <span id="msg-photo" class="form__input-msg"></span>
                 </div>
             </div>
@@ -37,6 +39,7 @@
                         id="name"
                         class="field"
                         placeholder="Nombre del maestro(a)"
+                        value="<?=$teacher->name?>"
                         
                     >
                     <span id="msg-name" class="form__input-msg"></span>
@@ -50,6 +53,7 @@
                         id="email"
                         class="field"
                         placeholder="Nombre del categoria"
+                        value="<?=$teacher->email?>"
                         
                     >
                     <span id="msg-email" class="form__input-msg"></span>
@@ -67,6 +71,7 @@
                         id="speciality"
                         class="field"
                         placeholder="Area de experiencia"
+                        value="<?=$teacher->speciality?>"
                         
                     >
                     <span id="msg-speciality" class="form__input-msg"></span>
@@ -82,13 +87,14 @@
                             id="experience"
                             class="field"
                             placeholder="Tiempo en años de experiencia"
+                            value="<?=$teacher->experience?>"
                         >
                     </div>    
                     <span id="msg-experience" class="form__input-msg"></span>
                 </div>
 
                 <div class="form__input col-4">
-                    <label for="password">Contraseña (requerido)</label>
+                    <label for="password">Actualizar contraseña</label>
 
                     <div class="icon-right">
                         <input 
@@ -113,17 +119,18 @@
                         id="bio"
                         class="text-area"
                         placeholder="Biografia y experiencia del maestro"
-                        
+                        value="<?=$teacher->bio?>"
                     ></textarea>
                     <span id="msg-bio" class="form__input-msg"></span>
                 </div>
             </div>
 
             <div class="submit-right">
-                <input class="submit" type="submit" value="Registarar maestro">
+                <input class="submit" type="submit" value="Actualizar maestro">
             </div>
 
         </form>
+
     </div>
 </main>
 
@@ -131,7 +138,7 @@
     $scripts = '
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="module" src="/assets/js/newTeacher.js"></script>
+        <script type="module" src="/assets/js/updateTeacher.js"></script>
         <script src="/assets/js/showPassword.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
     ';

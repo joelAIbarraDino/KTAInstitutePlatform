@@ -137,8 +137,6 @@ function fieldsToDataForm(){
 
         return value === "" ? null : value;
     }));
-
-    teacher['photo'] = DOM.fieldFilePhoto.files[0] || null;
     
     Object.entries(teacher).forEach(([key, value]) =>{    
         formData.append(key, value);
@@ -147,7 +145,7 @@ function fieldsToDataForm(){
     return formData;
 }
 
-async function createTeacher(data){
+async function updateTeacher(id, data){
     const url = "/api/maestro/create";
 
     try{
@@ -214,7 +212,7 @@ function setupFormSubmit() {
         
         if(allFieldsCorrect(state.correctFieldsTeacher)){                
             const data = fieldsToDataForm();
-            createTeacher(data);
+            updateTeacher(data);
         }else{
             Swal.fire({
                 title: "Campos incompletos",
