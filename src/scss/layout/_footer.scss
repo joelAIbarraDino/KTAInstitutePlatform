@@ -24,8 +24,8 @@
     .KTA{
         padding: 1rem;
         &-logo{
-            width: 50%;
-            max-width: 15rem;
+            width: 40%;
+            max-width: 10rem;
         }
 
         &-texto{
@@ -41,12 +41,12 @@
             display: flex;
             justify-content: start;
             gap: 3rem;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
             
             &__item a{
                 color: v.$blanco;
-                padding: 2rem 1.2rem 1.2rem 1.2rem;
+                padding: 1.6rem 1rem 1rem 1rem;
                 background-color: v.$negro;
                 border-radius: 1rem;
 
@@ -54,7 +54,7 @@
                     background-color: v.$dorado;
                 }
                 i{
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                 }
             }
         }
@@ -66,7 +66,7 @@
         &__title{
             color: v.$blanco;
             text-align: left;
-            font-size: 2.5rem;
+            font-size: 2rem;
             
             &::after{
                 content: '';
@@ -83,7 +83,7 @@
             padding: 0;
             
             &__link {
-                margin-bottom: 1.5rem;
+                margin-bottom: .5rem;
 
                 &:last-of-type{
                     margin-bottom: 0;
@@ -94,7 +94,7 @@
 
                 a{
                     color: v.$blanco;
-                    font-size: 1.8rem;
+                    font-size: 1.6rem;
 
                     &:hover{
                         color: v.$dorado;
@@ -111,7 +111,7 @@
         &__title{
             color: v.$blanco;
             text-align: left;
-            font-size: 2.5rem;
+            font-size: 2rem;
             
             &::after{
                 content: '';
@@ -138,7 +138,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: 2rem;
+                padding: 1rem;
                 background-color: v.$negro;
                 border-radius: 1rem;
                 i{
@@ -149,18 +149,18 @@
             &__data{
                 &-name{
                     color: v.$blanco;
-                    font-size: 1.8rem;
+                    font-size: 1rem;
                 }
 
                 &-label{
                     color: v.$blanco;
-                    margin-top: 1rem;
+                    margin-top: .5rem;
                     margin-bottom: 0;
-                    font-size: 1.7rem;
+                    font-size: 1.5rem;
                     font-weight: v.$bold;
 
                     @include m.tablet{
-                        font-size: 2.2rem;
+                        font-size: 1.6rem;
                     }
                 }
             }

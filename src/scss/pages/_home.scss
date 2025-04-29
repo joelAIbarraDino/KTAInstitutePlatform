@@ -16,6 +16,227 @@
     }
 }
 
+.kiosko {
+    
+    padding: 2rem;
+    background-color: v.$fondo_claro;
+
+    &__content{
+        width: 90%;
+        max-width: 1500px;
+        margin: 0 auto;
+    
+        position: relative;
+            
+    }
+
+    &__titulo {
+        text-align: center;
+        font-weight: v.$black;
+        color: v.$negro;
+        font-size: 4.5rem;
+        margin: 0;
+        @include m.tablet {
+            font-size: 4rem;
+        }
+    }
+    
+    &__contenedor {
+        display: flex;
+        overflow: hidden;
+        scroll-behavior: smooth;
+        gap: 2rem;
+        padding: 1rem 0;
+
+        @include m.tablet{
+            padding: 2rem 0;
+        }
+    }
+    
+    &__controles {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    &__boton {
+        background-color: v.$dorado;
+        color: v.$blanco;
+        font-weight: v.$bold;
+        font-size: 2rem;
+        border: none;
+        padding: 0.5rem;
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+        cursor: pointer;
+        font-weight: v.$bold;
+        transition: background-color 0.3s ease;
+        
+        &:hover {
+            background-color: v.$dorado_darken;
+        }
+        
+        &--anterior,
+        &--siguiente {
+            @include m.computadora {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+        }
+        
+        &--anterior {
+            @include m.computadora {
+                left: 0;
+            }
+        }
+        
+        &--siguiente {
+            @include m.computadora {
+                right: 0;
+            }
+        }
+    }
+    
+    &__puntos {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+        
+        .punto {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: v.$gris;
+            cursor: pointer;
+            
+            &--activo {
+                background-color: v.$dorado;
+            }
+        }
+    }
+}
+
+.curso {
+    background-color: v.$blanco;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 280px;
+    flex: 0 0 auto;
+    transition: transform 0.3s ease;
+    
+    @include m.telefono{
+        min-width: 240px;
+    }
+
+    @include m.tablet{
+        min-width: 300px;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+    
+    &__imagen-contenedor {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+    
+    &__imagen {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    
+    &__categoria {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background-color: v.$dorado;
+        color: v.$blanco;
+        padding: 0.3rem 0.8rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        font-weight: v.$bold;
+    }
+    
+    &__descuento-etiqueta {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background-color: v.$rojo;
+        color: v.$blanco;
+        padding: 0.3rem 0.8rem;
+        border-radius: 1rem;
+        font-size: 0.9rem;
+        font-weight: v.$bold;
+    }
+    
+    &__contenido {
+        padding: 1.5rem;
+    }
+    
+    &__nombre {
+        font-size: 1.6rem;
+        font-weight: v.$bold;
+        color: v.$negro;
+        margin: 0 0 0.5rem 0;
+        min-height: 3.5rem;
+    }
+    
+    &__maestro {
+        color: v.$gris_label;
+        font-size: 1.2rem;
+        margin: 0 0 1rem 0;
+    }
+    
+    &__precios {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    &__precio {
+        font-weight: v.$bold;
+        margin: 0;
+        
+        &--normal {
+            color: v.$negro;
+            font-size: 1.5rem;
+        }
+
+        &--original {
+            color: v.$gris;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+        
+        &--oferta {
+            color: v.$verde;
+            font-size: 1.5rem;
+        }
+    }
+    
+    &__fecha-descuento {
+        color: v.$rojo;
+        font-size: 1rem;
+        font-weight: v.$bold;
+        margin: 0;
+    }
+}
+
 .why-us{
     text-align: center;
     padding: 5rem 3rem;

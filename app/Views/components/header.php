@@ -10,16 +10,13 @@
             <nav class="navegacion">
                 <ul class="navegacion__lista" id="menu">
                     <li class="navegacion__item">
-                        <a href="/" class="navegacion__enlace">Inicio</a>
+                        <a href="/curses" class="navegacion__enlace">Cursos</a>
                     </li>
                     <li class="navegacion__item">
-                        <a href="#" class="navegacion__enlace">Servicios</a>
+                        <a href="/about" class="navegacion__enlace">Sobre nosotros</a>
                     </li>
                     <li class="navegacion__item">
-                        <a href="#" class="navegacion__enlace">Nosotros</a>
-                    </li>
-                    <li class="navegacion__item">
-                        <a href="#" class="navegacion__enlace">Contacto</a>
+                        <a href="/memberships" class="navegacion__enlace">Membresias</a>
                     </li>
                 </ul>
                 

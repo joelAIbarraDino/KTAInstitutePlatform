@@ -1,3 +1,5 @@
+(function(){
+
 document.addEventListener('DOMContentLoaded', function() {
   const slider = document.querySelector('.header-slider');
   if (!slider) return;
@@ -187,3 +189,5 @@ function loadPlyr() {
 
 // Iniciar carga de Plyr
 loadPlyr();
+
+})();
