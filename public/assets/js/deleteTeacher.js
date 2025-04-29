@@ -1,6 +1,6 @@
 import {API_delete} from '/assets/js/modules/api.js';
 
-const btnDelete = document.querySelectorAll(".delete-teacher");
+const btnDelete = document.querySelectorAll(".dashboard-table__action--delete");
 
 const alertaEliminar = (e) => {
 

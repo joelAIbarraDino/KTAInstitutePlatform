@@ -2,8 +2,6 @@
 
 namespace App\Classes;
 
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
-
 class Helpers{
 
     static function saludo():string{
@@ -18,5 +16,40 @@ class Helpers{
             $mensaje = "Buenas noches";
 
         return $mensaje;
+    }
+
+    static function setSwalAlert($icon, $title, $text, $timer = null) {
+        if(!isset($_SESSION)) {
+            session_start();
+        }
+
+        $_SESSION['swal'] = [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $text,
+            'timer' => $timer
+        ];
+    }
+    
+    static function showSwalAlert() {
+        if(!isset($_SESSION)) {
+            session_start();
+        }
+
+        if (isset($_SESSION['swal'])) {
+            echo '
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            ';
+            echo "<script>
+                Swal.fire({
+                    icon: '{$_SESSION['swal']['icon']}',
+                    title: '{$_SESSION['swal']['title']}',
+                    text: '{$_SESSION['swal']['text']}',
+                    ".($_SESSION['swal']['timer'] ? "timer: {$_SESSION['swal']['timer']}, showConfirmButton: false" : "")."
+                });
+            </script>";
+            unset($_SESSION['swal']);
+        }
     }
 }

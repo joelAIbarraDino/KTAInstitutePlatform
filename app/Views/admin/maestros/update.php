@@ -7,12 +7,15 @@
             <a class="btn nuevo" href="javascript:history.back()"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 
-        <img src="/assets/teachers/<?=$teacher->photo?>" alt="foto de maestro" style="width:20rem; border-radius: 50%;">
+        <div class="picture-form">
+            <img src="/assets/teachers/<?=$teacher->photo?>" alt="foto de maestro">
+        </div>
 
-        <form id="form-teacher" class="form" enctype="multipart/form-data" style="width:70%; margin: 0 auto;">
+        <form method="post" class="form form-admin" enctype="multipart/form-data">
             <legend class="form__title">Editar maestro maestro</legend>
             
             <p class="form__instructions">Edite los campos que quiere cambiar</p>
+            <?php include_once __DIR__.'/../../components/alerts.php'; ?>
             
             <div class="grid-elements">
                 <div class="form__file col-4">
@@ -22,10 +25,8 @@
                         name="photo"
                         id="photo"
                         accept="image/*"
-                        hidden
+                        class="real-btn-file"
                     >
-                    <button type="button" id="photo-btn" class="form__file-btn">Actualizar foto</button>
-                    <span id="msg-photo" class="form__input-msg"></span>
                 </div>
             </div>
 
@@ -119,8 +120,7 @@
                         id="bio"
                         class="text-area"
                         placeholder="Biografia y experiencia del maestro"
-                        value="<?=$teacher->bio?>"
-                    ></textarea>
+                    ><?=$teacher->bio?></textarea>
                     <span id="msg-bio" class="form__input-msg"></span>
                 </div>
             </div>
@@ -136,10 +136,8 @@
 
 <?php
     $scripts = '
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="module" src="/assets/js/updateTeacher.js"></script>
         <script src="/assets/js/showPassword.js"></script>
+        <script src="/assets/js/btnFile.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
     ';
 ?>

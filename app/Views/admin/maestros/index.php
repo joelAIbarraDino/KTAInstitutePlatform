@@ -1,4 +1,7 @@
-<?php include_once __DIR__.'/../../components/adminToolbar.php'; ?>
+<?php
+    use App\Classes\Helpers;
+    include_once __DIR__.'/../../components/adminToolbar.php'; 
+?>
 
 <main class="main">
     <div class="main__container">
@@ -17,8 +20,8 @@
                     <tr>
                         <th>Foto</th>
                         <th>Nombre</th>
-                        <th>Email</th>
                         <th>Especialidad</th>
+                        <th>Email</th>
                         <th>Experiencia</th>
                         <th class="actions-label">Acciones</th>
                     </tr>
@@ -32,12 +35,12 @@
                             <tr>
                                 <td><img class="dashboard-table__photo" src="/assets/teachers/<?=$teacher->photo?>" alt="foto <?=$teacher->photo?>"></td>
                                 <td><?=$teacher->name?></td>
-                                <td><?=$teacher->email?></td>
                                 <td><span class="dashboard-table__status dashboard-table__status--info"><?=$teacher->speciality?></span></td>
+                                <td><?=$teacher->email?></td>
                                 <td><?=$teacher->experience?> años</td>
                                 <td class="dashboard-table__actions-cell">
                                     <a href="/admin/maestro/update/<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
-                                    <button data-id="<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--deletez"><i class='bx bx-trash'></i></button>
+                                    <button data-id="<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                 </td>
                             </tr>                    
                         <?php endforeach;?>
@@ -74,4 +77,6 @@
         <script src="/assets/js/menuDashboard.js"></script>
         <script type="module" src="/assets/js/deleteTeacher.js"></script>
     ';
+
+    Helpers::showSwalAlert();
 ?>

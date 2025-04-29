@@ -7,10 +7,12 @@
             <a class="btn nuevo" href="javascript:history.back()"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 
-        <form id="form-teacher" class="form" enctype="multipart/form-data">
+        
+        <form class="form form-admin" enctype="multipart/form-data" method="post">
             <legend class="form__title">Nuevo maestro</legend>
             
             <p class="form__instructions">Completa los campos para registrar un nuevo maestro</p>
+            <?php include_once __DIR__.'/../../components/alerts.php'; ?>
             
             <div class="grid-elements">
                 <div class="form__file col-4">
@@ -21,9 +23,10 @@
                         id="photo"
                         accept="image/*"
                         hidden
+                        class="real-btn-file"
                     >
-                    <button type="button" id="photo-btn" class="form__file-btn">Seleccionar foto</button>
-                    <span id="msg-photo" class="form__input-msg"></span>
+                    <button type="button" class="form__file-btn btn-file">Seleccionar foto</button>
+                    <span class="form__input-msg name-file"></span>
                 </div>
             </div>
 
@@ -37,6 +40,7 @@
                         id="name"
                         class="field"
                         placeholder="Nombre del maestro(a)"
+                        value="<?=$teacher->name??"" ?>"
                         
                     >
                     <span id="msg-name" class="form__input-msg"></span>
@@ -50,6 +54,7 @@
                         id="email"
                         class="field"
                         placeholder="Nombre del categoria"
+                        value="<?=$teacher->email??"" ?>"
                         
                     >
                     <span id="msg-email" class="form__input-msg"></span>
@@ -67,6 +72,7 @@
                         id="speciality"
                         class="field"
                         placeholder="Area de experiencia"
+                        value="<?=$teacher->speciality??"" ?>"
                         
                     >
                     <span id="msg-speciality" class="form__input-msg"></span>
@@ -82,6 +88,7 @@
                             id="experience"
                             class="field"
                             placeholder="Tiempo en años de experiencia"
+                            value="<?=$teacher->experience??"" ?>"
                         >
                     </div>    
                     <span id="msg-experience" class="form__input-msg"></span>
@@ -114,13 +121,13 @@
                         class="text-area"
                         placeholder="Biografia y experiencia del maestro"
                         
-                    ></textarea>
+                    ><?=$teacher->bio?></textarea>
                     <span id="msg-bio" class="form__input-msg"></span>
                 </div>
             </div>
 
             <div class="submit-right">
-                <input class="submit" type="submit" value="Registarar maestro">
+                <input id="new-teacher-btn" class="submit" type="submit" value="Registarar maestro">
             </div>
 
         </form>
@@ -129,10 +136,8 @@
 
 <?php
     $scripts = '
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="module" src="/assets/js/newTeacher.js"></script>
         <script src="/assets/js/showPassword.js"></script>
+        <script src="/assets/js/btnFile.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
     ';
 ?>

@@ -217,3 +217,28 @@
 
 
 }
+
+.form-admin{
+    width: 90%;
+    margin: 0 auto;
+
+    @include m.tablet{
+        width: 80%;
+    }
+
+    @include m.computadora{
+        width: 60%;
+    }
+
+}
+
+.picture-form{
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: -3rem;
+    img{
+        border-radius: 50%;
+        width: 20rem;
+        height: 20rem;
+    }
+}

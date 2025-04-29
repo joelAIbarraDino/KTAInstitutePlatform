@@ -73,11 +73,12 @@ $dino->router->post('/api/categoria/update/{id}', [CategoryController::class, 'u
 $dino->router->delete('/api/categoria/delete/{id}', [CategoryController::class, 'delete']);
 
 //administración de maestros
-$dino->router->get('/admin/maestro/create', [TeacherController::class, 'formCreate']);
-$dino->router->get('/admin/maestro/update/{id}', [TeacherController::class, 'formUpdate']);
+$dino->router->get('/admin/maestro/create', [TeacherController::class, 'create']);
+$dino->router->post('/admin/maestro/create', [TeacherController::class, 'create']);
 
-$dino->router->post('/api/maestro/create', [TeacherController::class, 'create']);
-$dino->router->post('/api/maestro/update/{id}', [TeacherController::class, 'update']);
+$dino->router->get('/admin/maestro/update/{id}', [TeacherController::class, 'update']);
+$dino->router->post('/admin/maestro/update/{id}', [TeacherController::class, 'update']);
+
 $dino->router->delete('/api/maestro/delete/{id}', [TeacherController::class, 'delete']);
 
 $dino->router->dispatch();

@@ -43,22 +43,57 @@ class Teacher extends Model{
     public function validate():array{
 
         if(!$this->name)
-            self::setAlerts('name', "el nombre es obligatorio");
+            self::setAlerts('error', "el nombre es obligatorio");
 
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
-            self::setAlerts('email', "debe ingresar un correo valido");
+            self::setAlerts('error', "debe ingresar un correo valido");
 
         if(!$this->password)
-            self::setAlerts('password', "la contraseña es obligatoria");
+            self::setAlerts('error', "la contraseña es obligatoria");
 
         if(!$this->speciality)
-            self::setAlerts('speciality', "la especialidad es obligatoria");
+            self::setAlerts('error', "la especialidad es obligatoria");
 
         if(!$this->experience)
-            self::setAlerts('experience', "la experiencia es obligatoria");
+            self::setAlerts('error', "la experiencia es obligatoria");
 
         if(!$this->bio)
-            self::setAlerts('bio', "la bio es obligatoria");
+            self::setAlerts('error', "la bio es obligatoria");
+        
+        if(strlen($this->bio) < 100 || strlen($this->bio) > 1000)
+            self::setAlerts('error', "la bio debe tener mas de 100 caracteres y menos de 1000");
+
+        return self::$alerts;
+    }
+
+    public function validateUpdate():array{
+
+        if(!$this->name)
+            self::setAlerts('error', "el nombre es obligatorio");
+
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
+            self::setAlerts('error', "debe ingresar un correo valido");
+
+        if(!$this->speciality)
+            self::setAlerts('error', "la especialidad es obligatoria");
+
+        if(!$this->experience)
+            self::setAlerts('error', "la experiencia es obligatoria");
+
+        if(!$this->bio)
+            self::setAlerts('error', "la bio es obligatoria");
+        
+        if(strlen($this->bio) < 100 || strlen($this->bio) > 1000)
+            self::setAlerts('error', "la bio debe tener mas de 100 caracteres y menos de 1000");
+
+        return self::$alerts;
+    }
+
+    public function teacherExists():array{
+        $teacherExists = Teacher::where("email", "=", $this->email);
+
+        if($teacherExists)
+            self::setAlerts('warning', 'Ya existe un maestro registrado con este correo');
         
         return self::$alerts;
     }
@@ -68,7 +103,7 @@ class Teacher extends Model{
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
         if(!Storage::validateFormat($file['photo']['type'], $allowedTypes))
-            self::setAlerts('photo', 'Solo se permiten imágenes (JPEG, PNG, GIF)');
+            self::setAlerts('error', 'Solo se permiten imágenes (JPEG, PNG, GIF)');
 
         return self::$alerts;
     }

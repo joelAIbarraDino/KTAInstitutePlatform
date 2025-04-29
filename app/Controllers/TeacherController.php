@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Classes\Auth;
+use App\Classes\Helpers;
 use App\Models\Teacher;
 use DinoEngine\Exceptions\QueryException;
 use DinoEngine\Http\Response;
@@ -10,63 +11,99 @@ use DinoEngine\Http\Request;
 
 class TeacherController{
 
-    public static function formCreate():void{
-        
-        Response::render('/admin/maestros/nuevo', [
-            'nameApp'=> APP_NAME,
-            'title'=>'Nuevo maestro'
-        ]);
-    }
-
-    public static function formUpdate($id):void{
-        $teacher = Teacher::find($id);
-
-        if(!$teacher)
-            Response::redirect('/maestros');
-
-        Response::render('/admin/maestros/update', [
-            'nameApp'=> APP_NAME,
-            'title'=>'Actualizar profesor',
-            'teacher'=>$teacher
-        ]);
-    }
-
     public static function create():void{
 
+        $alerts = [];
+        $teacher = new Teacher;
+
+
         if(Request::isPOST()){
+            $alerts = [];
             $datosEnviados = Request::getPostData();
-            $teacher = new Teacher;
-
-            $teacherExists = Teacher::where("email", "=", $datosEnviados['email']);
-
-            if($teacherExists)
-                Response::json(['alerts'=>['email'=>'Ya existe un maestro registrado con este correo']]);
 
             $teacher->sincronize($datosEnviados);
             $alerts = $teacher->validate();
+            $alerts = $teacher->teacherExists();
             $alerts = $teacher->validateImage($_FILES);
 
-            if(!empty($alerts))
-                Response::json(['alerts'=>$alerts]);
+            if(empty($alerts)){
+                //encripto contraseña
+                $teacher->password = Auth::encriptPassword($teacher->password);
+                //proceso y guardo imagen;
+                $teacher->subirImagen($_FILES['photo'], 1000,1000);
 
-            //encripto contraseña
-            $teacher->password = Auth::encriptPassword($teacher->password);
-            //proceso y guardo imagen;
-            $teacher->subirImagen($_FILES['photo'], 1000,1000);
+                //guardo registro
+                $id = $teacher->save();
+                
+                if($id){
+                    Helpers::setSwalAlert('success', '¡Genial!', 'Profesor registrado con exito', 3000);
+                    Response::redirect('/maestros');
+                }else{
+                    $alerts['error'][] = ['error al registrar el profesor, intente mas tarde'];
+                }
 
-            //guardo registro
-            $id = $teacher->save();
-            Response::json(['id' => $id]);
-
+            }
         }
 
+        Response::render('/admin/maestros/nuevo', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Nuevo maestro',
+            'teacher'=>$teacher,
+            'alerts'=>$alerts
+        ]);
     }
 
     public static function update($id):void{
 
-        if(Request::isPOST()){
+        $teacher = Teacher::find($id);
+        $alerts = [];
 
+        if(!$teacher)
+            Response::redirect('/maestros');
+
+        if(Request::isPOST()){
+            $alerts = [];
+            $datosEnviados = Request::getPostData();
+
+            $teacher->name = $datosEnviados['name'];
+            $teacher->email = $datosEnviados['email'];
+            $teacher->speciality = $datosEnviados['speciality'];
+            $teacher->experience = $datosEnviados['experience'];
+            $teacher->bio = $datosEnviados['bio'];
+
+            $alerts = $teacher->validateUpdate();
+
+            if(empty($alerts)){
+                
+                if($_FILES['photo']['size'] > 0){
+                    $alerts = $teacher->validateImage($_FILES);
+                    $teacher->subirImagen($_FILES['photo'], 1000,1000);
+                }
+                
+                if(!empty($_POST['password'])){
+                    $teacher->password = $datosEnviados['password'];
+                    $teacher->password = Auth::encriptPassword($_POST['password']);
+                }
+                
+                //guardo registro
+                $id = $teacher->save();
+                
+                if($id){
+                    Helpers::setSwalAlert('success', '¡Genial!', 'Profesor actualizado con exito', 3000);
+                    Response::redirect('/maestros');
+                }else{
+                    $alerts['error'][] = ['error al actualizar el profesor, intente mas tarde'];
+                }
+            }
+            
         }
+
+        Response::render('/admin/maestros/update', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Actualizar profesor',
+            'teacher'=>$teacher,
+            'alerts'=>$alerts
+        ]);
 
     }
 

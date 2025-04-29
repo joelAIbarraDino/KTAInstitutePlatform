@@ -1,7 +1,7 @@
 (function(){
-  const realFileInput = document.querySelector('#thumbnail');
-  const customButton = document.querySelector('#thumbnail-btn');
-  const fileName = document.querySelector('.form__file-msg');
+  const realFileInput = document.querySelector('.real-btn-file');
+  const customButton = document.querySelector('.btn-file');
+  const fileName = document.querySelector('.name-file');
 
   customButton.addEventListener('click', () => {
     realFileInput.click();
@@ -11,6 +11,7 @@
     if (realFileInput.files.length > 0) {
       fileName.textContent = realFileInput.files[0].name;
       fileName.classList.add("correct");
+      fileName.classList.add("show");
     } else {
       fileName.textContent = 'No se ha seleccionado ningún archivo';
       fileName.classList.add("error");

@@ -1,0 +1,29 @@
+@use 'base/variables' as v;
+
+.alert{
+    font-weight: 900;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 90rem;
+    text-align: center;
+    padding: .5rem 0;
+
+    &.error{
+        background-color: rgba(v.$rojo, 0.1);
+        border-left: solid 5px v.$rojo;
+        color: v.$rojo;
+    }
+
+    &.sucess{
+        background-color: rgba(v.$verde, 0.1);
+        border-left: solid 5px v.$verde;
+        color: v.$verde;
+    }
+
+    &.warning{
+        background-color: rgba(v.$amarillo-lesly, 0.1);
+        border-left: solid 5px v.$amarillo-lesly;
+        color: v.$amarillo-lesly;
+    }
+}
