@@ -3,70 +3,65 @@
 <main class="main">
     <div class="main__container">
 
-        <div class="top-main">
-            <h1 class="top-main__title">Maestros registrados</h1>
-            <a class="btn nuevo" href="/admin/maestro/create"><i class='bx bx-plus'></i> Nuevo maestro</a>
+    <div class="dashboard-table">
+        <div class="dashboard-table__header">
+            <h2 class="dashboard-table__title">Maestro registrados</h2>
+            <div class="dashboard-table__actions">
+            <a href="/admin/maestro/create" class="dashboard-table__button"> <i class='bx bx-plus'></i> Nuevo </a>
+            </div>
         </div>
+        
+        <div class="dashboard-table__container">
+            <table class="dashboard-table__table">
+                <thead class="dashboard-table__thead">
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Especialidad</th>
+                        <th>Experiencia</th>
+                        <th class="actions-label">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="dashboard-table__tbody">
 
-        <div class="table-6 show-4">
+                    <?php if(count($teachers) > 0): ?>
 
-            <?php if(count($teachers) > 0): ?>
+                        <?php foreach($teachers as $teacher): ?>
 
-                <div class="header">
-                    <p class="title-header" >Foto</p>
-                    <p class="title-header">Nombre</p>
-                    <p class="title-header hidden" >Email</p>
-                    <p class="title-header hidden">Especialidad</p>
-                    <p class="title-header hidden">Experiencia</p>
-                    <p class="title-header">Acciones</p>
-                </div>
-                <?php foreach($teachers as $teacher):?>
-                    <div class="row">
+                            <tr>
+                                <td><img class="dashboard-table__photo" src="/assets/teachers/<?=$teacher->photo?>" alt="foto <?=$teacher->photo?>"></td>
+                                <td><?=$teacher->name?></td>
+                                <td><?=$teacher->email?></td>
+                                <td><span class="dashboard-table__status dashboard-table__status--info"><?=$teacher->speciality?></span></td>
+                                <td><?=$teacher->experience?> años</td>
+                                <td class="dashboard-table__actions-cell">
+                                    <a href="/admin/maestro/update/<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                    <button data-id="<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--deletez"><i class='bx bx-trash'></i></button>
+                                </td>
+                            </tr>                    
+                        <?php endforeach;?>
+                    <?php else: ?>
 
-                        <div class="cell">
-                            <div class="col-main">
-                                <img src="/assets/teachers/<?=$teacher->photo?>" alt="caratula de curso">
-                            </div>
-                        </div>
-
-                        <div class="cell">
-                            <div class="col-info">
-                                <a class="col-info-date--link" href="/admin/maestro/update/<?=$teacher->id_teacher?>"><?=$teacher->name?></a>
-                            </div>
-                        </div>
-
-                        <div class="cell hidden">
-                            <div class="col-info">
-                                <p class="col-info-date"><?=$teacher->email?></p>
-                            </div>
-                        </div>
-
-                        <div class="cell hidden">
-                            <div class="col-info">
-                                <p class="col-info-date"><?=$teacher->speciality ?></p>
-                            </div>
-                        </div>
-                        
-                        <div class="cell hidden">
-                            <div class="col-info">
-                                <p class="col-info-date"><?=$teacher->experience?> años</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cell">
-                            <div class="col-action">
-                                <button class="col-action-link delete-teacher" data-id="<?=$teacher->id_teacher?>">Eliminar</button>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach;?>
-
-            <?php else: ?>
-                <div class="empty">
-                    <p class="text">No hay maestros registrados</p>
-                </div>
-            <?php endif; ?>
-
+                        <tr>
+                            <td colspan="6" class="dashboard-table__no-result">no hay registros</td>
+                        </tr>     
+                    <?php endif; ?>               
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="dashboard-table__footer">
+            <div class="dashboard-table__pagination">
+            <button class="dashboard-table__page-button">
+                <i class='bx bx-chevron-left'></i>
+            </button>
+            <span class="dashboard-table__page-info">Página 1 de 5</span>
+            <button class="dashboard-table__page-button">
+                <i class='bx bx-chevron-right'></i>
+            </button>
+            </div>
+        </div>
         </div>
 
     </div>
