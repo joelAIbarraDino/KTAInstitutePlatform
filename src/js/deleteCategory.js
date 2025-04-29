@@ -1,6 +1,6 @@
 (function(){
 
-    const btnDelete = document.querySelectorAll(".delete-category");
+    const btnDelete = document.querySelectorAll(".dashboard-table__action--delete");
     const alertaEliminar = (e) => {
         const id = e.target.dataset.id;
         Swal.fire({
