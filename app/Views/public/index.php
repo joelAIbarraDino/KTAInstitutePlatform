@@ -4,6 +4,10 @@
 <main class="principal">
     <?php include_once __DIR__.'/../components/slider.php'; ?>
     
+    <section class="gif-content">
+        <img src="/assets/images/gif.gif"> 
+    </section>
+
     <section class="why-us">
 
         <h2 class="why-us__title">¿Por qué nosotros?</h2>
@@ -74,6 +78,7 @@
 
 <?php 
     $scripts ='
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
         <script src="/assets/js/slider.js"></script>
         <script src="/assets/js/btnMenu.js"></script>
     ';

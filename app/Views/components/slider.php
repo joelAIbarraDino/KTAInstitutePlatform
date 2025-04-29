@@ -1,36 +1,45 @@
-<div class="slider">
-  <!-- Slides -->
-  <div class="slider-wrapper">
-    <!-- Slide 1 -->
-    <div class="slide active">
-      <div class="slide-bg">
-        <img src="/assets/images/case-img-1.jpg" alt="Slide 1" class="bg-image">
-        <!-- Opcional: <video> en lugar de <img> -->
+<div class="header-slider">
+  <!-- Slides serán generados dinámicamente desde PHP -->
+  <div class="header-slider__slides">
+    <!-- Ejemplo de slide con imagen -->
+    <div class="header-slider__slide" data-type="image">
+      <div class="header-slider__media">
+        <img src="/assets/images/img-2.jpg" alt="" class="header-slider__image">
       </div>
-      <div class="slide-content">
-        <h2 class="slide-title">Título del Slide 1</h2>
-        <p class="slide-subtitle">Subtítulo descriptivo aquí</p>
-        <a href="#" class="slide-button">Ver más</a>
+      <div class="header-slider__content container">
+        <h2 class="header-slider__title">Título del Slide</h2>
+        <h3 class="header-slider__subtitle">Subtítulo del Slide</h3>
+        <p class="header-slider__text">Texto descriptivo del slide</p>
       </div>
     </div>
-
-    <!-- Slide 2 -->
-    <div class="slide">
-      <div class="slide-bg">
-        <img src="/assets/images/case-img-1.jpg" alt="Slide 2" class="bg-image">
+    
+    <!-- Ejemplo de slide con video -->
+    <div class="header-slider__slide" data-type="video" data-video-id="R7mohZTxacg">
+      <div class="header-slider__media">
+        <div class="header-slider__video-container"></div>
       </div>
-      <div class="slide-content">
-        <h2 class="slide-title">Título del Slide 2</h2>
-        <p class="slide-subtitle">Otro subtítulo aquí</p>
-        <!-- Ejemplo sin botón (no tendría URL en admin) -->
+      <div class="header-slider__content container">
+        <h2 class="header-slider__title">Título del Video</h2>
+        <h3 class="header-slider__subtitle">Subtítulo del Video</h3>
+        <p class="header-slider__text">Texto descriptivo del video</p>
       </div>
     </div>
   </div>
-
-  <!-- Controles -->
-  <button class="slider-control prev"><i class='bx bx-chevrons-left' ></i></button>
-  <button class="slider-control next"><i class='bx bx-chevrons-right'></i></button>
-
-  <!-- Indicadores/puntos -->
-  <div class="slider-dots"></div>
+  
+  <!-- Controles del slider -->
+  <div class="header-slider__controls">
+    <button class="header-slider__control header-slider__control--prev">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+      </svg>
+    </button>
+    <button class="header-slider__control header-slider__control--next">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Indicadores/paginación -->
+  <div class="header-slider__indicators"></div>
 </div>

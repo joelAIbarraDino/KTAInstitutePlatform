@@ -25,11 +25,25 @@ body {
 *, *:before, *:after {
     box-sizing: inherit;
 }   
+
 .container {
     width: 80%;
-    max-width: 120rem;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    
+    @include m.telefono {
+      width: 90%;
+    }
+}
+
+.container-left {
+    width: 80%;
+    max-width: 120rem;
+    margin: 0 auto 0 10rem;
+    
+    @include m.telefono {
+      width: 90%;
+    }
 }
 
 

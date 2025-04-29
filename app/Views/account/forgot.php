@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../components/header.php'; ?>
 
-<section class="login">
+<section class="login principal">
     <form method="post" class="form login-cont">
         <legend class="form__title">Recuperar contraseña</legend>
         
