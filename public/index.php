@@ -9,6 +9,7 @@ use App\Controllers\AccountController;
 use App\Controllers\CourseController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
+use App\Controllers\SlidebarController;
 use App\Controllers\TeacherController;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
@@ -21,6 +22,7 @@ date_default_timezone_set('America/Mexico_City');
 define('APP_NAME','KTA Institute');
 define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
 define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
+define('DIR_SLIDEBAR',__DIR__.'/assets/slidebar/');
 
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],
@@ -51,6 +53,7 @@ $dino->router->get('/admin', [AdminController::class, 'index']);
 $dino->router->get('/cursos', [AdminController::class, 'courses']);
 $dino->router->get('/categorias', [AdminController::class, 'categories']);
 $dino->router->get('/inscripciones', [AdminController::class, 'enrollment']);
+$dino->router->get('/slidebar', [AdminController::class, 'slidebar']);
 
 $dino->router->get('/maestros', [AdminController::class, 'teachers']);
 
@@ -80,5 +83,12 @@ $dino->router->get('/admin/maestro/update/{id}', [TeacherController::class, 'upd
 $dino->router->post('/admin/maestro/update/{id}', [TeacherController::class, 'update']);
 
 $dino->router->delete('/api/maestro/delete/{id}', [TeacherController::class, 'delete']);
+
+//administración de slidebar
+$dino->router->get('/admin/slidebar/create', [SlidebarController::class, 'create']);
+$dino->router->post('/admin/slidebar/create', [SlidebarController::class, 'create']);
+
+$dino->router->get('/admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
+$dino->router->post('/admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
 
 $dino->router->dispatch();

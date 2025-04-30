@@ -176,8 +176,18 @@
   }
 
   &__photo{
-    width: 10rem;
-    border-radius: 50%;
+    max-width: 30rem;
+    
+    &--user{
+      width: 10rem;
+      border-radius: 50%;
+    }
+
+    &--rectangule{
+      width: 25rem;
+      height: 10rem;
+    }
+
   }
 
   &__no-result{

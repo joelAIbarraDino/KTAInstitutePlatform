@@ -54,7 +54,7 @@
                         <a class="nav__link" href="/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                         <a class="nav__link" href="/admin"> <i class='bx bxs-certification'></i> Membresias</a>
                         <a class="nav__link" href="/inscripciones"> <i class='bx bxs-school'></i> Inscripciones</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-message-rounded-dots'></i> Anuncios</a>
+                        <a class="nav__link" href="/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
                     </div>
 
                     <div class="nav">

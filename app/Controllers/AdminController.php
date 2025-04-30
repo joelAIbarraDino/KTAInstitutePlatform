@@ -6,6 +6,7 @@ use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\CourseView;
 use App\Models\EnrollmentView;
+use App\Models\Slidebar;
 use App\Models\Teacher;
 use DinoEngine\Http\Response;
 
@@ -41,6 +42,16 @@ class AdminController{
             'nameApp' => APP_NAME,
             'title' => 'Admin categorias',
             'categories'=>$categories
+        ]);
+    }
+
+    public static function slidebar():void{
+        $slidebar = Slidebar::all();
+
+        Response::render('admin/slidebar/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin slidebar',
+            'slidebar'=>$slidebar
         ]);
     }
 
