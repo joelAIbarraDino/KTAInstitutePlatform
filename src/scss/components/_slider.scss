@@ -1,216 +1,182 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.header-slider {
+.slider-container {
   position: relative;
   width: 100%;
-  height: 120rem;
+  height: 100vh;  
+  max-height: 800px;
   overflow: hidden;
-  z-index: 0;
-  @include m.telefono {
-    max-height: 500px;
-  }
   
-  &__slides {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  
-  &__slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 1;
-    
-    &--active {
-      opacity: 1;
-      z-index: 2;
-    }
-  }
-  
-  &__media {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  &__video-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background-color: v.$negro;
-    z-index: -1;
-    iframe {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-  
-  &__content {
-    position: relative;
-    z-index: 1000;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    color: v.$blanco;
-    text-align: left;
-    padding: 2rem;
-    
-    @include m.tablet {
-      text-align: left;
-      max-width: 60%;
-    }
-  }
-  
-  &__title {
-    font-size: 3rem;
-    font-weight: v.$blanco;
-    margin-bottom: 1rem;
-    color: v.$blanco;
-    
-    @include m.telefono {
-      font-size: 6rem;
-    }
-  }
-  
-  &__subtitle {
-    font-size: 1.8rem;
-    font-weight: v.$bold;
-    margin-bottom: 1.5rem;
-    font-weight: v.$blanco;
-    color: v.$blanco;
-    @include m.telefono {
-      font-size: 3rem;
-    }
-  }
-  
-  &__text {
-    font-size: 1.2rem;
-    color: v.$blanco;
-    line-height: 1.6;
-    
-    @include m.telefono {
-      font-size: 1.5rem;
-    }
-  }
-  
-  &__controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    z-index: 4;
-    transform: translateY(-50%);
-    padding: 0 1rem;
-    
-    @include m.telefono {
-      display: none;
-    }
-  }
-  
-  &__control {
-    background-color: rgba(v.$blanco, 0.3);
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    
-    svg {
-      width: 24px;
-      height: 24px;
-      fill: v.$blanco;
-    }
-    
-    &:hover {
-      background-color: rgba(v.$blanco, 0.7);
-    }
-    
-    &--prev {
-      left: 20px;
-    }
-    
-    &--next {
-      right: 20px;
-    }
-  }
-  
-  &__indicators {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    z-index: 4;
-    display: none;
-  }
-  
-  &__indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(v.$blanco, 0.5);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    
-    &--active {
-      background-color: v.$blanco;
-    }
-  }
-  
-  // Overlay para mejorar legibilidad del texto
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(v.$negro, 0.3) 0%, rgba(v.$negro, 0.1) 100%);
-    z-index: 2;
+  @include m.tablet {
+    max-height: 600px;
   }
 }
 
-// Estilos para Plyr
-.plyr__video-embed {
+.slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+}
+
+.slide-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   
-  iframe {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  &--image {
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+  
+  &--video {
+    z-index: 2;
+    
+    .plyr {
+      height: 100%;
+      width: 100%;
+    }
+    
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.slide-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  color: v.$blanco;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 10rem;
+
+  background-color: rgba(v.$negro, 0.5);
+  border-radius: 2px;
+  
+}
+
+.slide-title {
+  font-family: v.$fuente_principal;
+  font-weight: v.$bold;
+  color: v.$blanco;
+  text-align: left;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  
+  @include m.tablet {
+    font-size: 3.5rem;
+  }
+  
+  @include m.computadora {
+    font-size: 4rem;
+  }
+}
+
+.slide-subtitle {
+  font-family: v.$fuente_principal;
+  font-weight: v.$regular;
+  color: v.$blanco;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  
+  @include m.tablet {
+    font-size: 2rem;
+  }
+}
+
+.slide-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: v.$blanco;
+  color: v.$negro;
+  font-family: v.$fuente_principal;
+  font-weight: v.$bold;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: 2px solid v.$blanco;
+  
+  &:hover {
+    background-color: transparent;
+    color: v.$blanco;
+  }
+  
+  @include m.tablet {
+    padding: 1.2rem 2.5rem;
+  }
+}
+
+.slider-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(v.$blanco, 0.3);
+  color: v.$blanco;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 4;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  
+  &:hover {
+    background-color: rgba(v.$blanco, 0.7);
+    color: v.$negro;
+  }
+  
+  &--prev {
+    left: 2rem;
+  }
+  
+  &--next {
+    right: 2rem;
+  }
+  
+  @include m.telefono {
+    padding: 1.5rem;
+    font-size: 2rem;
+  }
+}
+
+.slider-indicators {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 4;
+  
+  .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(v.$blanco, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &.active {
+      background-color: v.$blanco;
+    }
   }
 }
