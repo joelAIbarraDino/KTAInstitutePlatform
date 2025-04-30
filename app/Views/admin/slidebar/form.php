@@ -16,7 +16,7 @@
 
 <div class="grid-elements">
 
-    <div class="form__input col-6">
+    <div class="form__input col-12">
         <label for="title"> Titulo (requerido)</label>
         <input 
             type="text"
@@ -30,7 +30,7 @@
         <span id="msg-name" class="form__input-msg"></span>
     </div>
 
-    <div class="form__input col-6">
+    <div class="form__input col-12">
         <label for="subtitule"> Subtitulo (requerido)</label>
         <input
             type="text"
@@ -43,10 +43,6 @@
         >
         <span id="msg-email" class="form__input-msg"></span>
     </div>
-
-</div>
-
-<div class="grid-elements">
 
     <div class="form__input col-6">
         <label for="link"> Enlace</label>
@@ -77,5 +73,6 @@
         >
         <span id="msg-email" class="form__input-msg"></span>
     </div>
+
 
 </div>

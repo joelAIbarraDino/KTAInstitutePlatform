@@ -2,11 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Classes\Auth;
+use DinoEngine\Exceptions\QueryException;
 use App\Classes\Helpers;
 use App\Models\Slidebar;
-use DinoEngine\Exceptions\QueryException;
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
@@ -76,8 +74,9 @@ class SlidebarController{
                 $alerts = $slidebar->validateImage($_FILES);
 
             if(empty($alerts)){    
-
-                $slidebar->subirImagen($_FILES['background'], 1800,1200);
+                
+                if($_FILES['background']['size'] > 0)
+                    $slidebar->subirImagen($_FILES['background'], 1800,1200);
                 //guardo registro
                 $id = $slidebar->save();
                 

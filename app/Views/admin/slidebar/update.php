@@ -17,7 +17,7 @@
             <?php include_once __DIR__.'/form.php'; ?>
 
             <div class="submit-right">
-                <input id="new-teacher-btn" class="submit" type="submit" value="Crear slidebar">
+                <input id="new-teacher-btn" class="submit" type="submit" value="Actualizar slidebar">
             </div>
 
         </form>
