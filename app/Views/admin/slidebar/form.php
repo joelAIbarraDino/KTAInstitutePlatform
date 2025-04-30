@@ -65,7 +65,7 @@
     </div>
 
     <div class="form__input col-6">
-        <label for="CTA"> Call to Action (requerido)</label>
+        <label for="CTA"> Call to Action</label>
         <input
             type="text"
             name="CTA"

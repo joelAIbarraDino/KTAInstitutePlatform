@@ -72,13 +72,12 @@ class SlidebarController{
             $alerts = $slidebar->validate();
             $alerts = $slidebar->validateLink();
             
-            if(empty($alerts)){
-                
-                if($_FILES['background']['size'] > 0){
-                    $alerts = $slidebar->validateImage($_FILES);
-                    $slidebar->subirImagen($_FILES['background'], 1800,1200);
-                }
-                
+            if($_FILES['background']['size'] > 0)
+                $alerts = $slidebar->validateImage($_FILES);
+
+            if(empty($alerts)){    
+
+                $slidebar->subirImagen($_FILES['background'], 1800,1200);
                 //guardo registro
                 $id = $slidebar->save();
                 
