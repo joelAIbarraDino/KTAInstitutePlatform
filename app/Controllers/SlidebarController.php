@@ -6,6 +6,7 @@ use App\Classes\Auth;
 use App\Classes\Helpers;
 use App\Models\Slidebar;
 use DinoEngine\Exceptions\QueryException;
+use DinoEngine\Helpers\Helpers as HelpersHelpers;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
@@ -23,6 +24,7 @@ class SlidebarController{
 
             $slidebar->sincronize($datosEnviados);
             $alerts = $slidebar->validate();
+            $alerts = $slidebar->validateLink();
             $alerts = $slidebar->validateImage($_FILES);
 
             if(empty($alerts)){
@@ -62,19 +64,19 @@ class SlidebarController{
             $alerts = [];
             $datosEnviados = Request::getPostData();
 
-            $slidebar->name = $datosEnviados['name'];
-            $slidebar->email = $datosEnviados['email'];
-            $slidebar->speciality = $datosEnviados['speciality'];
-            $slidebar->experience = $datosEnviados['experience'];
-            $slidebar->bio = $datosEnviados['bio'];
+            $slidebar->title = $datosEnviados['title'];
+            $slidebar->subtitule = $datosEnviados['subtitule'];
+            $slidebar->link = $datosEnviados['link'];
+            $slidebar->CTA = $datosEnviados['CTA'];
 
             $alerts = $slidebar->validate();
-
+            $alerts = $slidebar->validateLink();
+            
             if(empty($alerts)){
                 
                 if($_FILES['background']['size'] > 0){
                     $alerts = $slidebar->validateImage($_FILES);
-                    $slidebar->subirImagen($_FILES['background'], 1000,1000);
+                    $slidebar->subirImagen($_FILES['background'], 1800,1200);
                 }
                 
                 //guardo registro
@@ -82,7 +84,7 @@ class SlidebarController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'slidebar actualizado con exito', 3000);
-                    Response::redirect('/maestros');
+                    Response::redirect('/slidebar');
                 }else{
                     $alerts['error'][] = ['error al actualizar el slidebar, intente mas tarde'];
                 }
@@ -90,9 +92,9 @@ class SlidebarController{
             
         }
 
-        Response::render('/admin/maestros/update', [
+        Response::render('/admin/slidebar/update', [
             'nameApp'=> APP_NAME,
-            'title'=>'Actualizar profesor',
+            'title'=>'Actualizar slider',
             'slidebar'=>$slidebar,
             'alerts'=>$alerts
         ]);
@@ -110,7 +112,7 @@ class SlidebarController{
                     Response::json(['ok'=>false]);
 
                 //guardo el nombre de la imagen antes de eliminar del DB
-                $photoFile = $slidebar->photo;
+                $photoFile = $slidebar->background;
                 $rows = $slidebar->delete();
                 
                 //si no hubo filas afectadas retorno false

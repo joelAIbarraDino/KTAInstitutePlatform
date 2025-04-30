@@ -11,14 +11,17 @@ class Slidebar extends Model{
     
     protected static string $table = 'slidebar';
     protected static string $PK_name = 'id_slidebar';
-    protected static array $columns = ['id_slidebar', 'title', 'subtitule', 'type_background', 'background'];
-    protected static array $fillable = ['id_slidebar', 'title', 'subtitule', 'type_background', 'background'];
+    protected static array $columns = ['id_slidebar', 'title', 'subtitule', 'type_background', 'background', 'link', 'CTA'];
+    protected static array $fillable = ['id_slidebar', 'title', 'subtitule', 'type_background', 'background', 'link', 'CTA'];
+    protected static array $nulleable = ['link'];
 
     public ?int $id_slidebar;
     public string $title;
     public string $subtitule;
     public int $type_background;
     public string $background;
+    public ?string $link;
+    public string $CTA;
 
     public function __construct($args = [])
     {
@@ -27,6 +30,8 @@ class Slidebar extends Model{
         $this->subtitule = $args['subtitule']??'';
         $this->type_background = $args['type_background']??1;
         $this->background = $args['background']??'';
+        $this->link = $args['link']??null;
+        $this->CTA = $args['CTA']??'';
     }
 
     public function validate():array{
@@ -43,7 +48,23 @@ class Slidebar extends Model{
         return self::$alerts;
     }
 
+    public function validateLink():array{
+
+        if($this->link && !$this->CTA)
+            self::setAlerts('error', "el texto del boton es obligatoria");
+
+        if($this->link && !filter_var($this->link, FILTER_VALIDATE_URL))
+            self::setAlerts('error', "la URL ingresada no es valida");
+
+        return self::$alerts;
+    }
+
     public function validateImage(?array $file):array{
+
+        if($file['background']['size'] == 0){
+            self::setAlerts('error', 'No se ha subido una imagen');
+            return self::$alerts;
+        }
         
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 

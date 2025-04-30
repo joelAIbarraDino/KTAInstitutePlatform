@@ -34,11 +34,11 @@
     }
     
     &--login {
-        background-color: v.$azul;
+        background-color: v.$dorado;
         color: v.$blanco;
         
         &:hover {
-            background-color: v.$azul_darken;
+            background-color: v.$dorado_darken;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }

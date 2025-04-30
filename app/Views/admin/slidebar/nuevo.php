@@ -14,53 +14,7 @@
             <p class="form__instructions">Completa los campos para crear un nuevo slidebar</p>
             <?php include_once __DIR__.'/../../components/alerts.php'; ?>
             
-            <div class="grid-elements">
-                <div class="form__file col-4">
-                    <label for="photo-btn"> Background de slider (requerido)</label>
-                    <input 
-                        type="file"
-                        name="background"
-                        id="background"
-                        accept="image/*"
-                        hidden
-                        class="real-btn-file"
-                    >
-                    <button type="button" class="form__file-btn btn-file">Seleccionar foto</button>
-                    <span class="form__input-msg name-file"></span>
-                </div>
-            </div>
-
-            <div class="grid-elements">
-
-                <div class="form__input col-12">
-                    <label for="title"> Titulo (requerido)</label>
-                    <input 
-                        type="text"
-                        name="title"
-                        id="title"
-                        class="field"
-                        placeholder="Titulo de slider"
-                        value="<?=$slidebar->title ?>"
-                        
-                    >
-                    <span id="msg-name" class="form__input-msg"></span>
-                </div>
-
-                <div class="form__input col-12">
-                    <label for="subtitule"> Subtitulo (requerido)</label>
-                    <input
-                        type="text"
-                        name="subtitule"
-                        id="subtitule"
-                        class="field"
-                        placeholder="Nombre del categoria"
-                        value="<?=$slidebar->subtitule?>"
-                        
-                    >
-                    <span id="msg-email" class="form__input-msg"></span>
-                </div>
-
-            </div>
+            <?php include_once __DIR__.'/form.php'; ?>
 
             <div class="submit-right">
                 <input id="new-teacher-btn" class="submit" type="submit" value="Crear slidebar">

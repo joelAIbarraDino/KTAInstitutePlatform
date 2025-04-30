@@ -99,6 +99,11 @@ class Teacher extends Model{
     }
 
     public function validateImage(?array $file):array{
+
+        if($file['photo']['size'] == 0){
+            self::setAlerts('error', 'No se ha subido una imagen');
+            return self::$alerts;
+        }
         
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 

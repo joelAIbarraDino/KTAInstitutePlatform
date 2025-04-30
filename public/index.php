@@ -91,4 +91,6 @@ $dino->router->post('/admin/slidebar/create', [SlidebarController::class, 'creat
 $dino->router->get('/admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
 $dino->router->post('/admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
 
+$dino->router->delete('/api/slidebar/delete/{id}', [SlidebarController::class, 'delete']);
+
 $dino->router->dispatch();
