@@ -55,8 +55,10 @@
                     </div>
 
                     <div class="nav">
-                        <p class="nav__title">Administración</p>
+                        <p class="nav__title">Cursos</p>
                         <a class="nav__link" href="/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
+                        <a class="nav__link" href="/cuestionarios"> <i class='bx bx-file-find'></i>  Cuestionarios</a>
+                        <a class="nav__link" href="/contenido"> <i class='bx bxs-videos'></i> Contenido</a>
                         <a class="nav__link" href="/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                     </div>
 
@@ -76,7 +78,7 @@
                     </div>
 
                 </div>
-
+            
                 <a target="_blank" class="text-version" href="https://dinozign.com/">
                     Powered by Dinozign
                 </a>

@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     padding: 2rem;
-    height: 7vh;
+    height: 7rem;
     width: 100%;
 
     &-left{
@@ -30,7 +30,7 @@
             }
         }
         &__logo{
-            width: 5rem;
+            width: 4rem;
         }
 
         &__title{
@@ -126,8 +126,8 @@
                     }
 
                     border-bottom: .1rem solid v.$gris;
-                    padding-top: 2rem;
-                    padding-bottom: 2rem;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
                     display: flex;
                     flex-direction: column;
                     gap: 1rem;
@@ -155,7 +155,7 @@
                 .text-version{
                     font-size: 1.4rem;
                     color: v.$negro;
-    
+                    padding: 3rem;
                     &:hover{
                         color: v.$azul;
                     }
@@ -179,7 +179,7 @@
 .main{
     background-color: v.$fondo_claro;
     padding: 3rem;
-    height: 93vh;
+    height: calc(100% - 1rem);
 
     &__container{
         background-color: v.$blanco;
@@ -219,7 +219,7 @@
 }
 
 .form-admin{
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
 
     @include m.tablet{
