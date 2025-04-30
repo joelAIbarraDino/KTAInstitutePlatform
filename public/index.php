@@ -9,6 +9,7 @@ use App\Controllers\AccountController;
 use App\Controllers\CourseController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
+use App\Controllers\AdminsController;
 use App\Controllers\SlidebarController;
 use App\Controllers\TeacherController;
 use DinoEngine\Core\Database;
@@ -54,8 +55,8 @@ $dino->router->get('/cursos', [AdminController::class, 'courses']);
 $dino->router->get('/categorias', [AdminController::class, 'categories']);
 $dino->router->get('/inscripciones', [AdminController::class, 'enrollment']);
 $dino->router->get('/slidebar', [AdminController::class, 'slidebar']);
-
 $dino->router->get('/maestros', [AdminController::class, 'teachers']);
+$dino->router->get('/administradores', [AdminController::class, 'admins']);
 
 //administración de cursos
 $dino->router->get('/admin/curso/create', 
@@ -83,6 +84,17 @@ $dino->router->get('/admin/maestro/update/{id}', [TeacherController::class, 'upd
 $dino->router->post('/admin/maestro/update/{id}', [TeacherController::class, 'update']);
 
 $dino->router->delete('/api/maestro/delete/{id}', [TeacherController::class, 'delete']);
+
+//administración de administradores
+$dino->router->get('/admin/administrador/create', [AdminsController::class, 'create']);
+$dino->router->post('/admin/administrador/create', [AdminsController::class, 'create']);
+
+$dino->router->get('/admin/administrador/update/{id}', [AdminsController::class, 'update']);
+$dino->router->post('/admin/administrador/update/{id}', [AdminsController::class, 'update']);
+
+$dino->router->delete('/api/administrador/delete/{id}', [AdminsController::class, 'delete']);
+
+
 
 //administración de slidebar
 $dino->router->get('/admin/slidebar/create', [SlidebarController::class, 'create']);

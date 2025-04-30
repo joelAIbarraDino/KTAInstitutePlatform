@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Classes\Helpers;
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\CourseView;
 use App\Models\EnrollmentView;
@@ -74,6 +75,17 @@ class AdminController{
             'nameApp' => APP_NAME,
             'title' => 'Admin maestros',
             'teachers' => $teachers
+        ]);
+    }
+
+    public static function admins():void{
+        
+        $admins = Admin::all();
+
+        Response::render('admin/administradores/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin de super usuarios',
+            'admins' => $admins
         ]);
     }
 }

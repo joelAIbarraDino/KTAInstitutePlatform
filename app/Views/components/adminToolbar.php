@@ -49,12 +49,15 @@
                     </div>
 
                     <div class="nav">
+                        <p class="nav__title">CMS</p>
+                        <a class="nav__link" href="/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
+                        <a class="nav__link" href="#"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a>
+                    </div>
+
+                    <div class="nav">
                         <p class="nav__title">Administración</p>
                         <a class="nav__link" href="/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
                         <a class="nav__link" href="/categorias"> <i class='bx bxs-category'></i> Categorias</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-certification'></i> Membresias</a>
-                        <a class="nav__link" href="/inscripciones"> <i class='bx bxs-school'></i> Inscripciones</a>
-                        <a class="nav__link" href="/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
                     </div>
 
                     <div class="nav">
@@ -68,7 +71,7 @@
                     <div class="nav">
                         <p class="nav__title">Usuarios</p>
                         <a class="nav__link" href="/maestros"> <i class='bx bxs-user-detail'></i> Maestros</a>
-                        <a class="nav__link" href="/estudiantes"> <i class='bx bxs-graduation'></i> Estudiantes</a>
+                        <a class="nav__link" href="#"> <i class='bx bxs-graduation'></i> Estudiantes</a>
                         <a class="nav__link" href="/administradores"> <i class='bx bxs-user'></i> Administradores</a>
                     </div>
 
