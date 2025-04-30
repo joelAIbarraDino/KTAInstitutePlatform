@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\CourseView;
 use App\Models\EnrollmentView;
 use App\Models\Slidebar;
+use App\Models\Student;
 use App\Models\Teacher;
 use DinoEngine\Http\Response;
 
@@ -75,6 +76,17 @@ class AdminController{
             'nameApp' => APP_NAME,
             'title' => 'Admin maestros',
             'teachers' => $teachers
+        ]);
+    }
+
+    public static function students():void{
+        
+        $students = Student::all();
+
+        Response::render('admin/estudiantes/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin estudiantes',
+            'students' => $students
         ]);
     }
 
