@@ -1,6 +1,28 @@
 @use 'variables' as v;
 @use 'mixins' as m;
 
+
+/* Works on Firefox */
+*{
+    scrollbar-width: thin;
+    scrollbar-color: v.$dorado v.$negro;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: orange;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: blue;
+    border-radius: 20px;
+    border: 3px solid orange;
+}
+
 html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -13,7 +35,7 @@ body {
     font-family: v.$fuente_principal;
     font-size: 1.6rem;
     overflow-x: hidden;
-    
+
     @include m.tablet{
         height: 100%;
     }
