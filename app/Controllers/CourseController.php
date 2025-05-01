@@ -14,6 +14,7 @@ class CourseController{
 
     public static function formCreate():void{
         
+        $alerts = [];
         $teachers = Teacher::all();
         $categories = Category::all();
 
@@ -22,7 +23,8 @@ class CourseController{
             'title'=>'Nuevo curso',
             'arrayStatus'=>Course::PRIVACY,
             'teachers'=> $teachers,
-            'categories' => $categories
+            'categories' => $categories,
+            'alerts'=>$alerts
         ]);
     }
 
