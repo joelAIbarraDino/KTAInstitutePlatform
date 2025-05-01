@@ -45,7 +45,7 @@
                 <div class="nav-cont">
 
                     <div class="nav">                    
-                        <a class="nav__link" href="/admin"> <i class='bx bx-home'></i> Home</a>
+                        <a class="nav__link" href="/admin"> <i class='bx bxs-dashboard'></i> Dashboard</a>
                     </div>
 
                     <div class="nav">
@@ -62,13 +62,13 @@
                         <a class="nav__link" href="/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                     </div>
 
-                    <div class="nav">
+                    <!-- <div class="nav">
                         <p class="nav__title">Estadisticas</p>
                         <a class="nav__link" href="/admin"> <i class='bx bxs-cart'></i>Compras</a>
                         <a class="nav__link" href="/admin"> <i class='bx bx-file-find'></i> Examenes</a>
                         <a class="nav__link" href="/admin"> <i class='bx bx-spreadsheet' ></i> Membresias</a>
                         <a class="nav__link" href="/admin"> <i class='bx bx-slideshow'></i> Cursos</a>
-                    </div>
+                    </div> -->
                     
                     <div class="nav">
                         <p class="nav__title">Usuarios</p>
