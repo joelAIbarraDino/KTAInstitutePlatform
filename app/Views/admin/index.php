@@ -34,14 +34,14 @@
                 <p class="tarjeta__unidad">USD</p>
             </div>
             <div class="tarjeta">
-                <h3 class="tarjeta__titulo">Clientes Nuevos</h3>
+                <h3 class="tarjeta__titulo">Estudiantes registrados</h3>
                 <p class="tarjeta__valor">124</p>
                 <p class="tarjeta__unidad">Personas</p>
             </div>
             <div class="tarjeta">
-                <h3 class="tarjeta__titulo">Satisfacción</h3>
-                <p class="tarjeta__valor">92%</p>
-                <p class="tarjeta__unidad">Rating</p>
+                <h3 class="tarjeta__titulo">Estudiantes certificados</h3>
+                <p class="tarjeta__valor">120</p>
+                <p class="tarjeta__unidad">Personas</p>
             </div>
         </div>
 

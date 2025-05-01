@@ -69,14 +69,14 @@
         });
     
         // Resto de las gráficas (usando colores.verde, colores.dorado, etc.)...
-        // Gráfica 2 - Satisfacción del cliente (barras)
+        // Gráfica 2 - Aprobados del curso (barras)
         const ctx2 = document.getElementById('grafica2').getContext('2d');
         new Chart(ctx2, {
             type: 'bar',
             data: {
                 labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                 datasets: [{
-                    label: 'Satisfacción (%)',
+                    label: 'Aprobados mensuales',
                     data: [85, 88, 90, 89, 92, 94],
                     backgroundColor: colores.verde,
                     borderColor: '#006000',
@@ -91,9 +91,9 @@
         new Chart(ctx3, {
             type: 'bar',
             data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                labels: ['Curso 1', 'Curso 2', 'Curso 3', 'Curso 4', 'Curso 5', 'Curso 6'],
                 datasets: [{
-                    label: 'Nuevos Clientes',
+                    label: 'Top 5 vendidos',
                     data: [45, 60, 70, 85, 90, 110],
                     backgroundColor: colores.dorado,
                     borderColor: colores.doradoDarken,
@@ -111,7 +111,7 @@
                 labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
                 datasets: [
                     {
-                        label: 'Visitas Web',
+                        label: 'Crecimiento de venta',
                         data: [4500, 5200, 4800, 6100, 7000, 7500],
                         borderColor: colores.azul,
                         backgroundColor: 'rgba(53, 136, 214, 0.1)',
@@ -120,7 +120,7 @@
                         fill: true
                     },
                     {
-                        label: 'Conversiones',
+                        label: 'Ingresos',
                         data: [320, 450, 380, 520, 600, 680],
                         borderColor: colores.dorado,
                         backgroundColor: 'rgba(205, 160, 45, 0.1)',
