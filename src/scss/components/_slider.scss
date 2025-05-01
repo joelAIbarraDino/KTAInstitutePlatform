@@ -105,7 +105,7 @@
 .slide-button {
   display: inline-block;
   padding: 1rem 2rem;
-  background-color: v.$blanco;
+  background-color: v.$dorado;
   color: v.$negro;
   font-family: v.$fuente_principal;
   font-weight: v.$bold;
@@ -128,8 +128,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(v.$blanco, 0.3);
-  color: v.$blanco;
+  background-color: rgba(v.$dorado, 0.3);
+  color: v.$dorado;
   border: none;
   padding: 1rem;
   cursor: pointer;
@@ -139,8 +139,8 @@
   border-radius: 50%;
   
   &:hover {
-    background-color: rgba(v.$blanco, 0.7);
-    color: v.$negro;
+    background-color: rgba(v.$dorado, 0.4);
+    color: v.$dorado;
   }
   
   &--prev {
@@ -170,12 +170,12 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: rgba(v.$blanco, 0.5);
+    background-color: rgba(v.$dorado, 0.5);
     cursor: pointer;
     transition: all 0.3s ease;
     
     &.active {
-      background-color: v.$blanco;
+      background-color: v.$dorado;
     }
   }
 }

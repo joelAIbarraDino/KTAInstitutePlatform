@@ -2,11 +2,7 @@
 @use 'base/mixins' as m;
 
 .footer{
-    background: rgb(0,0,0);
-    background: -moz-linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
-    background: -webkit-linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
-    background: linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(185,147,49,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#b99331",GradientType=1);
+    background: v.$negro;
 
     color: v.$blanco;
     padding: 5rem 3rem;
@@ -47,11 +43,11 @@
             &__item a{
                 color: v.$blanco;
                 padding: 1.6rem 1rem 1rem 1rem;
-                background-color: v.$negro;
+                background-color: v.$dorado;
                 border-radius: 1rem;
 
                 &:hover{
-                    background-color: v.$dorado;
+                    background-color: v.$dorado_darken;
                 }
                 i{
                     font-size: 2rem;
@@ -139,7 +135,7 @@
                 align-items: center;
                 justify-content: center;
                 padding: 1rem;
-                background-color: v.$negro;
+                background-color: v.$dorado;
                 border-radius: 1rem;
                 i{
                     font-size: 2.8rem;

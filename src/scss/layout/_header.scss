@@ -3,7 +3,7 @@
 
 /* Estilos del Header */
 .header {
-    background-color: v.$blanco;
+    background-color: v.$negro;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
@@ -43,18 +43,19 @@
 
 /* Navegación */
 .navegacion {
+    
     &__hamburguesa {
         background: none;
         border: none;
         font-size: 4rem;
-        color: v.$azul;
+        color: v.$dorado;
         cursor: pointer;
         display: block;
         padding: 0.5rem;
         transition: all 0.3s ease;
         
         &:hover {
-            color: v.$azul_darken;
+            color: v.$dorado;
             transform: scale(1.1);
         }
         
@@ -70,7 +71,7 @@
         margin: 0;
         flex-direction: column;
         gap: 1.5rem;
-        
+
         @include m.tablet {
             display: flex;
             flex-direction: row;
@@ -83,7 +84,7 @@
     }
     
     &__enlace {
-        color: v.$negro;
+        color: v.$blanco;
         text-decoration: none;
         font-weight: v.$bold;
         font-size: 1.6rem;
@@ -93,8 +94,8 @@
         display: block;
         
         &:hover {
-            color: v.$azul;
-            background-color: rgba(v.$azul, 0.1);
+            color: v.$dorado;
+            background-color: rgba(v.$dorado, 0.1);
         }
         
         @include m.tablet {
@@ -109,10 +110,11 @@
         top: 100%;
         left: 0;
         right: 0;
-        background-color: v.$blanco;
+        background-color: v.$negro;
         padding: 2rem;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+        transition: all 0.3s ease;
         
         @include m.tablet {
             position: static;

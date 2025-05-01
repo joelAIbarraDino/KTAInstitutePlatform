@@ -27,8 +27,8 @@ body {
 }   
 
 .container {
-    width: 80%;
-    max-width: 1200px;
+    width: 90%;
+    max-width: 1500px;
     margin: 0 auto;
     
     @include m.telefono {
