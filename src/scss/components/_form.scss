@@ -66,6 +66,19 @@
             }
         }
 
+        .field-color{
+            background-color: v.$fondo_input;
+            width: 4.5rem;
+            height: 4.5rem;
+            border: .2rem solid v.$border_input;
+            border-radius: .5rem;
+            outline: none;
+
+            &:focus{
+                border: .2rem solid v.$dorado;
+            }
+        }
+
         .icon-left,
         .icon-right{
             display: flex;

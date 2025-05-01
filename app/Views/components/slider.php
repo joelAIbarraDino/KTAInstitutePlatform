@@ -10,8 +10,8 @@
           <div class="slide-bg slide-bg--image" style="background-image: url('/assets/slidebar/<?=$slide->background?>')"></div>
           
           <div class="slide-content">
-            <h2 class="slide-title"><?=$slide->title?></h2>
-            <p class="slide-subtitle"><?=$slide->subtitule?></p>
+            <h2 class="slide-title" style="color:<?=$slide->color_title?>"><?=$slide->title?></h2>
+            <p class="slide-subtitle" style="color:<?=$slide->color_subtitule?>"><?=$slide->subtitule?></p>
             <?php if(!empty($slide->link)):?>
               <a href="<?=$slide->link?>" class="slide-button"><?=$slide->CTA?></a>
             <?php endif;?>

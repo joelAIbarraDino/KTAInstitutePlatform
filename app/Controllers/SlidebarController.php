@@ -5,6 +5,7 @@ namespace App\Controllers;
 use DinoEngine\Exceptions\QueryException;
 use App\Classes\Helpers;
 use App\Models\Slidebar;
+use DinoEngine\Helpers\Helpers as HelpersHelpers;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
@@ -36,7 +37,7 @@ class SlidebarController{
                     Helpers::setSwalAlert('success', '¡Genial!', 'Slidebar creado con exito', 3000);
                     Response::redirect('/slidebar');
                 }else{
-                    $alerts['error'][] = ['error al crear el slidebar, intente mas tarde'];
+                    $alerts['error'][] = 'error al crear el slidebar, intente mas tarde';
                 }
 
             }
@@ -63,7 +64,9 @@ class SlidebarController{
             $datosEnviados = Request::getPostData();
 
             $slidebar->title = $datosEnviados['title'];
+            $slidebar->color_title = $datosEnviados['color_title'];
             $slidebar->subtitule = $datosEnviados['subtitule'];
+            $slidebar->color_subtitule = $datosEnviados['color_subtitule'];
             $slidebar->link = $datosEnviados['link'];
             $slidebar->CTA = $datosEnviados['CTA'];
 
@@ -84,7 +87,7 @@ class SlidebarController{
                     Helpers::setSwalAlert('success', '¡Genial!', 'slidebar actualizado con exito', 3000);
                     Response::redirect('/slidebar');
                 }else{
-                    $alerts['error'][] = ['error al actualizar el slidebar, intente mas tarde'];
+                    $alerts['error'][] = 'error al actualizar el slidebar, intente mas tarde';
                 }
             }
             

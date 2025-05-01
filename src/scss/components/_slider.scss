@@ -27,7 +27,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120rem;
   
   &--image {
     background-size: cover;
@@ -73,7 +73,6 @@
 .slide-title {
   font-family: v.$fuente_principal;
   font-weight: v.$bold;
-  color: v.$blanco;
   text-align: left;
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -93,7 +92,6 @@
 .slide-subtitle {
   font-family: v.$fuente_principal;
   font-weight: v.$regular;
-  color: v.$blanco;
   font-size: 1.5rem;
   margin-bottom: 2rem;
   width: 90%;

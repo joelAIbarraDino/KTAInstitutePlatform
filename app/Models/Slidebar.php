@@ -11,39 +11,49 @@ class Slidebar extends Model{
     
     protected static string $table = 'slidebar';
     protected static string $PK_name = 'id_slidebar';
-    protected static array $columns = ['id_slidebar', 'title', 'subtitule', 'type_background', 'background', 'link', 'CTA'];
-    protected static array $fillable = ['id_slidebar', 'title', 'subtitule', 'type_background', 'background', 'link', 'CTA'];
-    protected static array $nulleable = ['link'];
+    protected static array $columns = ['id_slidebar', 'title', 'color_title', 'subtitule', 'color_subtitule', 'type_background', 'background', 'link', 'CTA'];
+    protected static array $fillable = ['id_slidebar', 'title', 'color_title', 'subtitule', 'color_subtitule', 'type_background', 'background', 'link', 'CTA'];
+    protected static array $nulleable = ['link', 'CTA'];
 
     public ?int $id_slidebar;
     public string $title;
+    public string $color_title;
     public string $subtitule;
+    public string $color_subtitule;
     public int $type_background;
     public string $background;
     public ?string $link;
-    public string $CTA;
+    public ?string $CTA;
 
     public function __construct($args = [])
     {
         $this->id_slidebar = $args['id_slidebar']??null;
         $this->title = $args['title']??'';
+        $this->color_title = $args['color_title']??'#cda02d';
         $this->subtitule = $args['subtitule']??'';
+        $this->color_subtitule = $args['color_subtitule']??'#cda02d';
         $this->type_background = $args['type_background']??1;
         $this->background = $args['background']??'';
         $this->link = $args['link']??null;
-        $this->CTA = $args['CTA']??'';
+        $this->CTA = $args['CTA']??null;
     }
 
     public function validate():array{
 
         if(!$this->title)
-            self::setAlerts('error', "el titulo es obligatorio");
+            self::setAlerts('error', "El titulo es obligatorio");
+
+        if(!$this->color_title)
+            self::setAlerts('error', "El color del titulo es obligatorio");
 
         if(!$this->subtitule)
-            self::setAlerts('error', "el subtitulo es obligatoria");
+            self::setAlerts('error', "El subtitulo es obligatoria");
+
+        if(!$this->color_subtitule)
+            self::setAlerts('error', "El color del subtitulo es obligatorio");
 
         if(!$this->type_background)
-            self::setAlerts('error', "el tipo de fondo es obligatoria");
+            self::setAlerts('error', "El tipo de fondo es obligatoria");
 
         return self::$alerts;
     }
@@ -51,10 +61,10 @@ class Slidebar extends Model{
     public function validateLink():array{
 
         if($this->link && !$this->CTA)
-            self::setAlerts('error', "el texto del boton es obligatoria");
+            self::setAlerts('error', "El texto del boton es obligatoria");
 
         if($this->link && !filter_var($this->link, FILTER_VALIDATE_URL))
-            self::setAlerts('error', "la URL ingresada no es valida");
+            self::setAlerts('error', "La URL ingresada no es valida");
 
         return self::$alerts;
     }

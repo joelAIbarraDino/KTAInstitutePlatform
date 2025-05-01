@@ -9,9 +9,9 @@
 
         
         <form class="form form-admin" enctype="multipart/form-data" method="post">
-            <legend class="form__title">Nuevo slider</legend>
+            <legend class="form__title">Actualizar slider</legend>
             
-            <p class="form__instructions">Completa los campos para crear un nuevo slidebar</p>
+            <p class="form__instructions">Modifica los campos para actualizar tu slidebar</p>
             <?php include_once __DIR__.'/../../components/alerts.php'; ?>
             
             <?php include_once __DIR__.'/form.php'; ?>
