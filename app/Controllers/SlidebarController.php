@@ -79,7 +79,7 @@ class SlidebarController{
             if(empty($alerts)){    
                 
                 if($_FILES['background']['size'] > 0)
-                    $slidebar->subirImagen($_FILES['background'], 1800,1200);
+                    $slidebar->subirImagen($_FILES['background'], 1200, 628);
                 //guardo registro
                 $id = $slidebar->save();
                 

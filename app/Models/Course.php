@@ -11,20 +11,20 @@ class Course extends Model {
     
     protected static string $table = 'course';
     protected static string $PK_name = 'id_course';
-    protected static array $columns = [
-        'id_course', 'name', 'watchword', 'thumbnail', 
-        'description', 'price','discount', 'discount_ends', 
+    protected static array $columns = [ 
+        'id_course', 'name', 'watchword', 'thumbnail', 'description', 
+        'price','discount', 'discount_ends_date', 'discount_ends_time', 
         'max_months_enroll', 'created_at', 
         'privacy', 'id_category', 'id_teacher'
     ];
 
     protected static array $fillable = [
-        'name', 'watchword', 'thumbnail', 
-        'description', 'price','discount', 'discount_ends', 
+        'name', 'watchword', 'thumbnail', 'description', 
+        'price','discount', 'discount_ends_date', 'discount_ends_time',
         'max_months_enroll', 
         'privacy', 'id_category', 'id_teacher'
     ];
-    protected static array $nulleable = ['discount', 'discount_ends'];
+    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time'];
 
     public ?int $id_course;
     public string $name;
@@ -32,8 +32,9 @@ class Course extends Model {
     public string $thumbnail;
     public string $description;
     public float $price;
-    public ?float $discount;
-    public ?string $discount_ends;
+    public float $discount;
+    public ?string $discount_ends_date;
+    public ?string $discount_ends_time;
     public int $max_months_enroll;
     public string $created_at;
     public int $privacy;
@@ -54,9 +55,10 @@ class Course extends Model {
         $this->thumbnail = $args["thumbnail"]??"";
         $this->description = $args["description"]??"";
         $this->price = $args["price"]??0.0;
-        $this->discount = $args["discount"]??null;
-        $this->discount_ends = $args["discount_ends"]??null;
-        $this->max_months_enroll = $args["max_months_enroll"]??0;
+        $this->discount = $args["discount"]??0;
+        $this->discount_ends_date = $args["discount_ends_date"]??null;
+        $this->discount_ends_time = $args["discount_ends_time"]??null;
+        $this->max_months_enroll = $args["max_months_enroll"]??6;
         $this->created_at = $args["created_at"]??date('Y-m-d');
         $this->privacy = $args["privacy"]??self::PRIVACY['borrador'];
         $this->id_category = $args["id_category"]??0;
@@ -65,37 +67,42 @@ class Course extends Model {
 
     public function validate():array{
         if(!$this->name)
-            self::setAlerts("name", "debe ingresar el nombre del curso");
+            self::setAlerts("error", "Debe ingresar el nombre del curso");
         
         if(strlen($this->name) > 100)
-            self::setAlerts("name", "el nombre debe tener menos de 50 caracteres");
+            self::setAlerts("error", "El nombre debe tener menos de 50 caracteres");
 
         if(!$this->watchword)
-            self::setAlerts("watchword", "debe ingresar un lema al curso");
+            self::setAlerts("error", "Debe ingresar un lema al curso");
 
         if(strlen($this->watchword) > 200)
-            self::setAlerts("watchword", "el lema debe tener menos de 50 caracteres");
+            self::setAlerts("error", "El lema debe tener menos de 50 caracteres");
         
         if(!$this->description)
-            self::setAlerts("description", "debe ingresar una descripción");
+            self::setAlerts("error", "Debe ingresar una descripción");
 
         if(!$this->price)
-            self::setAlerts("price", "debe ingresar el precio del curso");
+            self::setAlerts("error", "Debe ingresar el precio del curso");
 
-        if($this->discount && !$this->discount_ends)
-            self::setAlerts("discount_ends", "la fecha de fin de promoción es obligatorio");
+        if($this->discount && (!$this->discount_ends_date || !$this->discount_ends_time))
+            self::setAlerts("error", "La fecha y hora de fin de promoción es obligatorio");
 
-        if(!$this->discount && $this->discount_ends)
-            self::setAlerts("discount", "el descuento es obligatorio");
+        if(!$this->discount && ($this->discount_ends_date || $this->discount_ends_time))
+            self::setAlerts("error", "El descuento es obligatorio");
 
+        if(!$this->discount && !$this->discount_ends_date && !$this->discount_ends_time){
+            $this->discount_ends_date = null;
+            $this->discount_ends_time = null;
+        }
+        
         if(!$this->max_months_enroll)
-            self::setAlerts("watchword", "debe ingresar el maximo de meses para ver el curso");
+            self::setAlerts("error", "Debe ingresar el maximo de meses para ver el curso");
 
         if(!$this->id_category)
-            self::setAlerts("watchword", "debe seleccionar una categoria");
+            self::setAlerts("error", "Debe seleccionar una categoria");
 
         if(!$this->id_teacher)
-            self::setAlerts("watchword", "debe seleccionar un maestro");
+            self::setAlerts("error", "Debe seleccionar un maestro");
 
         return self::$alerts;
     }
@@ -103,7 +110,7 @@ class Course extends Model {
     public function validateFile(?array $file):array{
         
         if(!isset($file['thumbnail'])){
-            self::setAlerts('thumbnail', "debe ingresar la caratula del curso");
+            self::setAlerts('error', "Debe ingresar la caratula del curso");
             return self::$alerts;
         }
 
@@ -111,7 +118,7 @@ class Course extends Model {
         
         
         if (!in_array($file['thumbnail']['type'], $allowedTypes))
-            self::setAlerts('thumbnail', "Solo se permiten imágenes (JPEG, PNG, GIF)");
+            self::setAlerts('error', "Solo se permiten imágenes (JPEG, PNG, GIF)");
         
         return self::$alerts;
     }
@@ -134,12 +141,12 @@ class Course extends Model {
             $processImage->cover($ancho, $alto);
 
         if(!is_dir(DIR_CARATULAS))
-            mkdir(DIR_PRODIR_CARATULASFESORES);
+            mkdir(DIR_CARATULAS);
         
         $processImage->toPng()->save(DIR_CARATULAS.'/'.$nombreImagen);
 
         // Actualizar el atributo del modelo
-        $this->photo = $nombreImagen;
+        $this->thumbnail = $nombreImagen;
     }
 
 }

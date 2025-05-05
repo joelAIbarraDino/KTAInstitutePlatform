@@ -62,12 +62,14 @@ $dino->router->get('/estudiantes', [AdminController::class, 'students']);
 
 //administración de cursos
 $dino->router->get('/admin/curso/create', 
-    [CourseController::class, 'formCreate'], 
+    [CourseController::class, 'create'], 
     [new ExistsCategoryMiddleware('/admin/categoria/create'), new ExistsTeacherMiddleware('/admin/maestro/create')]
 );
+$dino->router->post('/admin/curso/create', [CourseController::class, 'create']);
 
-$dino->router->post('/api/curso/create', [CourseController::class, 'create']);
-$dino->router->post('/api/curso/update/{id}', [CourseController::class, 'update']);
+$dino->router->get('/admin/curso/update/{id}', [CourseController::class, 'update']);
+$dino->router->post('/admin/curso/update/{id}', [CourseController::class, 'update']);
+
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
 
 //administración de categoria

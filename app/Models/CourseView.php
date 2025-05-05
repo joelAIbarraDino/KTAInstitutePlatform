@@ -8,7 +8,8 @@ class CourseView extends Model {
     
     protected static string $table = 'course_view';
     protected static array $columns = [
-        'id_course', 'name', 'watchword', 'category', 'thumbnail', 'description', 'price', 'discount', 'discount_ends',
+        'id_course', 'name', 'watchword', 'category', 'thumbnail', 'description', 
+        'price', 'discount', 'discount_ends_date', 'discount_ends_time', 
         'max_months_enroll', 'created_at', 'privacy',
         'enrollment', 'id_teacher', 'teacher'
     ];

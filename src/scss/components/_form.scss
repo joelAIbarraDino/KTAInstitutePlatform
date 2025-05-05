@@ -60,7 +60,8 @@
             border-radius: .5rem;
             outline: none;
             resize: none;
-
+            margin-bottom: 2.5rem;
+            
             &:focus{
                 border: .2rem solid v.$dorado;
             }

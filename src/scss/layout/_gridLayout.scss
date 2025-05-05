@@ -10,6 +10,31 @@
         grid-template-columns: repeat(12, 1fr);
         gap: 2rem;
     }
+
+    &.border{
+        border: solid v.$border_input .1rem;
+        border-radius: .5rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+
+        .title{
+            font-weight: v.$bold;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+
+            &--negro{
+                color: v.$negro;
+            }
+
+            &--dorado{
+                color: v.$dorado;
+            }
+
+            &--blanco{
+                color: v.$blanco;
+            }
+        }
+    }
 }
 
 [class*="col-"] {

@@ -333,3 +333,57 @@
     }
 
 }
+
+.module-form{
+    border: solid v.$border_input .1rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    color: v.$negro;
+
+    &__title{
+        font-weight: v.$bold;
+        font-size: 2rem;
+        color: v.$negro;
+        margin-bottom: 2rem;
+    }
+
+    &__botton{
+        padding-top: .3rem;
+        padding-left: .5rem;
+        margin-top: 2.5rem;
+        border-radius: 50%;
+        border: none;
+        width: 4rem;
+        height: 4rem;
+        font-size: 3rem;
+        text-align: center;
+        
+        &--dorado{
+            background-color: v.$dorado;
+            color: v.$blanco;
+            
+            &:hover{
+                color: v.$blanco;
+                background-color: rgba(v.$dorado, .8)
+            }
+        }
+        
+
+        &--delete{
+            color: v.$blanco;
+            background-color: v.$rojo;
+            
+            &:hover{
+                color: v.$blanco;
+                background-color: rgba(v.$rojo, .8)
+            }   
+        }
+    }
+
+    &__module{
+        border: solid .1rem v.$dorado;
+        padding: 1rem;
+        border-radius: .5rem;
+        margin-bottom: 1.5rem;
+    }
+}

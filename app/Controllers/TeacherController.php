@@ -39,7 +39,7 @@ class TeacherController{
                     Helpers::setSwalAlert('success', '¡Genial!', 'Profesor registrado con exito', 3000);
                     Response::redirect('/maestros');
                 }else{
-                    $alerts['error'][] = ['error al registrar el profesor, intente mas tarde'];
+                    $alerts['error'][] = 'error al registrar el profesor, intente mas tarde';
                 }
 
             }
@@ -92,7 +92,7 @@ class TeacherController{
                     Helpers::setSwalAlert('success', '¡Genial!', 'Profesor actualizado con exito', 3000);
                     Response::redirect('/maestros');
                 }else{
-                    $alerts['error'][] = ['error al actualizar el profesor, intente mas tarde'];
+                    $alerts['error'][] = 'error al actualizar el profesor, intente mas tarde';
                 }
             }
             
