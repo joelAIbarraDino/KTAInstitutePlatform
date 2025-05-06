@@ -22,7 +22,8 @@ class CourseView extends Model {
     public string $description;
     public float $price;
     public ?float $discount;
-    public ?string $discount_ends;
+    public ?string $discount_ends_date;
+    public ?string $discount_ends_time;
     public int $max_months_enroll;
     public string $created_at;
     public int $privacy;
@@ -39,7 +40,8 @@ class CourseView extends Model {
         $this->description = $args["description"]??"";
         $this->price = $args["price"]??0;
         $this->discount = $args["discount"]??null;
-        $this->discount_ends = $args["discount_ends"]??null;
+        $this->discount_ends_date = $args["discount_ends_date"]??null;
+        $this->discount_ends_time = $args["discount_ends_time"]??null;
         $this->max_months_enroll = $args["max_months_enroll"]??0;
         $this->created_at = $args["created_at"]??"";
         $this->privacy = $args["privacy"]??0;

@@ -9,10 +9,12 @@
 
 .gif-content{
     background-color: v.$fondo_claro;    
-
+    padding: 0;
     img{
         width: 100%;
         height: 10rem;
+        margin: 0;
+        padding: 0;
     }
 }
 
@@ -21,11 +23,21 @@
     padding: 2rem;
     background-color: v.$fondo_claro;
 
+    &.empty{
+        min-height: 20rem;
+        margin: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: v.$negro;
+        gap: 1rem;
+    }
     &__content{
         width: 90%;
         max-width: 1500px;
         margin: 0 auto;
-    
+
         position: relative;
             
     }
@@ -34,10 +46,31 @@
         text-align: center;
         font-weight: v.$black;
         color: v.$negro;
-        font-size: 4.5rem;
+        font-size: 4rem;
         margin: 0;
+
+        &.empty{
+            color: v.$dorado;
+        }
+
         @include m.tablet {
-            font-size: 4rem;
+            font-size: 4.5rem;
+        }
+    }
+
+    &__title{
+        text-align: center;
+        font-weight: v.$black;
+        color: v.$negro;
+        font-size: 4rem;
+        margin: 0;
+
+        &.empty{
+            color: v.$blanco;
+        }
+
+        @include m.tablet {
+            font-size: 4.5rem;
         }
     }
     

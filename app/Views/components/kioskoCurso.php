@@ -1,56 +1,74 @@
-<div class="kiosko">
-    <h2 class="kiosko__titulo">Ultimos Cursos</h2>
+<?php if(count($courses)> 0):?>
+    
+    <div class="kiosko">
+        <h2 class="kiosko__titulo">Ultimos Cursos</h2>
 
-    <div class="kiosko__content">
-        
-        <div class="kiosko__contenedor">
-            <!-- Ejemplo de tarjeta de curso -->
-
-            <?php for($i = 0; $i < 10; $i++):?>
-                <div class="curso">
-                    <div class="curso__imagen-contenedor">
-                        <a href="https://www.youtube.com/">
-                            <img src="/assets/thumbnails/26338aa4599498816b59136eed229cda.png" alt="Imagen del curso" class="curso__imagen">
-                        </a>
-
-                        <span class="curso__categoria">Desarrollo Web</span>
-                        <div class="curso__descuento-etiqueta">-20%</div>
-                    </div>
-                    <div class="curso__contenido">
-                        <a href="https://www.youtube.com/"><h3 class="curso__nombre">Curso de HTML y CSS Avanzado</h3></a>
-                        <p class="curso__maestro">Por: Juan Pérez</p>
-                        <div class="curso__precios">
-                            <p class="curso__precio curso__precio--original">$1,200</p>
-                            <p class="curso__precio curso__precio--oferta">$960</p>
-                        </div>
-                        <p class="curso__fecha-descuento">Oferta válida hasta: 30/11/2023</p>
-                    </div>
-                </div>
-
-                <div class="curso">
-                    <div class="curso__imagen-contenedor">
-                        <img src="/assets/thumbnails/26338aa4599498816b59136eed229cda.png" alt="Imagen del curso" class="curso__imagen">
-                        <span class="curso__categoria">Desarrollo Web</span>
-                    </div>
-                    <div class="curso__contenido">
-                        <h3 class="curso__nombre">Curso de HTML y CSS Avanzado</h3>
-                        <p class="curso__maestro">Por: Juan Pérez</p>
-                        <div class="curso__precios">
-                            <p class="curso__precio curso__precio--normal">$1,200</p>
-                        </div>
-                    </div>
-                </div>
-
-            <?php endfor;?>
+        <div class="kiosko__content">
             
-            <!-- Más cursos se agregarán dinámicamente -->
+            <div class="kiosko__contenedor">
+
+                <?php foreach($courses as $course):?>
+
+
+                    <?php if($course->discount): ?>
+                        <div class="curso">
+                            <div class="curso__imagen-contenedor">
+                                <a href="/course/view/<?=$course->id_course?>">
+                                    <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
+                                </a>
+
+                                <span class="curso__categoria"><?=$course->category?></span>
+                                <div class="curso__descuento-etiqueta">-<?=$course->discount?>%</div>
+                            </div>
+                            <div class="curso__contenido">
+                                <a href="/course/view/<?=$course->id_course?>"><h3 class="curso__nombre"><?=$course->name?></h3></a>
+                                <p class="curso__maestro">Por: <?=$course->teacher?></p>
+                                <div class="curso__precios">
+                                    <p class="curso__precio curso__precio--original">$<?=$course->price?></p>
+                                    <p class="curso__precio curso__precio--oferta">$<?= $course->price * (1 - ($course->discount/100))?></p>
+                                </div>
+                                <p class="curso__fecha-descuento">Oferta válida hasta: <?=$course->discount_ends_date?></p>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="curso">
+                            <div class="curso__imagen-contenedor">
+                                <a href="/course/view/<?=$course->id_course?>">
+                                    <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
+                                </a>
+                                
+                                <span class="curso__categoria"><?=$course->category?></span>
+                            </div>
+                            <div class="curso__contenido">
+                                <a href="/course/view/<?=$course->id_course?>"><h3 class="curso__nombre"><?=$course->name?></h3></a>
+                                <p class="curso__maestro">Por: <?=$course->teacher?></p>
+                                <div class="curso__precios">
+                                    <p class="curso__precio curso__precio--normal">$<?=$course->price?></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <?php endif; ?>
+                
+                <?php endforeach;?>
+                
+            </div>
+            
+            <div class="kiosko__controles">
+                <button class="kiosko__boton kiosko__boton--anterior"><i class='bx bx-chevrons-left' ></i></button>
+                <button class="kiosko__boton kiosko__boton--siguiente"><i class='bx bx-chevrons-right'></i></button>
+            </div>
+            
+            <div class="kiosko__puntos"></div>
         </div>
-        
-        <div class="kiosko__controles">
-            <button class="kiosko__boton kiosko__boton--anterior"><i class='bx bx-chevrons-left' ></i></button>
-            <button class="kiosko__boton kiosko__boton--siguiente"><i class='bx bx-chevrons-right'></i></button>
-        </div>
-        
-        <div class="kiosko__puntos"></div>
     </div>
-</div>
+
+<?php else:?>
+
+    <div class="kiosko empty">
+        <h2 class="kiosko__titulo empty">Proximamente</h2>
+
+        <p class="kiosko__title empty">Nuevos cursos para tí </p>
+    </div>
+
+<?php endif;?>

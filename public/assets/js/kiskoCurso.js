@@ -6,6 +6,9 @@
         const botonSiguiente = document.querySelector('.kiosko__boton--siguiente');
         const puntosContenedor = document.querySelector('.kiosko__puntos');
         
+
+        if(!contenedor)
+            return;
         // Configuración del kiosko
         const config = {
             velocidad: 300, // ms para el desplazamiento
