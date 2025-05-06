@@ -2,11 +2,6 @@
 @use 'base/mixins' as m;
 
 
-
-.principal{
-    margin-top: 8rem;
-}
-
 .gif-content{
     background-color: v.$fondo_claro;    
     padding: 0;
@@ -152,6 +147,10 @@
             }
         }
     }
+}
+
+.categories-home{
+
 }
 
 .curso {

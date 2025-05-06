@@ -47,6 +47,8 @@
 
     </section>
 
+    <?php include_once __DIR__.'/../components/categories.php'; ?>
+    
     <section class="about">
         <div class="about__grid">
 

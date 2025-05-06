@@ -12,11 +12,26 @@ class PagesController
 
         $sliders = Slidebar::all();
         $courses = CourseView::all(15);
+        
         Response::render('public/index', [
             'nameApp'=>APP_NAME, 
             'title' => 'Inicio',
             'sliders'=>$sliders,
             'courses'=>$courses
+        ]);
+    }
+
+    public static function courseDetails($id):void{
+
+        $course = CourseView::where('id_course', '=', $id);
+
+        if(!$course)
+            Response::redirect('/');
+
+        Response::render('public/courseDetails', [
+            'nameApp'=>APP_NAME,
+            'title'=>$course->name,
+            'course'=>$course
         ]);
     }
 
