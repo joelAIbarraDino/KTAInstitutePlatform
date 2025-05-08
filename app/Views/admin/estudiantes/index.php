@@ -9,7 +9,7 @@
             <div class="dashboard-table__header">
                 <h2 class="dashboard-table__title">Estudiantes</h2>
                 <div class="dashboard-table__actions">
-                <a href="/admin/estudiante/create" class="dashboard-table__button"> <i class='bx bx-plus'></i> Nuevo </a>
+                <a href="/kta-admin/estudiante/create" class="dashboard-table__button"> <i class='bx bx-plus'></i> Nuevo </a>
                 </div>
             </div>
             

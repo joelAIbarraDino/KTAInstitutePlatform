@@ -52,69 +52,69 @@ $dino->router->post('/forgot', [AccountController::class, 'forgot']);
 $dino->router->get('/sign-in', [AccountController::class, 'signin']);
 $dino->router->post('/sign-in', [AccountController::class, 'signin']);
 
-$dino->router->get('/admin', [AdminController::class, 'index']);
-$dino->router->get('/cursos', [AdminController::class, 'courses']);
-$dino->router->get('/categorias', [AdminController::class, 'categories']);
-$dino->router->get('/inscripciones', [AdminController::class, 'enrollment']);
-$dino->router->get('/slidebar', [AdminController::class, 'slidebar']);
-$dino->router->get('/maestros', [AdminController::class, 'teachers']);
-$dino->router->get('/administradores', [AdminController::class, 'admins']);
-$dino->router->get('/estudiantes', [AdminController::class, 'students']);
+$dino->router->get('/kta-admin/dashboard', [AdminController::class, 'index']);
+$dino->router->get('/kta-admin/cursos', [AdminController::class, 'courses']);
+$dino->router->get('/kta-admin/categorias', [AdminController::class, 'categories']);
+$dino->router->get('/kta-admin/inscripciones', [AdminController::class, 'enrollment']);
+$dino->router->get('/kta-admin/slidebar', [AdminController::class, 'slidebar']);
+$dino->router->get('/kta-admin/maestros', [AdminController::class, 'teachers']);
+$dino->router->get('/kta-admin/administradores', [AdminController::class, 'admins']);
+$dino->router->get('/kta-admin/estudiantes', [AdminController::class, 'students']);
 
 //administración de cursos
-$dino->router->get('/admin/curso/create', 
+$dino->router->get('/kta-admin/curso/create', 
     [CourseController::class, 'create'], 
-    [new ExistsCategoryMiddleware('/admin/categoria/create'), new ExistsTeacherMiddleware('/admin/maestro/create')]
+    [new ExistsCategoryMiddleware('/kta-admin/categoria/create'), new ExistsTeacherMiddleware('/kta-admin/maestro/create')]
 );
-$dino->router->post('/admin/curso/create', [CourseController::class, 'create']);
+$dino->router->post('/kta-admin/curso/create', [CourseController::class, 'create']);
 
-$dino->router->get('/admin/curso/update/{id}', [CourseController::class, 'update']);
-$dino->router->post('/admin/curso/update/{id}', [CourseController::class, 'update']);
+$dino->router->get('/kta-admin/curso/update/{id}', [CourseController::class, 'update']);
+$dino->router->post('/kta-admin/curso/update/{id}', [CourseController::class, 'update']);
 
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
 
 //administración de categoria
-$dino->router->get('/admin/categoria/create', [CategoryController::class, 'formCreate']);
-$dino->router->get('/admin/categoria/update/{id}', [CategoryController::class, 'formUpdate']);
+$dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'formCreate']);
+$dino->router->get('/kta-admin/categoria/update/{id}', [CategoryController::class, 'formUpdate']);
 
 $dino->router->post('/api/categoria/create', [CategoryController::class, 'create']);
 $dino->router->post('/api/categoria/update/{id}', [CategoryController::class, 'update']);
 $dino->router->delete('/api/categoria/delete/{id}', [CategoryController::class, 'delete']);
 
 //administración de maestros
-$dino->router->get('/admin/maestro/create', [TeacherController::class, 'create']);
-$dino->router->post('/admin/maestro/create', [TeacherController::class, 'create']);
+$dino->router->get('/kta-admin/maestro/create', [TeacherController::class, 'create']);
+$dino->router->post('/kta-admin/maestro/create', [TeacherController::class, 'create']);
 
-$dino->router->get('/admin/maestro/update/{id}', [TeacherController::class, 'update']);
-$dino->router->post('/admin/maestro/update/{id}', [TeacherController::class, 'update']);
+$dino->router->get('/kta-admin/maestro/update/{id}', [TeacherController::class, 'update']);
+$dino->router->post('/kta-admin/maestro/update/{id}', [TeacherController::class, 'update']);
 
 $dino->router->delete('/api/maestro/delete/{id}', [TeacherController::class, 'delete']);
 
 //administración de administradores
-$dino->router->get('/admin/administrador/create', [AdminsController::class, 'create']);
-$dino->router->post('/admin/administrador/create', [AdminsController::class, 'create']);
+$dino->router->get('/kta-admin/administrador/create', [AdminsController::class, 'create']);
+$dino->router->post('/kta-admin/administrador/create', [AdminsController::class, 'create']);
 
-$dino->router->get('/admin/administrador/update/{id}', [AdminsController::class, 'update']);
-$dino->router->post('/admin/administrador/update/{id}', [AdminsController::class, 'update']);
+$dino->router->get('/kta-admin/administrador/update/{id}', [AdminsController::class, 'update']);
+$dino->router->post('/kta-admin/administrador/update/{id}', [AdminsController::class, 'update']);
 
 $dino->router->delete('/api/administrador/delete/{id}', [AdminsController::class, 'delete']);
 
 //administración de estudiante
-$dino->router->get('/admin/estudiante/create', [StudentController::class, 'create']);
-$dino->router->post('/admin/estudiante/create', [StudentController::class, 'create']);
+$dino->router->get('/kta-admin/estudiante/create', [StudentController::class, 'create']);
+$dino->router->post('/kta-admin/estudiante/create', [StudentController::class, 'create']);
 
-$dino->router->get('/admin/estudiante/update/{id}', [StudentController::class, 'update']);
-$dino->router->post('/admin/estudiante/update/{id}', [StudentController::class, 'update']);
+$dino->router->get('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update']);
+$dino->router->post('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update']);
 
 $dino->router->delete('/api/estudiante/delete/{id}', [StudentController::class, 'delete']);
 
 
 //administración de slidebar
-$dino->router->get('/admin/slidebar/create', [SlidebarController::class, 'create']);
-$dino->router->post('/admin/slidebar/create', [SlidebarController::class, 'create']);
+$dino->router->get('/kta-admin/slidebar/create', [SlidebarController::class, 'create']);
+$dino->router->post('/kta-admin/slidebar/create', [SlidebarController::class, 'create']);
 
-$dino->router->get('/admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
-$dino->router->post('/admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
+$dino->router->get('/kta-admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
+$dino->router->post('/kta-admin/slidebar/update/{id}', [SlidebarController::class, 'update']);
 
 $dino->router->delete('/api/slidebar/delete/{id}', [SlidebarController::class, 'delete']);
 

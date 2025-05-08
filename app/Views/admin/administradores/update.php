@@ -4,7 +4,7 @@
     <div class="main__container">
         <div class="top-main">
             <h1 class="top-main__title">Gestión de administradores</h1>
-            <a class="btn nuevo" href="javascript:history.back()"><i class='bx bx-chevrons-left'></i> Regresar</a>
+            <a class="btn nuevo" href="/kta-admin/administradores"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 
         <form method="post" class="form form-admin" enctype="multipart/form-data">

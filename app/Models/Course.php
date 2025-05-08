@@ -42,9 +42,9 @@ class Course extends Model {
     public int $id_teacher;
 
     public const PRIVACY = [
-        'borrador'=>0,
-        'privado'=>1,
-        'publico'=>2
+        'Editando'=>0,
+        'Privado'=>1,
+        'Público'=>2
     ];
 
     public function __construct($args = []){
@@ -60,7 +60,7 @@ class Course extends Model {
         $this->discount_ends_time = $args["discount_ends_time"]??null;
         $this->max_months_enroll = $args["max_months_enroll"]??6;
         $this->created_at = $args["created_at"]??date('Y-m-d');
-        $this->privacy = $args["privacy"]??self::PRIVACY['borrador'];
+        $this->privacy = $args["privacy"]??self::PRIVACY['Editando'];
         $this->id_category = $args["id_category"]??0;
         $this->id_teacher = $args["id_teacher"]??0;
     }

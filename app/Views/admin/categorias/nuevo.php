@@ -4,7 +4,7 @@
     <div class="main__container">
         <div class="top-main">
             <h1 class="top-main__title">Gestión de cursos</h1>
-            <a class="btn nuevo" href="javascript:history.back()"><i class='bx bx-chevrons-left'></i> Regresar</a>
+            <a class="btn nuevo" href="/kta-admin/categorias"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 
         <form id="form-category" class="form tabs__container" enctype="multipart/form-data">

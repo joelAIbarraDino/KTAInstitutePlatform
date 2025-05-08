@@ -35,7 +35,7 @@
                     <i class='bx bx-menu'></i>
                 </div>
 
-                <a class="main-logo" href="/admin">
+                <a class="main-logo" href="/kta-admin/dashboard">
                     <img src="/assets/images/logoKTA.jpg" alt="logo de KTA">
                 </a>
                 
@@ -45,21 +45,21 @@
                 <div class="nav-cont">
 
                     <div class="nav">                    
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-dashboard'></i> Dashboard</a>
+                        <a class="nav__link" href="/kta-admin/dashboard"> <i class='bx bxs-dashboard'></i> Dashboard</a>
                     </div>
 
                     <div class="nav">
                         <p class="nav__title">CMS</p>
-                        <a class="nav__link" href="/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
+                        <a class="nav__link" href="/kta-admin/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
                         <a class="nav__link" href="#"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a>
                     </div>
 
                     <div class="nav">
                         <p class="nav__title">Cursos</p>
-                        <a class="nav__link" href="/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
-                        <a class="nav__link" href="/cuestionarios"> <i class='bx bx-file-find'></i>  Cuestionarios</a>
-                        <a class="nav__link" href="/contenido"> <i class='bx bxs-videos'></i> Contenido</a>
-                        <a class="nav__link" href="/categorias"> <i class='bx bxs-category'></i> Categorias</a>
+                        <a class="nav__link" href="/kta-admin/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
+                        <a class="nav__link" href="/kta-admin/cuestionarios"> <i class='bx bx-file-find'></i>  Cuestionarios</a>
+                        <a class="nav__link" href="/kta-admin/contenido"> <i class='bx bxs-videos'></i> Contenido</a>
+                        <a class="nav__link" href="/kta-admin/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                     </div>
 
                     <!-- <div class="nav">
@@ -72,9 +72,9 @@
                     
                     <div class="nav">
                         <p class="nav__title">Usuarios</p>
-                        <a class="nav__link" href="/maestros"> <i class='bx bxs-user-detail'></i> Maestros</a>
-                        <a class="nav__link" href="/estudiantes"> <i class='bx bxs-graduation'></i> Estudiantes</a>
-                        <a class="nav__link" href="/administradores"> <i class='bx bxs-user'></i> Administradores</a>
+                        <a class="nav__link" href="/kta-admin/maestros"> <i class='bx bxs-user-detail'></i> Maestros</a>
+                        <a class="nav__link" href="/kta-admin/estudiantes"> <i class='bx bxs-graduation'></i> Estudiantes</a>
+                        <a class="nav__link" href="/kta-admin/administradores"> <i class='bx bxs-user'></i> Administradores</a>
                     </div>
 
                 </div>
