@@ -1,0 +1,74 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.acordeon {
+  
+    &__modulo {
+      
+      border: 1px solid v.$border_input;
+      border-radius: 0.5rem;
+      background-color: v.$fondo_input;
+      margin-bottom: 1rem;
+    
+      summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        cursor: pointer;
+        list-style: none;
+    
+        i {
+          transition: transform 0.3s ease;
+        }
+    
+        &::-webkit-details-marker {
+          display: none;
+        }
+      }
+    
+      &[open] summary i {
+        transform: rotate(180deg);
+      }
+    
+      &.animating .acordeon__contenido {
+        overflow: hidden;
+      }
+    }
+  
+    &__contenido {
+      overflow: hidden;
+      height: 0;
+      transition: height 0.4s ease;
+    }
+  
+    details {
+        border: 1px solid v.$border_input;
+        border-bottom: 0;
+        background-color: v.$fondo_input;
+        padding: 0.6rem;
+        margin: 0;
+        border-radius: 0;
+  
+        &:last-child{
+          border-bottom: 1px solid v.$border_input;
+        }
+        summary {
+            font-weight: v.$bold;
+            cursor: pointer;
+        }
+  
+        ul {
+            margin-top: 0.5rem;
+            padding-left: 2rem;
+            list-style-type: disc;
+  
+            li {
+                margin: 0.3rem 0;
+                font-size: 0.95rem;
+                font-size: 1.5rem;
+            }
+        }
+    }
+  }
+  

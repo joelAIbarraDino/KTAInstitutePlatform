@@ -1,7 +1,7 @@
 (function(){
-  document.querySelectorAll("details.modulo").forEach((modulo) => {
+  document.querySelectorAll("details.acordeon__modulo").forEach((modulo) => {
     const summary = modulo.querySelector("summary");
-    const content = modulo.querySelector(".contenido");
+    const content = modulo.querySelector(".acordeon__contenido");
 
     summary.addEventListener("click", (e) => {
       e.preventDefault(); // Evita el comportamiento nativo

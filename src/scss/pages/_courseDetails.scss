@@ -1,226 +1,132 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
+  
 
-.detalle-curso {
-  padding: v.$separacion 0;
+.contenedor-curso{
+  width: 100%;
+  height: calc(100vh + 15rem);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
 
-  &__grid {
-    display: grid;
-    gap: 3rem;
-
-    @include m.tablet {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @include m.computadora {
-        grid-template-columns: 2fr 1fr;
-      }
+  @include m.computadora{
+    height: 80vh;
   }
 
-  &__nombre {
-    font-size: 4rem;
-    font-weight: v.$black;
-    color: v.$negro;
-    text-align: left;
-  }
-
-  &__watchword{
-    font-size: 2rem;
-    font-weight: v.$bold;
-    color: v.$negro;
-    text-align: left;
-
-  }
-
-  &__cont-metadata{
-    display: flex;
-    flex-direction: column;
-    gap:1rem;
-
-    @include m.computadora{
-        flex-direction: row;
-        gap: 2rem;
-    }    
-  }
-
-  &__metadata {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.5rem;
-    color: v.$gris_label;
-    
-    margin: 0;
-    i {
-        color: v.$amarillo-lesly;
-        text-decoration: none;
-    }
-
-    &--link{
-        color: v.$azul;
-        &:hover{
-            color:v.$dorado;
-        }
-    }
-  }
-
-  &__precio-cont{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2rem 0;
-
-    @include m.computadora{
-        flex-direction: row;
-        align-items: end;
-    }
-  }
-
-  &__precio {
-    font-size: 2rem;
-    font-weight: v.$black;
-    color: v.$dorado;
-    margin: 0;
-
-    @include m.computadora{
-        font-size: 3rem;
-    }
-  }
-
-  &__boton {
-    background-color: v.$rojo;
-    color: v.$blanco;
-    font-weight: v.$bold;
-    border: none;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-
-    i {
-      margin-right: 0.5rem;
-    }
-
-    &:hover {
-      background-color: rgba(v.$rojo, 0.7);
-    }
-  }
-
-  &__contenido {
-
+  &__cover{
+    position: absolute;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    background: linear-gradient(180deg,rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
     padding: 1rem;
-    border: solid .1rem v.$dorado;
-    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
-      color: v.$dorado;
-      text-align: left;
-    }
+  &__regreso{
+    color: v.$blanco;
+    font-size: 2.2rem;
+    transition: all 0.3s ease;
 
-    details {
-        border: 1px solid v.$border_input;
-        border-bottom: 0;
-        background-color: v.$fondo_input;
-        padding: 0.6rem;
-        margin: 0;
-        border-radius: 0;
-
-        &:last-child{
-          border-bottom: 1px solid v.$border_input;
-        }
-        summary {
-            font-weight: v.$bold;
-            cursor: pointer;
-        }
-
-        ul {
-            margin-top: 0.5rem;
-            padding-left: 2rem;
-            list-style-type: disc;
-
-            li {
-                margin: 0.3rem 0;
-                font-size: 0.95rem;
-                font-size: 1.5rem;
-            }
-        }
+    &:hover{
+      color: v.$fondo_claro;
+      font-size: 2.3rem;
     }
   }
 
-  &__media {
+  &__datos{
+    width: 80%;
+    max-width: 150rem;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  &__name{
+    text-align: left;
+    font-size: 5.5rem;
+    font-weight: v.$black;
+    margin: 2rem 0;
+    background: linear-gradient(90deg, v.$dorado, v.$blanco);
+    -webkit-background-clip: text;
+    color: transparent; 
+    word-break: break-word; 
+
+    @include m.tablet{
+      font-size: 7.5rem;
+    }
+  }
+
+  &__lema{
+    color: v.$blanco;
+    text-align: left;
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: v.$regular;
+  }
+
+  &__detalles{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
-    background-color: v.$negro;
-    border-radius: 1rem;
+    justify-content: start;
+    align-items: start;
+    padding: 2rem 0;
+    gap: 1rem;
+
+    @include m.tablet{
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+    }
   }
 
-  &__caratula {
-      width: 100%;
-      border-radius: 1rem;
-  }
+  &__detalle{
+    color: v.$blanco;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.5rem;
 
-  &__descripcion {
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
+    i{
       color: v.$dorado;
-      text-align: left;
+      font-size: 2rem;
+      margin-top: -.4rem;
     }
 
-    &-text {
-      font-size: 1.5rem;
-      line-height: 1.6;
+    span{
+      font-weight: v.$black;
+      margin-left: -4px;
+    }
+
+    a{
       color: v.$blanco;
-      width: 100%;
-      max-width: 50rem;
-      height: auto;
-      word-wrap: break-word;
+
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__description{
+    text-align: justify;
+    width: 100%;
+    color: v.$blanco;
+    margin-top: 3rem;
+    line-height: 2.5rem;
+    
+
+    @include m.tablet{
+      text-align: left;
+      width: 80%;
+    }
+
+    @include m.computadora{
+      text-align: left;
+      width: 70%;
     }
   }
 }
-
-.modulo {
-    
-    border: 1px solid v.$border_input;
-    border-radius: 0.5rem;
-    background-color: v.$fondo_input;
-    margin-bottom: 1rem;
-  
-    summary {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      cursor: pointer;
-      list-style: none;
-  
-      i {
-        transition: transform 0.3s ease;
-      }
-  
-      &::-webkit-details-marker {
-        display: none;
-      }
-    }
-  
-    &[open] summary i {
-      transform: rotate(180deg);
-    }
-  
-    .contenido {
-      overflow: hidden;
-      height: 0;
-      transition: height 0.4s ease;
-    }
-  
-    &.animating .contenido {
-      overflow: hidden;
-    }
-  }
-  
-  

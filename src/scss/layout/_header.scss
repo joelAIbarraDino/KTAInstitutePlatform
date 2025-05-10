@@ -12,6 +12,11 @@
     z-index: 1000;
     transition: all 0.3s ease;
 
+    &.transparente{
+        background-color: #00000000;
+        box-shadow: none;
+    }
+
     &__contenedor {
         display: flex;
         justify-content: space-between;
