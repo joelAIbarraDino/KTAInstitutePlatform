@@ -1,4 +1,4 @@
-<header class="header <?=$isTransparent??false?"transparente":"" ?>">
+<header class="header">
     <div class="header__contenedor container">
         <div class="header__logo">
             <a href="/">

@@ -31,8 +31,7 @@ class PagesController
         Response::render('public/courseDetails', [
             'nameApp'=>APP_NAME,
             'title'=>$course->name,
-            'course'=>$course,
-            'isTransparent'=>true
+            'course'=>$course
         ]);
     }
 

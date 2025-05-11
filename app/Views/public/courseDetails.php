@@ -1,11 +1,15 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
-<div>
+<div class="principal">
     <div class="contenedor-curso" style="background-image: url(/assets/thumbnails/<?=$course->thumbnail?>);">
         <div class="contenedor-curso__cover">
 
             <div class="contenedor-curso__datos">
-                <a class="contenedor-curso__regreso" href="/"><i class='bx bx-left-arrow-alt'></i> Regresar</a>
+                
+                <div class="contenedor-curso__cont-regreso">
+                    <a class="contenedor-curso__regreso" href="/">&laquo Regresar</a>
+                </div>
+
                 <h2 class="contenedor-curso__name"><?=$course->name?></h2>
                 <p class="contenedor-curso__lema"><?=$course->watchword?></p>
 
@@ -25,6 +29,11 @@
 
                 <div class="contenedor-curso__description">
                     <?=$course->description?>
+                </div>
+
+                <div class="contenedor-curso__botones">
+                    <button class="contenedor-curso__boton contenedor-curso__boton--agregar">Agregar al carrito</button>
+                    <button class="contenedor-curso__boton contenedor-curso__boton--comprar">Comprar ahora</button>
                 </div>
 
             </div>

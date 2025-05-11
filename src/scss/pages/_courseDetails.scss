@@ -28,14 +28,23 @@
     justify-content: center;
   }
 
-  &__regreso{
-    color: v.$blanco;
-    font-size: 2.2rem;
-    transition: all 0.3s ease;
+  &__cont-regreso{
+    transition: all 0.4s ease;
 
     &:hover{
-      color: v.$fondo_claro;
-      font-size: 2.3rem;
+      transform: translateX(10px);
+    }
+  }
+
+  &__regreso{
+    color: v.$blanco;
+    font-size: 2rem;
+    transition: all 0.4s ease;
+    padding: .5rem 2rem;
+    border-radius: 1rem;
+  
+    &:hover{
+      background-color: #00000013;
     }
   }
 
@@ -127,6 +136,43 @@
     @include m.computadora{
       text-align: left;
       width: 70%;
+    }
+  }
+
+  &__botones{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    @include m.telefono{
+      flex-direction: row;
+    }
+  }
+
+  &__boton{
+    
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    transition: all .4s ease;
+    
+    &--agregar{
+      background-color: v.$blanco;
+      color: v.$negro;
+      border: solid .2rem v.$blanco;
+    } 
+
+    &--comprar{
+      background-color: v.$dorado;
+      color: v.$blanco;
+      border: solid .2rem v.$dorado;
+    }
+    
+    &:hover{
+      background-color: transparent;
+      border: solid .2rem v.$blanco;
+      color: v.$blanco;
+      transform: translateY(-4px);
     }
   }
 }
