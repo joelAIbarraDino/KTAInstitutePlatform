@@ -2,7 +2,7 @@
 @use 'base/mixins' as m;
   
 
-.contenedor-curso{
+.cover-curso{
   width: 100%;
   height: calc(100vh + 15rem);
   background-repeat: no-repeat;
@@ -173,6 +173,145 @@
       border: solid .2rem v.$blanco;
       color: v.$blanco;
       transform: translateY(-4px);
+    }
+  }
+}
+
+.detalles-curso{
+  background-color: v.$fondo_claro;
+  min-height: 60rem;
+  
+  &__top{
+    background-color: v.$negro;
+    min-height: 6rem;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &__tabs{
+    width: 80%;
+    max-width: 150rem;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+
+    @include m.tablet{
+      gap: 3rem;
+      justify-content: start;
+    }
+  }
+
+  &__tab{
+    background-color: transparent;
+    color: v.$blanco;
+    font-size: 1.5rem;
+    font-weight: v.$black;
+    border: none;
+    transition: transform .2s ease;
+
+    @include m.tablet{
+      font-size: 2rem;
+    }
+
+    &:hover{
+      transform: translateY(-2px);
+      border-bottom: solid .2rem v.$dorado;
+    }
+
+    &--active{
+      border-bottom: solid .2rem v.$dorado;
+    }
+  }
+
+  &__content{
+    padding: 3rem;
+    display: none;
+
+    &--active{
+      display: block;
+    }
+  }
+
+}
+
+.detalle-profesor{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+
+  @include m.tablet{
+    flex-direction: row;
+    align-items: start;
+  }
+
+  
+
+  &__foto{
+    width: 40rem;
+    height: 40rem;
+    border-radius: .5rem;
+    box-shadow: 11px 8px 24px -1px rgba(0,0,0,0.33);
+    -webkit-box-shadow: 11px 8px 24px -1px rgba(0,0,0,0.33);
+    -moz-box-shadow: 11px 8px 24px -1px rgba(0,0,0,0.33);
+    text-align: center;
+  }
+
+  &__name{
+    margin: 0;
+    font-weight: v.$black;
+    color: v.$dorado;
+    font-size: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+
+    @include m.tablet{
+      justify-content: start;
+      font-size: 2.5rem;
+    }
+  }
+
+  &__experience{
+    margin-top: 1rem;
+    color: v.$negro;
+    font-size: 2rem;
+    text-align: center;
+    
+    span{
+      color: v.$dorado;
+      font-weight: v.$black;
+    }
+
+    @include m.tablet{
+      text-align: left;
+    }
+  }
+
+  &__speciality{
+    padding: .5rem 1rem;
+    background-color: v.$dorado;
+    color: v.$blanco;
+    text-align: center;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+  }
+
+  &__bio{
+    text-align: justify;
+    line-height: 2.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    word-break: break-all;
+
+    @include m.tablet{
+      text-align: left;
     }
   }
 }

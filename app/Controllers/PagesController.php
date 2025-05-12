@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CourseView;
 use App\Models\Slidebar;
+use App\Models\Teacher;
 use DinoEngine\Http\Response;
 
 class PagesController
@@ -28,10 +29,16 @@ class PagesController
         if(!$course)
             Response::redirect('/');
 
+        $teacher = Teacher::where('id_teacher', '=', $course->id_teacher);
+
+        if(!$teacher)
+            Response::redirect('/');
+        
         Response::render('public/courseDetails', [
             'nameApp'=>APP_NAME,
             'title'=>$course->name,
-            'course'=>$course
+            'course'=>$course,
+            'teacher'=>$teacher
         ]);
     }
 

@@ -85,3 +85,30 @@ img {
 .principal{
     margin-top: 8rem;
 }
+
+.width-50{
+    width: 95%;
+    margin: 0 auto;
+
+    @include m.tablet{
+        width: 50%;
+    }
+}
+
+.width-70{
+    width: 95%;
+    margin: 0 auto;
+
+    @include m.tablet{
+        width: 70%;
+    }
+}
+
+.width-80{
+    width: 95%;
+    margin: 0 auto;
+
+    @include m.tablet{
+        width: 80%;
+    }
+}

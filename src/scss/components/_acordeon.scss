@@ -5,21 +5,26 @@
   
     &__modulo {
       
-      border: 1px solid v.$border_input;
-      border-radius: 0.5rem;
-      background-color: v.$fondo_input;
+      border: 2px solid v.$negro;
+      border-bottom: none;
+      background-color: v.$gris_oscuro;
+      color: v.$blanco;
+      border-radius: .5rem;
       margin-bottom: 1rem;
-    
+  
       summary {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem;
+        padding: 2rem 3rem;
         cursor: pointer;
         list-style: none;
-    
+        font-weight: v.$black;
+        color: v.$blanco;
+
         i {
           transition: transform 0.3s ease;
+          font-size: 2.5rem;
         }
     
         &::-webkit-details-marker {
@@ -40,6 +45,7 @@
       overflow: hidden;
       height: 0;
       transition: height 0.4s ease;
+      color: v.$blanco;
     }
   
     details {
@@ -54,20 +60,8 @@
           border-bottom: 1px solid v.$border_input;
         }
         summary {
-            font-weight: v.$bold;
+            font-weight: v.$black;
             cursor: pointer;
-        }
-  
-        ul {
-            margin-top: 0.5rem;
-            padding-left: 2rem;
-            list-style-type: disc;
-  
-            li {
-                margin: 0.3rem 0;
-                font-size: 0.95rem;
-                font-size: 1.5rem;
-            }
         }
     }
   }
