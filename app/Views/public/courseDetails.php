@@ -17,9 +17,13 @@
                     <div class="cover-curso__detalle">
                         <i class='bx bx-movie'></i> 0 <span>lecciones</span>
                     </div>
+                    
+                    <div class="cover-curso__detalle">
+                        <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>meses de estudio</span>
+                    </div>
 
                     <div class="cover-curso__detalle">
-                    <i class='bx bxs-graduation'></i> 0 <span>estudiantes</span>
+                        <i class='bx bxs-graduation'></i> 0 <span>estudiantes</span>
                     </div>
 
                     <div class="cover-curso__detalle">
