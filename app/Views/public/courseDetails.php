@@ -77,7 +77,7 @@
 
             <div id="step-2" class="detalles-curso__content">
 
-                <div class="detalle-profesor width-80">
+                <div class="detalle-profesor width-70">
                     
                     <img class="detalle-profesor__foto" src="/assets/teachers/<?=$teacher->photo?>" alt="<?=$teacher->photo?>">
 
