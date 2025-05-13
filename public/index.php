@@ -43,6 +43,9 @@ $dino->router->get('/', [PagesController::class, 'index']);
 $dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails']);
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 
+$dino->router->get('/cursos', [PagesController::class, 'courses']);
+$dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);
+
 //login sign-in and sign-up
 $dino->router->get('/login', [AccountController::class, 'login']);
 $dino->router->post('/login', [AccountController::class, 'login']);

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Category;
 use App\Models\CourseView;
 use App\Models\Slidebar;
 use App\Models\Teacher;
@@ -22,6 +23,43 @@ class PagesController
         ]);
     }
 
+    public static function courses():void{
+
+        $courses = CourseView::all();
+        $categories = Category::all();
+        
+        if(!$courses)
+            Response::redirect('/');
+
+        if(!$categories)
+            Response::redirect('/');
+        
+        Response::render('/public/courses', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Cursos',
+            'courses'=>$courses,
+            'categories'=>$categories
+        ]);
+    }
+
+    public static function courseCategory($category_url):void{
+        $courses = CourseView::belongsTo('id_category', $category_url);
+        $categories = Category::all();
+        
+        if(!$courses)
+            Response::redirect('/');
+
+        if(!$categories)
+            Response::redirect('/');
+        
+        Response::render('/public/courses', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Cursos',
+            'courses'=>$courses,
+            'categories'=>$categories
+        ]);
+    }
+    
     public static function courseDetails($id):void{
 
         $course = CourseView::where('id_course', '=', $id);
@@ -41,7 +79,6 @@ class PagesController
             'teacher'=>$teacher
         ]);
     }
-
 
     public static function teacherDetails($id):void{
 

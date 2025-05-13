@@ -10,7 +10,7 @@
             <nav class="navegacion">
                 <ul class="navegacion__lista" id="menu">
                     <li class="navegacion__item">
-                        <a href="/curses" class="navegacion__enlace">Cursos</a>
+                        <a href="/cursos" class="navegacion__enlace">Cursos</a>
                     </li>
                     <li class="navegacion__item">
                         <a href="/about" class="navegacion__enlace">Sobre nosotros</a>
