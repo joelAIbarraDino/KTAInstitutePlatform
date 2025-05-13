@@ -42,4 +42,25 @@ class PagesController
         ]);
     }
 
+
+    public static function teacherDetails($id):void{
+
+        $teacher = Teacher::where('id_teacher', '=', $id);
+
+        if(!$teacher)
+            Response::redirect('/');
+        
+        $courses = CourseView::belongsTo('id_teacher', $teacher->id_teacher);
+
+        if(!$courses)
+            Response::redirect('/');
+
+        Response::render('public/teacherDetails', [
+            'nameApp'=>APP_NAME, 
+            'title' => $teacher->name,
+            'teacher'=>$teacher,
+            'courses'=>$courses
+        ]);
+    }
+
 }

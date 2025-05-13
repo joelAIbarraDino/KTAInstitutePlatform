@@ -40,7 +40,8 @@ $dino = new Dino(dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 
 //public zone
 $dino->router->get('/', [PagesController::class, 'index']);
-$dino->router->get('/course/view/{id}', [PagesController::class, 'courseDetails']);
+$dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails']);
+$dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 
 //login sign-in and sign-up
 $dino->router->get('/login', [AccountController::class, 'login']);

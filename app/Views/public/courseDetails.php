@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="cover-curso__detalle">
-                        <i class='bx bx-book-bookmark'></i> Profesor: <span><a href="/profesor/watch/<?=$course->id_teacher?>"><?=$course->teacher?></a></span>
+                        <i class='bx bx-book-bookmark'></i> Profesor: <span><a href="/profesor/view/<?=$course->id_teacher?>"><?=$course->teacher?></a></span>
                     </div>
                 </div>
 
@@ -95,6 +95,8 @@
                         <div class="detalle-profesor__bio">
                             <?=$teacher->bio?>
                         </div>
+
+                        <a class="detalle-profesor__btn" href="/profesor/view/<?=$course->id_teacher?>?#cursos-profesor">Mis cursos</a>
 
                     </div>
                 </div>

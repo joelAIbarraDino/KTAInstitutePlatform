@@ -1,0 +1,107 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.ver-profesor{
+    
+    padding: 3rem 0;
+    text-align: center;
+    background-color: v.$fondo_claro;
+    
+    &__titulo{
+        color: v.$dorado;
+        font-weight: v.$black;
+        text-align: center;
+    }
+    
+    &__data{
+        background-color: v.$negro;
+        border-radius: .5rem;
+        padding: 5rem 3rem;
+    }
+  
+    &__foto{
+        width: 25rem;
+        height: 25rem;
+        border-radius: 50%;
+        box-shadow: 11px 8px 24px -1px rgba(0,0,0,0.33);
+        -webkit-box-shadow: 11px 8px 24px -1px rgba(0,0,0,0.33);
+        -moz-box-shadow: 11px 8px 24px -1px rgba(0,0,0,0.33);
+        text-align: center;
+        margin-bottom: -4rem;
+
+        @include m.tablet{
+            width: 30rem;
+            height: 30rem;  
+        }
+    }
+  
+    &__name{
+        margin: 0;
+        font-weight: v.$black;
+        color: v.$dorado;
+        font-size: 2rem;
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+    
+        @include m.tablet{
+            font-size: 2.5rem;
+        }
+    }
+  
+    &__experience{
+        margin-top: 1rem;
+        color: v.$blanco;
+        font-size: 2rem;
+        text-align: center;
+        
+        span{
+            color: v.$dorado;
+            font-weight: v.$black;
+        }
+    }
+  
+    &__speciality{
+        padding: .5rem 1rem;
+        background-color: v.$dorado;
+        color: v.$blanco;
+        text-align: center;
+        border-radius: .5rem;
+        font-size: 1.5rem;
+    }
+  
+    &__bio{
+        text-align: center;
+        line-height: 2.5rem;
+        margin-top: 2rem;
+        width: 100%;
+        color: v.$blanco;
+    }
+}
+
+.cursos-profesor{
+    padding: 5rem 2rem;
+    background-color: v.$gris_oscuro;
+
+    &__titulo{
+        color: v.$blanco;
+        font-weight: v.$black;
+    }
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        @include m.tablet{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.computadora{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
