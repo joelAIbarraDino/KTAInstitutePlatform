@@ -1,5 +1,3 @@
-
-
 <div class="slider-container">
   <div class="slider">
     <!-- Ejemplo de slide - esto se generará dinámicamente con PHP -->  
