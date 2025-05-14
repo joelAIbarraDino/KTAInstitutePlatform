@@ -105,7 +105,7 @@ class Teacher extends Model{
             return self::$alerts;
         }
         
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 
         if(!Storage::validateFormat($file['photo']['type'], $allowedTypes))
             self::setAlerts('error', 'Solo se permiten imágenes (JPEG, PNG, GIF)');

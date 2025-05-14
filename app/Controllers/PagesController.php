@@ -56,7 +56,8 @@ class PagesController
             'nameApp'=>APP_NAME,
             'title'=>'Cursos',
             'courses'=>$courses,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'category_url'=>$category_url
         ]);
     }
     
