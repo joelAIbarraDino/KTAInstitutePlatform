@@ -34,7 +34,7 @@ class StudentController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Estudiante registrado con exito', 3000);
-                    Response::redirect('/estudiantes');
+                    Response::redirect('/kta-admin/estudiantes');
                 }else{
                     $alerts['error'][] = 'error al registrar el estudiante, intente mas tarde';
                 }
@@ -56,7 +56,7 @@ class StudentController{
         $alerts = [];
 
         if(!$student)
-            Response::redirect('/estudiantes');
+            Response::redirect('/kta-admin/estudiantes');
 
         if(Request::isPOST()){
             $datosEnviados = Request::getPostData();
@@ -80,7 +80,7 @@ class StudentController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Estudiante actualizado con exito', 3000);
-                    Response::redirect('/estudiantes');
+                    Response::redirect('/kta-admin/estudiantes');
                     return;
                 }else{
                     $alerts['error'][] = 'error al actualizar al estudiante, intente mas tarde';

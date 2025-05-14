@@ -36,7 +36,7 @@
                                     <td><?=$student->phone?></td>
                                     <td><span class="dashboard-table__status dashboard-table__status--info"><?=$student->birthday?></span></td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/admin/estudiante/update/<?=$student->id_student?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <a href="/kta-admin/estudiante/update/<?=$student->id_student?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$student->id_student?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    

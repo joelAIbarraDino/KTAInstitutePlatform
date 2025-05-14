@@ -37,7 +37,7 @@ class TeacherController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Profesor registrado con exito', 3000);
-                    Response::redirect('/maestros');
+                    Response::redirect('/kta-admin/maestros');
                 }else{
                     $alerts['error'][] = 'error al registrar el profesor, intente mas tarde';
                 }
@@ -59,7 +59,7 @@ class TeacherController{
         $alerts = [];
 
         if(!$teacher)
-            Response::redirect('/maestros');
+            Response::redirect('/kta-admin/maestros');
 
         if(Request::isPOST()){
             $alerts = [];
@@ -90,7 +90,7 @@ class TeacherController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Profesor actualizado con exito', 3000);
-                    Response::redirect('/maestros');
+                    Response::redirect('/kta-admin/maestros');
                 }else{
                     $alerts['error'][] = 'error al actualizar el profesor, intente mas tarde';
                 }

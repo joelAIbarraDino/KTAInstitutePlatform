@@ -35,7 +35,7 @@ class SlidebarController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Slidebar creado con exito', 3000);
-                    Response::redirect('/slidebar');
+                    Response::redirect('/kta-admin/slidebar');
                 }else{
                     $alerts['error'][] = 'error al crear el slidebar, intente mas tarde';
                 }
@@ -57,7 +57,7 @@ class SlidebarController{
         $alerts = [];
 
         if(!$slidebar)
-            Response::redirect('/maestros');
+            Response::redirect('/kta-admin/slidebar');
 
         if(Request::isPOST()){
             $alerts = [];
@@ -85,7 +85,7 @@ class SlidebarController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'slidebar actualizado con exito', 3000);
-                    Response::redirect('/slidebar');
+                    Response::redirect('/kta-admin/slidebar');
                 }else{
                     $alerts['error'][] = 'error al actualizar el slidebar, intente mas tarde';
                 }

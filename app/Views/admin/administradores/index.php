@@ -32,7 +32,7 @@
                                     <td><?=$admin->name?></td>
                                     <td><?=$admin->email?></td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/admin/administrador/update/<?=$admin->id_admin?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <a href="/kta-admin/administrador/update/<?=$admin->id_admin?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$admin->id_admin?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    

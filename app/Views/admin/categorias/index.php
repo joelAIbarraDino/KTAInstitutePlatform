@@ -28,7 +28,7 @@
                                 <tr>
                                     <td><span class="dashboard-table__status dashboard-table__status--info"><?=$category->name?></span></td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/admin/categoria/update/<?=$category->id_category?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <a href="/kta-admin/categoria/update/<?=$category->id_category?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$category->id_category?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    

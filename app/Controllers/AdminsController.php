@@ -34,9 +34,9 @@ class AdminsController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Administrador registrado con exito', 3000);
-                    Response::redirect('/administradores');
+                    Response::redirect('/kta-admin/administradores');
                 }else{
-                    $alerts['error'][] = ['error al registrar el administrador, intente mas tarde'];
+                    $alerts['error'][] = 'error al registrar el administrador, intente mas tarde';
                 }
 
             }
@@ -56,7 +56,7 @@ class AdminsController{
         $alerts = [];
 
         if(!$admin)
-            Response::redirect('/administradores');
+            Response::redirect('/kta-admin/administradores');
 
         if(Request::isPOST()){
             $alerts = [];
@@ -79,9 +79,9 @@ class AdminsController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Administrador actualizado con exito', 3000);
-                    Response::redirect('/administradores');
+                    Response::redirect('/kta-admin/administradores');
                 }else{
-                    $alerts['error'][] = ['error al actualizar el administrador, intente mas tarde'];
+                    $alerts['error'][] = 'error al actualizar el administrador, intente mas tarde';
                 }
             }
             

@@ -38,7 +38,7 @@
                                     <td><?=$teacher->email?></td>
                                     <td><?=$teacher->experience?> años</td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/admin/maestro/update/<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <a href="/kta-admin/maestro/update/<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    

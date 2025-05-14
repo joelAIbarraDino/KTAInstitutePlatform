@@ -40,7 +40,7 @@
                                     <td><span class="dashboard-table__status dashboard-table__status--pending"><?=$course->max_months_enroll ?> meses</span></td>
                                     <td><?=$course->teacher ?></td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/admin/curso/update/<?=$course->id_teacher ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <a href="/kta-admin/curso/update/<?=$course->id_teacher ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$course->id_teacher?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    

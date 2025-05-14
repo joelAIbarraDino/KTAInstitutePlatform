@@ -22,7 +22,7 @@ class CategoryController{
         $category = Category::find($id);
 
         if(!$category)
-            Response::redirect("/categorias");
+            Response::redirect("/kta-admin/categorias");
 
         Response::render('/admin/categorias/update', [
             'nameApp'=> APP_NAME,

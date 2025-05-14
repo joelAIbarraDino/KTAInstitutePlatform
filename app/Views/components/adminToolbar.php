@@ -6,7 +6,7 @@
             <i class='bx bx-menu'></i>
         </div>
 
-        <a href="/admin">
+        <a href="/kta-admin/dashboard">
             <img src="/assets/images/logoKTA.jpg" alt="logo de KTA" class="toolbar-left__logo">
         </a>
 
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="nav">
-                        <p class="nav__title">CMS</p>
+                        <p class="nav__title">Pagina principal</p>
                         <a class="nav__link" href="/kta-admin/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
                         <a class="nav__link" href="#"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a>
                     </div>
@@ -62,14 +62,6 @@
                         <a class="nav__link" href="/kta-admin/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                     </div>
 
-                    <!-- <div class="nav">
-                        <p class="nav__title">Estadisticas</p>
-                        <a class="nav__link" href="/admin"> <i class='bx bxs-cart'></i>Compras</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bx-file-find'></i> Examenes</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bx-spreadsheet' ></i> Membresias</a>
-                        <a class="nav__link" href="/admin"> <i class='bx bx-slideshow'></i> Cursos</a>
-                    </div> -->
-                    
                     <div class="nav">
                         <p class="nav__title">Usuarios</p>
                         <a class="nav__link" href="/kta-admin/maestros"> <i class='bx bxs-user-detail'></i> Maestros</a>
