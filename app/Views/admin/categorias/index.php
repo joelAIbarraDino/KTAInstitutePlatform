@@ -1,4 +1,8 @@
-<?php include_once __DIR__.'/../../components/adminToolbar.php'; ?>
+<?php
+    use App\Classes\Helpers;
+    include_once __DIR__.'/../../components/adminToolbar.php'; 
+?>
+
 
 <main class="main">
     <div class="main__container">
@@ -67,4 +71,5 @@
         <script src="/assets/js/menuDashboard.js"></script>
         <script src="/assets/js/deleteCategory.js"></script>
     ';
+    Helpers::showSwalAlert();
 ?>

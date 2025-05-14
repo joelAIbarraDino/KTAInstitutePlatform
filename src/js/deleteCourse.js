@@ -1,6 +1,6 @@
 (function(){
 
-    const btnDelete = document.querySelectorAll(".delete-course");
+    const btnDelete = document.querySelectorAll(".dashboard-table__action--delete");
     const alertaEliminar = (e) => {
         const id = e.target.dataset.id;
         Swal.fire({
@@ -45,7 +45,7 @@
             });
         }else{
             Swal.fire({
-                title: `error al eliminar categoria`,
+                title: `error al eliminar curso`,
                 text:"Intente mas tarde",
                 icon: "error",
             })

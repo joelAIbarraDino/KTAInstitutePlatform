@@ -12,6 +12,8 @@
             
             <p class="form__instructions">Completa los campos para crear una nueva categoria</p>
             
+            <?php include_once __DIR__.'/../../components/alerts.php'; ?>
+            
             <?php include_once __DIR__.'/form.php';?>
 
             <div class="submit-right">

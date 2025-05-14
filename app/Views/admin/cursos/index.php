@@ -1,4 +1,7 @@
-<?php include_once __DIR__.'/../../components/adminToolbar.php'; ?>
+<?php
+    use App\Classes\Helpers;
+    include_once __DIR__.'/../../components/adminToolbar.php'; 
+?>
 
 <main class="main">
     <div class="main__container">
@@ -32,7 +35,7 @@
                             <?php foreach($courses as $course): ?>
 
                                 <tr>
-                                    <td><img class="dashboard-table__photo--rectangule" src="/assets/thumbnails/<?=$course->thumbnail?>" alt="foto <?=$course->thumbnail?>"></td>
+                                    <td><a href="/curso/view/<?=$course->id_course?>"  target="_blank"><img class="dashboard-table__photo--rectangule" src="/assets/thumbnails/<?=$course->thumbnail?>" alt="foto <?=$course->thumbnail?>"></a></td>
                                     <td><?=$course->name?></td>
                                     <td><?=$course->created_at?></td>
                                     <td><span class="dashboard-table__status dashboard-table__status--info"><?=$course->privacy ?></span></td>
@@ -40,8 +43,8 @@
                                     <td><span class="dashboard-table__status dashboard-table__status--pending"><?=$course->max_months_enroll ?> meses</span></td>
                                     <td><?=$course->teacher ?></td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/kta-admin/curso/update/<?=$course->id_teacher ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
-                                        <button data-id="<?=$course->id_teacher?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
+                                        <a href="/kta-admin/curso/update/<?=$course->id_course ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <button data-id="<?=$course->id_course?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    
                             <?php endforeach;?>
@@ -80,4 +83,6 @@
         <script src="/assets/js/menuDashboard.js"></script>
         <script src="/assets/js/deleteCourse.js"></script>
     ';
+
+    Helpers::showSwalAlert();
 ?>

@@ -9,9 +9,9 @@
         </div>
 
         <form class="form form-admin" enctype="multipart/form-data" method="POST">
-            <legend class="form__title">Nuevo curso</legend>
+            <legend class="form__title">Actualizar curso</legend>
             
-            <p class="form__instructions">Completa los campos requeridos para crear un nuevo curso</p>
+            <p class="form__instructions">Edite los campos que quiere cambiar</p>
             
             <?php include_once __DIR__.'/../../components/alerts.php'; ?>
 
