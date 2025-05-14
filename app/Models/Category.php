@@ -29,4 +29,14 @@ class Category extends Model {
 
         return self::$alerts;
     }
+
+
+    public function categoryExists():array{
+        $categoryExists = Category::where('name', 'LIKE', $this->name);
+
+        if($categoryExists)
+            self::setAlerts('warning', "Ya existe una categoria similar con este nombre");
+
+        return self::$alerts;
+    }
 }

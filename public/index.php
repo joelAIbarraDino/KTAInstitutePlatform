@@ -78,11 +78,12 @@ $dino->router->post('/kta-admin/curso/update/{id}', [CourseController::class, 'u
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
 
 //administración de categoria
-$dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'formCreate']);
-$dino->router->get('/kta-admin/categoria/update/{id}', [CategoryController::class, 'formUpdate']);
+$dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create']);
+$dino->router->post('/kta-admin/categoria/create', [CategoryController::class, 'create']);
 
-$dino->router->post('/api/categoria/create', [CategoryController::class, 'create']);
-$dino->router->post('/api/categoria/update/{id}', [CategoryController::class, 'update']);
+$dino->router->get('/kta-admin/categoria/update/{id}', [CategoryController::class, 'update']);
+$dino->router->post('/kta-admin/categoria/update/{id}', [CategoryController::class, 'update']);
+
 $dino->router->delete('/api/categoria/delete/{id}', [CategoryController::class, 'delete']);
 
 //administración de maestros

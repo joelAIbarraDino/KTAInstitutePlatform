@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Classes\Helpers;
 use App\Models\Category;
 use DinoEngine\Exceptions\QueryException;
 use DinoEngine\Http\Response;
@@ -9,79 +10,77 @@ use DinoEngine\Http\Request;
 
 class CategoryController{
 
-    public static function formCreate():void{
-        
-        Response::render('/admin/categorias/nuevo', [
-            'nameApp'=> APP_NAME,
-            'title'=>'Nueva categoria'
-        ]);
-    }
-
-    public static function formUpdate($id):void{
-        
-        $category = Category::find($id);
-
-        if(!$category)
-            Response::redirect("/kta-admin/categorias");
-
-        Response::render('/admin/categorias/update', [
-            'nameApp'=> APP_NAME,
-            'title'=>'Actualizar categoria',
-            'category'=>$category
-        ]);
-    }
-
     public static function create():void{
+
+        $alerts = [];
+        $category = new Category;
+
 
         if(Request::isPOST()){
             $datosEnviados = Request::getPostData();
-            $category = new Category;
 
-            $categoryExists = Category::where('name', 'LIKE', $datosEnviados['name']);
-
-            if($categoryExists)
-                Response::json(['alerts'=>['name'=>'ya existe una categoria con un nombre similar o igual']]);
-
-            //sincronizo los datos ingresados y valido los datos
             $category->sincronize($datosEnviados);
             $alerts = $category->validate();
+            $alerts = $category->categoryExists();
 
-            if(!empty($alerts))
-                Response::json(['alerts'=>$alerts]);
+            if(empty($alerts)){
 
-            //guardo registro
-            $id = $category->save();
-            Response::json(['id' => $id]);
+                //guardo registro
+                $id = $category->save();
+                
+                if($id){
+                    Helpers::setSwalAlert('success', '¡Genial!', 'Categoría registrada con exito', 3000);
+                    Response::redirect('/kta-admin/categorias');
+                }else{
+                    $alerts['error'][] = 'error al registrar la categoría, intente mas tarde';
+                }
+
+            }
         }
 
+        Response::render('/admin/categorias/nuevo', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Nuevo estudiante',
+            'category'=>$category,
+            'alerts'=>$alerts
+        ]);
     }
 
     public static function update($id):void{
 
+        $category = Category::find($id);
+        $alerts = [];
+
+        if(!$category)
+            Response::redirect('/kta-admin/categorias');
+
         if(Request::isPOST()){
             $datosEnviados = Request::getPostData();
-            $category = Category::find($id);
 
-            if(!$category)
-                Response::json(['find'=>false]);
-
-            if($category->name === $datosEnviados['name'])
-                Response::json(['find'=>true, 'alerts'=>['name'=>'El valor es el mismo']]);
-
-            $categoryExists = Category::where('name', 'LIKE', $datosEnviados['name']);
-
-            if($categoryExists)
-                Response::json(['alerts'=>['name'=>'ya existe una categoria con un nombre similar o igual']]);
-
-            $category->sincronize($datosEnviados);
+            $category->name = $datosEnviados['name'];
             $alerts = $category->validate();
 
-            if(!empty($alerts))
-                Response::json(['alerts'=>$alerts]);
-
-            $row = $category->save();
-            Response::json(['row' => $row]);
+            if(empty($alerts)){
+                //guardo registro
+                $id = $category->save();
+                
+                if($id){
+                    Helpers::setSwalAlert('success', '¡Genial!', 'Categoría actualizada con exito', 3000);
+                    Response::redirect('/kta-admin/categorias');
+                    return;
+                }else{
+                    $alerts['error'][] = 'error al actualizar la categoría, intente mas tarde';
+                }
+            }
+            
         }
+
+        Response::render('/admin/categorias/update', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Actualizar categoria',
+            'category'=>$category,
+            'alerts'=>$alerts
+        ]);
 
     }
 

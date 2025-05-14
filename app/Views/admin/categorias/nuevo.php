@@ -7,26 +7,12 @@
             <a class="btn nuevo" href="/kta-admin/categorias"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 
-        <form id="form-category" class="form tabs__container" enctype="multipart/form-data">
+        <form class="form tabs__container" method="POST">
             <legend class="form__title">Nueva categoria</legend>
             
             <p class="form__instructions">Completa los campos para crear una nueva categoria</p>
             
-            <div class="grid-elements">
-
-                <div class="form__input col-12">
-                    <label for="name"> Nombre (requerido)</label>
-                    <input 
-                        type="text"
-                        name="name"
-                        id="name"
-                        class="field"
-                        placeholder="Nombre del categoria"
-                        
-                    >
-                    <span id="msg-name" class="form__input-msg"></span>
-                </div>
-            </div>
+            <?php include_once __DIR__.'/form.php';?>
 
             <div class="submit-right">
                 <input class="submit" type="submit" value="Crear categoria">
@@ -38,9 +24,6 @@
 
 <?php
     $scripts = '
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="/assets/js/newCategory.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
     ';
 ?>
