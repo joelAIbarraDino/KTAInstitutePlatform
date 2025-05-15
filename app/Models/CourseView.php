@@ -10,7 +10,7 @@ class CourseView extends Model {
     protected static array $columns = [
         'id_course', 'name', 'watchword', 'id_category', 'category', 'thumbnail', 'description', 
         'price', 'discount', 'discount_ends_date', 'discount_ends_time', 
-        'max_months_enroll', 'created_at', 'privacy',
+        'max_months_enroll', 'created_at', 'url', 'privacy',
         'enrollment', 'id_teacher', 'teacher'
     ];
 
@@ -27,6 +27,7 @@ class CourseView extends Model {
     public ?string $discount_ends_time;
     public int $max_months_enroll;
     public string $created_at;
+    public string $url;
     public int $privacy;
     public int $enrollment;
     public int $id_teacher;
@@ -46,6 +47,7 @@ class CourseView extends Model {
         $this->discount_ends_time = $args["discount_ends_time"]??null;
         $this->max_months_enroll = $args["max_months_enroll"]??0;
         $this->created_at = $args["created_at"]??"";
+        $this->url = $args["url"]??"";
         $this->privacy = $args["privacy"]??0;
         $this->enrollment = $args["enrollment"]??0;
         $this->id_teacher = $args["id_teacher"]??0;

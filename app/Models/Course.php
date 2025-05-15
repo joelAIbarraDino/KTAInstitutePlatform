@@ -14,7 +14,7 @@ class Course extends Model {
     protected static array $columns = [ 
         'id_course', 'name', 'watchword', 'thumbnail', 'description', 
         'price','discount', 'discount_ends_date', 'discount_ends_time', 
-        'max_months_enroll', 'created_at', 
+        'max_months_enroll', 'created_at', 'url', 
         'privacy', 'id_category', 'id_teacher'
     ];
 
@@ -24,7 +24,7 @@ class Course extends Model {
         'max_months_enroll', 
         'privacy', 'id_category', 'id_teacher'
     ];
-    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time'];
+    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time', 'url'];
 
     public ?int $id_course;
     public string $name;
@@ -37,6 +37,7 @@ class Course extends Model {
     public ?string $discount_ends_time;
     public int $max_months_enroll;
     public string $created_at;
+    public ?string $url;
     public int $privacy;
     public int $id_category;
     public int $id_teacher;
@@ -60,6 +61,7 @@ class Course extends Model {
         $this->discount_ends_time = $args["discount_ends_time"]??null;
         $this->max_months_enroll = $args["max_months_enroll"]??6;
         $this->created_at = $args["created_at"]??date('Y-m-d');
+        $this->url = $args["url"]??null;
         $this->privacy = $args["privacy"]??self::PRIVACY['Editando'];
         $this->id_category = $args["id_category"]??0;
         $this->id_teacher = $args["id_teacher"]??0;
@@ -107,6 +109,10 @@ class Course extends Model {
         return self::$alerts;
     }
 
+    public function generateURL():void{
+        $this->url = bin2hex(random_bytes(16));
+    }
+
     public function validateFile(?array $file):array{
         
         if(!isset($file['thumbnail'])){
@@ -122,7 +128,6 @@ class Course extends Model {
         
         return self::$alerts;
     }
-
 
     public function uploadImage(array $imagen, $ancho = null, $alto = null):void{   
         // Eliminar la imagen anterior si existe

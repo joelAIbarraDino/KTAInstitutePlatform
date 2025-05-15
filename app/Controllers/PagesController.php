@@ -63,7 +63,7 @@ class PagesController
     
     public static function courseDetails($id):void{
 
-        $course = CourseView::where('id_course', '=', $id);
+        $course = CourseView::where('url', '=', $id);
 
         if(!$course)
             Response::redirect('/');

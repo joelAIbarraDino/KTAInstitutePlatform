@@ -35,7 +35,7 @@
                             <?php foreach($courses as $course): ?>
 
                                 <tr>
-                                    <td><a href="/curso/view/<?=$course->id_course?>"  target="_blank"><img class="dashboard-table__photo--rectangule" src="/assets/thumbnails/<?=$course->thumbnail?>" alt="foto <?=$course->thumbnail?>"></a></td>
+                                    <td><a href="/curso/view/<?=$course->url?>"  target="_blank"><img class="dashboard-table__photo--rectangule" src="/assets/thumbnails/<?=$course->thumbnail?>" alt="foto <?=$course->thumbnail?>"></a></td>
                                     <td><?=$course->name?></td>
                                     <td><?=$course->created_at?></td>
                                     <td><span class="dashboard-table__status dashboard-table__status--info"><?=$course->privacy ?></span></td>

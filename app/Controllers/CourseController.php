@@ -32,7 +32,7 @@ class CourseController{
 
             if(empty($alerts)){
                 $course->uploadImage($_FILES['thumbnail'], 1280, 720);
-
+                $course->generateURL();
                 
                 $id = $course->save();
                 if($id){
@@ -95,7 +95,7 @@ class CourseController{
                 //subir la nueva imagen si se subio una
                 if($_FILES['thumbnail']['size'] > 0)
                     $course->uploadImage($_FILES['thumbnail'], 1280, 720);
-            
+                
                 $id = $course->save();
 
                 if($id){
