@@ -14,9 +14,9 @@
             <p class="curso__maestro">Por: <?=$course->teacher?></p>
             <div class="curso__precios">
                 <p class="curso__precio curso__precio--original">$<?=$course->price?></p>
-                <p class="curso__precio curso__precio--oferta">$<?= $course->price * (1 - ($course->discount/100))?></p>
+                <p class="curso__precio curso__precio--oferta">$<?= $course->price * (1 - ($course->discount/100))?> USD</p>
             </div>
-            <p class="curso__fecha-descuento">Oferta válida hasta: <?=$course->discount_ends_date?></p>
+            <p class="curso__fecha-descuento">Oferta válida hasta: <?= date('F j, Y', strtotime($course->discount_ends_date))?></p>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
             <a href="/curso/view/<?=$course->id_course?>"><h3 class="curso__nombre"><?=$course->name?></h3></a>
             <p class="curso__maestro">Por: <?=$course->teacher?></p>
             <div class="curso__precios">
-                <p class="curso__precio curso__precio--normal">$<?=$course->price?></p>
+                <p class="curso__precio curso__precio--normal">$<?=$course->price?> USD</p>
             </div>
         </div>
     </div>
