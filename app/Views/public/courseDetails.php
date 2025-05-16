@@ -7,7 +7,7 @@
             <div class="cover-curso__datos">
                 
                 <div class="cover-curso__cont-regreso">
-                    <a class="cover-curso__regreso" href="/">&laquo Regresar</a>
+                    <a class="cover-curso__regreso" href="javascript:history.back();">&laquo Regresar</a>
                 </div>
 
                 <h1 class="cover-curso__name"><?=$course->name?></h1>
@@ -22,9 +22,11 @@
                         <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>meses de estudio</span>
                     </div>
 
-                    <div class="cover-curso__detalle">
-                        <i class='bx bxs-graduation'></i> 0 <span>estudiantes</span>
-                    </div>
+                    <?php if($course->enrollment):?>
+                        <div class="cover-curso__detalle">
+                            <i class='bx bxs-graduation'></i> 0 <span>estudiantes</span>
+                        </div>
+                    <?php endif;?>
 
                     <div class="cover-curso__detalle">
                         <i class='bx bx-book-bookmark'></i> Profesor: <span><a href="/profesor/view/<?=$course->id_teacher?>"><?=$course->teacher?></a></span>
@@ -35,18 +37,18 @@
                     <?=$course->description?>
                 </div>
 
-                <div class="cover-curso__botones">
-                    <button class="cover-curso__boton cover-curso__boton--agregar">Agregar al carrito</button>
-                    <button class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</button>
-                </div>
-
                 <div class="cover-curso__cont-precio">
                     <?php if($course->discount): ?>
                             <p class="cover-curso__precio cover-curso__precio--original">$ <?=$course->price?> USD</p>
-                            <p class="cover-curso__precio cover-curso__precio--oferta">$ <?=$course->discount?> USD</p>
+                            <p class="cover-curso__precio cover-curso__precio--oferta">$ <?= $course->price * (1 - ($course->discount/100))?> USD</p>
                         <?php else: ?>
                             <p class="cover-curso__precio cover-curso__precio--normal">$ <?=$course->price?> USD</p>
                     <?php endif;?>
+                </div>
+
+                <div class="cover-curso__botones">
+                    <button class="cover-curso__boton cover-curso__boton--agregar">Agregar al carrito</button>
+                    <button class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</button>
                 </div>
 
             </div>

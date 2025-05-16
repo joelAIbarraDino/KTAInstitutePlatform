@@ -124,7 +124,7 @@
     text-align: justify;
     width: 100%;
     color: v.$blanco;
-    margin-top: 3rem;
+    margin-top: 2rem;
     line-height: 2.5rem;
     
 
@@ -180,11 +180,12 @@
     display: flex;
     gap: 1.5rem;
     align-items: center;
+    margin-top: 2rem;
   }
 
   &__precio{
     font-weight: v.$black;
-
+    margin: 0;
     &--normal{
       font-size: 3rem;
       color: v.$dorado;
@@ -192,7 +193,7 @@
 
     &--original{
       font-size: 2rem;
-      color: v.$blanco;
+      color: #ff0000;
       text-decoration-line: line-through;
       text-decoration-color: #ff0000;
       text-decoration-thickness: 2px;
@@ -200,7 +201,7 @@
 
     &--oferta{
       font-size: 3rem;
-      color: #ff0000;
+      color: v.$dorado;
     }
   }
 }
