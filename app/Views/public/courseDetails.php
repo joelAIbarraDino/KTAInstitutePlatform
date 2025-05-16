@@ -40,6 +40,15 @@
                     <button class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</button>
                 </div>
 
+                <div class="cover-curso__cont-precio">
+                    <?php if($course->discount): ?>
+                            <p class="cover-curso__precio cover-curso__precio--original">$ <?=$course->price?> USD</p>
+                            <p class="cover-curso__precio cover-curso__precio--oferta">$ <?=$course->discount?> USD</p>
+                        <?php else: ?>
+                            <p class="cover-curso__precio cover-curso__precio--normal">$ <?=$course->price?> USD</p>
+                    <?php endif;?>
+                </div>
+
             </div>
 
         </div>

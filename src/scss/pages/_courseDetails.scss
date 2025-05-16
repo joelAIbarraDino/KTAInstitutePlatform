@@ -175,6 +175,34 @@
       transform: translateY(-4px);
     }
   }
+
+  &__cont-precio{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  &__precio{
+    font-weight: v.$black;
+
+    &--normal{
+      font-size: 3rem;
+      color: v.$dorado;
+    }
+
+    &--original{
+      font-size: 2rem;
+      color: v.$blanco;
+      text-decoration-line: line-through;
+      text-decoration-color: #ff0000;
+      text-decoration-thickness: 2px;
+    }
+
+    &--oferta{
+      font-size: 3rem;
+      color: #ff0000;
+    }
+  }
 }
 
 .detalles-curso{
