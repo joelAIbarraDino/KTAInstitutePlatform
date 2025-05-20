@@ -13,7 +13,7 @@
                         <a href="/cursos" class="navegacion__enlace">Cursos</a>
                     </li>
                     <li class="navegacion__item">
-                        <a href="/about" class="navegacion__enlace">Sobre nosotros</a>
+                        <a href="/nosotros" class="navegacion__enlace">Sobre nosotros</a>
                     </li>
                     <li class="navegacion__item">
                         <a href="/memberships" class="navegacion__enlace">Membresias</a>

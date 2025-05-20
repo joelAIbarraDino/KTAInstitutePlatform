@@ -24,6 +24,14 @@ class PagesController
         ]);
     }
 
+    public static function about(): void{
+        
+        Response::render('public/about', [
+            'nameApp'=>APP_NAME, 
+            'title' => 'Nosotros'
+        ]);
+    }
+
     public static function courses():void{
 
         $courses = CourseView::all();
