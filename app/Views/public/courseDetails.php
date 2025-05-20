@@ -114,20 +114,26 @@
             </div>
 
             <div id="step-3" class="detalles-curso__content">
-                <?php for($i = 0; $i < 5; $i++): ?>
-                    <details class="acordeon__modulo width-70">
-                        <summary>
-                            <span>Pregunta <?=$i + 1?></span>
-                            <i class='bx bx-chevron-down'></i>
-                        </summary>
 
-                        <div class="acordeon__contenido">
-                            <ul>
-                                <li>Respuesta a pregunta <?=$i + 1?></li>
-                            </ul>
-                        </div>
-                    </details>
-                <?php endfor;?>
+                <?php if(!empty($faq)):?>
+                    <?php foreach($faq as $index=>$question):?>
+                        <details class="acordeon__modulo width-70">
+                            <summary>
+                                <span>Pregunta #<?=($index + 1).' - '.$question->question?></span>
+                                <i class='bx bx-chevron-down'></i>
+                            </summary>
+
+                            <div class="acordeon__contenido">
+                                <ul>
+                                    <li><?=$question->answer?></li>
+                                </ul>
+                            </div>
+                        </details>
+                    <?php endforeach;?>
+                <?php else:?>
+                    <p class="acordeon__vacio">No hay preguntas disponibles</p>
+                <?php endif;?>
+                
             </div>
         </div>
     </div>

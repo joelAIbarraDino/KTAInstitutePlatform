@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Category;
 use App\Models\CourseView;
+use App\Models\FAQ;
 use App\Models\Slidebar;
 use App\Models\Teacher;
 use DinoEngine\Http\Response;
@@ -72,12 +73,15 @@ class PagesController
 
         if(!$teacher)
             Response::redirect('/');
+
+        $faq = FAQ::belongsTo('id_course', $course->id_course);
         
         Response::render('public/courseDetails', [
             'nameApp'=>APP_NAME,
             'title'=>$course->name,
             'course'=>$course,
-            'teacher'=>$teacher
+            'teacher'=>$teacher,
+            'faq'=>$faq
         ]);
     }
 

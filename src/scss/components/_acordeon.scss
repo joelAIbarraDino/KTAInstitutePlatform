@@ -48,6 +48,12 @@
       color: v.$blanco;
     }
   
+    &__vacio{
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: v.$black;
+      color: v.$rojo;
+    }
     details {
         border: 1px solid v.$border_input;
         border-bottom: 0;
