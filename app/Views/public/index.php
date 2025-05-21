@@ -1,7 +1,7 @@
 <?php include_once __DIR__.'/../components/header.php'; ?>
 
 
-<main class="principal">
+<main class="">
     <?php include_once __DIR__.'/../components/slider.php'; ?>
     
     <section class="gif-content">

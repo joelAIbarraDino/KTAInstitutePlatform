@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
-<div class="principal">
+<div class="">
     <div class="cover-curso" style="background-image: url(/assets/thumbnails/<?=$course->thumbnail?>);">
         <div class="cover-curso__cover">
 
@@ -47,8 +47,7 @@
                 </div>
 
                 <div class="cover-curso__botones">
-                    <button class="cover-curso__boton cover-curso__boton--agregar">Agregar al carrito</button>
-                    <button class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</button>
+                    <a href="/curso/payment/<?=$course->url?>" class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</a>
                 </div>
 
             </div>
