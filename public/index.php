@@ -42,6 +42,9 @@ $dino = new Dino(dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 $dino->router->get('/', [PagesController::class, 'index']);
 $dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails']);
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
+$dino->router->get('/curso/payment/{id}', function($id){
+    echo 'proceso de pago de curso: '. $id;
+});
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);
