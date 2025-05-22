@@ -4,7 +4,7 @@
     <div class="cover-curso" style="background-image: url(/assets/thumbnails/<?=$course->thumbnail?>);">
         <div class="cover-curso__cover">
 
-            <div class="cover-curso__datos">
+            <div class="cover-curso__datos" id="main-content">
                 
                 <div class="cover-curso__cont-regreso">
                     <a class="cover-curso__regreso" href="javascript:history.back();">&laquo Regresar</a>
@@ -145,5 +145,7 @@
     $scripts ='
         <script src="/assets/js/listaPlegable.js"></script>
         <script src="/assets/js/tabs.js"></script>
+        <script src="/assets/js/kiskoCurso.js"></script>
+        <script src="/assets/js/header.js"></script>
     ';
 ?>

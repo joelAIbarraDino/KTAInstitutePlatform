@@ -4,7 +4,7 @@
 
     <div class="cursos-filtro width-80">
         <h1 class="cursos-filtro__titulo" >Nuestros cursos</h1>
-        <p class="cursos-filtro__desc">Empieza, cambia o avanza en tu carrera con KTA como guía.</p>
+        <p class="cursos-filtro__desc" id="main-content">Empieza, cambia o avanza en tu carrera con KTA como guía.</p>
 
         <div class="cursos-filtro__categorias">
             <a class="cursos-filtro__categoria <?=!isset($category_url)?'cursos-filtro__categoria--active':''?>" href="/cursos" >Todos los cursos</a>
@@ -44,3 +44,9 @@
 </div>
 
 <?php include_once __DIR__.'/../components/footer.php'; ?>
+
+<?php 
+    $scripts ='
+        <script src="/assets/js/header.js"></script>
+    ';
+?>

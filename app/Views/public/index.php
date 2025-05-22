@@ -3,10 +3,6 @@
 
 <main class="">
     <?php include_once __DIR__.'/../components/slider.php'; ?>
-    
-    <section class="gif-content">
-        <img src="/assets/images/gif.gif"> 
-    </section>
 
     <?php include __DIR__.'/../components/kioskoCurso.php'; ?>
 
@@ -82,9 +78,8 @@
 
 <?php 
     $scripts ='
-        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
         <script src="/assets/js/slider.js"></script>
         <script src="/assets/js/kiskoCurso.js"></script>
-        <script src="/assets/js/btnMenu.js"></script>
+        <script src="/assets/js/header.js"></script>
     ';
 ?>

@@ -20,7 +20,8 @@ class PagesController
             'nameApp'=>APP_NAME, 
             'title' => 'Inicio',
             'sliders'=>$sliders,
-            'courses'=>$courses
+            'courses'=>$courses,
+            'transparente'=>true
         ]);
     }
 
@@ -28,7 +29,8 @@ class PagesController
         
         Response::render('public/about', [
             'nameApp'=>APP_NAME, 
-            'title' => 'Nosotros'
+            'title' => 'Nosotros',
+            'transparente'=>false
         ]);
     }
 
@@ -47,7 +49,8 @@ class PagesController
             'nameApp'=>APP_NAME,
             'title'=>'Cursos',
             'courses'=>$courses,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'transparente'=>false
         ]);
     }
 
@@ -66,7 +69,8 @@ class PagesController
             'title'=>'Cursos',
             'courses'=>$courses,
             'categories'=>$categories,
-            'category_url'=>$category_url
+            'category_url'=>$category_url,
+            'transparente'=>false
         ]);
     }
     
@@ -89,7 +93,8 @@ class PagesController
             'title'=>$course->name,
             'course'=>$course,
             'teacher'=>$teacher,
-            'faq'=>$faq
+            'faq'=>$faq,
+            'transparente'=>true
         ]);
     }
 
@@ -109,7 +114,8 @@ class PagesController
             'nameApp'=>APP_NAME, 
             'title' => $teacher->name,
             'teacher'=>$teacher,
-            'courses'=>$courses
+            'courses'=>$courses,
+            'transparente'=>false
         ]);
     }
 

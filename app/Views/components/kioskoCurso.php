@@ -1,6 +1,6 @@
 <?php if(count($courses)> 0):?>
     
-    <div class="kiosko">
+    <div class="kiosko" id="main-content">
         <h2 class="kiosko__titulo">Ultimos Cursos</h2>
 
         <div class="kiosko__content">
@@ -27,7 +27,7 @@
 
 <?php else:?>
 
-    <div class="kiosko empty">
+    <div class="kiosko empty" id="main-content">
         <h2 class="kiosko__titulo empty">Proximamente</h2>
 
         <p class="kiosko__title empty">Nuevos cursos para tí </p>

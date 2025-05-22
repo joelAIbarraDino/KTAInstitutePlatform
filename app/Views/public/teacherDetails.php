@@ -36,3 +36,9 @@
 </div>
 
 <?php include_once __DIR__.'/../components/footer.php';?>
+
+<?php 
+    $scripts ='
+        <script src="/assets/js/header.js"></script>
+    ';
+?>

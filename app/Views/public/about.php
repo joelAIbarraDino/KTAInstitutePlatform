@@ -4,7 +4,7 @@
     <section class="nosotros width-80">
         <div class="nosotros__intro">
             <h2 class="nosotros__titulo">Nuestra Historia, Tu Historia</h2>
-            <p class="nosotros__texto">
+            <p class="nosotros__texto" id="main-content">
                 Kta Institute, con 5 años de experiencia, se dedica a apoyar y empoderar a la comunidad hispana en Estados Unidos. 
                 Nuestra educación está basada en experiencias prácticas y reales, diseñada para prepararte para los desafíos del profesional de impuestos. 
                 Con cursos aprobados por el IRS, garantizamos una formación con respaldo y calidad.
@@ -57,3 +57,9 @@
 </div>
 
 <?php include_once __DIR__.'/../components/footer.php';?>
+
+<?php 
+    $scripts ='
+        <script src="/assets/js/header.js"></script>
+    ';
+?>

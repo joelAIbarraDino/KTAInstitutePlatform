@@ -30,8 +30,8 @@
   </div>
   
   <!-- Controles del slider -->
-  <button class="slider-control slider-control--prev"><i class='bx bx-chevrons-left'></i></button>
-  <button class="slider-control slider-control--next"><i class='bx bx-chevrons-right' ></i></button>
+  <button class="slider-control slider-control--prev"><i class='bx bx-chevron-left'></i></button>
+  <button class="slider-control slider-control--next"><i class='bx bx-chevron-right' ></i></button>
   
   <!-- Indicadores/paginación -->
   <div class="slider-indicators"></div>

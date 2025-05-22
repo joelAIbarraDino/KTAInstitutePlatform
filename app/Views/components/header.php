@@ -1,37 +1,21 @@
-<header class="header transparente">
-    <div class="header__contenedor container">
-        <div class="header__logo">
-            <a href="/">
-                <img src="/assets/images/logoKTA.jpg" alt="Logo">
-            </a>
-        </div>
+<header id="header-main" class="header <?=$transparente?'transparente':'solido'?>">
+    
+    <div class="header__actions">
         
-        <div class="header__menu">
-            <nav class="navegacion">
-                <ul class="navegacion__lista" id="menu">
-                    <li class="navegacion__item">
-                        <a href="/cursos" class="navegacion__enlace">Cursos</a>
-                    </li>
-                    <li class="navegacion__item">
-                        <a href="/nosotros" class="navegacion__enlace">Sobre nosotros</a>
-                    </li>
-                    <li class="navegacion__item">
-                        <a href="/memberships" class="navegacion__enlace">Membresias</a>
-                    </li>
-                </ul>
-                
-            </nav>
-            
-            <div class="header__sesion">
-                <a href="/login" class="boton boton--login">
-                    <i class="fas fa-user"></i> Iniciar Sesión
-                </a>
-            </div>
-
-
-            <button class="navegacion__hamburguesa" id="hamburguesa">
-                    <i class='bx bx-menu'></i>
-            </button>
-        </div>
     </div>
+    
+    
+    <nav class="header__nav">
+        <a class="btn-nav <?=$title == "Inicio"?'btn-nav--active':''?>" href="/">Inicio</a>
+        <a class="btn-nav <?=$title == "Cursos"?'btn-nav--active':''?>" href="/cursos">Cursos</a>
+        <a href="/"><img class="header__logo" src="/assets/images/logoKTA.jpg" alt="logo de KTA" ></a>
+        <a class="btn-nav <?=$title == "Nosotros"?'btn-nav--active':''?>" href="/nosotros">Nosotros</a>
+        <a class="btn-nav <?=$title == "Membresias"?'btn-nav--active':''?>" href="/mebresias">Membresias</a>
+    </nav>
+
+    <div class="header__actions">
+        <a href="/search"><i class='bx bx-search-alt-2'></i></a>
+        <a href="/login"><i class='bx bxs-user' ></i></a>
+    </div>
+
 </header>
