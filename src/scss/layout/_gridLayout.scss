@@ -4,11 +4,11 @@
 
 .grid-elements{
     display: block;
-
+    margin: .5rem auto;
     @include m.computadora{
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     &.border{

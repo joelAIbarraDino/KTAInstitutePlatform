@@ -14,7 +14,6 @@
     </nav>
 
     <div class="header__actions">
-        <a href="/search"><i class='bx bx-search-alt-2'></i></a>
         <a href="/login"><i class='bx bxs-user' ></i></a>
     </div>
 

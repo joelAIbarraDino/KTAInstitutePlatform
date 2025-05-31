@@ -24,7 +24,7 @@
         let claseHeader;
         document.addEventListener('scroll', function(){
 
-            if(contenidoPagina.getBoundingClientRect().top < 100){
+            if(contenidoPagina.getBoundingClientRect().top < 20){
                 
                 if(header.classList.contains("transparente")){
                     header.classList.remove("transparente");

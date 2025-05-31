@@ -11,15 +11,19 @@ class Slidebar extends Model{
     
     protected static string $table = 'slidebar';
     protected static string $PK_name = 'id_slidebar';
-    protected static array $columns = ['id_slidebar', 'title', 'color_title', 'subtitule', 'color_subtitule', 'type_background', 'background', 'link', 'CTA'];
-    protected static array $fillable = ['id_slidebar', 'title', 'color_title', 'subtitule', 'color_subtitule', 'type_background', 'background', 'link', 'CTA'];
+    protected static array $columns = ['id_slidebar', 'title', 'font_title', 'color_title', 'size_title', 'subtitle', 'font_subtitle', 'color_subtitle', 'size_subtitle', 'type_background', 'background', 'link', 'CTA'];
+    protected static array $fillable = ['title', 'font_title', 'color_title', 'size_title', 'subtitle', 'font_subtitle', 'color_subtitle', 'size_subtitle', 'type_background', 'background', 'link', 'CTA'];
     protected static array $nulleable = ['link', 'CTA'];
 
     public ?int $id_slidebar;
     public string $title;
+    public string $font_title;
     public string $color_title;
-    public string $subtitule;
-    public string $color_subtitule;
+    public float $size_title;
+    public string $subtitle;
+    public string $font_subtitle;
+    public string $color_subtitle;
+    public float $size_subtitle;
     public int $type_background;
     public string $background;
     public ?string $link;
@@ -29,9 +33,13 @@ class Slidebar extends Model{
     {
         $this->id_slidebar = $args['id_slidebar']??null;
         $this->title = $args['title']??'';
+        $this->font_title = $args['font_title']??'';
         $this->color_title = $args['color_title']??'#cda02d';
-        $this->subtitule = $args['subtitule']??'';
-        $this->color_subtitule = $args['color_subtitule']??'#cda02d';
+        $this->size_title = $args['size_title']??0;
+        $this->subtitle = $args['subtitle']??'';
+        $this->font_subtitle = $args['font_subtitle']??'';
+        $this->color_subtitle = $args['color_subtitle']??'#cda02d';
+        $this->size_subtitle = $args['size_subtitle']??0;
         $this->type_background = $args['type_background']??1;
         $this->background = $args['background']??'';
         $this->link = $args['link']??null;
@@ -43,14 +51,26 @@ class Slidebar extends Model{
         if(!$this->title)
             self::setAlerts('error', "El titulo es obligatorio");
 
+        if(!$this->font_title)
+            self::setAlerts('error', "La fuente del titulo es obligatorio");
+
         if(!$this->color_title)
             self::setAlerts('error', "El color del titulo es obligatorio");
 
-        if(!$this->subtitule)
-            self::setAlerts('error', "El subtitulo es obligatoria");
+        if(!$this->size_title)
+            self::setAlerts('error', "El tamaño de la fuente del titulo es obligatorio");
 
-        if(!$this->color_subtitule)
+        if(!$this->subtitle)
+            self::setAlerts('error', "El subtitulo es obligatorio");
+
+        if(!$this->font_subtitle)
+            self::setAlerts('error', "La fuente del subtitulo es obligatorio");
+
+        if(!$this->color_subtitle)
             self::setAlerts('error', "El color del subtitulo es obligatorio");
+
+        if(!$this->size_subtitle)
+            self::setAlerts('error', "El tamaño de la fuente del subtitulo es obligatorio");
 
         if(!$this->type_background)
             self::setAlerts('error', "El tipo de fondo es obligatoria");

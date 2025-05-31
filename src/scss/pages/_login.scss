@@ -2,8 +2,7 @@
 @use 'base/mixins' as m;
 
 .login{
-    min-height: 70vh;
-    padding: 5rem 0;
+    min-height: 75vh;
     background-color: v.$fondo_claro;
     display: flex;
     flex-direction: column;

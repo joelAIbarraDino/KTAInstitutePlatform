@@ -32,7 +32,7 @@
                                 <tr>
                                     <td><img class="dashboard-table__photo--rectangule" src="/assets/slidebar/<?=$slide->background?>" alt="foto <?=$slide->background?>"></td>
                                     <td><?=$slide->title?></td>
-                                    <td><?=$slide->subtitule?></td>
+                                    <td><?=$slide->subtitle?></td>
                                     <td class="dashboard-table__actions-cell">
                                         <a href="/kta-admin/slidebar/update/<?=$slide->id_slidebar?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$slide->id_slidebar?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>

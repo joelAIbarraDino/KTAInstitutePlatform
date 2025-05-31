@@ -10,7 +10,8 @@ class AccountController
 
         Response::render('account/login', [
             'nameApp'=>APP_NAME, 
-            'title' => 'Login'
+            'title' => 'Login',
+            'transparente'=>false
         ]);
     }
 
@@ -18,7 +19,8 @@ class AccountController
 
         Response::render('account/forgot', [
             'nameApp'=>APP_NAME, 
-            'title' => 'Login'
+            'title' => 'Login',
+            'transparente'=>false
         ]);
     }
 
@@ -26,7 +28,8 @@ class AccountController
 
         Response::render('account/signin', [
             'nameApp'=>APP_NAME, 
-            'title' => 'Sign in'
+            'title' => 'Sign in',
+            'transparente'=>false
         ]);
     }
 

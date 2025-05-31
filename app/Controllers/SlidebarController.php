@@ -5,7 +5,6 @@ namespace App\Controllers;
 use DinoEngine\Exceptions\QueryException;
 use App\Classes\Helpers;
 use App\Models\Slidebar;
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
@@ -64,9 +63,15 @@ class SlidebarController{
             $datosEnviados = Request::getPostData();
 
             $slidebar->title = $datosEnviados['title'];
+            $slidebar->font_title = $datosEnviados['font_title'];
             $slidebar->color_title = $datosEnviados['color_title'];
-            $slidebar->subtitule = $datosEnviados['subtitule'];
-            $slidebar->color_subtitule = $datosEnviados['color_subtitule'];
+            $slidebar->size_title = $datosEnviados['size_title'];
+
+            $slidebar->subtitle = $datosEnviados['subtitle'];
+            $slidebar->font_subtitle = $datosEnviados['font_subtitle'];
+            $slidebar->color_subtitle = $datosEnviados['color_subtitle'];
+            $slidebar->size_subtitle = $datosEnviados['size_subtitle'];
+
             $slidebar->link = $datosEnviados['link'];
             $slidebar->CTA = $datosEnviados['CTA'];
 

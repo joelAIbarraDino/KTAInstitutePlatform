@@ -10,17 +10,17 @@
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
 }
 
 *::-webkit-scrollbar-track {
-    background: orange;
+    background: v.$negro;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: blue;
+    background-color: v.$dorado;
     border-radius: 20px;
-    border: 3px solid orange;
+    border: 3px solid v.$dorado;
 }
 
 html {
@@ -83,7 +83,7 @@ img {
 }
 
 .principal{
-    margin-top: 12rem;
+    margin-top: 9rem;
 }
 
 .width-50{

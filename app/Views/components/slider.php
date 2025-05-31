@@ -8,8 +8,8 @@
           <div class="slide-bg slide-bg--image" style="background-image: url('/assets/slidebar/<?=$slide->background?>')"></div>
           
           <div class="slide-content">
-            <h2 class="slide-title" style="color:<?=$slide->color_title?>"><?=$slide->title?></h2>
-            <p class="slide-subtitle" style="color:<?=$slide->color_subtitule?>"><?=$slide->subtitule?></p>
+            <h2 class="slide-title" style="color:<?=$slide->color_title?>; font-family:'<?=$slide->font_title?>'; font-size:<?=$slide->size_title?>rem;"><?=$slide->title?></h2>
+            <p class="slide-subtitle" style="color:<?=$slide->color_subtitle?>; font-family:'<?=$slide->font_subtitle?>'; font-size:<?=$slide->size_subtitle?>rem;"><?=$slide->subtitle?></p>
             <?php if(!empty($slide->link)):?>
               <a href="<?=$slide->link?>" class="slide-button"><?=$slide->CTA?></a>
             <?php endif;?>
