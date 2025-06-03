@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../../components/fontFamilyCB.php'; ?>
 
-<div class="grid-elements">
+<div class="grid-elements border">
     <div class="form__file col-4">
         <label for="photo-btn"> Background de slider (requerido)</label>
         <input 
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="grid-elements">
+<div class="grid-elements border">
     <div class="form__input col-11">
         <label for="title"> Titulo (requerido)</label>
         <input 
@@ -74,7 +74,7 @@
     </div>
 </div>
 
-<div class="grid-elements">
+<div class="grid-elements border">
 
     <div class="form__input col-11">
         <label for="subtitule"> Subtitulo (requerido)</label>
@@ -138,7 +138,7 @@
 
 </div>
 
-<div class="grid-elements">
+<div class="grid-elements border">
 
     <div class="form__input col-6">
         <label for="link"> Enlace</label>

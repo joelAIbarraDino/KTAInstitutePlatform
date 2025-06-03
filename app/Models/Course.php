@@ -38,15 +38,11 @@ class Course extends Model {
     public int $max_months_enroll;
     public string $created_at;
     public ?string $url;
-    public int $privacy;
+    public string $privacy;
     public int $id_category;
     public int $id_teacher;
 
-    public const PRIVACY = [
-        'Editando'=>0,
-        'Privado'=>1,
-        'Público'=>2
-    ];
+    public const PRIVACY = ['Editando', 'Privado', 'Público'];
 
     public function __construct($args = []){
 
@@ -62,7 +58,7 @@ class Course extends Model {
         $this->max_months_enroll = $args["max_months_enroll"]??6;
         $this->created_at = $args["created_at"]??date('Y-m-d');
         $this->url = $args["url"]??null;
-        $this->privacy = $args["privacy"]??self::PRIVACY['Editando'];
+        $this->privacy = $args["privacy"]??self::PRIVACY[0];
         $this->id_category = $args["id_category"]??0;
         $this->id_teacher = $args["id_teacher"]??0;
     }
@@ -72,15 +68,15 @@ class Course extends Model {
             self::setAlerts("error", "Debe ingresar el nombre del curso");
         
         if(strlen($this->name) > 100)
-            self::setAlerts("error", "El nombre debe tener menos de 50 caracteres");
+            self::setAlerts("error", "El nombre debe tener menos de 100 caracteres");
 
         if(!$this->watchword)
             self::setAlerts("error", "Debe ingresar un lema al curso");
 
         if(strlen($this->watchword) > 200)
-            self::setAlerts("error", "El lema debe tener menos de 50 caracteres");
+            self::setAlerts("error", "El lema debe tener menos de 200 caracteres");
         
-        if(!$this->description)
+        if(strlen($this->watchword) < 80)
             self::setAlerts("error", "Debe ingresar una descripción");
 
         if(!$this->price)
@@ -93,6 +89,7 @@ class Course extends Model {
             self::setAlerts("error", "El descuento es obligatorio");
 
         if(!$this->discount && !$this->discount_ends_date && !$this->discount_ends_time){
+            $this->discount = 0;
             $this->discount_ends_date = null;
             $this->discount_ends_time = null;
         }
@@ -110,7 +107,7 @@ class Course extends Model {
     }
 
     public function generateURL():void{
-        $this->url = bin2hex(random_bytes(16));
+        $this->url = bin2hex(random_bytes(8));
     }
 
     public function validateFile(?array $file):array{

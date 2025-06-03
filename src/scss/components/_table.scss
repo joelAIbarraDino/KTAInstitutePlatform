@@ -24,6 +24,16 @@
     color: v.$blanco;
   }
 
+  &__link a{    
+    color: v.$azul;
+    text-decoration: none;
+    
+    &:hover{
+      color: v.$dorado;
+      text-decoration: underline;
+    }
+  }
+
   &__button {
     background: v.$azul;
     color: v.$blanco;

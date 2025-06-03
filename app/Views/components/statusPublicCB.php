@@ -1,3 +1,3 @@
 <?php foreach($arrayStatus as $key => $status):?>
-    <option value="<?=$status?>"><?=$key?></option>
+    <option value="<?=$key?>"><?=$status?></option>
 <?php endforeach;?>

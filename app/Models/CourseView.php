@@ -28,7 +28,7 @@ class CourseView extends Model {
     public int $max_months_enroll;
     public string $created_at;
     public string $url;
-    public int $privacy;
+    public string $privacy;
     public int $enrollment;
     public int $id_teacher;
     public string $teacher;
@@ -48,7 +48,7 @@ class CourseView extends Model {
         $this->max_months_enroll = $args["max_months_enroll"]??0;
         $this->created_at = $args["created_at"]??"";
         $this->url = $args["url"]??"";
-        $this->privacy = $args["privacy"]??0;
+        $this->privacy = $args["privacy"]??"Editando";
         $this->enrollment = $args["enrollment"]??0;
         $this->id_teacher = $args["id_teacher"]??0;
         $this->teacher = $args["teacher"]??0;

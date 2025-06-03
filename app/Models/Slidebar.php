@@ -83,6 +83,9 @@ class Slidebar extends Model{
         if($this->link && !$this->CTA)
             self::setAlerts('error', "El texto del boton es obligatoria");
 
+        if($this->CTA && !$this->link)
+            self::setAlerts('error', "La URL del CTA es obligatorio");
+
         if($this->link && !filter_var($this->link, FILTER_VALIDATE_URL))
             self::setAlerts('error', "La URL ingresada no es valida");
 

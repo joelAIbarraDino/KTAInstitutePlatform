@@ -36,7 +36,7 @@ class CourseController{
                 
                 $id = $course->save();
                 if($id){
-                    Response::redirect("/admin/curso/create/content/$id");
+                    Response::redirect("/kta-admin/curso/$id/content");
                 }else{
                     $alerts['error'][] = 'error al registrar el curso, intente mas tarde';
                 }

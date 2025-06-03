@@ -24,7 +24,7 @@
 
                     <?php if($course->enrollment):?>
                         <div class="cover-curso__detalle">
-                            <i class='bx bxs-graduation'></i> 0 <span>estudiantes</span>
+                            <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span>estudiantes</span>
                         </div>
                     <?php endif;?>
 
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="cover-curso__cont-precio">
-                    <?php if($course->discount): ?>
+                    <?php if($course->discount && date('Y-m-d') <= $course->discount_ends_date &&  date('H:i:s') <= $course->discount_ends_time): ?>
                             <p class="cover-curso__precio cover-curso__precio--original">$ <?=$course->price?> USD</p>
                             <p class="cover-curso__precio cover-curso__precio--oferta">$ <?= $course->price * (1 - ($course->discount/100))?> USD</p>
                         <?php else: ?>

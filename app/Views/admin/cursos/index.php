@@ -1,5 +1,6 @@
 <?php
     use App\Classes\Helpers;
+
     include_once __DIR__.'/../../components/adminToolbar.php'; 
 ?>
 
@@ -33,7 +34,6 @@
                         <?php if(count($courses) > 0): ?>
 
                             <?php foreach($courses as $course): ?>
-
                                 <tr>
                                     <td><a href="/curso/view/<?=$course->url?>"  target="_blank"><img class="dashboard-table__photo--rectangule" src="/assets/thumbnails/<?=$course->thumbnail?>" alt="foto <?=$course->thumbnail?>"></a></td>
                                     <td><?=$course->name?></td>
@@ -41,7 +41,7 @@
                                     <td><span class="dashboard-table__status dashboard-table__status--info"><?=$course->privacy ?></span></td>
                                     <td><?=$course->enrollment?></td>
                                     <td><span class="dashboard-table__status dashboard-table__status--pending"><?=$course->max_months_enroll ?> meses</span></td>
-                                    <td><?=$course->teacher ?></td>
+                                    <td class="dashboard-table__link"><a href="/kta-admin/maestro/update/<?=$course->id_teacher?>"><?=$course->teacher ?></a></td>
                                     <td class="dashboard-table__actions-cell">
                                         <a href="/kta-admin/curso/update/<?=$course->id_course ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$course->id_course?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
