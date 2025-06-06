@@ -10,9 +10,12 @@ use App\Controllers\CourseController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
 use App\Controllers\AdminsController;
+use App\Controllers\ContentController;
 use App\Controllers\SlidebarController;
 use App\Controllers\StudentController;
 use App\Controllers\TeacherController;
+use App\Middlewares\ExistsModuleMiddleware;
+use App\Middlewares\ValidIdMiddleware;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
@@ -81,6 +84,15 @@ $dino->router->get('/kta-admin/curso/update/{id}', [CourseController::class, 'up
 $dino->router->post('/kta-admin/curso/update/{id}', [CourseController::class, 'update']);
 
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
+
+//administracion de contenido de curso
+$dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content']);
+
+//administración de modulos de curso
+$dino->router->get('/api/module/get/{id}', [ContentController::class, 'getModules'], [ValidIdMiddleware::class]);
+$dino->router->post('/api/module/create/{id}', [ContentController::class, 'createModule'], [ValidIdMiddleware::class]);
+$dino->router->put('/api/module/name/{id}', [ContentController::class, 'updateNameModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->delete('/api/module/delete/{id}', [ContentController::class, 'deleteModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
 
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create']);

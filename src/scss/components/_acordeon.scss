@@ -16,7 +16,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 2rem 3rem;
+        padding: 2rem;
         cursor: pointer;
         list-style: none;
         font-weight: v.$black;
@@ -26,13 +26,22 @@
           transition: transform 0.3s ease;
           font-size: 2.5rem;
         }
+
+        .module__header-name i.bx-chevron-down {
+          transition: transform 0.3s ease;
+          font-size: 2.5rem;
+        }
     
         &::-webkit-details-marker {
           display: none;
         }
       }
     
-      &[open] summary i {
+      &[open] summary i.bx-chevron-down {
+        transform: rotate(180deg);
+      }
+
+      &[open] summary .module__header-name i.bx-chevron-down {
         transform: rotate(180deg);
       }
     

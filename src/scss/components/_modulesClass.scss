@@ -1,0 +1,105 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.new-module{
+
+  &__form{
+    display: flex;
+    gap: .5rem;
+  }
+
+  &__btn{
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    color: v.$dorado;
+    border: solid .2rem v.$border_input;
+    font-size: 2.5rem;
+    font-weight: v.$black;
+    background-color: v.$fondo_input;
+    padding-top: .5rem;
+
+    &:hover{
+      border: solid .2rem v.$dorado;
+    }
+  }
+}
+
+.modules{
+  border-top: solid .1rem v.$dorado;
+  margin-top: .8rem;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.module{
+
+  &__header{
+    border-radius: .3rem .3rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    color: v.$blanco;
+    background-color: v.$negro;
+    padding: 3rem 2rem;
+
+    &-name{
+      color: v.$blanco;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      
+    }
+
+    &-actions{
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  &__name{
+    border: solid v.$fondo_claro .1rem;
+    background-color: v.$fondo_claro;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    outline: 0;
+
+    &:focus{
+      border: .1rem solid #cda02d;
+
+    }
+  }
+
+  &__no-class{
+    color: v.$blanco;
+    margin: 1rem;
+    font-size: 2rem;
+    font-weight: v.$black;
+    text-align: center;
+  }
+
+  &__btn{
+    padding: .5rem 1rem;
+    color: v.$blanco;
+    border: none;
+    border-radius: .2rem;
+    transition: all .2s ease;
+
+    &--agregar{
+      background-color: v.$azul;
+
+      &:hover{
+        background-color: rgba(v.$azul, 0.8);
+      }
+    }
+
+    &--eliminar{
+      background-color: v.$rojo;
+
+      &:hover{
+        background-color: rgba(v.$rojo, 0.8);
+      }
+    }
+  }
+}

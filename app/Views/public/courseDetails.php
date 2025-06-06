@@ -69,7 +69,7 @@
             <div id="step-1" class="detalles-curso__content detalles-curso__content--active">
                 <?php for($i = 0; $i < 5; $i++): ?>
                     <details class="acordeon__modulo width-70">
-                        <summary>
+                        <summary class="module__header">
                             <span>Módulo <?=$i + 1?></span>
                             <i class='bx bx-chevron-down'></i>
                         </summary>
@@ -117,7 +117,7 @@
                 <?php if(!empty($faq)):?>
                     <?php foreach($faq as $index=>$question):?>
                         <details class="acordeon__modulo width-70">
-                            <summary>
+                            <summary class="module__header">
                                 <span>Pregunta #<?=($index + 1).' - '.$question->question?></span>
                                 <i class='bx bx-chevron-down'></i>
                             </summary>
