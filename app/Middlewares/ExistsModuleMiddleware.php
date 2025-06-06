@@ -15,7 +15,7 @@ class ExistsModuleMiddleware implements HandleInterface{
         $module = Module::find($id['id']);
 
         if(!$module)
-            Response::json(['ok'=>false,'message'=>'Module not found'], 404);
+            Response::json(['ok'=>false,'message'=>'El modulo no existe'], 404);
         
         $next();
     }
