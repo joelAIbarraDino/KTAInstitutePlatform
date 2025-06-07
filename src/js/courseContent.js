@@ -182,24 +182,18 @@
     }
 
     function alertDeleteModule(module){
-        // Elimina módulo
-        modulesContainer.addEventListener("click", e => {
-            if (e.target.closest(".module__btn--eliminar")) {
-
-                Swal.fire({
-                    title: "Estas seguro que quieres eliminar este modulo",
-                    text: "Este proceso no se puede revertir",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Si, eliminalo"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                           deleteModule(module);
-                    }
-                });
-            }
+        // Avisa de eliminar módulo
+        Swal.fire({
+            title: "Estas seguro que quieres eliminar este modulo",
+            text: "Este proceso no se puede revertir",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, eliminalo"
+        }).then((result) => {
+            if (result.isConfirmed) 
+                deleteModule(module);
         });
     }
 
@@ -226,18 +220,19 @@
 
             Swal.fire({
                 icon: "success",
-                title: "Nombre actualizado con exito",
+                title: "Modulo eliminado con exito",
                 text: response.message,
             });
 
             //sincronizo objeto modulos 
-            modules = modules.map(module =>{
-                if(module.id_module === id_module){
-                    module.name = name;
-                }
-
-                return module;
+            modules = modules.filter(module => module.id_module != id_module)
+                .map(module => {
+                    if(module.order_module > order_module){
+                        module.order_module = module.order_module - 1;
+                    }
+                    return module;
             });
+
             showModules();
 
         } catch (error) {

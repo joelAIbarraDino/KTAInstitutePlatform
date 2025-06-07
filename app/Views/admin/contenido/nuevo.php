@@ -22,7 +22,7 @@
                 <button id="add_module_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
             </div>
             
-            <legend>Arrastre los modulos para cambiar de orden</legend>
+            <legend>De doble click para eliminar un modulo sin contenido</legend>
             
             <div id="modules-container" class="modules"></div>
 

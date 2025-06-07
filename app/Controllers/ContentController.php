@@ -3,9 +3,10 @@
 namespace App\Controllers;
 
 use DinoEngine\Http\Response;
-use App\Models\Course;
-use App\Models\Module;
 use DinoEngine\Http\Request;
+use App\Models\Course;
+use App\Models\Lesson;
+use App\Models\Module;
 
 class ContentController{
 
@@ -96,6 +97,35 @@ class ContentController{
     public static function deleteModule(int $id){
         
         if(Request::isDELETE()){
+            //busco el modulo que quiero eliminar
+            $module = Module::find($id);
+
+            //guardo el orden del modulo que tenia y el curso al que pertenece
+            $order_module = $module->order_module;
+            $id_course = $module->id_course;
+
+            //verifico si ese modulo tiene cursos
+            $lessonsBelongsToModule = Lesson::belongsTo('id_module', $module->id_module);
+
+            if(!is_null($lessonsBelongsToModule))
+                Response::json(['ok'=>false,'message'=>'Este modulo tiene clases agregadas, elimine las clases para eliminar este modulo'], 404);
+
+            //elimino el modulo
+            $rowAffected = $module->delete();
+
+            //en caso de que no se elimine cancelo el siguiente paso
+            if($rowAffected === 0)
+                Response::json(['ok'=>false,'message'=>'Error al eliminar el modulo, intente mas tarde'], 404);
+
+            
+            //actualizo el orden en los siguientes pasos
+            $respuesta = Module::querySQL("UPDATE module set order_module = order_module - 1 where order_module > :order_module AND id_course = :id_course", [
+                ':order_module'=>$order_module,
+                ':id_course'=>$id_course
+            ]);
+
+            //regreso respuesta para ver que me regresa el querySQL
+            Response::json(['ok'=>true,'message'=>$respuesta]);
 
         }
     }
