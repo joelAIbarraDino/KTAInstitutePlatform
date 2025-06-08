@@ -4,7 +4,7 @@
     <div class="main__container">
         <div class="top-main">
             <h1 class="top-main__title">Gestión de cursos</h1>
-            <a class="btn nuevo" href="/kta-admin/categorias"><i class='bx bx-chevrons-left'></i> Salir</a>
+            <a class="btn nuevo" href="/kta-admin/cursos"><i class='bx bx-chevrons-left'></i> Salir</a>
         </div>
 
         <div class="form tabs__container">
@@ -22,7 +22,7 @@
                 <button id="add_module_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
             </div>
             
-            <legend>Arrastre el modulo en el orden que desea</legend>
+            <legend>Mueva los modulos al orden deseado</legend>
             
             <div id="modules-container" class="modules"></div>
 

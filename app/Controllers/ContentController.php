@@ -17,7 +17,7 @@ class ContentController{
         if(!$course)
             Response::redirect('/kta-admin/cursos');
     
-        Response::render('/admin/contenido/nuevo', [
+        Response::render('/admin/contenido-curso/course-content', [
             'nameApp'=> APP_NAME,
             'title'=>'Contenido de curso'
         ]);
