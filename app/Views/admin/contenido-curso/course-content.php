@@ -4,7 +4,7 @@
     <div class="main__container">
         <div class="top-main">
             <h1 class="top-main__title">Gestión de cursos</h1>
-            <a class="btn nuevo" href="/kta-admin/cursos"><i class='bx bx-chevrons-left'></i> Salir</a>
+            <button class="btn nuevo" id="btn-exit"><i class='bx bx-save'></i> Salir</button>
         </div>
 
         <div class="form tabs__container">

@@ -76,8 +76,8 @@ class Course extends Model {
         if(strlen($this->watchword) > 200)
             self::setAlerts("error", "El lema debe tener menos de 200 caracteres");
         
-        if(strlen($this->watchword) < 80)
-            self::setAlerts("error", "Debe ingresar una descripción");
+        if(strlen($this->description) < 80)
+            self::setAlerts("error", "La descripción debe tener mas de 80 caracteres");
 
         if(!$this->price)
             self::setAlerts("error", "Debe ingresar el precio del curso");

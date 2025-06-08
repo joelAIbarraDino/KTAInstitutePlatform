@@ -147,6 +147,15 @@
       }
     }
 
+    &--extra {
+      color: v.$verde;
+      background: rgba(v.$verde, 0.1);
+
+      &:hover {
+        background: rgba(v.$verde, 0.2);
+      }
+    }
+
     &--delete {
       color: v.$rojo;
       background: rgba(v.$rojo, 0.1);

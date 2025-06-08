@@ -24,11 +24,14 @@
 
         i {
           transition: transform 0.3s ease;
+        }
+
+        i.bx-chevron-down{
+          transition: transform 0.3s ease;
           font-size: 2.5rem;
         }
 
-        .module__header-name i.bx-chevron-down {
-          transition: transform 0.3s ease;
+        i.bx-menu {
           font-size: 2.5rem;
         }
     

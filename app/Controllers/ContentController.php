@@ -10,13 +10,8 @@ use App\Models\Module;
 
 class ContentController{
 
-    public static function content(int $id){
-        
-        $course = Course::find($id);
-        
-        if(!$course)
-            Response::redirect('/kta-admin/cursos');
-    
+    public static function content(string $id){
+
         Response::render('/admin/contenido-curso/course-content', [
             'nameApp'=> APP_NAME,
             'title'=>'Contenido de curso'
@@ -24,13 +19,29 @@ class ContentController{
     }
 
     public static function getModules(int $id){
-
         if(Request::isGET()){
 
+            $modulesLessons = [];
             $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
             
+            //por cada modulo obtengo sus lecciones que tiene
+            foreach($modules as $module){
+
+                //consulto las lecciones que tiene el modulo
+                $lessons = Lesson::belongsTo('id_module', $module->id_module, 'order_lesson', 'ASC')??[];
+                
+                //lleno los datos del modulo a mi array final y los cursos del modulo que tiene
+                $modulesLessons [] = [
+                    'id_module'=>$module->id_module,
+                    'name'=>$module->name,
+                    'order_course'=>$module->order_module,
+                    'id_course'=>$module->id_course,
+                    'lessons'=>$lessons
+                ];
+            }
+
             Response::json([
-                'modules'=>$modules
+                'modules'=>$modulesLessons
             ]);
         }
     }

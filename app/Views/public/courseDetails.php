@@ -1,4 +1,8 @@
-<?php include_once __DIR__.'/../components/header.php';?>
+<?php
+
+use DinoEngine\Helpers\Helpers;
+
+ include_once __DIR__.'/../components/header.php';?>
 
 <div class="">
     <div class="cover-curso" style="background-image: url(/assets/thumbnails/<?=$course->thumbnail?>);">
@@ -67,22 +71,33 @@
         <div class="detalles-cursos__tab-cont">
 
             <div id="step-1" class="detalles-curso__content detalles-curso__content--active">
-                <?php for($i = 0; $i < 5; $i++): ?>
-                    <details class="acordeon__modulo width-70">
-                        <summary class="module__header">
-                            <span>Módulo <?=$i + 1?></span>
-                            <i class='bx bx-chevron-down'></i>
-                        </summary>
+                <?php if(!empty($modules)):?>
+                    <?php foreach($modules as $key=>$module): ?>
+                        <details class="acordeon__modulo width-70">
+                            <summary class="module__header">
+                                <span>Módulo <?=$key + 1?> - <?=$module['name']?></span>
+                                <i class='bx bx-chevron-down'></i>
+                            </summary>
 
-                        <div class="acordeon__contenido">
-                            <ul>
-                                <li>Clase 1 - Bienvenida</li>
-                                <li>Clase 2 - Primeros trabajos</li>
-                                <li>Clase 3 - Minicasos</li>
-                            </ul>
-                        </div>
-                    </details>
-                <?php endfor;?>
+                            <div class="acordeon__contenido">
+                                <?php if(!empty($module['lessons'])):?>
+                                    <ul>
+                                        <?php foreach($module['lessons'] as $lesson):?>
+                                            <li><?=$lesson->name ?></li>
+                                        <?php endforeach;?>
+                                    </ul>
+                                <?php else:?>
+                                    <ul>
+                                        <li>Sin clases registradas</li>
+                                    </ul>
+                                <?php endif;?>
+
+                            </div>
+                        </details>
+                    <?php endforeach;?>
+                <?php else:?>
+                    <p class="acordeon__vacio">No hay contenido disponible</p>
+                <?php endif;?>
             </div>
 
             <div id="step-2" class="detalles-curso__content">
@@ -114,7 +129,7 @@
 
             <div id="step-3" class="detalles-curso__content">
 
-                <?php if(!empty($faq)):?>
+                <?php if(!is_null($faq)):?>
                     <?php foreach($faq as $index=>$question):?>
                         <details class="acordeon__modulo width-70">
                             <summary class="module__header">

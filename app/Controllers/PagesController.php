@@ -5,12 +5,15 @@ namespace App\Controllers;
 use App\Models\Category;
 use App\Models\CourseView;
 use App\Models\FAQ;
+use App\Models\Lesson;
+use App\Models\Module;
 use App\Models\Slidebar;
 use App\Models\Teacher;
+use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 
-class PagesController
-{
+class PagesController{
+
     public static function index(): void{
 
         $sliders = Slidebar::all();
@@ -86,13 +89,32 @@ class PagesController
         if(!$teacher)
             Response::redirect('/');
 
+        $modules = Module::belongsTo('id_course', $course->id_course, "order_module", 'ASC')??[];
         $faq = FAQ::belongsTo('id_course', $course->id_course);
+        $modulesLessons = [];
         
+        //por cada modulo obtengo sus lecciones que tiene
+        foreach($modules as $module){
+            //consulto las lecciones que tiene el modulo
+            $lessons =  Lesson::belongsTo('id_module', $module->id_module, 'order_lesson', 'ASC')??[];
+            
+            //lleno los datos del modulo a mi array final y los cursos del modulo que tiene
+            $modulesLessons[] = [
+                'id_module'=>$module->id_module,
+                'name'=>$module->name,
+                'order_course'=>$module->order_module,
+                'id_course'=>$module->id_course,
+                'lessons'=>$lessons
+            ];
+
+        }
+
         Response::render('public/courseDetails', [
             'nameApp'=>APP_NAME,
             'title'=>$course->name,
             'course'=>$course,
             'teacher'=>$teacher,
+            'modules'=>$modulesLessons,
             'faq'=>$faq,
             'transparente'=>true
         ]);

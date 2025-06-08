@@ -2,6 +2,7 @@
 
     
     const btnAdd = document.querySelector("#add_module_btn");
+    const btnExit = document.querySelector("#btn-exit");
     const modulesContainer = document.querySelector("#modules-container");
     const moduleName = document.querySelector("#new_module_name");
     const courseID = getCourseID();
@@ -16,6 +17,7 @@
         newModule();
         validateInputs();
         setDraggableModules();
+        btnExitMessage();
     }
 
     async function getModules(){
@@ -50,6 +52,7 @@
 
         const icon = document.createElement('i');
         icon.classList.add('bx', 'bx-menu');
+        
 
         const inputOrder = document.createElement('input');
         inputOrder.type = 'text';
@@ -95,13 +98,17 @@
         btnAgregar.textContent = '+ Clase';
         btnAgregar.dataset.id = module.id_module;
 
+        const iconDelete = document.createElement('i');
+        iconDelete.classList.add('bx', 'bx-trash');
+
         const btnEliminar = document.createElement('button');
         btnEliminar.classList.add('module__btn', 'module__btn--eliminar');
-        btnEliminar.textContent = 'Eliminar';
         btnEliminar.dataset.id = module.id_module;
+        btnEliminar.appendChild(iconDelete);
         btnEliminar.onclick = function (){
             alertDeleteModule({...module});   
         }
+
 
         const iconChevron = document.createElement('i');
         iconChevron.classList.add('bx', 'bx-chevron-down');
@@ -262,6 +269,20 @@
             let newModule = createModuleElement(module);
             modulesContainer.appendChild(newModule);
             initAccordion(newModule);
+        });
+    }
+
+    function btnExitMessage(){
+        btnExit.addEventListener('click', () =>{
+            Swal.fire({
+                icon: "info",
+                title: `Recuerde`,
+                html: `Puede editar el contenido del curso dando click al icono <i class='bx bxs-widget'></i> en el administrador de cursos`,
+            }).then((result) => {
+                if (result.isConfirmed) 
+                    window.location = "/kta-admin/cursos";
+            });
+
         });
     }
 
