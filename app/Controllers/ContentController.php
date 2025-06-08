@@ -17,12 +17,9 @@ class ContentController{
         if(!$course)
             Response::redirect('/kta-admin/cursos');
     
-        $modules = Module::belongsTo('id_course', $course->id_course)??[];
-
         Response::render('/admin/contenido/nuevo', [
             'nameApp'=> APP_NAME,
-            'title'=>'Contenido de curso',
-            'modules'=>$modules
+            'title'=>'Contenido de curso'
         ]);
     }
 
@@ -30,7 +27,7 @@ class ContentController{
 
         if(Request::isGET()){
 
-            $modules = Module::belongsTo('id_course', $id)??[];
+            $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
             
             Response::json([
                 'modules'=>$modules
@@ -73,8 +70,7 @@ class ContentController{
     }
 
     public static function updateNameModule(int $id){
-        
-        if(Request::isPUT()){
+        if(Request::isPATCH()){
 
             $module = Module::find($id);
             $dataSend = Request::getBody();
@@ -91,6 +87,27 @@ class ContentController{
                 Response::json(['ok'=>false,'message'=>'Error al actualizar el nombre, intente mas tarde'], 404);
 
             Response::json(['ok'=>true,'message'=>'Nombre actualizado con exito']);
+        }
+    }
+
+    public static function updateOrderModule(int $id){
+        if(Request::isPATCH()){
+
+            $module = Module::find($id);
+            $dataSend = Request::getBody();
+            $module->order_module = $dataSend['order_module'];
+
+            //validamos que no nos hayan enviado un nombre vacio
+            if(!$module->order_module)
+                Response::json(['ok'=>false,'message'=>'El ordern de modulo es obligatorio'], 404);
+
+            //guardamos los cambios
+            $rowAffected = $module->save();
+
+            if($rowAffected === 0)
+                Response::json(['ok'=>false,'message'=>'Error al actualizar el orden del modulo, intente mas tarde'], 404);
+
+            Response::json(['ok'=>true,'message'=>'Orden actualizado actualizado con exito']);
         }
     }
 

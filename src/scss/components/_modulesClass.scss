@@ -64,6 +64,11 @@
     padding: .5rem 1rem;
     border-radius: .5rem;
     outline: 0;
+    width: 10rem;
+
+    @include m.computadora{
+      width: 30rem;
+    }
 
     &:focus{
       border: .1rem solid #cda02d;

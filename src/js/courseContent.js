@@ -15,13 +15,13 @@
         getModules();
         newModule();
         validateInputs();
-        setDragableModules();
+        setDraggableModules();
     }
 
     async function getModules(){
         try {
             const id = getCourseID();
-            const url = `/api/module/get/${id}`;
+            const url = `/api/modules/get/${id}`;
 
             const request = await fetch(url);
             const response = await request.json();
@@ -38,6 +38,7 @@
         // Crear el contenedor <details>
         const details = document.createElement('details');
         details.classList.add('acordeon__modulo');
+        details.dataset.id = `${module.id_module}`; 
 
         // Crear el <summary> (encabezado del acordeón)
         const summary = document.createElement('summary');
@@ -52,10 +53,12 @@
 
         const inputOrder = document.createElement('input');
         inputOrder.type = 'text';
-        inputOrder.classList.add('module__order', 'module__name');
+        inputOrder.classList.add('module__order');
         inputOrder.value = module.order_module;
         inputOrder.id = `order-module-${module.id_module}`;
+        inputOrder.dataset.id=`${module.id_module}`;
         inputOrder.disabled = true;
+        inputOrder.hidden = true;
 
         const inputName = document.createElement('input');
         inputName.type = 'text';
@@ -96,7 +99,7 @@
         btnEliminar.classList.add('module__btn', 'module__btn--eliminar');
         btnEliminar.textContent = 'Eliminar';
         btnEliminar.dataset.id = module.id_module;
-        btnEliminar.ondblclick = function (){
+        btnEliminar.onclick = function (){
             alertDeleteModule({...module});   
         }
 
@@ -141,7 +144,7 @@
             const url = `/api/module/name/${id_module}`;
 
             const request = await fetch(url, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -290,13 +293,13 @@
         });
     }
 
-    function setDragableModules(){
+    function setDraggableModules(){
         // Orden de módulos con arrastrar y soltar
         Sortable.create(modulesContainer, {
             animation: 150,
-            handle: ".acordeon__modulo",
+            handle: ".bx-menu",
             onEnd: () => {
-                ajustOrder();
+                adjustOrder();
             }
         });
     }
@@ -348,11 +351,88 @@
     }
 
     // Actualiza el orden visual de los módulos
-    function ajustOrder() {
-        const modules = document.querySelectorAll(".acordeon__modulo .module__order");
-        modules.forEach((module) => {
-            //en construcción
+    function adjustOrder() {
+        //obtengo todos los modulos que tengo en el DOM despues de arrastrar el elemento
+        const modulesDOM = document.querySelectorAll(".module__order");
+        
+        modulesDOM.forEach(async (moduleDOM, index) =>{
+            //obtengo el ID 
+            const id = moduleDOM.dataset.id;
+            const currentModule = modules.find(module => module.id_module == id);
+
+            //solo objetos que hayan cambiado su posición se actualiza
+            if(currentModule.order_module == index +1)
+                return;
+
+            //actualizo el nuevo orden que quiero tener en el registro en memoria del modelo que estoy evaluando
+            currentModule.order_module = index + 1;
+            const response = await saveNewOrder(currentModule);
+
+            if(!response.ok){
+                Swal.fire({
+                    icon: "error",
+                    title: "Ha ocurrido un error",
+                    text: response.message,
+                });
+
+                //reordeno objeto modules
+                modules.sort((a, b) => a.order_module - b.order_module);
+                //regenero el DOM con las nuevas posiciones guardas
+                showModules();
+                return;
+            }
+
         });
+
+        //reordeno objeto modules
+        modules.sort((a, b) => a.order_module - b.order_module);
+        //regenero el DOM con las nuevas posiciones guardas
+        showModules();
+    }
+
+    async function saveNewOrder(module){
+        const {id_module, order_module} = module;
+        let result = [];
+
+        try {
+            const url = `/api/module/order_module/${id_module}`;
+
+            const request = await fetch(url, {
+                method: 'PATCH',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({order_module: order_module})
+            });
+
+            const response = await request.json();
+            
+            //preparo objeto respuesta que regresare a la funcion anterior
+            result = {
+                ok: response.ok,
+                message: response.message
+            };
+
+            //en caso de error, regreso lo que me reporto el servidor y no actualizo el objeto principal modulos
+            if(!response.ok)
+                return result;
+            
+            //sincronizo objeto modulos 
+            modules = modules.map(module =>{
+                if(module.id_module == id_module){
+                    module.order_module = order_module;
+                }
+
+                return module;
+            });
+
+            //regreso respuesta de servidor con la confirmación de la actulizacion
+            return result;
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Función para inicializar el acordeón en un módulo específico

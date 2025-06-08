@@ -89,9 +89,13 @@ $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delet
 $dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content']);
 
 //administración de modulos de curso
-$dino->router->get('/api/module/get/{id}', [ContentController::class, 'getModules'], [ValidIdMiddleware::class]);
+$dino->router->get('/api/modules/get/{id}', [ContentController::class, 'getModules'], [ValidIdMiddleware::class]);
+
 $dino->router->post('/api/module/create/{id}', [ContentController::class, 'createModule'], [ValidIdMiddleware::class]);
-$dino->router->put('/api/module/name/{id}', [ContentController::class, 'updateNameModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+
+$dino->router->patch('/api/module/order_module/{id}', [ContentController::class, 'updateOrderModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->patch('/api/module/name/{id}', [ContentController::class, 'updateNameModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+
 $dino->router->delete('/api/module/delete/{id}', [ContentController::class, 'deleteModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
 
 //administración de categoria
