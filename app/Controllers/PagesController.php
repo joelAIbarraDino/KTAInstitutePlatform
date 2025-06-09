@@ -100,11 +100,8 @@ class PagesController{
             
             //lleno los datos del modulo a mi array final y los cursos del modulo que tiene
             $modulesLessons[] = [
-                'id_module'=>$module->id_module,
                 'name'=>$module->name,
-                'order_course'=>$module->order_module,
-                'id_course'=>$module->id_course,
-                'lessons'=>$lessons
+                'lessons'=>array_map(fn($obj) => $obj->name, $lessons )
             ];
 
         }

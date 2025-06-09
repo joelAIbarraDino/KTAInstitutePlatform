@@ -1,8 +1,4 @@
-<?php
-
-use DinoEngine\Helpers\Helpers;
-
- include_once __DIR__.'/../components/header.php';?>
+<?php include_once __DIR__.'/../components/header.php';?>
 
 <div class="">
     <div class="cover-curso" style="background-image: url(/assets/thumbnails/<?=$course->thumbnail?>);">
@@ -83,7 +79,7 @@ use DinoEngine\Helpers\Helpers;
                                 <?php if(!empty($module['lessons'])):?>
                                     <ul>
                                         <?php foreach($module['lessons'] as $lesson):?>
-                                            <li><?=$lesson->name ?></li>
+                                            <li><?=$lesson ?></li>
                                         <?php endforeach;?>
                                     </ul>
                                 <?php else:?>
