@@ -380,9 +380,9 @@
             //obtengo el ID 
             const id = moduleDOM.dataset.id;
             const currentModule = modules.find(module => module.id_module == id);
-
+            
             //solo objetos que hayan cambiado su posición se actualiza
-            if(currentModule.order_module == index +1)
+            if(currentModule.order_module == index + 1)
                 return;
 
             //actualizo el nuevo orden que quiero tener en el registro en memoria del modelo que estoy evaluando

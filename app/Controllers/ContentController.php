@@ -4,12 +4,12 @@ namespace App\Controllers;
 
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
-use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Module;
 
 class ContentController{
 
+    //pantalla principal para cargar el contenido del curso
     public static function content(string $id){
 
         Response::render('/admin/contenido-curso/course-content', [
@@ -18,30 +18,27 @@ class ContentController{
         ]);
     }
 
+    //obtiene los modulos registrados
     public static function getModules(int $id){
         if(Request::isGET()){
 
-            $modulesLessons = [];
             $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
-            
-            //por cada modulo obtengo sus lecciones que tiene
-            foreach($modules as $module){
+            $modulesLessons = [];
 
-                //consulto las lecciones que tiene el modulo
-                $lessons = Lesson::belongsTo('id_module', $module->id_module, 'order_lesson', 'ASC')??[];
-                
-                //lleno los datos del modulo a mi array final y los cursos del modulo que tiene
-                $modulesLessons [] = [
+            foreach($modules as $module){
+                $lesson = Lesson::belongsTo('id_module', $module->id_module, "order_lesson", 'ASC')??[];
+
+                $modulesLessons[] = [
                     'id_module'=>$module->id_module,
                     'name'=>$module->name,
-                    'order_course'=>$module->order_module,
+                    'order_module'=>$module->order_module,
                     'id_course'=>$module->id_course,
-                    'lessons'=>$lessons
+                    'lessons'=>$lesson
                 ];
             }
 
             Response::json([
-                'modules'=>$modulesLessons
+                'modules'=>$modulesLessons,
             ]);
         }
     }
@@ -116,7 +113,7 @@ class ContentController{
             $rowAffected = $module->save();
 
             if($rowAffected === 0)
-                Response::json(['ok'=>false,'message'=>'Error al actualizar el orden del modulo, intente mas tarde'], 404);
+                Response::json(['ok'=>false,'message'=>'Error al actualizar el orden del modulo, intente mas tarde', 'recibido'=>$module], 404);
 
             Response::json(['ok'=>true,'message'=>'Orden actualizado actualizado con exito']);
         }
