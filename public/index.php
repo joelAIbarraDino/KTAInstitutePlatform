@@ -88,6 +88,7 @@ $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delet
 
 //administracion de contenido de curso
 $dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content'], [ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
+// $dino->router->get('/kta-admin/vimeo-test', [ContentController::class, 'testVimeo']);
 
 //administración de modulos de curso
 $dino->router->get('/api/modules/get/{id}', [ContentController::class, 'getModules'], [ValidIdMiddleware::class]);

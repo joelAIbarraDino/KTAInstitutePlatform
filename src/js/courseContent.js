@@ -97,6 +97,9 @@
         btnAgregar.classList.add('module__btn', 'module__btn--agregar');
         btnAgregar.textContent = '+ Clase';
         btnAgregar.dataset.id = module.id_module;
+        btnAgregar.onclick = function (){
+            lessonModal();
+        }
 
         const iconDelete = document.createElement('i');
         iconDelete.classList.add('bx', 'bx-trash');
@@ -121,20 +124,110 @@
         summary.appendChild(actionsContainer);
 
         // Contenido interno del acordeón
+
+        
         const contenido = document.createElement('div');
         contenido.classList.add('acordeon__contenido');
+        contenido.id = `content-course-${module.id_module}`;
+        
 
-        const noClases = document.createElement('p');
-        noClases.classList.add('module__no-class');
-        noClases.textContent = 'Sin clases agregadas';
+        const lessons = module.lessons;
+        clearElementContainer(contenido);        
 
-        contenido.appendChild(noClases);
+        if(lessons.length === 0){
+            const noClases = document.createElement('p');
+            noClases.classList.add('module__no-class');
+            noClases.textContent = 'Sin clases agregadas';
 
-        // Insertar summary y contenido en el details
+            contenido.appendChild(noClases);
+
+            // Insertar summary y contenido en el details
+            details.appendChild(summary);
+            details.appendChild(contenido);
+
+            return details;
+        }
+        
+        
+
+        lessons.forEach(lesson =>{
+            let newLesson = createLessionElement(lesson);
+            contenido.appendChild(newLesson);
+        });
+        
         details.appendChild(summary);
         details.appendChild(contenido);
 
         return details;
+    }
+
+    function lessonModal(modeEdit = false, lesson = {}){
+        const modalWindow = document.createElement("div");
+        modalWindow.classList.add("modal");
+
+        modalWindow.innerHTML = `
+        
+        
+        `;
+    }
+
+    function createLessionElement(lesson) {
+        const {name, id_video, id_module} = lesson;
+        // Crear contenedor principal
+        const lessonContainer = document.createElement('div');
+        lessonContainer.className = 'lesson';
+
+        // Crear contenedor izquierdo
+        const lessonLeft = document.createElement('div');
+        lessonLeft.className = 'lesson__left';
+
+        const iconMenu = document.createElement('i');
+        iconMenu.className = 'bx bx-menu';
+
+        const dataContent = document.createElement('div');
+        dataContent.className = 'lesson__data-content';
+
+        const nombre = document.createElement('p');
+        nombre.className = 'lesson__name';
+        nombre.textContent = name;
+
+        const enlace = document.createElement('a');
+        enlace.className = 'lesson__video-link link-active';
+        enlace.href = `https://vimeo.com/${id_video}`;
+        enlace.target = '_blank';
+        enlace.textContent = 'Ver clase en vimeo';
+
+        // Añadir elementos al dataContent
+        dataContent.appendChild(nombre);
+        dataContent.appendChild(enlace);
+
+        // Añadir elementos al lessonLeft
+        //lessonLeft.appendChild(iconMenu);
+        lessonLeft.appendChild(dataContent);
+
+        // Crear contenedor derecho
+        const lessonRight = document.createElement('div');
+        lessonRight.className = 'lesson__right';
+
+        const btnEditar = document.createElement('button');
+        btnEditar.className = 'module__btn module__btn--agregar';
+        btnEditar.setAttribute('data-id', id_module);
+        btnEditar.innerHTML = "<i class='bx bx-edit'></i>";
+
+        const btnEliminar = document.createElement('button');
+        btnEliminar.className = 'module__btn module__btn--eliminar';
+        btnEliminar.setAttribute('data-id', id_module);
+        btnEliminar.innerHTML = "<i class='bx bx-trash'></i>";
+
+        // Añadir botones al lessonRight
+        lessonRight.appendChild(btnEditar);
+        lessonRight.appendChild(btnEliminar);
+
+        // Añadir ambos lados al contenedor principal
+        lessonContainer.appendChild(lessonLeft);
+        lessonContainer.appendChild(lessonRight);
+
+        return lessonContainer;
     }
 
     function updateName(module, newName){
@@ -520,6 +613,11 @@
     function clearModulesContainer(){
         while(modulesContainer.firstChild)
             modulesContainer.removeChild(modulesContainer.firstChild);
+    }
+
+    function clearElementContainer(element){
+        while(element.firstChild)
+            element.remove(element.firstChild);
     }
 
 })();

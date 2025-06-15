@@ -65,10 +65,10 @@
     padding: .5rem 1rem;
     border-radius: .5rem;
     outline: 0;
-    width: 10rem;
+    width: 20rem;
 
     @include m.computadora{
-      width: 30rem;
+      width: 35rem;
     }
 
     &:focus{

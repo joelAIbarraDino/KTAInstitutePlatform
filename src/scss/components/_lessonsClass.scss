@@ -1,0 +1,74 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.lesson{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+    background-color: v.$dorado;
+    padding: 1.5rem;
+    border-radius: .5rem;
+
+    &__left{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        i{
+            font-size: 2.5rem;
+        }
+    }
+
+    &__data-content{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    &__video-link{
+        font-size: 1.5rem;
+        font-weight: v.$black;
+        color:v.$blanco;
+        margin: 0;
+        display: none;
+        text-decoration: underline;
+
+        &.link-active{
+            display: block;
+        }
+
+        &:hover{
+            color: #11a8ee;
+        }
+        
+    }
+
+    &__progress{
+        font-size: 1.5rem;
+        font-weight: v.$black;
+        color: v.$rojo;
+        margin: 0;
+        display: none;
+
+        &.upload-active{
+            display: block;
+        }
+
+        span{
+            color: v.$blanco;
+        }
+    }
+
+    &__right{
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__name{
+        color: v.$blanco;
+        font-size: 1.6rem;
+        font-weight: v.$bold;
+        margin: 0;
+    }
+}

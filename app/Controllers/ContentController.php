@@ -9,6 +9,71 @@ use App\Models\Module;
 
 class ContentController{
 
+    public static function testVimeo(){
+        $videoId = '1067268542';
+        $accessToken = $_ENV['TOKEN_ACCESS_VIMEO'];
+
+        $ch = curl_init();
+        $url = "https://api.vimeo.com/videos/{$videoId}";
+
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Bearer {$accessToken}",
+                "Accept: application/vnd.vimeo.*+json;version=3.4"
+            ]
+        ]);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        curl_close($ch);
+
+        if(curl_errno($ch))
+            Response::json([
+                'success' => false,
+                'error' => curl_error($ch),
+                'code' => $httpCode
+            ]);
+        
+        $exists = false;
+        $owned = false;
+
+        switch ($httpCode) {
+            case 200:
+                $exists = true;
+                $owned = true;
+                $data = json_decode($response, true);
+                break;
+
+            case 403:
+                $exists = true;
+                $owned = false;
+                $data = null;
+                break;
+
+            case 404:
+                $exists = false;
+                $owned = false;
+                $data = null;
+                break;
+
+            default:
+                $data = json_decode($response, true);
+                break;
+        }
+
+        Response::json([
+            'success' => $httpCode === 200,
+            'exists' => $exists,
+            'owned_by_account' => $owned,
+            'code' => $httpCode,
+            'data' => $data
+        ]);
+    
+    }
+
     //pantalla principal para cargar el contenido del curso
     public static function content(string $id){
 
