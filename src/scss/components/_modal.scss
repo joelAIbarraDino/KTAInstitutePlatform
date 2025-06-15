@@ -1,0 +1,57 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.modal{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &__form{
+        max-width: 60rem;
+        background-color: v.$blanco;
+        padding: 2rem;
+        margin: 0 auto;
+        transform: translateY(-30rem);
+        transition-property: all;
+        transition-duration: 300ms;
+        opacity: 0;
+        border-radius: 1rem;
+        
+        &.modal-open{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+
+        &.modal-close{
+            transform: translateY(-200%);
+            opacity: 0;
+        }    
+    }
+
+    &__cancel{
+        padding: 1rem 2rem;
+        margin-top: 2.5rem;
+        border-radius: .5rem;
+        font-size: 1.5rem;
+        text-align: center;
+        color: v.$blanco;
+        border: none;
+        transition: all .2s ease;
+        background-color: v.$rojo;
+
+        &:hover{
+            background-color: rgba(v.$rojo, 0.8);
+        }
+    }
+
+    &__controllers{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

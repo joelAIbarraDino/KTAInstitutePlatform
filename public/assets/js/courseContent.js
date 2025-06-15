@@ -98,7 +98,7 @@
         btnAgregar.textContent = '+ Clase';
         btnAgregar.dataset.id = module.id_module;
         btnAgregar.onclick = function (){
-            lessonModal();
+            lessonModal(module.id_module);
         }
 
         const iconDelete = document.createElement('i');
@@ -161,14 +161,138 @@
         return details;
     }
 
-    function lessonModal(modeEdit = false, lesson = {}){
+    function lessonModal(moduleID, modeEdit = false, lesson = {}){
         const modalWindow = document.createElement("div");
         modalWindow.classList.add("modal");
 
-        modalWindow.innerHTML = `
-        
-        
-        `;
+        // FORM
+        const form = document.createElement("form");
+        form.classList.add("form", "modal__form");
+        form.enctype = "multipart/form-data";
+
+        // LEGEND
+        const legend = document.createElement("legend");
+        legend.classList.add("form__title");
+        legend.textContent = modeEdit ? `Editar lección de modulo ${moduleID}` : `Nueva lección ${moduleID}`;
+
+        // Instrucciones
+        const instrucciones = document.createElement("p");
+        instrucciones.classList.add("form__instructions");
+        instrucciones.textContent = "Completa los campos requeridos";
+
+        // Grid contenedor
+        const grid = document.createElement("div");
+        grid.classList.add("grid-elements", "border");
+
+        // Input: Nombre
+        const divNombre = document.createElement("div");
+        divNombre.classList.add("form__input", "col-12");
+
+        const labelNombre = document.createElement("label");
+        labelNombre.setAttribute("for", "name");
+        labelNombre.textContent = " Nombre (requerido)";
+
+        const inputNombre = document.createElement("input");
+        inputNombre.type = "text";
+        inputNombre.name = "name";
+        inputNombre.id = "name";
+        inputNombre.classList.add("field");
+        inputNombre.placeholder = "Nombre de la lección";
+        inputNombre.value = lesson.name || "";
+
+        const spanMsgName = document.createElement("span");
+        spanMsgName.id = "msg-name";
+        spanMsgName.classList.add("form__input-msg");
+
+        divNombre.appendChild(labelNombre);
+        divNombre.appendChild(inputNombre);
+        divNombre.appendChild(spanMsgName);
+
+        // Input: Descripción
+        const divDescripcion = document.createElement("div");
+        divDescripcion.classList.add("form__input", "col-12");
+
+        const labelDescripcion = document.createElement("label");
+        labelDescripcion.setAttribute("for", "bio");
+        labelDescripcion.textContent = "Descripción (requerido)";
+
+        const textareaDescripcion = document.createElement("textarea");
+        textareaDescripcion.classList.add("text-area");
+        textareaDescripcion.name = "description";
+        textareaDescripcion.id = "description";
+        textareaDescripcion.placeholder = "Descripción de la clase";
+        textareaDescripcion.textContent = lesson.description || "";
+
+        const spanMsgDesc = document.createElement("span");
+        spanMsgDesc.id = "msg-description";
+        spanMsgDesc.classList.add("form__input-msg");
+
+        divDescripcion.appendChild(labelDescripcion);
+        divDescripcion.appendChild(textareaDescripcion);
+        divDescripcion.appendChild(spanMsgDesc);
+
+        // Agregar inputs al grid
+        grid.appendChild(divNombre);
+        grid.appendChild(divDescripcion);
+
+        // Submit
+        const divSubmit = document.createElement("div");
+        divSubmit.classList.add("modal__controllers");
+
+        const inputSubmit = document.createElement("input");
+        inputSubmit.type = "submit";
+        inputSubmit.classList.add("submit");
+        inputSubmit.value = modeEdit ? "Actualizar lección" : "Crear curso";
+        inputSubmit.addEventListener('click', function(){
+            console.log(`${modeEdit?"Se esta editando clase":"se esta registrando clase"}`);
+        });
+
+        const inputClose = document.createElement("button");
+        inputClose.classList.add("modal__cancel");
+        inputClose.textContent = "Cancelar";
+        inputClose.addEventListener("click", function(){
+            const form = document.querySelector(".modal__form");
+            form.classList.add("modal-close");
+            
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 550);
+        });
+
+        divSubmit.appendChild(inputClose);
+        divSubmit.appendChild(inputSubmit);
+
+        // Ensamblar el formulario
+        form.appendChild(legend);
+        form.appendChild(instrucciones);
+        form.appendChild(grid);
+        form.appendChild(divSubmit);
+
+        // Agregar el formulario al modal
+        modalWindow.appendChild(form);
+
+
+        //animación de apertura
+        setTimeout(() => {
+            const form = document.querySelector(".modal__form");
+            form.classList.add("modal-open");
+        }, 100);
+
+        //animación de close
+        modalWindow.addEventListener('click', e =>{
+            e.preventDefault();
+            
+            if(e.target.classList.contains("modal")){
+                const form = document.querySelector(".modal__form");
+                form.classList.add("modal-close");
+                
+                setTimeout(() => {
+                    modalWindow.remove();
+                }, 550);
+            }
+        });
+
+        document.querySelector("body").appendChild(modalWindow);
     }
 
     function createLessionElement(lesson) {
