@@ -1,5 +1,4 @@
 (function(){
-
     
     const btnAdd = document.querySelector("#add_module_btn");
     const btnExit = document.querySelector("#btn-exit");
@@ -148,10 +147,8 @@
             return details;
         }
         
-        
-
         lessons.forEach(lesson =>{
-            let newLesson = createLessionElement(lesson);
+            let newLesson = createLessionElement({...lesson}, {...module});
             contenido.appendChild(newLesson);
         });
         
@@ -201,6 +198,10 @@
         inputNombre.classList.add("field");
         inputNombre.placeholder = "Nombre de la lección";
         inputNombre.value = lesson.name || "";
+        inputNombre.onkeydown =  function(e){
+            //capitalizo primera letra del nombre de la clase
+            e.target.value = capitalize(e.target.value);
+        }
 
         const spanMsgName = document.createElement("span");
         spanMsgName.id = "msg-name";
@@ -272,7 +273,52 @@
         inputSubmit.classList.add("submit");
         inputSubmit.value = modeEdit ? "Actualizar lección" : "Crear curso";
         inputSubmit.addEventListener('click', function(){
-            console.log(`${modeEdit?"Se esta editando clase":"se esta registrando clase"}`);
+            
+            const newNameLesson = inputNombre.value.trim();
+            const newDescription = textareaDescripcion.value.trim();
+            const newIDVideo = inputIdVideo.value.trim();
+
+            if(newNameLesson.length === 0){
+                Swal.fire({
+                    icon: "error",
+                    title: "Nombre invalido",
+                    text: "El nombre de la lección es obligatorio",
+                });
+                return;
+            }
+            
+            if(newDescription.length === 0){
+                Swal.fire({
+                    icon: "error",
+                    title: "Descripción invalido",
+                    text: "La descripción de la lección es obligatoria",
+                });
+                return;
+            }
+
+            if(!Number.isInteger( Number(newIDVideo))){
+                Swal.fire({
+                    icon: "error",
+                    title: "Vimeo ID invalido",
+                    text: "El ID ingresado es invalido",
+                });
+                return;
+            }
+
+            const objectLesson = {
+                name:newNameLesson,
+                description:newDescription,
+                id_video:newIDVideo,
+                id_module:id_module
+            };
+
+            if(modeEdit){
+                //updateLesson(module, lesson);
+                console.log("actualizando modulo");
+                return;
+            }
+            
+            addLesson(objectLesson);
         });
 
         const inputClose = document.createElement("button");
@@ -322,7 +368,76 @@
         document.querySelector("body").appendChild(modalWindow);
     }
 
-    function createLessionElement(lesson) {
+    async function addLesson(lesson){
+        const {name, description, id_video, id_module} = lesson;
+
+        try {
+
+            //registro el modelo en la base de datos
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("description", description);
+            formData.append("id_video", id_video);
+            
+            const url = `/api/lesson/create/${id_module}`;
+
+            const request = await fetch(url, {
+                method:"POST",
+                body:formData
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                Swal.fire({
+                    icon: "error",
+                    title: "Ha ocurrido un error",
+                    text: response.message,
+                });
+                return;
+            }
+
+            //mostramos alerta de confirmación
+            Swal.fire({
+                icon: "success",
+                title: "Registro exitoso",
+                text: response.message,
+            });
+
+            //cerramos modal
+            const form = document.querySelector(".modal__form");
+            const modalWindow = document.querySelector(".modal");
+            form.classList.add("modal-close");
+            
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 550);
+
+            //actualizamos DOM
+            const newLesson = {
+                id_lesson:response.id,
+                name:name,
+                id_video:id_video,
+                order_lesson:response.order_lesson,
+                id_module:id_module,
+                material:[]
+            }
+
+            modules = modules.map(module => {
+                if(module.id_module == id_module){
+                    module.lessons = [...module.lessons, newLesson]
+                }
+                return module;
+            });
+
+            showModules();
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function createLessionElement(lesson, module) {
         const {name, id_video, id_module} = lesson;
         // Crear contenedor principal
         const lessonContainer = document.createElement('div');
@@ -364,6 +479,9 @@
         btnEditar.className = 'module__btn module__btn--agregar';
         btnEditar.setAttribute('data-id', id_module);
         btnEditar.innerHTML = "<i class='bx bx-edit'></i>";
+        btnEditar.onclick = function(){
+            lessonModal(module, true, lesson);
+        };
 
         const btnEliminar = document.createElement('button');
         btnEliminar.className = 'module__btn module__btn--eliminar';
@@ -610,7 +728,6 @@
         
         modules = [...modules, moduleObject];
         
-        //aumento el siguiente orden para el siguiente modulo
         showModules();
         moduleName.value = "";
         moduleName.focus(); 
@@ -769,7 +886,7 @@
 
     function clearElementContainer(element){
         while(element.firstChild)
-            element.remove(element.firstChild);
+            element.removeChild(element.firstChild);
     }
 
 })();

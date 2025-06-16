@@ -75,7 +75,6 @@ class ContentController{
     
     }
 
-    //pantalla principal para cargar el contenido del curso
     public static function content(string $id){
 
         Response::render('/admin/contenido-curso/course-content', [
@@ -84,7 +83,6 @@ class ContentController{
         ]);
     }
 
-    //obtiene los modulos registrados
     public static function getModules(int $id){
         if(Request::isGET()){
 
@@ -140,7 +138,7 @@ class ContentController{
 
             //obtenemos el ultimo orden actual que tenemos registrado en la BD
             $currentOrder = Module::max('order_module', 'id_course', '=', $id);
-            $currentOrder +=1;
+            $currentOrder+=1;
 
             $module->order_module = $currentOrder;
 
@@ -157,7 +155,7 @@ class ContentController{
                 'ok'=>true,
                 'id'=>$id,
                 'order_module'=>$currentOrder,
-                'message'=>'Modulo registrado  con exito'
+                'message'=>'Modulo registrado con exito'
             ]);
         }
     }
@@ -240,9 +238,38 @@ class ContentController{
         }
     }
 
-    public static function createLession(int $id){
+    public static function createLesson(int $id){
+
         if(Request::isPOST()){
+            $lesson = new Lesson;
             
+            //sincronizamos datos enviados por js para la nueva clase
+            $dataPost = Request::getPostData();
+            $lesson->sincronize($dataPost);
+
+            //obtenemos el ultimo orden registrado en la base de datos 
+            $currentOrder = Lesson::max('order_lesson', 'id_module', '=', $id);
+            $currentOrder+=1;
+
+            $lesson->order_lesson = $currentOrder;
+            $lesson->id_module = $id;
+
+            //validamos entrada de datos
+            $lesson->validateAPI();
+
+            //registramos modulo y devolvemos ID
+            $id = $lesson->save();
+
+            if(!$id)
+                Response::json(['ok'=>false,'message'=>'Error al registrar la lección, intente mas tarde']);
+
+            Response::json([
+                'ok'=>true,
+                'id'=>$id,
+                'order_lesson'=>$currentOrder,
+                'message'=>'Lección registrada con exito'
+            ]);
         }
+
     }
 }

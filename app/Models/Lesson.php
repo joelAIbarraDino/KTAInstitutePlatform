@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DinoEngine\Core\Model;
+use DinoEngine\Http\Response;
 
 class Lesson extends Model {
     
@@ -14,7 +15,7 @@ class Lesson extends Model {
     public ?int $id_lesson;
     public string $name;
     public string $description;
-    public string $id_video;
+    public int $id_video;
     public int $order_lesson;
     public int $id_module;
 
@@ -22,12 +23,27 @@ class Lesson extends Model {
         $this->id_lesson = $args["id_lesson"]??null;
         $this->name = $args["name"]??"";
         $this->description = $args["description"]??"";
-        $this->id_video = $args["id_video"]??"";
+        $this->id_video = $args["id_video"]??0;
         $this->order_lesson = $args["order_lesson"]??0;
         $this->id_module = $args["id_module"]??0;
     }
 
-    public function validate(){
+    public function validateAPI(){
+
+        if(!$this->name)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar un nombre a la lección']);
+
+        if(!$this->description)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar la descripción de la lección']);
+
+        if(!$this->id_video)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar el ID del video']);
+
+        if(!$this->order_lesson)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar el orden de la lección']);
+
+        if(!$this->id_module)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar a que modulo pertenece']);
 
     }
 }

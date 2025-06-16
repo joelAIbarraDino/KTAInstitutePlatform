@@ -100,6 +100,9 @@ $dino->router->patch('/api/module/name/{id}', [ContentController::class, 'update
 
 $dino->router->delete('/api/module/delete/{id}', [ContentController::class, 'deleteModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
 
+//administración de lecciones de curso
+$dino->router->post('/api/lesson/create/{id}', [ContentController::class, 'createLesson'], [ValidIdMiddleware::class]);
+
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create']);
 $dino->router->post('/kta-admin/categoria/create', [CategoryController::class, 'create']);

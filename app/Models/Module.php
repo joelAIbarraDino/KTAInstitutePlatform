@@ -19,8 +19,8 @@ class Module extends Model {
 
     public function __construct($args = []){
         $this->id_module = $args["id_module"]??null;
-        $this->order_module = $args["order_module"]??0;
         $this->name = $args["name"]??"";
+        $this->order_module = $args["order_module"]??0;
         $this->id_course = $args["id_course"]??0;
     }
 
