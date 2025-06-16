@@ -24,26 +24,7 @@
             
             <legend>Mueva los modulos al orden deseado</legend>
             
-            <div id="modules-container" class="modules">
-                <details class="acordeon__modulo" data-id="82">
-                    <summary class="module__header">
-                        <div class="module__header-name">
-                            <i class="bx bx-menu"></i>
-                            <input type="text" class="module__order" id="order-module-82" data-id="82" disabled="" hidden="">
-                            <input type="text" placeholder="Nombre del módulo" class="module__name" id="name-module-82" data-id="82">
-                        </div>
-                        
-                        <div class="module__header-actions">
-                            <button class="module__btn module__btn--agregar" data-id="82">+ Clase</button>
-                            <button class="module__btn module__btn--eliminar" data-id="82"><i class="bx bx-trash"></i></button>
-                            <i class="bx bx-chevron-down"></i>
-                        </div>
-                    </summary>
-                    
-                    <div class="acordeon__contenido"></div>
-                
-                </details>
-            </div>
+            <div id="modules-container" class="modules"></div>
 
         </div>
 

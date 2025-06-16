@@ -5,6 +5,7 @@ namespace App\Controllers;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\Lesson;
+use App\Models\Material;
 use App\Models\Module;
 
 class ContentController{
@@ -89,17 +90,36 @@ class ContentController{
 
             $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
             $modulesLessons = [];
+            $lessonsMaterial = [];
 
             foreach($modules as $module){
-                $lesson = Lesson::belongsTo('id_module', $module->id_module, "order_lesson", 'ASC')??[];
+                
+                $lessons = Lesson::belongsTo('id_module', $module->id_module, "order_lesson", 'ASC')??[];
+
+                foreach($lessons as $lesson){
+                    
+                    $material = Material::belongsTo('id_lesson', $lesson->id_lesson)??[];
+                    
+                    $lessonsMaterial[] = [
+                        'id_lesson'=>$lesson->id_lesson,
+                        'name'=>$lesson->name,
+                        'description'=>$lesson->description,
+                        'id_video'=>$lesson->id_video,
+                        'order_lesson'=>$lesson->order_lesson,
+                        'id_module'=>$lesson->id_module,
+                        'material'=>$material
+                    ];
+                }
 
                 $modulesLessons[] = [
                     'id_module'=>$module->id_module,
                     'name'=>$module->name,
                     'order_module'=>$module->order_module,
                     'id_course'=>$module->id_course,
-                    'lessons'=>$lesson
+                    'lessons'=>$lessonsMaterial
                 ];
+                
+                $lessonsMaterial = [];
             }
 
             Response::json([
@@ -151,7 +171,7 @@ class ContentController{
 
             //validamos que no nos hayan enviado un nombre vacio
             if(!$module->name)
-                Response::json(['ok'=>false,'message'=>'El nombre es obligatorio'], 404);
+                Response::json(['ok'=>false,'message'=>'El nombre es obligatorio'], 400);
 
             //guardamos los cambios
             $rowAffected = $module->save();
@@ -172,7 +192,7 @@ class ContentController{
 
             //validamos que no nos hayan enviado un nombre vacio
             if(!$module->order_module)
-                Response::json(['ok'=>false,'message'=>'El ordern de modulo es obligatorio'], 404);
+                Response::json(['ok'=>false,'message'=>'El ordern de modulo es obligatorio'], 400);
 
             //guardamos los cambios
             $rowAffected = $module->save();
@@ -198,7 +218,7 @@ class ContentController{
             $lessonsBelongsToModule = Lesson::belongsTo('id_module', $module->id_module);
 
             if(!is_null($lessonsBelongsToModule))
-                Response::json(['ok'=>false,'message'=>'Este modulo tiene clases agregadas, elimine las clases para eliminar este modulo'], 404);
+                Response::json(['ok'=>false,'message'=>'Este modulo tiene clases agregadas, elimine las clases para eliminar este modulo'], 409);
 
             //elimino el modulo
             $rowAffected = $module->delete();
@@ -217,6 +237,12 @@ class ContentController{
             //regreso respuesta para ver que me regresa el querySQL
             Response::json(['ok'=>true,'message'=>$respuesta]);
 
+        }
+    }
+
+    public static function createLession(int $id){
+        if(Request::isPOST()){
+            
         }
     }
 }

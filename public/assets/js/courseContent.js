@@ -95,10 +95,10 @@
 
         const btnAgregar = document.createElement('button');
         btnAgregar.classList.add('module__btn', 'module__btn--agregar');
-        btnAgregar.textContent = '+ Clase';
+        btnAgregar.innerHTML = '<i class="bx bxs-add-to-queue"></i> Clase';
         btnAgregar.dataset.id = module.id_module;
         btnAgregar.onclick = function (){
-            lessonModal(module.id_module);
+            lessonModal({...module});
         }
 
         const iconDelete = document.createElement('i');
@@ -161,7 +161,8 @@
         return details;
     }
 
-    function lessonModal(moduleID, modeEdit = false, lesson = {}){
+    function lessonModal(module, modeEdit = false, lesson = {}){
+        const {id_module, name} = module;
         const modalWindow = document.createElement("div");
         modalWindow.classList.add("modal");
 
@@ -173,7 +174,7 @@
         // LEGEND
         const legend = document.createElement("legend");
         legend.classList.add("form__title");
-        legend.textContent = modeEdit ? `Editar lección de modulo ${moduleID}` : `Nueva lección ${moduleID}`;
+        legend.textContent = modeEdit ? `Editar lección de modulo "${name}"` : `Nueva lección en modulo "${name}"`;
 
         // Instrucciones
         const instrucciones = document.createElement("p");
@@ -193,6 +194,7 @@
         labelNombre.textContent = " Nombre (requerido)";
 
         const inputNombre = document.createElement("input");
+        inputNombre.setAttribute("autocomplete", "off");
         inputNombre.type = "text";
         inputNombre.name = "name";
         inputNombre.id = "name";
@@ -213,7 +215,7 @@
         divDescripcion.classList.add("form__input", "col-12");
 
         const labelDescripcion = document.createElement("label");
-        labelDescripcion.setAttribute("for", "bio");
+        labelDescripcion.setAttribute("for", "description");
         labelDescripcion.textContent = "Descripción (requerido)";
 
         const textareaDescripcion = document.createElement("textarea");
@@ -231,8 +233,34 @@
         divDescripcion.appendChild(textareaDescripcion);
         divDescripcion.appendChild(spanMsgDesc);
 
+        // Input: Nombre
+        const divIdVideo = document.createElement("div");
+        divIdVideo.classList.add("form__input", "col-12");
+
+        const labelIdVideo = document.createElement("label");
+        labelIdVideo.setAttribute("for", "IdVideo");
+        labelIdVideo.textContent = "Vimeo ID";
+
+        const inputIdVideo = document.createElement("input");
+        inputIdVideo.setAttribute("autocomplete", "off");
+        inputIdVideo.type = "text";
+        inputIdVideo.name = "IdVideo";
+        inputIdVideo.id = "IdVideo";
+        inputIdVideo.classList.add("field");
+        inputIdVideo.placeholder = "ID de video alojado en la cuenta personal de Vimeo";
+        inputIdVideo.value = lesson.id_video || "";
+
+        const spanMsgIdVideo = document.createElement("span");
+        spanMsgIdVideo.id = "msg-IdVideo";
+        spanMsgIdVideo.classList.add("form__input-msg");
+
+        divIdVideo.appendChild(labelIdVideo);
+        divIdVideo.appendChild(inputIdVideo);
+        divIdVideo.appendChild(spanMsgIdVideo);
+
         // Agregar inputs al grid
         grid.appendChild(divNombre);
+        grid.appendChild(divIdVideo);
         grid.appendChild(divDescripcion);
 
         // Submit
@@ -270,7 +298,6 @@
 
         // Agregar el formulario al modal
         modalWindow.appendChild(form);
-
 
         //animación de apertura
         setTimeout(() => {
@@ -577,7 +604,8 @@
             id_module: response.id,
             name: moduleNameText,
             order_module: response.order_module,
-            id_course: courseID
+            id_course: courseID,
+            lessons: []
         }
         
         modules = [...modules, moduleObject];
