@@ -22,7 +22,7 @@
     async function getModules(){
         try {
             const id = getCourseID();
-            const url = `/api/modules/get/${id}`;
+            const url = `/api/curso/content/${id}`;
 
             const request = await fetch(url);
             const response = await request.json();

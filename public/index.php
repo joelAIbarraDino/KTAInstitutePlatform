@@ -2,30 +2,35 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Middlewares\ExistsCategoryMiddleware;
-use App\Middlewares\ExistsTeacherMiddleware;
-use App\Controllers\CategoryController;
-use App\Controllers\AccountController;
-use App\Controllers\CourseController;
-use App\Controllers\PagesController;
-use App\Controllers\AdminController;
-use App\Controllers\AdminsController;
-use App\Controllers\ContentController;
-use App\Controllers\SlidebarController;
-use App\Controllers\StudentController;
-use App\Controllers\TeacherController;
-use App\Middlewares\ExistsCourseMiddleware;
-use App\Middlewares\ExistsLessonMiddleware;
-use App\Middlewares\ExistsModuleMiddleware;
-use App\Middlewares\ValidIdMiddleware;
 use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
+
+use App\Middlewares\ExistsCategoryMiddleware;
+use App\Middlewares\ExistsTeacherMiddleware;
+use App\Middlewares\ExistsModuleMiddleware;
+use App\Middlewares\ExistsCourseMiddleware;
+use App\Middlewares\ExistsLessonMiddleware;
+use App\Middlewares\ValidIdMiddleware;
+
+use App\Controllers\CategoryController;
+use App\Controllers\SlidebarController;
+use App\Controllers\AccountController;
+use App\Controllers\ContentController;
+use App\Controllers\StudentController;
+use App\Controllers\TeacherController;
+use App\Controllers\CourseController;
+use App\Controllers\AdminsController;
+use App\Controllers\LessonController;
+use App\Controllers\ModuleController;
+use App\Controllers\PagesController;
+use App\Controllers\AdminController;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
 date_default_timezone_set('America/Mexico_City');
+
 define('APP_NAME','KTA Institute');
 define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
 define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
@@ -39,7 +44,6 @@ $dbConfig = [
     "database"=>$_ENV['DB_DATABASE'],
     "driver"=>Database::PDO_DRIVER
 ];
-
 
 $dino = new Dino(dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 
@@ -92,21 +96,21 @@ $dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 
 // $dino->router->get('/kta-admin/vimeo-test', [ContentController::class, 'testVimeo']);
 
 //administración de modulos de curso
-$dino->router->get('/api/modules/get/{id}', [ContentController::class, 'getModules'], [ValidIdMiddleware::class]);
+$dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [ValidIdMiddleware::class]);
 
-$dino->router->post('/api/module/create/{id}', [ContentController::class, 'createModule'], [ValidIdMiddleware::class]);
+$dino->router->post('/api/module/create/{id}', [ModuleController::class, 'create'], [ValidIdMiddleware::class]);
 
-$dino->router->patch('/api/module/order_module/{id}', [ContentController::class, 'updateOrderModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
-$dino->router->patch('/api/module/name/{id}', [ContentController::class, 'updateNameModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->patch('/api/module/order_module/{id}', [ModuleController::class, 'updateOrder'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->patch('/api/module/name/{id}', [ModuleController::class, 'updateName'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
 
-$dino->router->delete('/api/module/delete/{id}', [ContentController::class, 'deleteModule'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->delete('/api/module/delete/{id}', [ModuleController::class, 'delete'], [ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
 
 //administración de lecciones de curso
-$dino->router->post('/api/lesson/create/{id}', [ContentController::class, 'createLesson'], [ValidIdMiddleware::class]);
+$dino->router->post('/api/lesson/create/{id}', [LessonController::class, 'create'], [ValidIdMiddleware::class]);
 
-$dino->router->put('/api/lesson/update/{id}', [ContentController::class, 'updateLesson'], [ValidIdMiddleware::class]);
+$dino->router->put('/api/lesson/update/{id}', [LessonController::class, 'update'], [ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
 
-$dino->router->delete('/api/lesson/delete/{id}', [ContentController::class, 'deleteCourse'], [ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
+$dino->router->delete('/api/lesson/delete/{id}', [LessonController::class, 'delete'], [ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
 
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create']);

@@ -51,14 +51,12 @@
                     <div class="nav">
                         <p class="nav__title">Pagina principal</p>
                         <a class="nav__link" href="/kta-admin/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
-                        <a class="nav__link" href="#"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a>
+                        <!-- <a class="nav__link" href="#"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a> -->
                     </div>
 
                     <div class="nav">
                         <p class="nav__title">Cursos</p>
                         <a class="nav__link" href="/kta-admin/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
-                        <a class="nav__link" href="/kta-admin/cuestionarios"> <i class='bx bx-file-find'></i>  Cuestionarios</a>
-                        <a class="nav__link" href="/kta-admin/contenido"> <i class='bx bxs-videos'></i> Contenido</a>
                         <a class="nav__link" href="/kta-admin/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                     </div>
 
