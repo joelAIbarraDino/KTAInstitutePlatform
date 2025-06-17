@@ -104,6 +104,8 @@ $dino->router->delete('/api/module/delete/{id}', [ContentController::class, 'del
 //administración de lecciones de curso
 $dino->router->post('/api/lesson/create/{id}', [ContentController::class, 'createLesson'], [ValidIdMiddleware::class]);
 
+$dino->router->put('/api/lesson/update/{id}', [ContentController::class, 'updateLesson'], [ValidIdMiddleware::class]);
+
 $dino->router->delete('/api/lesson/delete/{id}', [ContentController::class, 'deleteCourse'], [ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
 
 //administración de categoria

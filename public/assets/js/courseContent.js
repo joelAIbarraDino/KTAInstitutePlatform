@@ -305,6 +305,20 @@
                 return;
             }
 
+            if(modeEdit){
+                const objectLesson = {
+                    id_lesson:lesson.id_lesson,
+                    name:newNameLesson,
+                    description:newDescription,
+                    id_video:newIDVideo,
+                    id_module:id_module
+                };
+                
+                updateLesson(objectLesson);
+                console.log("actualizando modulo");
+                return;
+            }
+            
             const objectLesson = {
                 name:newNameLesson,
                 description:newDescription,
@@ -312,12 +326,6 @@
                 id_module:id_module
             };
 
-            if(modeEdit){
-                //updateLesson(module, lesson);
-                console.log("actualizando modulo");
-                return;
-            }
-            
             addLesson(objectLesson);
         });
 
@@ -411,7 +419,7 @@
             
             setTimeout(() => {
                 modalWindow.remove();
-            }, 550);
+            }, 0);
 
             //actualizamos DOM
             const newLesson = {
@@ -427,6 +435,76 @@
                 if(module.id_module == id_module){
                     module.lessons = [...module.lessons, newLesson]
                 }
+                return module;
+            });
+
+            showModules();
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function updateLesson(lesson) {
+        const {id_lesson, name, description, id_video, id_module} = lesson;
+
+        try {
+
+            const url = `/api/lesson/update/${id_lesson}`;
+
+            const request = await fetch(url, {
+                method:"PUT",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    description: description,
+                    id_video:id_video
+                })
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                Swal.fire({
+                    icon: "error",
+                    title: "Ha ocurrido un error",
+                    text: response.message,
+                });
+                return;
+            }
+
+            //mostramos alerta de confirmación
+            Swal.fire({
+                icon: "success",
+                title: "Registro exitoso",
+                text: response.message,
+            });
+
+            //cerramos modal
+            const form = document.querySelector(".modal__form");
+            const modalWindow = document.querySelector(".modal");
+            form.classList.add("modal-close");
+            
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 0);
+
+            //sincronizo objeto modulos 
+            modules = modules.map(module => {
+                if(module.id_module == id_module){
+                    module.lessons = module.lessons.map(lesson =>{
+                        if(lesson.id_lesson == id_lesson){
+                            lesson.name = name,
+                            lesson.description = description
+                            lesson.id_video = id_video
+                        }
+                        return lesson;
+                    });
+                }
+
                 return module;
             });
 
@@ -690,7 +768,6 @@
             });
 
             showModules();
-            console.log(modules);
 
         } catch (error) {
             console.log(error);

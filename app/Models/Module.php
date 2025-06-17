@@ -26,12 +26,12 @@ class Module extends Model {
 
     public function validateAPI(){
         if(!$this->name)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar un nombre al modulo']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar un nombre al modulo'], 400);
 
         if(!$this->order_module)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar el orden del modulo']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar el orden del modulo'], 400);
 
         if(!$this->id_course)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar a que curso pertenece']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar a que curso pertenece'], 400);
     }
 }

@@ -202,19 +202,18 @@ class ContentController{
         try {
             $module = Module::find($id);
             $dataSend = Request::getBody();
+
             $module->order_module = $dataSend['order_module'];
 
-            //validamos que no nos hayan enviado un nombre vacio
-            if(!$module->order_module)
-                Response::json(['ok'=>false,'message'=>'El ordern de modulo es obligatorio'], 400);
+            $module->validateAPI();
 
             //guardamos los cambios
             $rowAffected = $module->save();
 
             if($rowAffected === 0)
-                Response::json(['ok'=>false,'message'=>'Error al actualizar el orden del modulo, intente mas tarde', 'recibido'=>$module], 404);
+                Response::json(['ok'=>false,'message'=>'Error al actualizar el orden del modulo, intente mas tarde'], 404);
 
-            Response::json(['ok'=>true,'message'=>'Orden actualizado actualizado con exito']);    
+            Response::json(['ok'=>true,'message'=>'Orden actualizado actualizado con exito']);
         } catch (Exception $e) {
             Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
@@ -261,7 +260,7 @@ class ContentController{
 
     public static function createLesson(int $id){
         if(!Request::isPOST())
-            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+            Response::json(['ok'=>true,'message'=>"Método no soportado"], 404);
 
         try {
             $lesson = new Lesson;
@@ -296,6 +295,32 @@ class ContentController{
             Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     
+    }
+
+    public static function updateLesson(int $id){
+        if(!Request::isPUT())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"], 404);
+
+        try {
+            $lesson = Lesson::find($id);
+            $dataSend = Request::getBody();
+
+            $lesson->name = $dataSend['name'];
+            $lesson->description = $dataSend['description'];
+            $lesson->id_video = $dataSend['id_video'];
+
+            $lesson->validateAPI();
+
+            $rowAffected = $lesson->save();
+
+            if($rowAffected === 0)
+                Response::json(['ok'=>false,'message'=>'Error al actualizar la lección, intente mas tarde'], 404);
+
+            Response::json(['ok'=>true,'message'=>'Lección actualizada con exito']);
+        } catch (Exception $e) {
+            Response::json(['ok'=>false, 'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+        
     }
 
     public static function deleteCourse(int $id){

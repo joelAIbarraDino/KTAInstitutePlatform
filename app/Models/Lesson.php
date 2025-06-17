@@ -31,19 +31,19 @@ class Lesson extends Model {
     public function validateAPI(){
 
         if(!$this->name)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar un nombre a la lección']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar un nombre a la lección'], 400);
 
         if(!$this->description)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar la descripción de la lección']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar la descripción de la lección'], 400);
 
         if(!$this->id_video)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar el ID del video']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar el ID del video'], 400);
 
         if(!$this->order_lesson)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar el orden de la lección']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar el orden de la lección'], 400);
 
         if(!$this->id_module)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar a que modulo pertenece']);
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar a que modulo pertenece'], 400);
 
     }
 }
