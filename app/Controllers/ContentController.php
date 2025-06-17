@@ -7,6 +7,7 @@ use DinoEngine\Http\Request;
 use App\Models\Lesson;
 use App\Models\Material;
 use App\Models\Module;
+use Exception;
 
 class ContentController{
 
@@ -76,6 +77,8 @@ class ContentController{
     }
 
     public static function content(string $id){
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
         Response::render('/admin/contenido-curso/course-content', [
             'nameApp'=> APP_NAME,
@@ -84,8 +87,10 @@ class ContentController{
     }
 
     public static function getModules(int $id){
-        if(Request::isGET()){
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
+        try {
             $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
             $modulesLessons = [];
             $lessonsMaterial = [];
@@ -122,14 +127,17 @@ class ContentController{
 
             Response::json([
                 'modules'=>$modulesLessons,
-            ]);
+            ]);      
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
 
     public static function createModule(int $id){
+        if(!Request::isPOST())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
         
-        //solo acepta peticiones POST
-        if(Request::isPOST()){
+        try {
             $module = new Module;
 
             //sincronizamos datos enviados por js para nuevo modulo
@@ -156,13 +164,17 @@ class ContentController{
                 'id'=>$id,
                 'order_module'=>$currentOrder,
                 'message'=>'Modulo registrado con exito'
-            ]);
+            ]);                  
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
 
     public static function updateNameModule(int $id){
-        if(Request::isPATCH()){
+        if(!Request::isPATCH())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
+        try {
             $module = Module::find($id);
             $dataSend = Request::getBody();
             $module->name = $dataSend['name'];
@@ -178,12 +190,16 @@ class ContentController{
                 Response::json(['ok'=>false,'message'=>'Error al actualizar el nombre, intente mas tarde'], 404);
 
             Response::json(['ok'=>true,'message'=>'Nombre actualizado con exito']);
-        }
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }    
     }
 
     public static function updateOrderModule(int $id){
-        if(Request::isPATCH()){
+        if(!Request::isPATCH())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
+        try {
             $module = Module::find($id);
             $dataSend = Request::getBody();
             $module->order_module = $dataSend['order_module'];
@@ -198,13 +214,17 @@ class ContentController{
             if($rowAffected === 0)
                 Response::json(['ok'=>false,'message'=>'Error al actualizar el orden del modulo, intente mas tarde', 'recibido'=>$module], 404);
 
-            Response::json(['ok'=>true,'message'=>'Orden actualizado actualizado con exito']);
+            Response::json(['ok'=>true,'message'=>'Orden actualizado actualizado con exito']);    
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
 
     public static function deleteModule(int $id){
-        
-        if(Request::isDELETE()){
+        if(!Request::isDELETE())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        try {
             //busco el modulo que quiero eliminar
             $module = Module::find($id);
 
@@ -234,13 +254,16 @@ class ContentController{
 
             //regreso respuesta para ver que me regresa el querySQL
             Response::json(['ok'=>true,'message'=>$respuesta]);
-
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
 
     public static function createLesson(int $id){
+        if(!Request::isPOST())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
-        if(Request::isPOST()){
+        try {
             $lesson = new Lesson;
             
             //sincronizamos datos enviados por js para la nueva clase
@@ -269,7 +292,48 @@ class ContentController{
                 'order_lesson'=>$currentOrder,
                 'message'=>'Lección registrada con exito'
             ]);
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
+    
+    }
 
+    public static function deleteCourse(int $id){
+        if(!Request::isDELETE())
+            Response::json(['ok'=>false,'message'=>"Método no soportado"]);
+
+        try {
+            $lesson = Lesson::find($id);
+
+            //guardo el orden del modulo que tenia y el curso al que pertenece
+            $order_lesson = $lesson->order_lesson;
+            $id_module = $lesson->id_module;
+
+            //verifico si la clase tiene material
+            $materialBelongsTolesson = Material::belongsTo('id_lesson', $lesson->id_lesson);
+
+            if(!is_null($materialBelongsTolesson))
+                Response::json(['ok'=>false,'message'=>'Esta lección tiene material agregados, elimine el material para eliminar esta lección'], 409);
+
+            //elimino el modulo
+            $rowAffected = $lesson->delete();
+
+            //en caso de que no se elimine cancelo el siguiente paso
+            if($rowAffected === 0)
+                Response::json(['ok'=>false,'message'=>'Error al eliminar la lección, intente mas tarde'], 404);
+
+            
+            //actualizo el orden en los siguientes pasos
+            $respuesta = Lesson::querySQL("UPDATE lesson set order_lesson = order_lesson - 1 where order_lesson > :order_lesson AND id_module = :id_module", [
+                ':order_lesson'=>$order_lesson,
+                ':id_module'=>$id_module
+            ]);
+
+            //regreso respuesta para ver que me regresa el querySQL
+            Response::json(['ok'=>true,'message'=>$respuesta]);                  
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    
     }
 }

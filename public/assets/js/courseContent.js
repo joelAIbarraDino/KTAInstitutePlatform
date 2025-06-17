@@ -487,6 +487,9 @@
         btnEliminar.className = 'module__btn module__btn--eliminar';
         btnEliminar.setAttribute('data-id', id_module);
         btnEliminar.innerHTML = "<i class='bx bx-trash'></i>";
+        btnEliminar.onclick = function(){
+            alertDeleteLesson({...lesson});
+        }
 
         // Añadir botones al lessonRight
         lessonRight.appendChild(btnEditar);
@@ -606,6 +609,88 @@
             });
 
             showModules();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function alertDeleteLesson(lesson){
+        const {name} = lesson
+
+        Swal.fire({
+            title: "Estas seguro que quieres eliminar esta lección",
+            text: "Este proceso no se puede revertir",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, eliminalo"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: `Estas por eliminar la clase "${name}"`,
+                    text: "¿Seguro que quiere eliminar la clase seleccionada?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Si, eliminalo"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteLesson(lesson);
+                    }       
+                });
+            }
+                
+        });
+    }
+
+    async function deleteLesson(lesson) {
+        const {id_lesson, order_lesson, id_module} = lesson;
+
+        try {
+            const url = `/api/lesson/delete/${id_lesson}`;
+
+            const request = await fetch(url, {
+                method: 'DELETE'
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                Swal.fire({
+                    icon: "error",
+                    title: "Ha ocurrido un error",
+                    text: response.message,
+                });
+                return;
+            }
+
+            Swal.fire({
+                icon: "success",
+                title: "Lección eliminada con exito",
+                text: response.message,
+            });
+
+            //sincronizo objeto modulos 
+            modules = modules.map(module => {
+                if(module.id_module == id_module){
+                    const updatedLessons = module.lessons.filter(lesson => lesson.id_lesson != id_lesson)
+
+                    module.lessons = updatedLessons.map(lesson =>{
+                        if(lesson.order_lesson > order_lesson){
+                            lesson.order_lesson = lesson.order_lesson - 1;
+                        }
+                        return lesson;
+                    });
+                }
+
+                return module;
+            });
+
+            showModules();
+            console.log(modules);
 
         } catch (error) {
             console.log(error);

@@ -13,7 +13,7 @@ class ValidIdMiddleware implements HandleInterface{
         $id = Request::getUrlParams();
 
         if(!is_numeric($id['id']))
-            Response::json(['ok'=>false,'message'=>'Invalid ID param'], 404);
+            Response::json(['ok'=>false,'message'=>'Invalid ID param'], 400);
         
         $next();
     }
