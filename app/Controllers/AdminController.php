@@ -2,102 +2,121 @@
 
 namespace App\Controllers;
 
+use App\Classes\Auth;
 use App\Classes\Helpers;
 use App\Models\Admin;
-use App\Models\Category;
-use App\Models\CourseView;
-use App\Models\EnrollmentView;
-use App\Models\Slidebar;
-use App\Models\Student;
-use App\Models\Teacher;
+use DinoEngine\Exceptions\QueryException;
 use DinoEngine\Http\Response;
+use DinoEngine\Http\Request;
 
 class AdminController{
-    
-    public static function index(): void{
 
-        Response::render('admin/index', [
-            'nameApp'=>APP_NAME, 
-            'title' => 'Admin KTA',
-            'bienvenida' => Helpers::saludo()
+    public static function create():void{
+
+        $alerts = [];
+        $admin = new Admin;
+
+
+        if(Request::isPOST()){
+            $alerts = [];
+            $datosEnviados = Request::getPostData();
+
+            $admin->sincronize($datosEnviados);
+            $alerts = $admin->validate();
+            $alerts = $admin->adminExists();
+
+            if(empty($alerts)){
+                //encripto contraseña
+                $admin->password = Auth::encriptPassword($admin->password);
+                
+                //guardo registro
+                $id = $admin->save();
+                
+                if($id){
+                    Helpers::setSwalAlert('success', '¡Genial!', 'Administrador registrado con exito', 3000);
+                    Response::redirect('/kta-admin/administradores');
+                }else{
+                    $alerts['error'][] = 'error al registrar el administrador, intente mas tarde';
+                }
+
+            }
+        }
+
+        Response::render('/admin/administradores/nuevo', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Nuevo maestro',
+            'admin'=>$admin,
+            'alerts'=>$alerts
+        ]);
+    }
+
+    public static function update($id):void{
+
+        $admin = Admin::find($id);
+        $alerts = [];
+
+        if(!$admin)
+            Response::redirect('/kta-admin/administradores');
+
+        if(Request::isPOST()){
+            $alerts = [];
+            $datosEnviados = Request::getPostData();
+
+            $admin->name = $datosEnviados['name'];
+            $admin->email = $datosEnviados['email'];
+
+            $alerts = $admin->validateUpdate();
+
+            if(empty($alerts)){
+                
+                if(!empty($_POST['password'])){
+                    $admin->password = $datosEnviados['password'];
+                    $admin->password = Auth::encriptPassword($_POST['password']);
+                }
+                
+                //guardo registro
+                $id = $admin->save();
+                
+                if($id){
+                    Helpers::setSwalAlert('success', '¡Genial!', 'Administrador actualizado con exito', 3000);
+                    Response::redirect('/kta-admin/administradores');
+                }else{
+                    $alerts['error'][] = 'error al actualizar el administrador, intente mas tarde';
+                }
+            }
+            
+        }
+
+        Response::render('/admin/administradores/update', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Actualizar administrador',
+            'admin'=>$admin,
+            'alerts'=>$alerts
         ]);
 
     }
 
-    public static function courses():void{
-
-        $courses = CourseView::all();
-
-        Response::render('admin/cursos/index', [
-            'nameApp' => APP_NAME,
-            'title' => 'Admin cursos',
-            'courses'=>$courses
-        ]);
-
-    }
-
-    public static function categories():void{
+    public static function delete($id):void{
         
-        $categories = Category::all();
+        if(Request::isDELETE()){
+            try {
+                
+                $admin = Admin::find($id);
 
-        Response::render('admin/categorias/index', [
-            'nameApp' => APP_NAME,
-            'title' => 'Admin categorias',
-            'categories'=>$categories
-        ]);
-    }
+                if(!$admin)
+                    Response::json(['ok'=>false]);
 
-    public static function slidebar():void{
-        $slidebar = Slidebar::all();
+                $rows = $admin->delete();
+                
+                //si no hubo filas afectadas retorno false
+                if($rows === 0)
+                    Response::json(['ok'=>false]);
+            
+                Response::json(['ok'=>true]);
 
-        Response::render('admin/slidebar/index', [
-            'nameApp' => APP_NAME,
-            'title' => 'Admin slidebar',
-            'slidebar'=>$slidebar
-        ]);
-    }
-
-    public static function enrollment():void{
-
-        $enrollment = EnrollmentView::all();
-
-        Response::render('admin/enrollment/index', [
-            'nameApp' => APP_NAME,
-            'title' => 'Admin inscripciones',
-            'enrollment' => $enrollment
-        ]);
-    }
-
-    public static function teachers():void{
-        
-        $teachers = Teacher::all();
-
-        Response::render('admin/maestros/index', [
-            'nameApp' => APP_NAME,
-            'title' => 'Admin maestros',
-            'teachers' => $teachers
-        ]);
-    }
-
-    public static function students():void{
-        
-        $students = Student::all();
-
-        Response::render('admin/estudiantes/index', [
-            'nameApp' => APP_NAME,
-            'title' => 'Admin estudiantes',
-            'students' => $students
-        ]);
-    }
-
-    public static function admins():void{
-        
-        $admins = Admin::all();
-
-        Response::render('admin/administradores/index', [
-            'nameApp' => APP_NAME,
-            'title' => 'Admin de super usuarios',
-            'admins' => $admins
-        ]);
+            } catch (QueryException) {
+                Response::json(['ok'=>false]);
+            }
+        }
     }
 }
