@@ -59,6 +59,21 @@
       transition: height 0.4s ease;
       color: v.$blanco;
     }
+
+    &__answer{
+      width: 95%;
+      margin: 2rem;
+      height: 2rem;
+      padding: 1rem;
+      resize: none;
+      outline: none;
+      border-radius: .5rem;
+      border: solid v.$border_input .1rem;
+
+      &:focus{
+        border: solid v.$dorado .1rem;
+      }
+    }
   
     &__vacio{
       text-align: center;

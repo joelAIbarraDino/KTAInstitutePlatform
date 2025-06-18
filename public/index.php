@@ -11,6 +11,7 @@ use App\Middlewares\ExistsTeacherMiddleware;
 use App\Middlewares\ExistsModuleMiddleware;
 use App\Middlewares\ExistsCourseMiddleware;
 use App\Middlewares\ExistsLessonMiddleware;
+use App\Middlewares\ExistsFaqMiddleware;
 use App\Middlewares\ValidIdMiddleware;
 
 use App\Controllers\DashboardController;
@@ -21,10 +22,11 @@ use App\Controllers\ContentController;
 use App\Controllers\StudentController;
 use App\Controllers\TeacherController;
 use App\Controllers\CourseController;
-use App\Controllers\AdminController;
-use App\Controllers\LessonController;
 use App\Controllers\ModuleController;
+use App\Controllers\LessonController;
 use App\Controllers\PagesController;
+use App\Controllers\AdminController;
+use App\Controllers\FaqController;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -93,7 +95,7 @@ $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delet
 
 //administracion de contenido de curso
 $dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content'], [ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
-// $dino->router->get('/kta-admin/vimeo-test', [ContentController::class, 'testVimeo']);
+$dino->router->get('/kta-admin/course-faq/{id}', [ContentController::class, 'faq'], [ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 
 //administración de modulos de curso
 $dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [ValidIdMiddleware::class]);
@@ -111,6 +113,16 @@ $dino->router->post('/api/lesson/create/{id}', [LessonController::class, 'create
 $dino->router->put('/api/lesson/update/{id}', [LessonController::class, 'update'], [ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
 
 $dino->router->delete('/api/lesson/delete/{id}', [LessonController::class, 'delete'], [ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
+
+//administración de FAQ de curso
+$dino->router->get('/api/faq/{id}', [ContentController::class, 'getFAQ'], [ValidIdMiddleware::class]);
+
+$dino->router->post('/api/faq/create/{id}', [FaqController::class, 'create'], [ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
+
+$dino->router->patch('/api/faq/question/{id}', [FaqController::class, 'updateQuestion'], [ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
+$dino->router->patch('/api/faq/answer/{id}', [FaqController::class, 'updateAnswer'], [ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
+
+$dino->router->delete('/api/faq/delete/{id}', [FaqController::class, 'delete'], [ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
 
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create']);

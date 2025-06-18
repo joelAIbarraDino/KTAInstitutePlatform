@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Course;
+use App\Models\FAQ;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\Lesson;
@@ -77,7 +78,7 @@ class ContentController{
     
     }
 
-    public static function content(string $id){
+    public static function content(int $id):void{
 
         $course = Course::find($id);
 
@@ -91,7 +92,7 @@ class ContentController{
         ]);
     }
 
-    public static function getContent(int $id){
+    public static function getContent(int $id):void{
         if(!Request::isGET())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
@@ -136,6 +137,35 @@ class ContentController{
         } catch (Exception $e) {
             Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
+    }
+
+    public static function getFAQ(int $id):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        try {
+            $faq = FAQ::belongsTo('id_course', $id)??[];
+            
+            Response::json([
+                'faq'=>$faq
+            ]);      
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+    public static function faq(int $id):void{
+
+        $course = Course::find($id);
+
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        Response::render('/admin/contenido-curso/faq', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Preguntas frecuentes',
+            'course'=>$course
+        ]);
     }
 
 }

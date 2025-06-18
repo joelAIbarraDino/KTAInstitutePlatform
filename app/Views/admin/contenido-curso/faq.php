@@ -17,30 +17,20 @@
 
         <div class="course-options tabs__container">
             <div class="course-options__links">
-                <a class="course-options__tab course-options__tab--active" href="/kta-admin/course-content/<?=$course->id_course?>"><i class='bx bxs-videos'></i> Contenido</a>
-                <a class="course-options__tab" href="/kta-admin/course-faq/<?=$course->id_course?>"><i class='bx bx-question-mark' ></i> FAQ's</a>
+                <a class="course-options__tab" href="/kta-admin/course-content/<?=$course->id_course?>"><i class='bx bxs-videos'></i> Contenido</a>
+                <a class="course-options__tab course-options__tab--active" href="/kta-admin/course-faq/<?=$course->id_course?>"><i class='bx bx-question-mark' ></i> FAQ's</a>
                 <a class="course-options__tab" href="/kta-admin/course-quiz/<?=$course->id_course?>"><i class='bx bx-list-check' ></i> Examen</a>
             </div>
         </div>
 
         <div class="form tabs__container">
-            <legend class="form__title">Contenido de curso</legend>
-            <p class="form__instructions">Agrega los modulos y clases que tendra el nuevo curso</p>
+            <legend class="form__title">Preguntas frecuentes de curso</legend>
 
-            <div class="form__input new-module__form">
-                <input 
-                    type="text" 
-                    id="new_module_name" 
-                    placeholder="Nombre del módulo" 
-                    class="field" 
-                />
-                
-                <button id="add_module_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
+            <div class="faq-control">
+                <p class="faq-control__instructions">Edite las preguntas y respuestas presionando enter para guardar su pregunta</p>
+                <button id="add_FAQ_btn" class="faq-control__btn-add"><i class='bx bxs-message-rounded-add'></i> FAQ</button>
             </div>
-            
-            <legend>Mueva los modulos al orden deseado</legend>
-            
-            <div id="modules-container" class="modules"></div>
+            <div id="faq-container" class="modules"></div>
 
         </div>
 
@@ -51,8 +41,7 @@
     $scripts = '
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
-        <script src="/assets/js/courseContent.js"></script>
+        <script src="/assets/js/faq.js"></script>
     ';
 ?>
