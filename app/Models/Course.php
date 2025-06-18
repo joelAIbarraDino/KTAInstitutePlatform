@@ -42,7 +42,7 @@ class Course extends Model {
     public int $id_category;
     public int $id_teacher;
 
-    public const PRIVACY = ['Editando', 'Privado', 'Público'];
+    public const PRIVACY = ['Editando', 'Privado', 'Público', 'Desactivado'];
 
     public function __construct($args = []){
 

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Course;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\Lesson;
@@ -77,12 +78,16 @@ class ContentController{
     }
 
     public static function content(string $id){
+
+        $course = Course::find($id);
+
         if(!Request::isGET())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
         Response::render('/admin/contenido-curso/course-content', [
             'nameApp'=> APP_NAME,
-            'title'=>'Contenido de curso'
+            'title'=>'Contenido de curso',
+            'course'=>$course
         ]);
     }
 

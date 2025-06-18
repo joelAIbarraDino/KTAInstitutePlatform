@@ -1,0 +1,119 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.course-info{
+    -webkit-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    -moz-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    background-color: v.$negro;
+    border-radius: 1rem;
+    padding: 3rem;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6rem;
+    
+     @include m.tablet{
+        flex-direction: row;
+        align-items: start;
+     }
+
+    &__thumbnails{
+        width: 30rem;
+        border-radius: .5rem;
+    }
+
+    &__name{
+        color: v.$blanco;
+    }
+
+    &__status{
+        padding: 1rem;
+        border-radius: .5rem;
+        align-items: center;
+        display: flex;
+        gap: .5rem;
+        color: v.$blanco;
+        font-weight: 700;
+        text-align: center;
+        border: none;
+        transition-property: background-color;
+        transition-duration: .3s;
+
+        &.Editando{
+            background-color: v.$amarillo_lesly;
+
+            &:hover{
+                background-color: rgba(v.$amarillo_lesly, 0.8);
+                cursor: pointer;
+            }
+        }
+
+        &.Privado, &.Desactivado{
+            background-color: v.$rojo;
+
+            &:hover{
+                background-color: rgba(v.$rojo, 0.8);
+                cursor: pointer;
+            }
+        }
+
+        &.Público{
+            background-color: v.$verde;
+
+            &:hover{
+                background-color: rgba(v.$verde, 0.8);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.course-options{
+    // -webkit-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    // -moz-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    // box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    // background-color: v.$blanco;
+    // border-radius: 1rem;
+    padding: 1rem;
+    margin: 3rem auto 1rem auto;
+    
+    &__title{
+        margin: 0;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        font-weight: v.$black;
+    }
+
+    &__links{
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__tab{
+        color: v.$dorado;
+        font-weight: v.$black;
+        padding: 1rem;
+        border: .1rem solid v.$dorado;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        border-radius: .5rem;
+        transition: all .5s ease;
+
+        &:hover{
+            background-color: v.$dorado;
+            color: v.$blanco;
+            transform: translateY(-.3rem);
+            cursor: pointer;
+        }
+
+        &--active{
+            background-color: v.$dorado;
+            color: v.$blanco;
+        }
+    }
+}
