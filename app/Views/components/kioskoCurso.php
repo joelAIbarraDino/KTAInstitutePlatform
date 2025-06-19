@@ -9,9 +9,9 @@
 
                 <?php foreach($courses as $course):?>
 
-
-                    <?php include __DIR__.'/courseCard.php'; ?>
-                
+                    <?php if($course->privacy == 'Público'):?>
+                        <?php include __DIR__.'/courseCard.php';?>
+                    <?php endif;?>
                 <?php endforeach;?>
                 
             </div>

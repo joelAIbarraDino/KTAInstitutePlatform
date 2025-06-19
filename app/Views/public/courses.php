@@ -33,9 +33,9 @@
         
         <div class="cursos-container__grid width-80">
             <?php foreach($courses as $course):?>
-                
-                <?php include __DIR__.'/../components/courseCard.php'; ?>
-
+                <?php if($course->privacy == 'Público'):?>
+                    <?php include __DIR__.'/../components/courseCard.php'; ?>
+                <?php endif;?>
             <?php endforeach;?>
         </div>
     </div>

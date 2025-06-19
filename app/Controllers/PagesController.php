@@ -9,7 +9,6 @@ use App\Models\Lesson;
 use App\Models\Module;
 use App\Models\Slidebar;
 use App\Models\Teacher;
-use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 
 class PagesController{

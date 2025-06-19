@@ -27,6 +27,7 @@ use App\Controllers\LessonController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
 use App\Controllers\FaqController;
+use App\Middlewares\PublicCourseMiddleware;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -51,7 +52,7 @@ $dino = new Dino(dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 
 //public zone
 $dino->router->get('/', [PagesController::class, 'index']);
-$dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails']);
+$dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails'], [new PublicCourseMiddleware('/')]);
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 $dino->router->get('/curso/payment/{id}', function($id){
     echo 'proceso de pago de curso: '. $id;
