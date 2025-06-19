@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Course;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\Lesson;
@@ -21,6 +22,12 @@ class ModuleController{
             $dataPost = Request::getPostData();
             $module->sincronize($dataPost);
 
+            //verificamos si el curso esta publicado
+            $course = Course::find($id);
+
+            if($course->privacy == Course::PRIVACY[2])
+               Response::json(['ok'=>false,'message'=>'El curso esta publicado, ponga en privado el curso para agregar mas contenido'], 409);
+            
             //obtenemos el ultimo orden actual que tenemos registrado en la BD
             $currentOrder = Module::max('order_module', 'id_course', '=', $id);
             $currentOrder+=1;

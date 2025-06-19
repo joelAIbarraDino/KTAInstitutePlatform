@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Course;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\FAQ;
@@ -67,15 +68,15 @@ class FaqController{
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
         try {
-            $module = FAQ::find($id);
+            $faq = FAQ::find($id);
             $dataSend = Request::getBody();
 
-            $module->answer = $dataSend['answer'];
+            $faq->answer = $dataSend['answer'];
 
-            $module->validateAPI();
+            $faq->validateAPI();
 
             //guardamos los cambios
-            $rowAffected = $module->save();
+            $rowAffected = $faq->save();
 
             if($rowAffected === 0)
                 Response::json(['ok'=>false,'message'=>'Error al actualizar la respuesta de la pregunta, intente mas tarde'], 404);
@@ -93,6 +94,10 @@ class FaqController{
         try {
             //busco el modulo que quiero eliminar
             $faq = FAQ::find($id);
+            $course = Course::find($faq->id_course);
+            
+            if($course->privacy == Course::PRIVACY[2])
+                Response::json(['ok'=>false,'message'=>'El curso esta publicado, ponga en privado el curso para eliminar esta pregunta'], 409);
 
             //elimino el modulo
             $rowAffected = $faq->delete();

@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Models\Course;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\Lesson;
 use App\Models\Material;
+use App\Models\Module;
 use Exception;
 
 class LessonController{
@@ -81,6 +83,8 @@ class LessonController{
 
         try {
             $lesson = Lesson::find($id);
+            $module = Module::find($lesson->id_module);
+            $course = Course::find($module->id_course);
 
             //guardo el orden del modulo que tenia y el curso al que pertenece
             $order_lesson = $lesson->order_lesson;
@@ -91,6 +95,14 @@ class LessonController{
 
             if(!is_null($materialBelongsTolesson))
                 Response::json(['ok'=>false,'message'=>'Esta lección tiene material agregados, elimine el material para eliminar esta lección'], 409);
+
+            //verifico si el curso esta publicado
+            $privacy = $course->privacy;
+
+            if($privacy === Course::PRIVACY[2])
+                Response::json(['ok'=>false,'message'=>'El curso esta publicado, ponga en privado el curso para eliminar esta lección'], 409);
+
+            //verifico si el curso ya fue tomado por alguien
 
             //elimino el modulo
             $rowAffected = $lesson->delete();

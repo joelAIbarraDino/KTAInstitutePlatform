@@ -8,7 +8,11 @@ use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\FAQ;
+use App\Models\Lesson;
+use App\Models\Module;
 use App\Models\Teacher;
+use Exception;
 
 class CourseController{
 
@@ -120,6 +124,50 @@ class CourseController{
             'categories' => $categories,
             'alerts'=>$alerts
         ]);
+    }
+
+    public static function updatePrivacy(int $id):void{
+        if(!Request::isPATCH())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        try {
+            $course = Course::find($id);
+            $dataSend = Request::getBody();
+            $course->privacy = $dataSend['privacy'];
+
+            //validamos que no nos hayan enviado un nombre vacio
+            if(!$course->privacy)
+                Response::json(['ok'=>false,'message'=>'El nivel de privacidad es obligatorio'], 400);
+
+            //verificamos que el curso tenga contenido
+            $modules = Module::belongsTo('id_course', $course->id_course)??[];
+            
+            if(empty($modules))
+                Response::json(['ok'=>false,'message'=>'El curso no tiene modulos agregados para poder publicarse'], 400);
+            
+            foreach($modules as $module){
+                $lessions = Lesson::belongsTo('id_module', $module->id_module)??[];
+
+                if(empty($lessions))
+                    Response::json(['ok'=>false,'message'=>'El modulo "'. $module->name .'" no tiene lecciones agregadas para poder publicarse'], 400);
+            }
+
+            
+            $faq = FAQ::belongsTo('id_course', $course->id_course)??[];
+
+            if(empty($faq))
+                Response::json(['ok'=>false,'message'=>'El curso no tiene preguntas frecuentes para poder publicarse'], 400);
+
+            //guardamos los cambios
+            $rowAffected = $course->save();
+
+            if($rowAffected === 0)
+                Response::json(['ok'=>false,'message'=>'Error al actualizar la privacidad del curso, intente mas tarde'], 404);
+
+            Response::json(['ok'=>true,'message'=>'Privacidad actualizada con exito']);
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }    
     }
 
     public static function delete($id):void{

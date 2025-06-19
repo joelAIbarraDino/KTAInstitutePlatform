@@ -5,6 +5,7 @@
     const modulesContainer = document.querySelector("#modules-container");
     const moduleName = document.querySelector("#new_module_name");
     const courseID = getCourseID();
+    const containerAlert = document.querySelector("#container-alert");
 
     let modules = [];
     
@@ -69,20 +70,14 @@
         inputName.value = module.name;
         inputName.id = `name-module-${module.id_module}`;
         inputName.dataset.id=`${module.id_module}`;
-        inputName.onkeydown = function (e){
-            //capitalizo primera letra del nombre del modulo
-            e.target.value = capitalize(e.target.value);
+        inputName.onkeydown = (e) =>{ e.target.value = capitalize(e.target.value); }
+        inputName.addEventListener('blur', ()=>{
 
-            //solo guarda cuando presionamos enter
-            if(e.key != "Enter")
-                return;
-
-            //verifico si el nombre actual es diferente al valor ingresado
             if(!isModuleNameChanged(inputName))
                 return;
 
             updateName({...module}, inputName.value);
-        }
+        });
 
         nameContainer.appendChild(icon);
         nameContainer.appendChild(inputOrder);
@@ -425,6 +420,7 @@
             const newLesson = {
                 id_lesson:response.id,
                 name:name,
+                description:description,
                 id_video:id_video,
                 order_lesson:response.order_lesson,
                 id_module:id_module,
@@ -592,6 +588,9 @@
 
         try {
             const url = `/api/module/name/${id_module}`;
+            
+            //coloco icono de que estamos guardando cambios
+            changeAlert('inProcess', 'Guardando cambios...');
 
             const request = await fetch(url, {
                 method: 'PATCH',
@@ -610,15 +609,12 @@
                     title: "Ha ocurrido un error",
                     text: response.message,
                 });
+                changeAlert('error', 'Error al guardar cambios');
                 return;
             }
 
-            Swal.fire({
-                icon: "success",
-                title: "Nombre actualizado con exito",
-                text: response.message,
-            });
-
+            //cambio el icono de que se guardaron los cambios un tiempo
+            changeAlert('success', 'Cambios guardados');
             //sincronizo objeto modulos 
             modules = modules.map(module =>{
                 if(module.id_module === id_module){
@@ -627,7 +623,10 @@
 
                 return module;
             });
+            resetAlert();
             showModules();
+
+            //vuelvo a mostrar el icono de que estoy esperando cambios a guardar
 
         } catch (error) {
             console.log(error);
@@ -900,6 +899,9 @@
         //obtengo todos los modulos que tengo en el DOM despues de arrastrar el elemento
         const modulesDOM = document.querySelectorAll(".module__order");
         
+        //coloco icono de que estamos guardando cambios
+        changeAlert('inProcess', 'Guardando cambios...');
+        
         modulesDOM.forEach(async (moduleDOM, index) =>{
             //obtengo el ID 
             const id = moduleDOM.dataset.id;
@@ -929,9 +931,13 @@
 
         });
 
+        //cambio el icono de que se guardaron los cambios un tiempo
+        changeAlert('success', 'Cambios guardados');
+        
         //reordeno objeto modules
         modules.sort((a, b) => a.order_module - b.order_module);
         //regenero el DOM con las nuevas posiciones guardas
+        resetAlert();
         showModules();
     }
 
@@ -1049,6 +1055,48 @@
     function clearElementContainer(element){
         while(element.firstChild)
             element.removeChild(element.firstChild);
+    }
+
+    function changeAlert(type, message = ""){
+        
+        containerAlert.className = "";
+
+        switch(type){
+            case "success":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--correct");
+                containerAlert.innerHTML = `<i class='bx bx-cloud-upload' ></i> ${message}`;
+            break;
+
+            case "inProcess":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--in-process");
+                containerAlert.innerHTML = `<i class='bx bxs-cloud-upload bx-flashing' ></i> ${message}`;
+            break;
+
+            case "error":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--error");
+                containerAlert.innerHTML = `<i class='bx bx-error-circle' ></i> ${message}`;
+            break;
+
+            case "warning":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--warning");
+                containerAlert.innerHTML = `<i class='bx bx-error-circle' ></i> ${message}`;
+            break;
+
+            case "waiting":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--waiting");
+                containerAlert.innerHTML = `<i class='bx bx-cloud' ></i>`;
+            break;
+
+            default:
+                containerAlert.classList.add("course-info__saved", "course-info__saved--waiting");
+                containerAlert.innerHTML = `<i class='bx bx-check-circle' ></i> ${message}`;
+        }
+    }
+
+    function resetAlert(){
+        setTimeout(() => {
+            changeAlert('waiting')
+        }, 5000);
     }
 
 })();

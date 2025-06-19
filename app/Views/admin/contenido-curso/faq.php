@@ -7,13 +7,7 @@
             <button class="btn nuevo" id="btn-exit"><i class='bx bx-left-arrow-alt'></i> Salir</button>
         </div>
 
-        <div class="course-info tabs__container">
-            <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="course-info__thumbnails">
-            <div class="course-info__content">
-                <h2 class="course-info__name"><?=$course->name?></h2>
-                <button id="btn-status" class="course-info__status <?=$course->privacy?>" data-id="<?=$course->id_course?>"><i class='bx bx-show'></i> <?=$course->privacy ?></button>
-            </div>
-        </div>
+        <?php include_once __DIR__.'/../../components/contentCourseCard.php'; ?>
 
         <div class="course-options tabs__container">
             <div class="course-options__links">
@@ -24,8 +18,11 @@
         </div>
 
         <div class="form tabs__container">
-            <legend class="form__title">Preguntas frecuentes de curso</legend>
-
+            <div class="new-module__title">
+                <legend class="form__title">Contenido de curso</legend>
+                <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
+            </div>
+            
             <div class="faq-control">
                 <p class="faq-control__instructions">Edite las preguntas y respuestas presionando enter para guardar su pregunta</p>
                 <button id="add_FAQ_btn" class="faq-control__btn-add"><i class='bx bxs-message-rounded-add'></i> FAQ</button>
@@ -42,6 +39,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/menuDashboard.js"></script>
+        <script src="/assets/js/privacyControl.js"></script>
         <script src="/assets/js/faq.js"></script>
     ';
 ?>

@@ -91,6 +91,8 @@ $dino->router->post('/kta-admin/curso/create', [CourseController::class, 'create
 $dino->router->get('/kta-admin/curso/update/{id}', [CourseController::class, 'update']);
 $dino->router->post('/kta-admin/curso/update/{id}', [CourseController::class, 'update']);
 
+$dino->router->patch('/api/curso/privacy/{id}', [CourseController::class, 'updatePrivacy'], [ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
+
 $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete']);
 
 //administracion de contenido de curso

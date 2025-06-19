@@ -7,13 +7,7 @@
             <button class="btn nuevo" id="btn-exit"><i class='bx bx-left-arrow-alt'></i> Salir</button>
         </div>
 
-        <div class="course-info tabs__container">
-            <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="course-info__thumbnails">
-            <div class="course-info__content">
-                <h2 class="course-info__name"><?=$course->name?></h2>
-                <button id="btn-status" class="course-info__status <?=$course->privacy?>" data-id="<?=$course->id_course?>"><i class='bx bx-show'></i> <?=$course->privacy ?></button>
-            </div>
-        </div>
+        <?php include_once __DIR__.'/../../components/contentCourseCard.php'; ?>
 
         <div class="course-options tabs__container">
             <div class="course-options__links">
@@ -24,7 +18,10 @@
         </div>
 
         <div class="form tabs__container">
-            <legend class="form__title">Contenido de curso</legend>
+            <div class="new-module__title">
+                <legend class="form__title">Contenido de curso</legend>
+                <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
+            </div>
             <p class="form__instructions">Agrega los modulos y clases que tendra el nuevo curso</p>
 
             <div class="form__input new-module__form">
@@ -53,6 +50,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
+        <script src="/assets/js/privacyControl.js"></script>
         <script src="/assets/js/courseContent.js"></script>
     ';
 ?>

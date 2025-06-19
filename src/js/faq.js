@@ -3,6 +3,7 @@
     const btnAdd = document.querySelector("#add_FAQ_btn");
     const btnExit = document.querySelector("#btn-exit");
     const FAQContainer = document.querySelector("#faq-container");
+    const containerAlert = document.querySelector("#container-alert");
     const courseID = getCourseID();
 
     let faqs = [];
@@ -52,21 +53,15 @@
         inputQuestion.classList.add('module__name');
         inputQuestion.value = FAQ.question;
         inputQuestion.id = `faq-${FAQ.id_FAQ}`;
-        inputQuestion.dataset.id=`${FAQ.id_FAQ}`;
-        inputQuestion.onkeydown = function (e){
-            //capitalizo primera letra del nombre del modulo
-            e.target.value = capitalize(e.target.value);
-
-            //solo guarda cuando presionamos enter
-            if(e.key != "Enter")
-                return;
-
+        inputQuestion.dataset.id=FAQ.id_FAQ;
+        inputQuestion.onkeydown = (e) => {e.target.value = capitalize(e.target.value);}
+        inputQuestion.addEventListener('blur', ()=>{
             //verifico si el nombre actual es diferente al valor ingresado
             if(!isFAQ_QuestionChanged(inputQuestion))
                 return;
 
             updateQuestion({...FAQ}, inputQuestion.value);
-        }
+        });
 
         nameContainer.appendChild(inputQuestion);
 
@@ -107,20 +102,14 @@
         inputAnswer.value = FAQ.answer;
         inputAnswer.id = `question-faq-${FAQ.answer}`;
         inputAnswer.dataset.id=`${FAQ.id_FAQ}`;
-        inputAnswer.onkeydown = function (e){
-            //capitalizo primera letra del nombre del modulo
-            e.target.value = capitalize(e.target.value);
-
-            //solo guarda cuando presionamos enter
-            if(e.key != "Enter")
-                return;
-
+        inputAnswer.onkeydown = (e)=>{e.target.value = capitalize(e.target.value);}
+        inputAnswer.addEventListener('blur', ()=>{
             //verifico si el nombre actual es diferente al valor ingresado
             if(!isFAQ_AnswerChanged(inputAnswer))
                 return;
 
             updateAnswer({...FAQ}, inputAnswer.value);
-        }
+        });
 
         contenido.appendChild(inputAnswer);
             
@@ -132,11 +121,11 @@
 
     function newFAQ(){
         btnAdd.addEventListener('click', function(){
-            lessonModal();
+            FAQModal();
         });
     }
 
-    function lessonModal(){
+    function FAQModal(){
         const modalWindow = document.createElement("div");
         modalWindow.classList.add("modal");
 
@@ -225,11 +214,11 @@
                 return;
             }
             
-            if(newAnswer.length === 0){
+            if(newAnswer.length === 0 || newAnswer.length < 2){
                 Swal.fire({
                     icon: "error",
                     title: "Respuesta invalida",
-                    text: "La respuesta de la pregunta es obligatoria",
+                    text: "La respuesta de la pregunta es obligatoria y de minimo 10 caracteres",
                 });
                 return;
             }
@@ -303,6 +292,9 @@
         try {
             const url = `/api/faq/question/${id_FAQ}`;
 
+            //coloco icono de que estamos guardando cambios
+            changeAlert('inProcess', 'Guardando cambios...');
+
             const request = await fetch(url, {
                 method: 'PATCH',
                 headers: {
@@ -320,14 +312,12 @@
                     title: "Ha ocurrido un error",
                     text: response.message,
                 });
+                changeAlert('error', 'Error al guardar cambios');
                 return;
             }
 
-            Swal.fire({
-                icon: "success",
-                title: "FAQ actualizada con exito",
-                text: response.message,
-            });
+            //cambio el icono de que se guardaron los cambios un tiempo
+            changeAlert('success', 'Cambios guardados');
 
             //sincronizo objeto modulos 
             faqs = faqs.map(faq =>{
@@ -338,6 +328,7 @@
                 return faq;
             });
             
+            resetAlert();
             showFAQ();
 
         } catch (error) {
@@ -357,6 +348,9 @@
 
         try {
             const url = `/api/faq/answer/${id_FAQ}`;
+
+            //coloco icono de que estamos guardando cambios
+            changeAlert('inProcess', 'Guardando cambios...');
 
             const request = await fetch(url, {
                 method: 'PATCH',
@@ -378,11 +372,8 @@
                 return;
             }
 
-            Swal.fire({
-                icon: "success",
-                title: "FAQ actualizada con exito",
-                text: response.message,
-            });
+            //cambio el icono de que se guardaron los cambios un tiempo
+            changeAlert('success', 'Cambios guardados');
 
             //sincronizo objeto modulos 
             faqs = faqs.map(faq =>{
@@ -393,6 +384,7 @@
                 return faq;
             });
             
+            resetAlert();
             showFAQ();
 
         } catch (error) {
@@ -437,12 +429,6 @@
                 return;
             }
 
-            Swal.fire({
-                icon: "success",
-                title: "FAQ eliminada con exito",
-                text: response.message,
-            });
-
             //sincronizo objeto modulos 
             faqs = faqs.filter(faq => faq.id_FAQ != id_FAQ);
 
@@ -455,21 +441,22 @@
 
     //valida si el nombre de los modulos ha cambiado
     function isFAQ_QuestionChanged(inputElement) {
-        const FAQ = faqs.find(FAQ => FAQ.id_FAQ == inputElement.dataset.id);
+        const FAQ = faqs.find(faq => faq.id_FAQ == inputElement.dataset.id);
         const newQuestion = inputElement.value.trim();
 
         if(newQuestion.length === 0)return false;
         if (!FAQ) return false;
-        return faqs.question !== newQuestion;
+        return FAQ.question != newQuestion;
     }
 
     function isFAQ_AnswerChanged(inputElement) {
-        const FAQ = faqs.find(FAQ => FAQ.id_FAQ == inputElement.dataset.id);
+        const FAQ = faqs.find(faq => faq.id_FAQ == inputElement.dataset.id);
         const newAnswer = inputElement.value.trim();
 
         if(newAnswer.length === 0)return false;
         if (!FAQ) return false;
-        return faqs.answer !== newAnswer;
+        
+        return FAQ.answer != newAnswer;
     }
 
     function showFAQ(){
@@ -527,13 +514,6 @@
             });
             return;
         }
-
-        //mostramos alerta de confirmación
-        Swal.fire({
-            icon: "success",
-            title: "Registro exitoso",
-            text: response.message,
-        });
 
         //cerramos modal
         const form = document.querySelector(".modal__form");
@@ -621,6 +601,48 @@
     function clearFAQContainer(){
         while(FAQContainer.firstChild)
             FAQContainer.removeChild(FAQContainer.firstChild);
+    }
+
+        function changeAlert(type, message = ""){
+        
+        containerAlert.className = "";
+
+        switch(type){
+            case "success":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--correct");
+                containerAlert.innerHTML = `<i class='bx bx-cloud-upload' ></i> ${message}`;
+            break;
+
+            case "inProcess":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--in-process");
+                containerAlert.innerHTML = `<i class='bx bxs-cloud-upload bx-flashing' ></i> ${message}`;
+            break;
+
+            case "error":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--error");
+                containerAlert.innerHTML = `<i class='bx bx-error-circle' ></i> ${message}`;
+            break;
+
+            case "warning":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--warning");
+                containerAlert.innerHTML = `<i class='bx bx-error-circle' ></i> ${message}`;
+            break;
+
+            case "waiting":
+                containerAlert.classList.add("course-info__saved", "course-info__saved--waiting");
+                containerAlert.innerHTML = `<i class='bx bx-cloud' ></i>`;
+            break;
+
+            default:
+                containerAlert.classList.add("course-info__saved", "course-info__saved--waiting");
+                containerAlert.innerHTML = `<i class='bx bx-check-circle' ></i> ${message}`;
+        }
+    }
+
+    function resetAlert(){
+        setTimeout(() => {
+            changeAlert('waiting')
+        }, 5000);
     }
 
 })();
