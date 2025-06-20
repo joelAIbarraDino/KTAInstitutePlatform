@@ -92,7 +92,7 @@ class CourseController{
             $alerts = $course->validate();
 
             if($_FILES['thumbnail']['size'] > 0)
-                $alerts = $course->validateFile($_FILES['thumbnail'], 1280, 720);
+                $alerts = $course->validateFile($_FILES);
 
             
             if(empty($alerts)){
