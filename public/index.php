@@ -6,14 +6,17 @@ use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
 
+use App\Middlewares\ExistsStudentUUIDMiddleware;
 use App\Middlewares\ExistsCategoryMiddleware;
 use App\Middlewares\ExistsTeacherMiddleware;
+use App\Middlewares\PublicCourseMiddleware;
 use App\Middlewares\ExistsModuleMiddleware;
 use App\Middlewares\ExistsCourseMiddleware;
 use App\Middlewares\ExistsLessonMiddleware;
 use App\Middlewares\ExistsFaqMiddleware;
 use App\Middlewares\ValidIdMiddleware;
 
+use App\Controllers\EnrollmentController;
 use App\Controllers\DashboardController;
 use App\Controllers\CategoryController;
 use App\Controllers\SlidebarController;
@@ -26,8 +29,8 @@ use App\Controllers\ModuleController;
 use App\Controllers\LessonController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
+use App\Controllers\UserController;
 use App\Controllers\FaqController;
-use App\Middlewares\PublicCourseMiddleware;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -57,6 +60,15 @@ $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetai
 $dino->router->get('/curso/payment/{id}', function($id){
     echo 'proceso de pago de curso: '. $id;
 });
+
+//perfil del estudiante
+// $dino->router->get('/perfil/{uuid}', [UserController::class, 'profile'], [new ExistsStudentUUIDMiddleware('/')]);
+$dino->router->get('/mis-cursos', [UserController::class, 'cursos']);
+$dino->router->get('/mi-perfil', [UserController::class, 'profile']);
+$dino->router->get('/editar-perfil', [UserController::class, 'editProfile']);
+
+//salón virtual
+$dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index']);
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);

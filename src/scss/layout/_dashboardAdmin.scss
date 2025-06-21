@@ -8,7 +8,7 @@
     padding: 2rem;
     height: 7rem;
     width: 100%;
-
+    z-index: 1000;
     &-left{
         display: flex;
         gap: 2rem;
@@ -103,7 +103,7 @@
                     font-size: 3rem;
 
                     &:hover{
-                        color: v.$negro;
+                        color: v.$blanco;
                     }
                 }
         
