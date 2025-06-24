@@ -68,7 +68,8 @@ $dino->router->get('/mi-perfil', [UserController::class, 'profile']);
 $dino->router->get('/editar-perfil', [UserController::class, 'editProfile']);
 
 //salón virtual
-$dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index']);
+// $dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index']);
+$dino->router->get('/curso/watch', [EnrollmentController::class, 'index']);
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);

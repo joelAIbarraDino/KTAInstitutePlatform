@@ -130,6 +130,8 @@
 
     &__progress-bar{
         width: calc(100% - 14rem);
+        accent-color: v.$dorado;
+        height: .7rem;
     }
 
     &__progress-percentage{

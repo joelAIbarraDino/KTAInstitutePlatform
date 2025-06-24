@@ -29,7 +29,6 @@ class UserController{
         Response::render('/student/myCourses',[
             'nameApp'=>APP_NAME,
             'title'=>'Mis cursos',
-            'transparente'=>false,
             'myCourses'=>$myCourses
         ]);
         
@@ -42,8 +41,7 @@ class UserController{
 
         Response::render('/student/profile',[
             'nameApp'=>APP_NAME,
-            'title'=>'Mi perfil',
-            'transparente'=>false
+            'title'=>'Mi perfil'
         ]);
     }
 
@@ -53,11 +51,9 @@ class UserController{
 
         Response::render('/student/editProfile',[
             'nameApp'=>APP_NAME,
-            'title'=>'Editar perfil',
-            'transparente'=>false
+            'title'=>'Editar perfil'
         ]);
     }
-
     
 
 }

@@ -44,10 +44,6 @@
         transform: rotate(180deg);
       }
 
-      &[open] summary .module__header-name i.bx-chevron-down {
-        transform: rotate(180deg);
-      }
-    
       &.animating .acordeon__contenido {
         overflow: hidden;
       }
@@ -68,10 +64,10 @@
       resize: none;
       outline: none;
       border-radius: .5rem;
-      border: solid v.$border_input .1rem;
+      border: solid v.$border_input .2rem;
 
       &:focus{
-        border: solid v.$dorado .1rem;
+        border: solid v.$dorado .2rem;
       }
     }
   
@@ -81,6 +77,7 @@
       font-weight: v.$black;
       color: v.$rojo;
     }
+    
     details {
         border: 1px solid v.$border_input;
         border-bottom: 0;

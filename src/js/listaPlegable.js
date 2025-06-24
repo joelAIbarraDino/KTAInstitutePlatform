@@ -4,7 +4,7 @@
     const content = modulo.querySelector(".acordeon__contenido");
 
     summary.addEventListener("click", (e) => {
-      e.preventDefault(); // Evita el comportamiento nativo
+      e.preventDefault();
       
       const isOpen = modulo.hasAttribute("open");
 

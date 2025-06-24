@@ -11,12 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Indie+Flower&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&family=Playwrite+HU:wght@100..400&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     
-    <link rel="preload" href="/assets/css/app.css" as="style"> 
-    <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="preload" href="https://cdn.plyr.io/3.7.8/plyr.css" as="style"> 
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <link rel="preload" href="/assets/css/app.css" as="style"> 
+    <link rel="stylesheet" href="/assets/css/app.css">
 
     <link rel="shortcut icon" href="/assets/images/logoKTA.ico" />
 
