@@ -1,32 +1,42 @@
-<?php include_once __DIR__.'/../components/header.php'; ?>
+<main class="login">
 
-<section class="login principal">
-    <form method="post" class="form login-cont">
-        <legend class="form__title">Recuperar contraseña</legend>
+    <div class="login-form">
         
-        <p class="form__instructions">Ingresa tu correo electronico para recuperar su acceso a la plataforma</p>
+        <div class="login-form-content">
+            <a href="/">
+                <img src="/assets/images/logoKTA.jpg" alt="logo kta" class="login-logo">
+            </a>
 
-        <div class="form__input">
-            <label for="email">Correo</label>
-            <input 
-                type="email"
-                name="email"
-                id="email"
-                class="field"
-                placeholder="Ingrese su correo"
-            >
+            <a class="login-back" href="/login">
+                <i class='bx bx-arrow-back'></i>Volver
+            </a>
+
+            <form method="post" class="form no-background">
+                <legend class="form__title">Recuperar acceso</legend>
+                
+                <p class="form__instructions">Ingresa tu correo electronico para enviar un codigo de verificación</p>
+        
+                <div class="form__input">
+                    <label for="email">Correo</label>
+                    <input 
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="field"
+                        placeholder="Ingrese su correo"
+                    >
+                </div>
+        
+                <div class="submit-right">
+                    <input class="submit" type="submit" value="Enviar correo">
+                </div>
+
+            </form>
         </div>
+    </div>
 
-        <div class="submit-right">
-            <input class="submit" type="submit" value="Enviar correo">
-        </div>
+    <div class="login-image">
+        <div class="login-filter"></div>
+    </div>
 
-    </form>
-
-    <a class="login-signin"href="/sign-in">¿Nuevo en KTA?<span>Registrate</span></a>
-
-    <a class="login-signin"href="/login">¿Ya tienes una cuenta con nosotros?<span>Inicia sesión</span></a>
-</section>
-
-
-<?php include_once __DIR__.'/../components/footer.php'; ?>
+</main>

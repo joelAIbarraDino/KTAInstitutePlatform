@@ -9,6 +9,14 @@
     border-radius: 1rem;
     padding: 3rem;
     
+    &.no-background{
+        background-color: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        
+    }
+
     &__title{
         font-size: 3rem;
         text-align: left;
@@ -210,7 +218,7 @@
 
     .submit{
         padding: 1rem 2rem;
-        margin-top: 2.5rem;
+    
         border-radius: .5rem;
         font-size: 1.5rem;
         @include m.boton(v.$dorado, v.$negro, v.$blanco, v.$blanco, inline-block);

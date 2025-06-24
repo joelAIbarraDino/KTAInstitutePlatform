@@ -1,51 +1,64 @@
-<?php include_once __DIR__.'/../components/header.php'; ?>
+<main class="login">
 
-<section class="login principal">
-    <form method="post" class="form login-cont">
-        <legend class="form__title">Iniciar sesión</legend>
+    <div class="login-form">
         
-        <p class="form__instructions">Ingresa tu correo electronico y tu contraseña</p>
+        <div class="login-form-content">
+            <a href="/">
+                <img src="/assets/images/logoKTA.jpg" alt="logo kta" class="login-logo">
+            </a>
 
-        <div class="form__input">
-            <label for="email">Correo</label>
-            <input 
-                type="email"
-                name="email"
-                id="email"
-                class="field"
-                placeholder="Ingrese su correo"
-            >
+            <a class="login-back" href="/">
+                <i class='bx bx-arrow-back'></i>Volver
+            </a>
+
+            <form method="post" class="form no-background">
+                <legend class="form__title">Iniciar sesión</legend>
+                
+                <p class="form__instructions">Ingresa tu correo electronico y tu contraseña</p>
+        
+                <div class="form__input">
+                    <label for="email">Correo</label>
+                    <input 
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="field"
+                        placeholder="Ingrese su correo"
+                    >
+                </div>
+        
+                <div class="form__input">
+                    <label for="password">Contraseña</label>
+        
+                    <div class="icon-right">
+                        <input 
+                            type="password"
+                            name="password"
+                            id="password"
+                            class="field"
+                            placeholder="Ingrese su contraseña"
+                        >
+                        <i id="btn-showPass" class='bx bx-show is-btn'></i>
+                    </div>
+                    <a href="/forgot" class="enlace-forgot">¿olvidaste tu contraseña?</a>    
+                </div>
+        
+                <div class="submit-center">
+                    <input class="submit" type="submit" value="Iniciar sesión">
+                </div>
+                
+                <a class="enlace-signin"href="/sign-in">¿Nuevo en KTA?<span>Registrate</span></a>
+            </form>
         </div>
+    </div>
 
-        <div class="form__input">
-            <label for="password">Contraseña</label>
+    <div class="login-image">
+        <div class="login-filter"></div>
 
-            <div class="icon-right">
-                <input 
-                    type="password"
-                    name="password"
-                    id="password"
-                    class="field"
-                    placeholder="Ingrese su contraseña"
-                >
-                <i id="btn-showPass" class='bx bx-show is-btn'></i>
-            </div>    
-        </div>
-
-        <a href="/forgot" class="enlace-forgot">¿olvidaste tu contraseña?</a>
+    </div>
 
 
-        <div class="submit-right">
-            <input class="submit" type="submit" value="Iniciar sesión">
-        </div>
-
-    </form>
-
-    <a class="login-signin"href="/sign-in">¿Nuevo en KTA?<span>Registrate</span></a>
-</section>
-
-
-<?php include_once __DIR__.'/../components/footer.php'; ?>
+</main>
 
 <?php 
     $scripts ='
