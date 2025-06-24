@@ -490,7 +490,7 @@
         }
 
         &-name{
-            color: v.$negro;
+            color: rgba(v.$negro, 0.7);
             font-size: 1.5rem;
             margin: .5rem 0;
             font-weight: v.$regular;

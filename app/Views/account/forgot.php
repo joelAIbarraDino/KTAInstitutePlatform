@@ -28,7 +28,7 @@
                 </div>
         
                 <div class="submit-right">
-                    <input class="submit" type="submit" value="Enviar correo">
+                    <input class="submit-block" type="submit" value="Enviar correo">
                 </div>
 
             </form>

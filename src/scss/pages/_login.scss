@@ -36,7 +36,7 @@
             padding: 3rem 1rem;
 
             @include m.tablet{
-                width: 60%;
+                width: 65%;
             }
 
             @include m.computadora{
@@ -45,7 +45,7 @@
         }
     
         @include m.computadora{
-            width: 35%;
+            width: 40%;
             background-color: v.$blanco;
             background-image: none;
         }

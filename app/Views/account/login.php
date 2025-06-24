@@ -44,7 +44,7 @@
                 </div>
         
                 <div class="submit-center">
-                    <input class="submit" type="submit" value="Iniciar sesión">
+                    <input class="submit-block" type="submit" value="Iniciar sesión">
                 </div>
                 
                 <a class="enlace-signin"href="/sign-in">¿Nuevo en KTA?<span>Registrate</span></a>
@@ -54,7 +54,6 @@
 
     <div class="login-image">
         <div class="login-filter"></div>
-
     </div>
 
 

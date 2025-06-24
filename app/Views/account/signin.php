@@ -55,7 +55,7 @@
                 </div>
         
                 <div class="submit-center">
-                    <input class="submit" type="submit" value="Registrarse">
+                    <input class="submit-block" type="submit" value="Registrarse">
                 </div>
                 
                 <a class="enlace-signin"href="/login">¿Ya tienes una cuenta?<span>Inicia sesión</span></a>

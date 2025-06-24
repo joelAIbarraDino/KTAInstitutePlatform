@@ -235,4 +235,25 @@
             text-align: right;
         }
     }
+
+    .submit-block{
+        padding: 1rem 2rem;
+    
+        border-radius: .5rem;
+        font-size: 1.5rem;
+        background-color: v.$dorado;
+        color: v.$blanco;
+        font-weight: v.$bold;
+        text-align: center;
+        border: none;
+        transition: background-color .4s ease;
+        width: 100%;
+
+        &:hover{
+            background-color: v.$negro;
+            color: v.$blanco;
+            cursor: pointer;
+        }
+
+    }
 }
