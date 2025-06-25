@@ -14,16 +14,16 @@ class Attempt extends Model {
     public float $time;
     public float $score;
     public bool $is_approved;
-    public int $id_emn;
+    public int $id_enrollment;
     public int $id_quizz;
 
     public function __construct($args = []){
         $this->id_attempt = $args["id_attempt"]??null;
         $this->time = $args["time"]??"";
         $this->score = $args["score"]??"";
-        $this->is_approved = $args["is_approved"]??"";
-        $this->id_emn = $args["id_emn"]??null;
-        $this->id_quizz = $args["id_quizz"]??null;
+        $this->is_approved = $args["is_approved"]??false;
+        $this->id_enrollment = $args["id_enrollment"]??0;
+        $this->id_quizz = $args["id_quizz"]??0;
     }
 
     public function validate(){

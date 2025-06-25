@@ -8,16 +8,15 @@ class Admin extends Model{
     
     protected static string $table = 'admin';
     protected static string $PK_name = 'id_admin';
-    protected static array $columns = ['id_admin', 'name', 'email', 'password', 'url', 'clave'];
-    protected static array $fillable = ['name', 'email', 'password', 'url', 'clave'];
-    protected static array $nulleable = ['url', 'clave'];
+    protected static array $columns = ['id_admin', 'name', 'email', 'password', 'url'];
+    protected static array $fillable = ['name', 'email', 'password', 'url'];
+    protected static array $nulleable = ['url'];
 
     public ?int $id_admin;
     public string $name;
     public string $email;
     public string $password;
     public ?string $url;
-    public ?string $clave;
 
     public function __construct($args = [])
     {
@@ -26,7 +25,6 @@ class Admin extends Model{
         $this->email = $args['email']??"";
         $this->password = $args['password']??"";
         $this->url = $args['url']??null;
-        $this->clave = $args['clave']??null;
     }
 
     public function validate():array{
