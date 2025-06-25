@@ -8,7 +8,6 @@ use DinoEngine\Http\Request;
 use App\Classes\Helpers;
 use App\Models\Student;
 use App\Classes\Auth;
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
 
 class StudentController{
 
@@ -63,8 +62,6 @@ class StudentController{
 
             $student->name = $datosEnviados['name'];
             $student->email = $datosEnviados['email'];
-            $student->birthday = $datosEnviados['birthday'];
-            $student->phone = $datosEnviados['phone'];
 
             $alerts = $student->validateUpdate();
 

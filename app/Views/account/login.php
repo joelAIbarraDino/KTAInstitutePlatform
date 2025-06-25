@@ -11,7 +11,7 @@
                 <i class='bx bx-arrow-back'></i>Volver
             </a>
 
-            <form method="post" class="form no-background">
+            <form id="login-form" class="form no-background">
                 <legend class="form__title">Iniciar sesión</legend>
                 
                 <p class="form__instructions">Ingresa tu correo electronico y tu contraseña</p>
@@ -59,8 +59,12 @@
 
 </main>
 
-<?php 
+<?php
+
     $scripts ='
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/showPassword.js"></script>
+        <script src="/assets/js/login.js"></script>
     ';
 ?>

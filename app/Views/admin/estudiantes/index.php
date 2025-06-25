@@ -19,8 +19,6 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Email</th>
-                            <th>telefono</th>
-                            <th>cumpleaños</th>
                             <th class="actions-label">Acciones</th>
                         </tr>
                     </thead>
@@ -33,8 +31,6 @@
                                 <tr>
                                     <td><?=$student->name?></td>
                                     <td><?=$student->email?></td>
-                                    <td><?=$student->phone?></td>
-                                    <td><span class="dashboard-table__status dashboard-table__status--info"><?=$student->birthday?></span></td>
                                     <td class="dashboard-table__actions-cell">
                                         <a href="/kta-admin/estudiante/update/<?=$student->id_student?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$student->id_student?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>

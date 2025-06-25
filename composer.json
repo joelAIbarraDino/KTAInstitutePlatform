@@ -19,6 +19,7 @@
         "dinozign/dino-framework":"*",
         "vimeo/vimeo-api": "^3.0",
         "intervention/image": "^3.11",
-        "ramsey/uuid": "^4.8"
+        "ramsey/uuid": "^4.8",
+        "stripe/stripe-php": "^17.3"
     }
 }

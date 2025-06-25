@@ -52,4 +52,23 @@ class Helpers{
             unset($_SESSION['swal']);
         }
     }
+
+    static function obtenerIniciales($cadena):string {
+    // Eliminar espacios en blanco adicionales
+    $cadena = trim($cadena);
+    
+    // Separar la cadena en palabras
+    $palabras = explode(' ', $cadena);
+    
+    // Verificar que haya al menos dos palabras
+    if (count($palabras) < 2) {
+        $iniciales = strtoupper($palabras[0][0] . '');
+        return $iniciales;
+    }
+    
+    // Obtener las iniciales de las dos primeras palabras
+    $iniciales = strtoupper($palabras[0][0]) . strtoupper($palabras[1][0]);
+    
+    return $iniciales;
+}
 }

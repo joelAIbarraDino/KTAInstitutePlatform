@@ -141,7 +141,7 @@ class ContentController{
 
     public static function getFAQ(int $id):void{
         if(!Request::isGET())
-            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+            Response::json(['ok'=>false,'message'=>"Método no soportado"]);
 
         try {
             $faq = FAQ::belongsTo('id_course', $id)??[];

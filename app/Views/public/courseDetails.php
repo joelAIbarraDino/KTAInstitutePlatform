@@ -46,9 +46,17 @@
                     <?php endif;?>
                 </div>
 
-                <div class="cover-curso__botones">
-                    <a href="/curso/payment/<?=$course->url?>" class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</a>
-                </div>
+                <?php if(!isset($_SESSION))session_start(); ?>
+
+                <?php if(!isset($_SESSION['id_student'])):?>
+                    <div class="cover-curso__botones">
+                        <a href="/curso/payment/<?=$course->url?>" class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</a>
+                    </div>
+                <?php else:?>
+                    <div class="cover-curso__botones">
+                        <a href="/mis-cursos" class="cover-curso__boton cover-curso__boton--comprar">Continuar curso</a>
+                    </div>
+                <?php endif;?>
 
             </div>
 

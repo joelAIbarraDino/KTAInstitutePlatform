@@ -6,8 +6,8 @@ use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
 
-use App\Middlewares\ExistsStudentUUIDMiddleware;
 use App\Middlewares\ExistsCategoryMiddleware;
+use App\Middlewares\StudentLoggedMiddleware;
 use App\Middlewares\ExistsTeacherMiddleware;
 use App\Middlewares\PublicCourseMiddleware;
 use App\Middlewares\ExistsModuleMiddleware;
@@ -57,19 +57,16 @@ $dino = new Dino(dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
 $dino->router->get('/', [PagesController::class, 'index']);
 $dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails'], [new PublicCourseMiddleware('/')]);
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
-$dino->router->get('/curso/payment/{id}', function($id){
-    echo 'proceso de pago de curso: '. $id;
-});
+$dino->router->get('/curso/payment/{id}', [EnrollmentController::class, 'createEnrollment'], [new StudentLoggedMiddleware('/login')]);
 
 //perfil del estudiante
-// $dino->router->get('/perfil/{uuid}', [UserController::class, 'profile'], [new ExistsStudentUUIDMiddleware('/')]);
-$dino->router->get('/mis-cursos', [UserController::class, 'cursos']);
-$dino->router->get('/mi-perfil', [UserController::class, 'profile']);
-$dino->router->get('/editar-perfil', [UserController::class, 'editProfile']);
+$dino->router->get('/mis-cursos', [UserController::class, 'cursos'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/mi-perfil', [UserController::class, 'profile'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/editar-perfil', [UserController::class, 'editProfile'], [new StudentLoggedMiddleware('/login')]);
 
 //salón virtual
-// $dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index']);
-$dino->router->get('/curso/watch', [EnrollmentController::class, 'index']);
+$dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index'], [new StudentLoggedMiddleware('/login')]);
+// $dino->router->get('/curso/watch', [EnrollmentController::class, 'index']);
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);
@@ -78,13 +75,16 @@ $dino->router->get('/nosotros', [PagesController::class, 'about']);
 
 //login sign-in and sign-up
 $dino->router->get('/login', [AccountController::class, 'login']);
-$dino->router->post('/login', [AccountController::class, 'login']);
+
+$dino->router->post('/api/student/login', [AccountController::class, 'validateLogin']);
 
 $dino->router->get('/forgot', [AccountController::class, 'forgot']);
 $dino->router->post('/forgot', [AccountController::class, 'forgot']);
 
 $dino->router->get('/sign-in', [AccountController::class, 'signin']);
 $dino->router->post('/sign-in', [AccountController::class, 'signin']);
+
+$dino->router->get('/logout', [AccountController::class, 'logout']);
 
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index']);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses']);
