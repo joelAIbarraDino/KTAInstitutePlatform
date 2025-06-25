@@ -74,7 +74,7 @@ $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 
 $dino->router->get('/nosotros', [PagesController::class, 'about']);
 
 //login sign-in and sign-up
-$dino->router->get('/login', [AccountController::class, 'login']);
+$dino->router->get('/login', [AccountController::class, 'login'], [new StudentLoggedMiddleware('/login')]);
 
 $dino->router->post('/api/student/login', [AccountController::class, 'validateLogin']);
 

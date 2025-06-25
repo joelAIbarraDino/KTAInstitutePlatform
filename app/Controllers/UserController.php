@@ -15,9 +15,9 @@ class UserController{
         if(!isset($_SESSION))
             session_start();
 
-        
+        $idStudent = $_SESSION['student']['id_student'];
 
-        $myCourses = EnrollmentView::belongsTo('id_student', $_SESSION['id_student'])??[];
+        $myCourses = EnrollmentView::belongsTo('id_student', $idStudent)??[];
 
         Response::render('/student/myCourses',[
             'nameApp'=>APP_NAME,

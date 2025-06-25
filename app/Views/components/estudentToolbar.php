@@ -17,6 +17,11 @@
 
     <div class="toolbar-right">
 
+        
+        <a href="/mis-cursos" class="toolbar-right__logout">
+            <i class='bx bxs-user'></i>
+        </a>
+        
         <p class="toolbar-right__user">Hola, Joel</p>
         
         <a href="/logout" class="toolbar-right__logout">

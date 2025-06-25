@@ -42,9 +42,12 @@ class AccountController
 
             //guardamos sesion en php
             session_start();
-            $_SESSION['id_student'] = $user->id_student;
-            $_SESSION['nombre'] = $user->name;
-            $_SESSION['iniciales'] = Helpers::obtenerIniciales($user->name);
+
+            $_SESSION['student'] = [
+                'id_student' => $user->id_student,
+                'nombre' => $user->name,
+                'iniciales' => Helpers::obtenerIniciales($user->name)
+            ];
 
             Response::json([
                 'ok'=>true,
