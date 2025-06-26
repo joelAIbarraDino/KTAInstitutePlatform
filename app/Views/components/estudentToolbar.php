@@ -1,3 +1,9 @@
+<?php 
+    if(!isset($_SESSION))
+        session_start();
+
+?>
+
 <section class="toolbar">
 
     <div class="toolbar-left">
@@ -17,10 +23,15 @@
 
     <div class="toolbar-right">
 
-        
-        <a href="/mis-cursos" class="toolbar-right__logout">
-            <i class='bx bxs-user'></i>
-        </a>
+        <?php if(isset($_SESSION['student']['photo'])): ?>
+            <a href="/mis-cursos" class="toolbar-right__photo-link">
+                <img class="toolbar-right__photo" src="<?=$_SESSION['student']['photo']?>" alt="profile picture">    
+            </a>
+        <?php else:?>
+            <a href="/mis-cursos" class="toolbar-right__logout">
+                <i class='bx bx-user-circle' ></i>
+            </a>
+        <?php endif;?>
         
         <p class="toolbar-right__user">Hola, Joel</p>
         

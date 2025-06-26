@@ -10,7 +10,15 @@
     </div>
 
     <div class="profile">
-        <div class="profile__photo">JA</div>
+
+    <?php if(isset($_SESSION['student']['photo'])): ?>
+            <div class="profile__photo">
+                <img class="toolbar-right__photo" src="<?=$_SESSION['student']['photo']?>" alt="profile picture">    
+            </div>
+        <?php else:?>
+            <div class="profile__photo"><?=$_SESSION['student']['iniciales']?></div>
+        <?php endif;?>
+        
         
         <div class="profile__top">
             <p class="profile__title">Datos personales</p>

@@ -54,6 +54,15 @@
             font-size: 1.6rem;
         }
 
+        &__photo-link{
+            width: 4rem;
+            height: 4rem;
+        }
+
+        &__photo{
+            border-radius: 50%;
+        }
+
         &__logout{
             color: v.$blanco;
             font-size: 2.5rem;

@@ -19,7 +19,7 @@
 
     &.traslucido{
         background: #696969;
-        background: linear-gradient(0deg,rgba(61, 61, 61, 0) 0%, rgba(0, 0, 0, 1) 60%);
+        background: v.$negro;
     }
 
     &.solido{
@@ -63,12 +63,22 @@
         display: flex;        
         align-items: center;
         justify-content: center;
-        a{
+
+        &-profile{
+            width: 4rem;
+            height: 4rem;
+        }
+
+        &-photo{
+            border-radius: 50%;
+        }
+
+        a.header__actions-link{
             color: v.$blanco;
             padding: 1rem 2rem;
             border-radius: .5rem;
             transition: all 0.4s ease;
-            font-size: 2rem;
+            font-size: 4rem;
 
             &:hover{
                 transform: translateY(-.2rem);

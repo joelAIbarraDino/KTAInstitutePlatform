@@ -28,7 +28,7 @@
                 Swal.fire({
                     icon: "error",
                     title: "Contraseña invalida",
-                    text: "La contraseña ingresada es obligatoria",
+                    text: "La contraseña es obligatoria",
                 });
                 return;
             }

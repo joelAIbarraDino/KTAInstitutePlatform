@@ -29,7 +29,7 @@
                 Swal.fire({
                     icon: "error",
                     title: "Nombre invalido",
-                    text: "El nombre es obligatoria",
+                    text: "El nombre es obligatorio",
                 });
                 return;
             }
