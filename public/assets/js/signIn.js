@@ -1,6 +1,6 @@
 (function(){
 
-    const form = document.querySelector("#login-form");
+    const form = document.querySelector("#signin-form");
 
     app();
 
@@ -12,6 +12,7 @@
         form.addEventListener('submit', async (e)=>{
             e.preventDefault();
 
+            const inputName = document.querySelector("#name").value.trim();
             const inputEmail = document.querySelector("#email").value.trim();
             const inputPasword = document.querySelector("#password").value.trim();
 
@@ -24,11 +25,20 @@
                 return;
             }
 
+            if(!inputName){
+                Swal.fire({
+                    icon: "error",
+                    title: "Nombre invalido",
+                    text: "El nombre es obligatoria",
+                });
+                return;
+            }
+
             if(!inputPasword){
                 Swal.fire({
                     icon: "error",
                     title: "Contraseña invalida",
-                    text: "La contraseña ingresada es obligatoria",
+                    text: "La contraseña es obligatoria",
                 });
                 return;
             }
@@ -37,10 +47,12 @@
             try {
 
                 const formData = new FormData();
+                
+                formData.append("name", inputName);
                 formData.append("email", inputEmail);
                 formData.append("password", inputPasword);
 
-                const url = `/auth/login-callback`;
+                const url = `/auth/sign-in`;
 
                 const request = await fetch(url, {
                     method:"POST",
@@ -52,14 +64,21 @@
                 if(!response.ok){
                     Swal.fire({
                         icon: "error",
-                        title: "Error al autenticarse",
+                        title: "Error al registrarse",
                         text: response.message,
                     });
                     return;
                 }
                 
-                //redirigimos a la pagina de cursos del estudiante
-                location.href = response.redirect_url;
+                Swal.fire({
+                    icon: "success",
+                    title: "Registro exitoso",
+                    text: "Puede iniciar sesión",
+                }).then((result) =>{
+                    if(result.isConfirmed){
+                        location.href = '/login';
+                    }
+                });
                 
             } catch (error) {
                 console.log(error);

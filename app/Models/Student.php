@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DinoEngine\Core\Model;
+use DinoEngine\Http\Response;
 
 class Student extends Model {
     
@@ -51,6 +52,18 @@ class Student extends Model {
         return self::$alerts;
     }
 
+    public function validateAPI():void{
+        if(!$this->name)
+            Response::json(['ok'=>false, 'message'=>'El nombre es obligatorio'], 400);
+
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar un correo valido'], 400);
+
+        if(!$this->password)
+            Response::json(['ok'=>false, 'message'=>'La contraseña es obligatoria'], 400);
+
+    }
+
     public function validateUpdate():array{
 
         if(!$this->name)
@@ -71,13 +84,12 @@ class Student extends Model {
         return self::$alerts;
     }
 
-    public static function studentOAuthExists(string $oauth_id, string $oauth_provider = 'google'):bool{
-        
-        $studentExists = Student::multiWhere([
-            'oauth_id'=>$oauth_id,
-            'oauth_provider'=> $oauth_provider
-        ]);
+    public function studentExistsAPI():void{
+        $studentExists = Student::where("email", "=", $this->email);
 
-        return is_null($studentExists)?false:true;
+        if($studentExists)
+            Response::json(['ok'=>false, 'message'=>'Ya existe un estudiante registrado con este correo'], 400);
+        
     }
+
 }

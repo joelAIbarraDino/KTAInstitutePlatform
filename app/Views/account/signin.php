@@ -20,7 +20,7 @@
                 <i class='bx bx-arrow-back'></i>Volver
             </a>
 
-            <form method="post" class="form no-background">
+            <form id="signin-form" method="post" class="form no-background">
                 <legend class="form__title">Registro</legend>
                 
                 <p class="form__instructions">Complete los campos para continuar su registro</p>
@@ -104,7 +104,10 @@
 <?php 
     
     $scripts ='
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/showPassword.js"></script>
+        <script src="/assets/js/signIn.js"></script>
     ';
 
     Helpers::showSwalAlert();

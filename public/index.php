@@ -29,6 +29,8 @@ use App\Controllers\ModuleController;
 use App\Controllers\LessonController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
+use App\Controllers\AuthController;
+use App\Controllers\AuthProvidersController;
 use App\Controllers\UserController;
 use App\Controllers\FaqController;
 
@@ -75,21 +77,21 @@ $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 
 $dino->router->get('/nosotros', [PagesController::class, 'about']);
 
 //login sign-in and sign-up
-$dino->router->get('/login', [AccountController::class, 'login'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/login', [AuthController::class, 'login'], [new StudentLoggedMiddleware('/login')]);
 
 
-$dino->router->post('/api/student/login', [AccountController::class, 'validateLogin']);
+$dino->router->post('/auth/login-callback', [AuthController::class, 'ktaAuth']);
 
-$dino->router->get('/forgot', [AccountController::class, 'forgot']);
-$dino->router->post('/forgot', [AccountController::class, 'forgot']);
+$dino->router->get('/forgot', [AuthController::class, 'forgot']);
+$dino->router->post('/forgot', [AuthController::class, 'forgot']);
 
-$dino->router->get('/sign-in', [AccountController::class, 'signin']);
-$dino->router->post('/sign-in', [AccountController::class, 'signin']);
+$dino->router->get('/sign-in', [AuthController::class, 'signIn']);
+$dino->router->post('/auth/sign-in', [StudentController::class, 'signIn']);
 
-$dino->router->get('/logout', [AccountController::class, 'logout']);
+$dino->router->get('/logout', [AuthController::class, 'logout']);
 
 //autenticacion de google
-$dino->router->post('/auth/google-callback', [AccountController::class, 'googleLogin']);
+$dino->router->post('/auth/google-callback', [AuthProvidersController::class, 'googleAuth']);
 
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index']);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses']);

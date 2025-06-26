@@ -8,6 +8,7 @@ use DinoEngine\Http\Request;
 use App\Classes\Helpers;
 use App\Models\Student;
 use App\Classes\Auth;
+use Exception;
 
 class StudentController{
 
@@ -47,6 +48,40 @@ class StudentController{
             'student'=>$student,
             'alerts'=>$alerts
         ]);
+    }
+
+    public static function signIn():void{
+        if(Request::isPOST()){
+
+            try{
+                $student = new Student;
+                $datosEnviados = Request::getPostData();
+
+                
+                $student->sincronize($datosEnviados);
+                
+                $student->studentExistsAPI();
+                $student->validateAPI();
+                
+                $student->password = Auth::encriptPassword($student->password);
+                $student->user_confirmed = 1;
+                $id = $student->save();
+
+                if(!$id)
+                    Response::json(['ok'=>false,'message'=>'Error al procesar el registro, intente mas tarde']);
+
+                Response::json([
+                    'ok'=>true,
+                    'id'=>$id,
+                    'message'=>'Registro exitoso'
+                ]);    
+                
+            }catch(Exception $e){
+                Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+            }
+
+
+        }
     }
 
     public static function update($id):void{

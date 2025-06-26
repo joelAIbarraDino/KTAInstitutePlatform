@@ -40,7 +40,7 @@
                 formData.append("email", inputEmail);
                 formData.append("password", inputPasword);
 
-                const url = `/api/student/login`;
+                const url = `/auth/login-callback`;
 
                 const request = await fetch(url, {
                     method:"POST",
