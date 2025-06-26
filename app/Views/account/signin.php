@@ -1,3 +1,12 @@
+<?php
+
+    use App\Classes\Helpers;
+
+    $topScripts = '
+        <script src="https://accounts.google.com/gsi/client" async></script>
+    ';
+?>
+
 <main class="login">
 
     <div class="login-form">
@@ -59,6 +68,27 @@
                 </div>
                 
                 <a class="enlace-signin"href="/login">¿Ya tienes una cuenta?<span>Inicia sesión</span></a>
+
+                <div class="login-separator">
+                    <hr class="login-line-separator" />
+                        <span class="login-text-separator">Otras formas de registrarse</span>
+                    <hr class="login-line-separator" />
+                </div>
+
+
+                <div id="g_id_onload"
+                    data-client_id="259164387547-is5ht615qalq1tud4mh1jik9u9l8phf7.apps.googleusercontent.com"
+                    data-login_uri="http://localhost:3000/auth/google-callback"
+                    data-auto_prompt="false"
+                ></div>
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="signup_with"
+                    data-shape="rectangular"
+                    data-logo_alignment="left">
+                </div>
             </form>
         </div>
     </div>
@@ -72,7 +102,10 @@
 </main>
 
 <?php 
+    
     $scripts ='
         <script src="/assets/js/showPassword.js"></script>
     ';
+
+    Helpers::showSwalAlert();
 ?>

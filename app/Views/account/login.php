@@ -20,20 +20,6 @@
                 <i class='bx bx-arrow-back'></i>Volver
             </a>
             
-            <div id="g_id_onload"
-                data-client_id="259164387547-is5ht615qalq1tud4mh1jik9u9l8phf7.apps.googleusercontent.com"
-                data-login_uri="http://localhost:3000/auth/google-callback"
-                data-auto_prompt="false"
-            ></div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="rectangular"
-                data-logo_alignment="left">
-            </div>
-
             <form id="login-form" class="form no-background">
                 <legend class="form__title">Iniciar sesión</legend>
                 
@@ -71,7 +57,28 @@
                 </div>
                 
                 <a class="enlace-signin"href="/sign-in">¿Nuevo en KTA?<span>Registrate</span></a>
-            </form>
+
+                <div class="login-separator">
+                    <hr class="login-line-separator" />
+                        <span class="login-text-separator">Otras formas de iniciar sesión</span>
+                    <hr class="login-line-separator" />
+                </div>
+
+
+                <div id="g_id_onload"
+                    data-client_id="259164387547-is5ht615qalq1tud4mh1jik9u9l8phf7.apps.googleusercontent.com"
+                    data-login_uri="http://localhost:3000/auth/google-callback"
+                    data-auto_prompt="false"
+                ></div>
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="sign_in_with"
+                    data-shape="rectangular"
+                    data-logo_alignment="left">
+                </div>
+            </form>            
         </div>
     </div>
 
