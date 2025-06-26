@@ -1,3 +1,11 @@
+<?php 
+
+    $topScripts = '
+        <link rel="preload" href="https://cdn.plyr.io/3.7.8/plyr.css" as="style"> 
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    ';
+?>
+
 <?php include_once __DIR__.'/../components/estudentToolbar.php'; ?>
 
 <main class="main-class">

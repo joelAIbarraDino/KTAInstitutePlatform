@@ -41,6 +41,7 @@ define('APP_NAME','KTA Institute');
 define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
 define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
 define('DIR_SLIDEBAR',__DIR__.'/assets/slidebar/');
+define('URI_REDIRECT_GOOGLE', 'http://localhost:3000/auth/google-callback');
 
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],
@@ -76,6 +77,7 @@ $dino->router->get('/nosotros', [PagesController::class, 'about']);
 //login sign-in and sign-up
 $dino->router->get('/login', [AccountController::class, 'login'], [new StudentLoggedMiddleware('/login')]);
 
+
 $dino->router->post('/api/student/login', [AccountController::class, 'validateLogin']);
 
 $dino->router->get('/forgot', [AccountController::class, 'forgot']);
@@ -85,6 +87,9 @@ $dino->router->get('/sign-in', [AccountController::class, 'signin']);
 $dino->router->post('/sign-in', [AccountController::class, 'signin']);
 
 $dino->router->get('/logout', [AccountController::class, 'logout']);
+
+//autenticacion de google
+$dino->router->post('/auth/google-callback', [AccountController::class, 'googleLogin']);
 
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index']);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses']);
