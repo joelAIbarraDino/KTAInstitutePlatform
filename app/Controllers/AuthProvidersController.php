@@ -46,7 +46,7 @@ class AuthProvidersController{
 
             $student->name = $payload['name'];
             $student->email = $payload['email'];
-            $student->photo = $payload['photo']??null;
+            $student->photo = $payload['picture']??null;
             $student->oauth_id = $payload['sub'];
             $student->oauth_provider = "Google";
             $student->user_confirmed = $payload['email_verified'] ? 1 : 0;
