@@ -310,7 +310,6 @@
                 };
                 
                 updateLesson(objectLesson);
-                console.log("actualizando modulo");
                 return;
             }
             
@@ -475,7 +474,7 @@
             //mostramos alerta de confirmación
             Swal.fire({
                 icon: "success",
-                title: "Registro exitoso",
+                title: "Actualización exitosa",
                 text: response.message,
             });
 
@@ -511,7 +510,7 @@
         }
     }
 
-    function createLessionElement(lesson, module) {
+    function  createLessionElement(lesson, module) {
         const {name, id_video, id_module} = lesson;
         // Crear contenedor principal
         const lessonContainer = document.createElement('div');

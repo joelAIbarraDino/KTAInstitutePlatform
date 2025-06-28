@@ -13,9 +13,10 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
     <?= $topScripts??''; ?>
+    <?php $cssVersion = filemtime('assets/css/app.css'); ?>
     
     <link rel="preload" href="/assets/css/app.css" as="style"> 
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="/assets/css/app.css?v=<?=$cssVersion?>">
 
     <link rel="shortcut icon" href="/assets/images/logoKTA.ico" />
 

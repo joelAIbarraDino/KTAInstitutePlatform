@@ -32,11 +32,16 @@
     <div class="cursos-container">
         
         <div class="cursos-container__grid width-80">
-            <?php foreach($courses as $course):?>
-                <?php if($course->privacy == 'Público'):?>
-                    <?php include __DIR__.'/../components/courseCard.php'; ?>
-                <?php endif;?>
-            <?php endforeach;?>
+            <?php if(!empty($courses)):?>
+                <?php foreach($courses as $course):?>
+                    <?php if($course->privacy == 'Público'):?>
+                        <?php include __DIR__.'/../components/courseCard.php'; ?>
+                    <?php endif;?>
+                <?php endforeach;?>
+            <?php else:?>
+                <p class="cursos-container__empty">No hay cursos de esta categoria</p>
+            <?php endif;?>
+            
         </div>
     </div>
 

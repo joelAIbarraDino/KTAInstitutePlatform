@@ -8,6 +8,7 @@ use Dotenv\Dotenv;
 
 use App\Middlewares\ExistsCategoryMiddleware;
 use App\Middlewares\StudentLoggedMiddleware;
+use App\Middlewares\EnrollExpiredMiddleware;
 use App\Middlewares\ExistsTeacherMiddleware;
 use App\Middlewares\PublicCourseMiddleware;
 use App\Middlewares\ExistsModuleMiddleware;
@@ -33,6 +34,8 @@ use App\Controllers\AuthController;
 use App\Controllers\AuthProvidersController;
 use App\Controllers\UserController;
 use App\Controllers\FaqController;
+use App\Controllers\QuizController;
+use App\Middlewares\ExistsQuizMiddleware;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -68,7 +71,7 @@ $dino->router->get('/mi-perfil', [UserController::class, 'profile'], [new Studen
 $dino->router->get('/editar-perfil', [UserController::class, 'editProfile'], [new StudentLoggedMiddleware('/login')]);
 
 //salón virtual
-$dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 // $dino->router->get('/curso/watch', [EnrollmentController::class, 'index']);
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
@@ -80,7 +83,9 @@ $dino->router->get('/nosotros', [PagesController::class, 'about']);
 $dino->router->get('/login', [AuthController::class, 'login'], [new StudentLoggedMiddleware('/login')]);
 
 
+//rutas de autenticacion
 $dino->router->post('/auth/login-callback', [AuthController::class, 'ktaAuth']);
+$dino->router->post('/auth/google-callback', [AuthProvidersController::class, 'googleAuth']);
 
 $dino->router->get('/forgot', [AuthController::class, 'forgot']);
 $dino->router->post('/forgot', [AuthController::class, 'forgot']);
@@ -89,9 +94,6 @@ $dino->router->get('/sign-in', [AuthController::class, 'signIn']);
 $dino->router->post('/auth/sign-in', [StudentController::class, 'signIn']);
 
 $dino->router->get('/logout', [AuthController::class, 'logout']);
-
-//autenticacion de google
-$dino->router->post('/auth/google-callback', [AuthProvidersController::class, 'googleAuth']);
 
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index']);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses']);
@@ -119,6 +121,7 @@ $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delet
 //administracion de contenido de curso
 $dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content'], [ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 $dino->router->get('/kta-admin/course-faq/{id}', [ContentController::class, 'faq'], [ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
+$dino->router->get('/kta-admin/course-quiz/{id}', [ContentController::class, 'quiz'], [ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 
 //administración de modulos de curso
 $dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [ValidIdMiddleware::class]);
@@ -146,6 +149,13 @@ $dino->router->patch('/api/faq/question/{id}', [FaqController::class, 'updateQue
 $dino->router->patch('/api/faq/answer/{id}', [FaqController::class, 'updateAnswer'], [ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
 
 $dino->router->delete('/api/faq/delete/{id}', [FaqController::class, 'delete'], [ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
+
+//administración de preguntas en el quiz del curso
+$dino->router->get('/api/quiz/{id}', [ContentController::class, 'getQuiz'], [ValidIdMiddleware::class]);
+
+$dino->router->post('/api/quiz/create/{id}', [QuizController::class, 'create'], [ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
+
+$dino->router->put('/api/quiz/update/{id}', [QuizController::class, 'update'], [ValidIdMiddleware::class, ExistsQuizMiddleware::class]);
 
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create']);

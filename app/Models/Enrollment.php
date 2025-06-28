@@ -18,7 +18,7 @@ class Enrollment extends Model {
     public string $url;
     public int $id_course;
     public int $id_student;
-    public int $id_payment;
+    public ?int $id_payment;
 
     public function __construct($args = []){
         $this->id_enrollment = $args["id_enrollment"]??null;
@@ -26,7 +26,7 @@ class Enrollment extends Model {
         $this->url = $args["url"]??Uuid::uuid4();
         $this->id_course = $args["id_course"]??0;
         $this->id_student = $args["id_student"]??0;
-        $this->id_payment = 0;
+        $this->id_payment = $args["id_payment"]??null;
     }
 
     public function validate(){

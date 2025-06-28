@@ -39,3 +39,17 @@ export function resetAlert(container) {
         changeAlert(container, 'waiting');
     }, 5000);
 }
+
+export function btnExitMessage(btnExit){
+    btnExit.addEventListener('click', () =>{
+        Swal.fire({
+            icon: "info",
+            title: `Recuerde`,
+            html: `Puede editar el contenido del curso dando click al icono <i class='bx bxs-widget'></i> en el administrador de cursos`,
+        }).then((result) => {
+            if (result.isConfirmed) 
+                window.location = "/kta-admin/cursos";
+        });
+
+    });
+}

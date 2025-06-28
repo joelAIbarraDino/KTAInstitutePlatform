@@ -209,6 +209,19 @@
 
   }
 
+  &__iniciales{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background-color: v.$dorado;
+    color: v.$blanco;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+  }
+
   &__no-result{
     color: v.$rojo;
   }

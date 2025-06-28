@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use DinoEngine\Core\Model;
+use DinoEngine\Http\Response;
 
 class Quiz extends Model {
     
     protected static string $table = 'quiz';
     protected static string $PK_name = 'id_quiz';
     protected static array $columns = ['id_quiz', 'name', 'min_score', 'max_time', 'max_attempts', 'id_course'];
-    protected static array $fillable = ['name', 'min_score', 'max_time', 'max_attempts'];
+    protected static array $fillable = ['name', 'min_score', 'max_time', 'max_attempts', 'id_course'];
 
     public ?int $id_quiz;
     public string $name;
@@ -27,7 +28,21 @@ class Quiz extends Model {
         $this->id_course = $args["id_course"]??0;
     }
 
-    public function validate(){
+    public function validateAPI(){
+        if(!$this->name)
+            Response::json(['ok'=>false, 'message'=>'El nombre del quiz es obligatorio'], 400);
+
+        if($this->min_score < 1 || $this->min_score > 100)
+            Response::json(['ok'=>false, 'message'=>'El score debe estar en el rango de (1 - 100)'], 400);
+
+        if($this->max_time < 1)
+            Response::json(['ok'=>false, 'message'=>'El tiempo maximo no puede ser negativo'], 400);
+
+        if($this->max_attempts < 1)
+            Response::json(['ok'=>false, 'message'=>'El numero de intentos no puede ser negativo'], 400);
+
+        if(!$this->id_course)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar a que curso pertenece'], 400);
 
     }
 }

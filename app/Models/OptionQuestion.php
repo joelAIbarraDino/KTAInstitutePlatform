@@ -13,13 +13,13 @@ class OptionQuestion extends Model {
 
     public ?int $id_option;
     public string $text_option;
-    public bool $is_correct;
+    public int $is_correct;
     public int $id_question;
 
     public function __construct($args = []){
         $this->id_option = $args["id_option"]??null;
         $this->text_option = $args["text_option"]??"";
-        $this->is_correct = $args["is_correct"]??false;
+        $this->is_correct = $args["is_correct"]??0;
         $this->id_question = $args["id_question"]??0;
     }
 

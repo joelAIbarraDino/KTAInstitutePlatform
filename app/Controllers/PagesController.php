@@ -4,11 +4,13 @@ namespace App\Controllers;
 
 use App\Models\Category;
 use App\Models\CourseView;
+use App\Models\EnrollmentView;
 use App\Models\FAQ;
 use App\Models\Lesson;
 use App\Models\Module;
 use App\Models\Slidebar;
 use App\Models\Teacher;
+use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 
 class PagesController{
@@ -57,12 +59,9 @@ class PagesController{
     }
 
     public static function courseCategory($category_url):void{
-        $courses = CourseView::belongsTo('id_category', $category_url);
+        $courses = CourseView::belongsTo('id_category', $category_url)??[];
         $categories = Category::all();
         
-        if(!$courses)
-            Response::redirect('/');
-
         if(!$categories)
             Response::redirect('/');
         
@@ -77,6 +76,35 @@ class PagesController{
     }
     
     public static function courseDetails($id):void{
+
+        session_start();
+        
+        $inscrito = false;
+        $enroll_url = null;
+
+        //si un estudiante tiene la sesion iniciada
+        if(isset($_SESSION['student'])){
+            $id_student = $_SESSION['student']['id_student'];
+            $currentDate = strtotime(date("Y-m-d"));
+            
+            $enrollment = EnrollmentView::multiWhere(['id_student'=>$id_student, 'course_url'=>$id]);
+            $enrollment = EnrollmentView::querySQL(
+                'SELECT * FROM enrollment_view WHERE id_student = :id_student AND course_url = :course_url',
+                [':id_student'=>$id_student, ':course_url'=>$id]
+            );
+
+            if($enrollment){
+                foreach($enrollment as $enroll){
+                    $enrollDate = strtotime("+".$enroll['max_months_enroll']. " months", strtotime($enroll['enrollment_at']));
+                    $inscrito = $currentDate < $enrollDate?true:false;
+
+                    if($inscrito){
+                        $enroll_url = $enroll['enroll_url'];
+                        break;
+                    }
+                }
+            }        
+        }
 
         $course = CourseView::where('url', '=', $id);
 
@@ -112,7 +140,9 @@ class PagesController{
             'teacher'=>$teacher,
             'modules'=>$modulesLessons,
             'faq'=>$faq,
-            'transparente'=>true
+            'transparente'=>true,
+            'cursoInscrito'=>$inscrito,
+            'enroll_url'=>$enroll_url
         ]);
     }
 

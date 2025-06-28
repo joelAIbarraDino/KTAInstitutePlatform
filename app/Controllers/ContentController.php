@@ -9,6 +9,9 @@ use DinoEngine\Http\Request;
 use App\Models\Lesson;
 use App\Models\Material;
 use App\Models\Module;
+use App\Models\OptionQuestion;
+use App\Models\Question;
+use App\Models\Quiz;
 use Exception;
 
 class ContentController{
@@ -139,6 +142,20 @@ class ContentController{
         }
     }
 
+    public static function faq(int $id):void{
+
+        $course = Course::find($id);
+
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        Response::render('/admin/contenido-curso/faq', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Preguntas frecuentes',
+            'course'=>$course
+        ]);
+    }
+
     public static function getFAQ(int $id):void{
         if(!Request::isGET())
             Response::json(['ok'=>false,'message'=>"Método no soportado"]);
@@ -154,18 +171,65 @@ class ContentController{
         }
     }
 
-    public static function faq(int $id):void{
-
+    public static function quiz(int $id):void{
         $course = Course::find($id);
 
         if(!Request::isGET())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
-        Response::render('/admin/contenido-curso/faq', [
+        Response::render('/admin/contenido-curso/quiz', [
             'nameApp'=> APP_NAME,
-            'title'=>'Preguntas frecuentes',
+            'title'=>'Examen de curso',
             'course'=>$course
         ]);
+    }
+
+    public static function getQuiz(int $id):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        try {
+             
+            $quiz = Quiz::where('id_course', '=', $id)??[];
+
+            //si no tengo registrado
+            if(!$quiz){
+                Response::json([
+                    'quiz'=>[],
+                    'questions'=>[]
+                ]);
+            }
+
+            $questionAnswers = [];
+            $questions = [];
+            $answers = [];
+    
+            //obtenemos las preguntas del quiz
+            $questions = Question::belongsTo('id_quiz', $quiz->id_quiz)??[];
+
+            foreach($questions as $question){
+
+                //obtenemos las respuestas de la pregunta
+                $answers = OptionQuestion::belongsTo('id_question', $question->id_question)??[];
+
+                $questionAnswers[] = [
+                    'id_question'=>$question->id_question,
+                    'question'=>$question->question,
+                    'id_quiz'=>$question->id_quiz,
+                    'answers'=>$answers
+                ];
+
+                $answers = [];
+            }
+
+            Response::json([
+                'quiz'=>$quiz,
+                'questions'=>$questionAnswers
+            ]);
+ 
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
     }
 
 }

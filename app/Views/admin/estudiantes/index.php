@@ -17,6 +17,7 @@
                 <table class="dashboard-table__table">
                     <thead class="dashboard-table__thead">
                         <tr>
+                            <th>Foto</th>    
                             <th>Nombre</th>
                             <th>Email</th>
                             <th class="actions-label">Acciones</th>
@@ -29,6 +30,17 @@
                             <?php foreach($students as $student): ?>
 
                                 <tr>
+                                    <?php if(!is_null($student->photo)):?>
+                                        <td>
+                                            <img class="dashboard-table__photo--user" src="<?=$student->photo?>" alt="foto de perfil del usuario">
+                                        </td>
+                                    <?php else: ?>
+                                        <td>
+                                            <div class="dashboard-table__iniciales" src="<?=$student->photo?>">
+                                                <?= Helpers::obtenerIniciales($student->name)?>
+                                            </div>
+                                        </td>
+                                    <?php endif; ?>
                                     <td><?=$student->name?></td>
                                     <td><?=$student->email?></td>
                                     <td class="dashboard-table__actions-cell">
