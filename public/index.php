@@ -98,115 +98,115 @@ $dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index']
 
 
 //login admin
-$dino->router->get('/login-admin', [AuthController::class, 'loginAdmin'], [new AdminLoggedMiddleware('/login')]);
+$dino->router->get('/login-admin', [AuthController::class, 'loginAdmin'], [AdminLoggedMiddleware::class]);
 
 //zona privada de administrador
-$dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->get('/kta-admin/categorias', [DashboardController::class, 'categories'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->get('/kta-admin/inscripciones', [DashboardController::class, 'enrollment'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->get('/kta-admin/slidebar', [DashboardController::class, 'slidebar'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->get('/kta-admin/maestros', [DashboardController::class, 'teachers'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->get('/kta-admin/administradores', [DashboardController::class, 'admins'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->get('/kta-admin/estudiantes', [DashboardController::class, 'students'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/categorias', [DashboardController::class, 'categories'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/inscripciones', [DashboardController::class, 'enrollment'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/slidebar', [DashboardController::class, 'slidebar'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/maestros', [DashboardController::class, 'teachers'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/administradores', [DashboardController::class, 'admins'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/estudiantes', [DashboardController::class, 'students'], [AdminLoggedMiddleware::class]);
 
 //administración de cursos
 $dino->router->get('/kta-admin/curso/create', 
     [CourseController::class, 'create'], 
-    [new AdminLoggedMiddleware('/login-admin'), new ExistsCategoryMiddleware('/kta-admin/categoria/create'), new ExistsTeacherMiddleware('/kta-admin/maestro/create')]
+    [AdminLoggedMiddleware::class, new ExistsCategoryMiddleware('/kta-admin/categoria/create'), new ExistsTeacherMiddleware('/kta-admin/maestro/create')]
 );
-$dino->router->post('/kta-admin/curso/create', [CourseController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->post('/kta-admin/curso/create', [CourseController::class, 'create'], [AdminLoggedMiddleware::class]);
 
-$dino->router->get('/kta-admin/curso/update/{id}', [CourseController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/curso/update/{id}', [CourseController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/curso/update/{id}', [CourseController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/curso/update/{id}', [CourseController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->patch('/api/curso/privacy/{id}', [CourseController::class, 'updatePrivacy'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
+$dino->router->patch('/api/curso/privacy/{id}', [CourseController::class, 'updatePrivacy'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
 
-$dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 //administracion de contenido de curso
-$dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
-$dino->router->get('/kta-admin/course-faq/{id}', [ContentController::class, 'faq'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
-$dino->router->get('/kta-admin/course-quiz/{id}', [ContentController::class, 'quiz'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
+$dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
+$dino->router->get('/kta-admin/course-faq/{id}', [ContentController::class, 'faq'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
+$dino->router->get('/kta-admin/course-quiz/{id}', [ContentController::class, 'quiz'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 
 //administración de modulos de curso
-$dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class]);
+$dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
-$dino->router->post('/api/module/create/{id}', [ModuleController::class, 'create'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class]);
+$dino->router->post('/api/module/create/{id}', [ModuleController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
-$dino->router->patch('/api/module/order_module/{id}', [ModuleController::class, 'updateOrder'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
-$dino->router->patch('/api/module/name/{id}', [ModuleController::class, 'updateName'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->patch('/api/module/order_module/{id}', [ModuleController::class, 'updateOrder'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->patch('/api/module/name/{id}', [ModuleController::class, 'updateName'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
 
-$dino->router->delete('/api/module/delete/{id}', [ModuleController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
+$dino->router->delete('/api/module/delete/{id}', [ModuleController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
 
 //administración de lecciones de curso
-$dino->router->post('/api/lesson/create/{id}', [LessonController::class, 'create'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class]);
+$dino->router->post('/api/lesson/create/{id}', [LessonController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
-$dino->router->put('/api/lesson/update/{id}', [LessonController::class, 'update'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
+$dino->router->put('/api/lesson/update/{id}', [LessonController::class, 'update'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
 
-$dino->router->delete('/api/lesson/delete/{id}', [LessonController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
+$dino->router->delete('/api/lesson/delete/{id}', [LessonController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsLessonMiddleware::class]);
 
 //administración de FAQ de curso
-$dino->router->get('/api/faq/{id}', [ContentController::class, 'getFAQ'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class]);
+$dino->router->get('/api/faq/{id}', [ContentController::class, 'getFAQ'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
-$dino->router->post('/api/faq/create/{id}', [FaqController::class, 'create'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
+$dino->router->post('/api/faq/create/{id}', [FaqController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
 
-$dino->router->patch('/api/faq/question/{id}', [FaqController::class, 'updateQuestion'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
-$dino->router->patch('/api/faq/answer/{id}', [FaqController::class, 'updateAnswer'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
+$dino->router->patch('/api/faq/question/{id}', [FaqController::class, 'updateQuestion'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
+$dino->router->patch('/api/faq/answer/{id}', [FaqController::class, 'updateAnswer'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
 
-$dino->router->delete('/api/faq/delete/{id}', [FaqController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
+$dino->router->delete('/api/faq/delete/{id}', [FaqController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsFaqMiddleware::class]);
 
 //administración de preguntas en el quiz del curso
-$dino->router->get('/api/quiz/{id}', [ContentController::class, 'getQuiz'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class]);
+$dino->router->get('/api/quiz/{id}', [ContentController::class, 'getQuiz'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
-$dino->router->post('/api/quiz/create/{id}', [QuizController::class, 'create'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
+$dino->router->post('/api/quiz/create/{id}', [QuizController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsCourseMiddleware::class]);
 
-$dino->router->put('/api/quiz/update/{id}', [QuizController::class, 'update'], [new AdminLoggedMiddleware('/login-admin'), ValidIdMiddleware::class, ExistsQuizMiddleware::class]);
+$dino->router->put('/api/quiz/update/{id}', [QuizController::class, 'update'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsQuizMiddleware::class]);
 
 //administración de categoria
-$dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/categoria/create', [CategoryController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/categoria/create', [CategoryController::class, 'create'], [AdminLoggedMiddleware::class]);
 
-$dino->router->get('/kta-admin/categoria/update/{id}', [CategoryController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/categoria/update/{id}', [CategoryController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/categoria/update/{id}', [CategoryController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/categoria/update/{id}', [CategoryController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->delete('/api/categoria/delete/{id}', [CategoryController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->delete('/api/categoria/delete/{id}', [CategoryController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 //administración de maestros
-$dino->router->get('/kta-admin/maestro/create', [TeacherController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/maestro/create', [TeacherController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/maestro/create', [TeacherController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/maestro/create', [TeacherController::class, 'create'], [AdminLoggedMiddleware::class]);
 
-$dino->router->get('/kta-admin/maestro/update/{id}', [TeacherController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/maestro/update/{id}', [TeacherController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/maestro/update/{id}', [TeacherController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/maestro/update/{id}', [TeacherController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->delete('/api/maestro/delete/{id}', [TeacherController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->delete('/api/maestro/delete/{id}', [TeacherController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 //administración de administradores
-$dino->router->get('/kta-admin/administrador/create', [AdminController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/administrador/create', [AdminController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/administrador/create', [AdminController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/administrador/create', [AdminController::class, 'create'], [AdminLoggedMiddleware::class]);
 
-$dino->router->get('/kta-admin/administrador/update/{id}', [AdminController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/administrador/update/{id}', [AdminController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/administrador/update/{id}', [AdminController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/administrador/update/{id}', [AdminController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->delete('/api/administrador/delete/{id}', [AdminController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->delete('/api/administrador/delete/{id}', [AdminController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 //administración de estudiante
-$dino->router->get('/kta-admin/estudiante/create', [StudentController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/estudiante/create', [StudentController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/estudiante/create', [StudentController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/estudiante/create', [StudentController::class, 'create'], [AdminLoggedMiddleware::class]);
 
-$dino->router->get('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->delete('/api/estudiante/delete/{id}', [StudentController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->delete('/api/estudiante/delete/{id}', [StudentController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 
 //administración de slidebar
-$dino->router->get('/kta-admin/slidebar/create', [SlidebarController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/slidebar/create', [SlidebarController::class, 'create'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/slidebar/create', [SlidebarController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/slidebar/create', [SlidebarController::class, 'create'], [AdminLoggedMiddleware::class]);
 
-$dino->router->get('/kta-admin/slidebar/update/{id}', [SlidebarController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
-$dino->router->post('/kta-admin/slidebar/update/{id}', [SlidebarController::class, 'update'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->get('/kta-admin/slidebar/update/{id}', [SlidebarController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/slidebar/update/{id}', [SlidebarController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->delete('/api/slidebar/delete/{id}', [SlidebarController::class, 'delete'], [new AdminLoggedMiddleware('/login-admin')]);
+$dino->router->delete('/api/slidebar/delete/{id}', [SlidebarController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 $dino->router->dispatch();

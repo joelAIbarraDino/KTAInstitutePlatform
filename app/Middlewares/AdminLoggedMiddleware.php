@@ -19,7 +19,7 @@ class AdminLoggedMiddleware implements HandleInterface{
 
         //si entro a la url /login y ya me autentique, regreso a mis cursos
         if($currentURL == '/login-admin' && $this->adminLogged())
-            Response::redirect('/kta-admin/dashboard');
+            Response::redirect('/');
     
         //si estoy en cualquier otra url protegida, reviso si no estoy autenticado y me redirige a /login en caso de que no
         if($currentURL != '/login-admin' && !$this->adminLogged())
