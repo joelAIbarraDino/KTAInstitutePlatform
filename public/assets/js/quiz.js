@@ -239,6 +239,8 @@
 
             if(!modeEdit)
                 addQuiz(quizObject);
+
+            updateQuiz(quizObject);
         });
 
         const inputClose = document.createElement("button");
@@ -397,7 +399,7 @@
         return details;
     }
 
-    function createAnswerElement(answer, question) {
+    function createAnswerElement(answer, question_options) {
         const {id_question, question, id_quiz} = answer;
         // Crear contenedor principal
         const lessonContainer = document.createElement('div');
