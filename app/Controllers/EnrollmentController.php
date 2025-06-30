@@ -35,7 +35,7 @@ class EnrollmentController{
 
         $rows = $newEnrollment->save();
 
-        if($rows > 1){
+        if($rows){
             Response::redirect('/curso/watch/'.$newEnrollment->url);
         }
     }
