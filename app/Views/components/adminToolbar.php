@@ -1,3 +1,12 @@
+<?php
+
+    use App\Classes\Helpers;
+
+    if(!isset($_SESSION)) session_start();
+    $nameUser = Helpers::getFirstName($_SESSION['admin']['nombre']);
+    
+?>
+
 <section class="toolbar">
 
     <div class="toolbar-left">
@@ -17,7 +26,7 @@
 
     <div class="toolbar-right">
 
-        <p class="toolbar-right__user">Hola, Admin</p>
+        <p class="toolbar-right__user">Hola<?=$nameUser?></p>
         
         <a href="/logout" class="toolbar-right__logout">
             <i class='bx bx-log-out'></i>

@@ -1,9 +1,12 @@
-<?php 
-    if(!isset($_SESSION))
-        session_start();
+<?php
 
+    use App\Classes\Helpers;
+
+    if(!isset($_SESSION)) session_start();
+    $nameUser = Helpers::getFirstName($_SESSION['student']['nombre']);
+    $photo = $_SESSION['student']['photo'];
+    
 ?>
-
 <section class="toolbar">
 
     <div class="toolbar-left">
@@ -23,9 +26,9 @@
 
     <div class="toolbar-right">
 
-        <?php if(isset($_SESSION['student']['photo'])): ?>
+        <?php if(isset($photo)): ?>
             <a href="/mis-cursos" class="toolbar-right__photo-link">
-                <img class="toolbar-right__photo" src="<?=$_SESSION['student']['photo']?>" alt="profile picture">    
+                <img class="toolbar-right__photo" src="<?=$photo?>" alt="profile picture">    
             </a>
         <?php else:?>
             <a href="/mis-cursos" class="toolbar-right__logout">
@@ -33,7 +36,7 @@
             </a>
         <?php endif;?>
         
-        <p class="toolbar-right__user">Hola, Joel</p>
+        <p class="toolbar-right__user">Hola<?=$nameUser?></p>
         
         <a href="/logout" class="toolbar-right__logout">
             <i class='bx bx-log-out'></i>

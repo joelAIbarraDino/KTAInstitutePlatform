@@ -32,9 +32,8 @@ class Helpers{
     }
     
     static function showSwalAlert() {
-        if(!isset($_SESSION)) {
+        if(!isset($_SESSION))
             session_start();
-        }
 
         if (isset($_SESSION['swal'])) {
             echo '
@@ -54,21 +53,31 @@ class Helpers{
     }
 
     static function obtenerIniciales($cadena):string {
-    // Eliminar espacios en blanco adicionales
-    $cadena = trim($cadena);
-    
-    // Separar la cadena en palabras
-    $palabras = explode(' ', $cadena);
-    
-    // Verificar que haya al menos dos palabras
-    if (count($palabras) < 2) {
-        $iniciales = strtoupper($palabras[0][0] . '');
+        // Eliminar espacios en blanco adicionales
+        $cadena = trim($cadena);
+        
+        // Separar la cadena en palabras
+        $palabras = explode(' ', $cadena);
+        
+        // Verificar que haya al menos dos palabras
+        if (count($palabras) < 2) {
+            $iniciales = strtoupper($palabras[0][0] . '');
+            return $iniciales;
+        }
+        
+        // Obtener las iniciales de las dos primeras palabras
+        $iniciales = strtoupper($palabras[0][0]) . strtoupper($palabras[1][0]);
+        
         return $iniciales;
     }
-    
-    // Obtener las iniciales de las dos primeras palabras
-    $iniciales = strtoupper($palabras[0][0]) . strtoupper($palabras[1][0]);
-    
-    return $iniciales;
-}
+
+    static function getFirstName($cadena):string{
+        // Eliminar espacios en blanco adicionales
+        $cadena = trim($cadena);
+        
+        // Separar la cadena en palabras
+        $palabras = explode(' ', $cadena);
+        
+        return ', '.$palabras[0]??'';
+    }
 }

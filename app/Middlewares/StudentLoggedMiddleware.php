@@ -29,9 +29,9 @@ class StudentLoggedMiddleware implements HandleInterface{
     }
 
     private function studentLogged(): bool{
-        if(!isset($_SESSION)) {
+        if(!isset($_SESSION))
             session_start();
-        }
+    
         
         return isset($_SESSION['student']);
     }
