@@ -11,7 +11,7 @@ class EnrollmentController{
 
     public static function index(string $uuid){
     
-        Response::render('/student/virtualAula', [
+        Response::render('/student/aula/virtualAula', [
             'nameApp'=>APP_NAME,
             'title'=>'Curso'
         ]);
