@@ -36,6 +36,7 @@ use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\FaqController;
 use App\Controllers\QuizController;
+use DinoEngine\Helpers\Helpers;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -46,7 +47,7 @@ define('APP_NAME','KTA Institute');
 define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
 define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
 define('DIR_SLIDEBAR',__DIR__.'/assets/slidebar/');
-define('URI_REDIRECT_GOOGLE', 'http://localhost:3000/auth/google-callback');
+define('URI_REDIRECT_GOOGLE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/auth/google-callback');
 
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],

@@ -14,9 +14,11 @@ class AuthController
 {
 
     public static function login(): void{
+
         Response::render('account/login', [
             'nameApp'=>APP_NAME, 
-            'title' => 'Login'
+            'title' => 'Login',
+            'googleCallBack'=>URI_REDIRECT_GOOGLE
         ]);
     }
 

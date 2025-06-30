@@ -67,7 +67,7 @@
 
                 <div id="g_id_onload"
                     data-client_id="259164387547-is5ht615qalq1tud4mh1jik9u9l8phf7.apps.googleusercontent.com"
-                    data-login_uri="http://localhost:3000/auth/google-callback"
+                    data-login_uri="<?=$googleCallBack?>"
                     data-auto_prompt="false"
                 ></div>
                 <div style="display: flex; justify-content: center; flex-direction:column">
