@@ -67,7 +67,7 @@
                         <p class="nav__title">Cursos</p>
                         <a class="nav__link" href="/mis-cursos"> <i class='bx bx-chalkboard'></i> Mis cursos</a>
                         <a class="nav__link" href="/cursos-pasados"> <i class='bx bxs-flag-checkered'></i> Cursos pasados</a>
-                        <a class="nav__link" href="/mis-certificados"> <i class='bx bxs-award' ></i> Certificados</a>
+                        <!-- <a class="nav__link" href="/mis-certificados"> <i class='bx bxs-award' ></i> Certificados</a> -->
                     </div>
 
                     <div class="nav">
