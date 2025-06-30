@@ -66,7 +66,7 @@
                     <div class="nav">
                         <p class="nav__title">Cursos</p>
                         <a class="nav__link" href="/mis-cursos"> <i class='bx bx-chalkboard'></i> Mis cursos</a>
-                        <a class="nav__link" href="/cursos-terminados"> <i class='bx bxs-flag-checkered'></i> Cursos terminados</a>
+                        <a class="nav__link" href="/cursos-pasados"> <i class='bx bxs-flag-checkered'></i> Cursos pasados</a>
                         <a class="nav__link" href="/mis-certificados"> <i class='bx bxs-award' ></i> Certificados</a>
                     </div>
 
@@ -77,7 +77,7 @@
 
                     <div class="nav">
                         <p class="nav__title">Seguridad</p>
-                        <a class="nav__link" href="/password"> <i class='bx bxs-lock' ></i> Acceso</a>
+                        <a class="nav__link" href="/seguridad-acceso"> <i class='bx bxs-lock' ></i> Acceso</a>
                     </div>
 
                 </div>

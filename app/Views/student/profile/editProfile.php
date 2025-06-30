@@ -1,4 +1,4 @@
-<?php include_once __DIR__.'/../components/estudentToolbar.php'; ?>
+<?php include_once __DIR__.'/../../components/estudentToolbar.php'; ?>
 
 <main class="background-profile">
     
@@ -10,7 +10,14 @@
     </div>
 
     <div class="profile">
-        <div class="profile__photo">JA</div>
+        
+        <?php if(isset($_SESSION['student']['photo'])): ?>
+            <div class="profile__photo">
+                <img class="toolbar-right__photo" src="<?=$_SESSION['student']['photo']?>" alt="profile picture">    
+            </div>
+        <?php else:?>
+            <div class="profile__photo"><?=$_SESSION['student']['iniciales']?></div>
+        <?php endif;?>
         
         <div class="profile__top">
             <p class="profile__title">Datos personales</p>
@@ -19,14 +26,21 @@
     
         <form class="profile__content" id="form-profile-data">
             
+            <input 
+                type="hidden" 
+                value="<?=$student->id_student?>"
+                id="id_student"
+            >
+
+
             <div class="profile__data">
                 <p class="profile__type">Nombre:</p>
                 <input 
                     type="text" 
                     placeholder="Nombre del módulo" 
                     class="profile__input-edit" 
-                    value="Joel Aljandro Ibarra Villar"
-                    id="new-name"
+                    value="<?=$student->name?>"
+                    id="name"
                 >
             </div>
 
@@ -36,19 +50,8 @@
                     type="text" 
                     placeholder="Nombre del módulo" 
                     class="profile__input-edit" 
-                    value="Joelvillar35@gmail.com"
-                    id="new-email"
-                >
-            </div>
-
-            <div class="profile__data">
-                <p class="profile__type">Telefono:</p>
-                <input 
-                    type="text" 
-                    placeholder="Nombre del módulo" 
-                    class="profile__input-edit" 
-                    value="55 1412 7503"
-                    id="new-phone"
+                    value="<?=$student->email?>"
+                    id="email"
                 >
             </div>
 
@@ -62,10 +65,13 @@
 
 </main>
 
-<?php include_once __DIR__.'/../components/footer.php'; ?>
+<?php include_once __DIR__.'/../../components/footer.php'; ?>
 
 <?php 
     $scripts ='
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/menuDashboard.js"></script>
+        <script src="/assets/js/updateUserProfile.js"></script>
     ';
 ?>

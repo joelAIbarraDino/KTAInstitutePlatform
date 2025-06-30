@@ -130,6 +130,70 @@ class StudentController{
 
     }
 
+    public static function updateAPI(int $id):void{
+        if(!Request::isPATCH())
+            Response::json(['ok'=>false, 'message'=>'Metodo no soportado'], 400);
+
+        if(!isset($_SESSION))
+            session_start();
+
+        $idStudent = $_SESSION['student']['id_student'];
+
+        if($id != $idStudent)
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar estudiante'], 400);
+    
+        $datosEnviados = Request::getBody();
+
+        $student = Student::where('id_student', '=', $idStudent);
+
+        if(!$student)
+            Response::json(['ok'=>false, 'message'=>'Estudiante no encontrado, contactar con KTA para mas información'], 400);
+
+        $student->validateAPI();
+
+        $student->name = $datosEnviados['name'];
+        $student->email = $datosEnviados['email'];
+
+        if(!$student->save())
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar estudiante, intente mas tarde'], 400);
+
+        Response::json(['ok'=>true, 'message'=>'Estudiante actualizado con exito']);
+
+    }
+
+    public static function updatePasswordAPI(int $id):void{
+        if(!Request::isPATCH())
+            Response::json(['ok'=>false, 'message'=>'Metodo no soportado'], 400);
+
+        if(!isset($_SESSION))
+            session_start();
+
+        $idStudent = $_SESSION['student']['id_student'];
+
+        if($id != $idStudent)
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar estudiante'], 400);
+    
+        $datosEnviados = Request::getBody();
+
+        $student = Student::where('id_student', '=', $idStudent);
+
+        if(!$student)
+            Response::json(['ok'=>false, 'message'=>'Estudiante no encontrado, contactar con KTA para mas información'], 400);
+
+        
+        $student->password = $datosEnviados['password'];
+        
+        $student->validateAPI();
+
+        $student->password = Auth::encriptPassword($student->password);
+
+        if(!$student->save())
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar contraseña, intente mas tarde'], 400);
+
+        Response::json(['ok'=>true, 'message'=>'Contraseña actualizada con exito']);
+
+    }
+
     public static function delete($id):void{
         
         if(Request::isDELETE()){

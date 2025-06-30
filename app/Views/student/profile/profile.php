@@ -1,4 +1,4 @@
-<?php include_once __DIR__.'/../components/estudentToolbar.php'; ?>
+<?php include_once __DIR__.'/../../components/estudentToolbar.php'; ?>
 
 <main class="background-profile">
     
@@ -11,14 +11,13 @@
 
     <div class="profile">
 
-    <?php if(isset($_SESSION['student']['photo'])): ?>
+        <?php if(isset($_SESSION['student']['photo'])): ?>
             <div class="profile__photo">
                 <img class="toolbar-right__photo" src="<?=$_SESSION['student']['photo']?>" alt="profile picture">    
             </div>
         <?php else:?>
             <div class="profile__photo"><?=$_SESSION['student']['iniciales']?></div>
         <?php endif;?>
-        
         
         <div class="profile__top">
             <p class="profile__title">Datos personales</p>
@@ -29,25 +28,19 @@
             
             <div class="profile__data">
                 <p class="profile__type">Nombre:</p>
-                <p class="profile__value">Joel Alejandro Ibarra Villar</p>
+                <p class="profile__value"><?=$student->name?></p>
             </div>
 
             <div class="profile__data">
                 <p class="profile__type">Email:</p>
-                <p class="profile__value">joelvillar35@gmail.com</p>
+                <p class="profile__value"><?=$student->email?></p>
             </div>
-
-            <div class="profile__data">
-                <p class="profile__type">Telefono:</p>
-                <p class="profile__value">+52 5514127503</p>
-            </div>
-
         </div>
     </div>
 
 </main>
 
-<?php include_once __DIR__.'/../components/footer.php'; ?>
+<?php include_once __DIR__.'/../../components/footer.php'; ?>
 
 <?php 
     $scripts ='

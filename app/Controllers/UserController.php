@@ -3,48 +3,114 @@
 namespace App\Controllers;
 
 use App\Models\EnrollmentView;
+use App\Models\Student;
 use DinoEngine\Http\Response;
 
 class UserController{
 
     public static function cursos():void{
 
-        // $student = Student::where('profile_url', '=', $id);
         if(!isset($_SESSION))
             session_start();
 
-        $idStudent = $_SESSION['student'];
+        $idStudent = $_SESSION['student']['id_student'];
+        $currentDate = strtotime(date('Y-m-d'));
 
-        $myCourses = EnrollmentView::belongsTo('id_student', $idStudent['id_student'])??[];
+        $myCourses = EnrollmentView::belongsTo('id_student', $idStudent)??[];
 
-        Response::render('/student/myCourses',[
+        $finalCourses = [];
+
+        if(!empty($myCourses)){
+            foreach($myCourses as $course){
+                $limitDate = strtotime("+".$course->max_months_enroll. " months", strtotime($course->enrollment_at));
+
+                if($currentDate < $limitDate)
+                    $finalCourses[]  = $course;
+            }
+        }        
+
+        Response::render('/student/courses/myCourses',[
             'nameApp'=>APP_NAME,
             'title'=>'Mis cursos',
-            'myCourses'=>$myCourses
+            'myCourses'=>$finalCourses
         ]);
         
     }
 
+    public static function endedCourses():void{
+        
+        if(!isset($_SESSION))
+            session_start();
+
+        $idStudent = $_SESSION['student'];
+        $currentDate = strtotime(date('Y-m-d'));
+
+        $myCourses = EnrollmentView::belongsTo('id_student', $idStudent['id_student'])??[];
+
+        $finalCourses = [];
+
+        if(!empty($myCourses)){
+            foreach($myCourses as $course){
+                $limitDate = strtotime("+".$course->max_months_enroll. " months", strtotime($course->enrollment_at));
+
+                if($currentDate > $limitDate)
+                    $finalCourses[]  = $course;
+            }
+        }        
+
+        Response::render('/student/courses/endedCourses',[
+            'nameApp'=>APP_NAME,
+            'title'=>'Cursos tomados',
+            'myCourses'=>$finalCourses
+        ]);
+    }
 
     public static function profile():void{
 
-        // $student = Student::where('profile_url', '=', $id);
+        if(!isset($_SESSION))
+            session_start();
 
-        Response::render('/student/profile',[
+        $idStudent = $_SESSION['student']['id_student'];
+
+        $student = Student::where('id_student', '=', $idStudent);
+
+        Response::render('/student/profile/profile',[
             'nameApp'=>APP_NAME,
-            'title'=>'Mi perfil'
+            'title'=>'Mi perfil',
+            'student'=>$student
         ]);
     }
 
     public static function editProfile():void{
 
-        // $student = Student::where('profile_url', '=', $id);
+        if(!isset($_SESSION))
+            session_start();
 
-        Response::render('/student/editProfile',[
+        $idStudent = $_SESSION['student']['id_student'];
+
+        $student = Student::where('id_student', '=', $idStudent);
+
+        Response::render('/student/profile/editProfile',[
             'nameApp'=>APP_NAME,
-            'title'=>'Editar perfil'
+            'title'=>'Editar perfil',
+            'student'=>$student
         ]);
     }
-    
+
+    public static function security():void{
+
+        if(!isset($_SESSION))
+            session_start();
+
+        $idStudent = $_SESSION['student']['id_student'];
+
+        $student = Student::where('id_student', '=', $idStudent);
+
+        Response::render('/student/security/security',[
+            'nameApp'=>APP_NAME,
+            'title'=>'Seguridad en acceso',
+            'student'=>$student
+        ]);
+    }
 
 }

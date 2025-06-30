@@ -6,7 +6,7 @@
     ';
 ?>
 
-<?php include_once __DIR__.'/../components/estudentToolbar.php'; ?>
+<?php include_once __DIR__.'/../../components/estudentToolbar.php'; ?>
 
 <main class="main-class">
 

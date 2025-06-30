@@ -2,7 +2,7 @@
 
     <div class="curso">
         <div class="curso__imagen-contenedor">
-            <a href="/curso/watch">
+            <a href="/curso/watch/<?=$course->enroll_url?>">
                 <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
             </a>
 
