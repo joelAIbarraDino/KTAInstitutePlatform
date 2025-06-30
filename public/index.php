@@ -133,6 +133,7 @@ $dino->router->get('/kta-admin/course-quiz/{id}', [ContentController::class, 'qu
 
 //administración de modulos de curso
 $dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->get('/api/curso/enroll/{uuid}', [ContentController::class, 'getStudentContent'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
 $dino->router->post('/api/module/create/{id}', [ModuleController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 

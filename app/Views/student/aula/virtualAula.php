@@ -27,13 +27,20 @@
 
             <div class="class__info-container">
                 <div class="class__name-container">
-                    <div class="class__module"> <span>Módulo 1</span> Introducción</div>
-                    <h1 class="class__name">Nombre de clase</h1>
+                    <div class="class__module"></div>
+                    <h1 class="class__name"></h1>
                 </div>
             </div>
 
 
-            <div id="player" data-plyr-provider="vimeo" data-plyr-embed-id="692146609"></div>
+            <div id="player">
+                <iframe
+                    src="https://player.vimeo.com/video/123456789"
+                    allowfullscreen
+                    allowtransparency
+                    allow="autoplay"
+                ></iframe>
+            </div>
 
             <div class="class__tabs">
                 <button class="class__tab class__tab--active" data-step="1">Descripción</button>
@@ -108,32 +115,7 @@
             </div>    
 
             <div class="aside__modules">
-                <?php for($i = 0; $i < 20; $i++):?>
-                    <details class="content-module">
-                        <summary class="content-module__header">
-                            <div class="content-module__title">
-                                <span>Módulo <?=$i + 1?> - Bienvenida</span>
-                                <div class="content-module__progress-container">
-                                    <p class="content-module__progress-percentage" >20%</p>
-                                    <progress class="content-module__progress-bar" max="100" value="20"></progress>
-                                </div>
-                            </div>
-
-                            <i class='bx bx-chevron-down'></i>
-                        </summary>
-
-                        <div class="content-module__lessons">
-                            <?php for($y = 0; $y < 10; $y++):?>
-                                <div class="content-module__lesson">
-                                    <p class="content-module__lesson-name">Clase <?= $y +1 ?></p>
-                                    <button class="content-module__lesson-checked">
-                                        <i class='bx bx-check-circle' ></i>
-                                    </button>
-                                </div>
-                            <?php endfor;?>
-                        </div>
-                    </details>
-                <?php endfor;?>
+                
             </div>
         </div>
     </aside>

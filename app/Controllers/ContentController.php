@@ -8,6 +8,7 @@ use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Models\Lesson;
 use App\Models\Material;
+use App\Models\Enrollment;
 use App\Models\Module;
 use App\Models\OptionQuestion;
 use App\Models\Question;
@@ -136,6 +137,61 @@ class ContentController{
 
             Response::json([
                 'modules'=>$modulesLessons,
+            ]);      
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+    public static function getStudentContent(string $uuid):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        $enroll = Enrollment::where('url', '=', $uuid);
+
+        $id = $enroll->id_course;
+
+        try {
+            $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
+            $modulesLessons = [];
+            $lessonsMaterial = [];
+            $arrayLessons = [];
+
+            foreach($modules as $module){
+                
+                $lessons = Lesson::belongsTo('id_module', $module->id_module, "order_lesson", 'ASC')??[];
+
+                foreach($lessons as $lesson){
+                    
+                    $material = Material::belongsTo('id_lesson', $lesson->id_lesson)??[];
+                    
+                    $lessonsMaterial[] = [
+                        'id_lesson'=>$lesson->id_lesson,
+                        'name'=>$lesson->name,
+                        'description'=>$lesson->description,
+                        'id_video'=>$lesson->id_video,
+                        'order_lesson'=>$lesson->order_lesson,
+                        'id_module'=>$lesson->id_module,
+                        'material'=>$material
+                    ];
+                    $arrayLessons[] = $lesson;
+                }
+
+                $modulesLessons[] = [
+                    'id_module'=>$module->id_module,
+                    'name'=>$module->name,
+                    'order_module'=>$module->order_module,
+                    'id_course'=>$module->id_course,
+                    'lessons'=>$lessonsMaterial
+                ];
+                
+                $lessonsMaterial = [];
+            }
+
+            Response::json([
+                'modules'=>$modulesLessons,
+                'lessons'=>$arrayLessons
+                
             ]);      
         } catch (Exception $e) {
             Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
