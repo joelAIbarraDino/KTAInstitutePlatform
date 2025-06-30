@@ -130,7 +130,7 @@ class StudentController{
 
     }
 
-    public static function updateAPI(int $id):void{
+    public static function updateName(int $id):void{
         if(!Request::isPATCH())
             Response::json(['ok'=>false, 'message'=>'Metodo no soportado'], 400);
 
@@ -152,16 +152,15 @@ class StudentController{
         $student->validateAPI();
 
         $student->name = $datosEnviados['name'];
-        $student->email = $datosEnviados['email'];
 
         if(!$student->save())
-            Response::json(['ok'=>false, 'message'=>'Error al actualizar estudiante, intente mas tarde'], 400);
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar nombre, intente mas tarde'], 400);
 
-        Response::json(['ok'=>true, 'message'=>'Estudiante actualizado con exito']);
+        Response::json(['ok'=>true, 'message'=>'Nombre actualizado con exito']);
 
     }
 
-    public static function updatePasswordAPI(int $id):void{
+    public static function updatePassword(int $id):void{
         if(!Request::isPATCH())
             Response::json(['ok'=>false, 'message'=>'Metodo no soportado'], 400);
 

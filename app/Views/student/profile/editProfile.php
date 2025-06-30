@@ -44,17 +44,6 @@
                 >
             </div>
 
-            <div class="profile__data">
-                <p class="profile__type">Email:</p>
-                <input 
-                    type="text" 
-                    placeholder="Nombre del módulo" 
-                    class="profile__input-edit" 
-                    value="<?=$student->email?>"
-                    id="email"
-                >
-            </div>
-
             <div class="profile__submit-container">
                 <input class="profile__submit-btn" type="submit" value="Guardar">
             </div>

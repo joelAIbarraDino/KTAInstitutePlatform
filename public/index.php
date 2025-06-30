@@ -200,8 +200,8 @@ $dino->router->post('/kta-admin/estudiante/create', [StudentController::class, '
 $dino->router->get('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [AdminLoggedMiddleware::class]);
 $dino->router->post('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->patch('/api/student/update/{id}', [StudentController::class, 'updateAPI'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-$dino->router->patch('/api/student/password/{id}', [StudentController::class, 'updatePasswordAPI'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->patch('/api/student/name/{id}', [StudentController::class, 'updateName'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->patch('/api/student/password/{id}', [StudentController::class, 'updatePassword'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
 
 $dino->router->delete('/api/estudiante/delete/{id}', [StudentController::class, 'delete'], [AdminLoggedMiddleware::class]);

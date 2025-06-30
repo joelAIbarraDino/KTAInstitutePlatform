@@ -39,6 +39,7 @@
             
             questions = response.questions;
             quiz = response.quiz;
+            console.log(courseID);
 
             if(quiz.length == 0)
                 quizModal();
@@ -237,9 +238,11 @@
                 id_course:courseID
             }
 
-            if(!modeEdit)
+            if(!modeEdit){
                 addQuiz(quizObject);
-
+                return;
+            }
+            
             updateQuiz(quizObject);
         });
 
@@ -476,9 +479,12 @@
             formData.append("min_score", min_score);
             formData.append("max_time", max_time);
             formData.append("max_attempts", max_attempts);
-            formData.append("id_course", id_course);
+            formData.append("id_course", courseID);
             
-            const url = `/api/quiz/create/${id_course}`;
+            console.log(courseID);
+
+            const url = `/api/quiz/create/${courseID}`;
+            console.log(url);
 
             const request = await fetch(url, {
                 method:"POST",
