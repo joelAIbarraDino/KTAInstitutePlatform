@@ -68,7 +68,7 @@
                     title: "Actualización exitosa",
                     text: response.message,
                 }).then(() =>{
-                    document.querySelector("#id_student").value = "";
+                    document.querySelector("#password").value = "";
                 })
                 
 
