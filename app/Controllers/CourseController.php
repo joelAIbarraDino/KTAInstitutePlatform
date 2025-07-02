@@ -11,6 +11,9 @@ use App\Models\Course;
 use App\Models\FAQ;
 use App\Models\Lesson;
 use App\Models\Module;
+use App\Models\OptionQuestion;
+use App\Models\Question;
+use App\Models\Quiz;
 use App\Models\Teacher;
 use Exception;
 
@@ -157,6 +160,25 @@ class CourseController{
 
             if(empty($faq))
                 Response::json(['ok'=>false,'message'=>'El curso no tiene preguntas frecuentes para poder publicarse'], 400);
+
+            //verificamos si hay un quiz creado
+            $quiz = Quiz::where('id_course', '=', $course->id_course)??[];
+
+            if(!empty($quiz)){
+                $questions = Question::belongsTo('id_quiz', $quiz->id_quiz)??[];
+
+                if(empty($questions))
+                    Response::json(['ok'=>false,'message'=>'El curso tiene un quiz sin preguntas'], 400);
+
+                foreach($questions as $question){
+                    if($question->type_question == "multiple"){
+                        $answers = OptionQuestion::belongsTo('id_question', $question->id_question)??[];
+                        
+                        if(empty($answers))
+                            Response::json(['ok'=>false,'message'=>'La pregunta "'.$question->question.'" no tiene respuestas agregadas'], 400);
+                    }
+                }
+            }
 
             //guardamos los cambios
             $rowAffected = $course->save();

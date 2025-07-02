@@ -356,7 +356,7 @@
         actionsContainer.classList.add('module__header-actions');
 
         const btnType = document.createElement('div');
-        btnType.classList.add('module__btn', 'module__btn--extra');
+        btnType.classList.add('module__btn', 'module__btn--agregar');
         btnType.dataset.id = question.id_question;
         btnType.innerHTML = `Tipo: <strong>${question.type_question}</strong>`;
         btnType.onclick = function (){
