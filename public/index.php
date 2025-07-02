@@ -6,7 +6,9 @@ use DinoEngine\Core\Database;
 use DinoFrame\Dino;
 use Dotenv\Dotenv;
 
+use App\Middlewares\ExistsOptionQuestionMiddleware;
 use App\Middlewares\ExistsCategoryMiddleware;
+use App\Middlewares\ExistsQuestionMiddleware;
 use App\Middlewares\StudentLoggedMiddleware;
 use App\Middlewares\EnrollExpiredMiddleware;
 use App\Middlewares\ExistsTeacherMiddleware;
@@ -19,11 +21,13 @@ use App\Middlewares\ExistsQuizMiddleware;
 use App\Middlewares\ExistsFaqMiddleware;
 use App\Middlewares\ValidIdMiddleware;
 
+use App\Controllers\OptionQuestionController;
 use App\Controllers\AuthProvidersController;
 use App\Controllers\EnrollmentController;
 use App\Controllers\DashboardController;
 use App\Controllers\CategoryController;
 use App\Controllers\SlidebarController;
+use App\Controllers\QuestionController;
 use App\Controllers\ContentController;
 use App\Controllers\StudentController;
 use App\Controllers\TeacherController;
@@ -34,11 +38,8 @@ use App\Controllers\PagesController;
 use App\Controllers\AdminController;
 use App\Controllers\AuthController;
 use App\Controllers\UserController;
-use App\Controllers\FaqController;
-use App\Controllers\OptionQuestionController;
-use App\Controllers\QuestionController;
 use App\Controllers\QuizController;
-use DinoEngine\Helpers\Helpers;
+use App\Controllers\FaqController;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -160,15 +161,15 @@ $dino->router->post('/api/quiz/create/{id}', [QuizController::class, 'create'], 
 $dino->router->put('/api/quiz/update/{id}', [QuizController::class, 'update'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsQuizMiddleware::class]);
 
 //administracion de preguntas del curso
-$dino->router->post('/api/question/create/{id}', [QuestionController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
-$dino->router->patch('/api/question/question/{id}', [QuestionController::class, 'updateQuestion'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
-$dino->router->patch('/api/question/type_question/{id}', [QuestionController::class, 'updateTypeQuestion'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
-$dino->router->delete('/api/question/delete/{id}', [QuestionController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->post('/api/question/create/{id}', [QuestionController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsQuizMiddleware::class]);
+$dino->router->patch('/api/question/question/{id}', [QuestionController::class, 'updateQuestion'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsQuestionMiddleware::class]);
+$dino->router->patch('/api/question/type_question/{id}', [QuestionController::class, 'updateTypeQuestion'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsQuestionMiddleware::class]);
+$dino->router->delete('/api/question/delete/{id}', [QuestionController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsQuestionMiddleware::class]);
 
 //administracion de respuestas de las preguntas del curso
-$dino->router->post('/api/option_question/create/{id}', [OptionQuestionController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
-$dino->router->put('/api/option_question/update/{id}', [OptionQuestionController::class, 'update'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
-$dino->router->delete('/api/option_question/delete/{id}', [OptionQuestionController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->post('/api/option_question/create/{id}', [OptionQuestionController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsQuestionMiddleware::class]);
+$dino->router->put('/api/option_question/update/{id}', [OptionQuestionController::class, 'update'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsOptionQuestionMiddleware::class]);
+$dino->router->delete('/api/option_question/delete/{id}', [OptionQuestionController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsOptionQuestionMiddleware::class]);
 
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create'], [AdminLoggedMiddleware::class]);
