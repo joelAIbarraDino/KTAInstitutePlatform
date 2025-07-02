@@ -1005,7 +1005,7 @@
                         question.answers = question.answers.map(option_question =>{
                             if(option_question.id_option == id_option){
                                 option_question.text_option = text_option;
-                                option_question.is_correct = 1;
+                                option_question.is_correct = is_correct;
                             }else{
                                 option_question.is_correct = 0;
                             }
@@ -1014,8 +1014,10 @@
                         });
                     }else{
                         question.answers = question.answers.map(option_question =>{
-                            if(option_question.id_option == id_option)
+                            if(option_question.id_option == id_option){
                                 option_question.text_option = text_option;
+                                option_question.is_correct = is_correct;
+                            }
                             
                             return option_question;
                         });
