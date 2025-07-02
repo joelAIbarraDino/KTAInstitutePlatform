@@ -271,6 +271,7 @@ class ContentController{
                 $questionAnswers[] = [
                     'id_question'=>$question->id_question,
                     'question'=>$question->question,
+                    'type_question'=>$question->type_question,
                     'id_quiz'=>$question->id_quiz,
                     'answers'=>$answers
                 ];

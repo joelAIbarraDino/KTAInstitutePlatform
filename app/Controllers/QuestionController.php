@@ -65,6 +65,30 @@ class QuestionController{
         }    
     }
 
+    public static function updateTypeQuestion(int $id){
+        if(!Request::isPATCH())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        try {
+            $question = Question::find($id);
+            $dataSend = Request::getBody();
+            $question->type_question = $dataSend['type_question'];
+
+            $question->validateAPI();
+
+            //guardamos los cambios
+            $rowAffected = $question->save();
+
+            if($rowAffected === 0)
+                Response::json(['ok'=>false,'message'=>'Error al actualizar el tipo de pregunta, intente mas tarde'], 404);
+            
+            Response::json(['ok'=>true,'message'=>'Tipo de pregunta actualizado con exito']);
+            
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()], 400);
+        }    
+    }
+
     public static function delete(int $id){
         if(!Request::isDELETE())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);

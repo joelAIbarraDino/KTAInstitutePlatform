@@ -6,6 +6,7 @@ use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
 use App\Models\OptionQuestion;
+use App\Models\Question;
 use Exception;
 
 class OptionQuestionController{
@@ -26,6 +27,10 @@ class OptionQuestionController{
 
             //obtenemos las respuestas registradas de la pregunta
             $answers = OptionQuestion::belongsTo('id_question', $dataPost['id_question'])??[];
+            $question = Question::where('id_question', '=', $dataPost['id_question'])??[];
+
+            if($question->type_question == "abierta")
+                Response::json(['ok'=>false,'message'=>'El tipo de pregunta no permite opción multiple'], 400);
 
             if(count($answers) === 4)
                 Response::json(['ok'=>false,'message'=>'Respuestas completas: solo se permiten 4 respuestas'], 400);

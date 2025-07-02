@@ -97,12 +97,21 @@
     border: none;
     border-radius: .2rem;
     transition: all .2s ease;
+    font-weight: v.$regular;
 
     &--agregar{
       background-color: v.$azul;
 
       &:hover{
         background-color: rgba(v.$azul, 0.8);
+      }
+    }
+
+    &--extra{
+      background-color: v.$amarillo-lesly;
+
+      &:hover{
+        background-color: rgba(v.$amarillo-lesly, 0.8);
       }
     }
 

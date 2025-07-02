@@ -355,6 +355,15 @@
         const actionsContainer = document.createElement('div');
         actionsContainer.classList.add('module__header-actions');
 
+        const btnType = document.createElement('div');
+        btnType.classList.add('module__btn', 'module__btn--extra');
+        btnType.dataset.id = question.id_question;
+        btnType.innerHTML = `Tipo: <strong>${question.type_question}</strong>`;
+        btnType.onclick = function (){
+            question.type_question = question.type_question == "multiple"?"abierta":"multiple";
+            updateTypeQuestion(question);
+        }
+
         const btnAgregar = document.createElement('button');
         btnAgregar.classList.add('module__btn', 'module__btn--agregar');
         btnAgregar.innerHTML = '<i class="bx bxs-add-to-queue"></i> respuesta';
@@ -385,7 +394,12 @@
         const iconChevron = document.createElement('i');
         iconChevron.classList.add('bx', 'bx-chevron-down');
 
-        actionsContainer.appendChild(btnAgregar);
+        actionsContainer.appendChild(btnType);
+
+        if(question.type_question == "multiple"){
+            actionsContainer.appendChild(btnAgregar);
+        }
+
         actionsContainer.appendChild(btnEliminar);
         actionsContainer.appendChild(iconChevron);
 
@@ -397,6 +411,19 @@
         contenido.classList.add('acordeon__contenido');
         contenido.id = `anwswers-${question.id_question}`;
         
+        if(question.type_question != "multiple"){
+            const noClases = document.createElement('p');
+            noClases.classList.add('module__no-class');
+            noClases.textContent = 'Esta pregunta es de respuesta abierta';
+
+            contenido.appendChild(noClases);
+
+            // Insertar summary y contenido en el details
+            details.appendChild(summary);
+            details.appendChild(contenido);
+
+            return details;
+        }
 
         const option_questions = question.answers;
         clearElementContainer(contenido);        
@@ -822,6 +849,7 @@
             //registro el modelo en la base de datos
             const formData = new FormData();
             formData.append("question", questionTextInput);
+            formData.append("type_question", "multiple");
             formData.append("id_quiz", quiz.id_quiz);
             
             const url = `/api/question/create/${quiz.id_quiz}`;
@@ -846,6 +874,7 @@
             const   quizObject= {
                 id_question: response.id,
                 question: questionTextInput,
+                type_question:"multiple",
                 id_quiz: quiz.id_quiz,
                 answers: []
             }
@@ -1098,6 +1127,46 @@
         }
     }
 
+    async function updateTypeQuestion(question) {
+        const {id_question, type_question} = question;
+
+        try{
+            const url = `/api/question/type_question/${id_question}`;
+
+            changeAlert('inProcess', 'Guardando cambios...');
+
+            const request = await fetch(url, {
+                method:'PATCH',
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({type_question:type_question})
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', 'Error al guardar los cambios');
+                return;
+            }
+
+            changeAlert('success', response.message);
+
+            questions = questions.map(question =>{
+                if(question.id_question == id_question){
+                    question.type_question = type_question;
+                }
+                return question;
+            });
+            
+            resetAlert();
+            showQuestions();
+
+        }catch(error){
+            console.log(error);
+        }
+    }
     //funciones auxiliares--------------------------------------------------
     function questionChanged(inputElement) {
         const question = questions.find(question => question.id_question == inputElement.dataset.id);

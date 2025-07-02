@@ -162,6 +162,7 @@ $dino->router->put('/api/quiz/update/{id}', [QuizController::class, 'update'], [
 //administracion de preguntas del curso
 $dino->router->post('/api/question/create/{id}', [QuestionController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->patch('/api/question/question/{id}', [QuestionController::class, 'updateQuestion'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->patch('/api/question/type_question/{id}', [QuestionController::class, 'updateTypeQuestion'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->delete('/api/question/delete/{id}', [QuestionController::class, 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
 //administracion de respuestas de las preguntas del curso
