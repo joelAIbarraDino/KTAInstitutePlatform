@@ -61,7 +61,9 @@ $dbConfig = [
     "driver"=>Database::PDO_DRIVER
 ];
 
-$dino = new Dino(dirname(__DIR__), Dino::DEVELOPMENT_MODE, $dbConfig);
+$runMode = $_SERVER['HTTP_HOST'] == 'localhost:3000'?Dino::DEVELOPMENT_MODE:Dino::PRODUCTION_MODE;
+
+$dino = new Dino(dirname(__DIR__), $runMode, $dbConfig);
 
 //public zone
 $dino->router->get('/', [PagesController::class, 'index']);
