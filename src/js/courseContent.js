@@ -603,17 +603,14 @@
             const response = await request.json();
 
             if(!response.ok){
-                Swal.fire({
-                    icon: "error",
-                    title: "Ha ocurrido un error",
-                    text: response.message,
-                });
                 changeAlert('error', 'Error al guardar cambios');
+                resetAlert();
                 return;
             }
 
             //cambio el icono de que se guardaron los cambios un tiempo
-            changeAlert('success', 'Cambios guardados');
+            changeAlert('success', response.message);
+
             //sincronizo objeto modulos 
             modules = modules.map(module =>{
                 if(module.id_module === id_module){
@@ -624,8 +621,6 @@
             });
             resetAlert();
             showModules();
-
-            //vuelvo a mostrar el icono de que estoy esperando cambios a guardar
 
         } catch (error) {
             console.log(error);
@@ -868,11 +863,8 @@
         const response = await request.json();
 
         if(!response.ok){
-            Swal.fire({
-                icon: "error",
-                title: "Ha ocurrido un error",
-                text: response.message,
-            });
+            changeAlert('error', response.message);
+            resetAlert();
             return;
         }
 
@@ -886,11 +878,13 @@
             lessons: []
         }
         
-        modules = [...modules, moduleObject];
+        changeAlert('success', response.message);
         
+        modules = [...modules, moduleObject];
         showModules();
         moduleName.value = "";
         moduleName.focus(); 
+        resetAlert();
     }
 
     // Actualiza el orden visual de los módulos

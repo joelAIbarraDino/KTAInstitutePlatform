@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use DinoEngine\Core\Model;
+use DinoEngine\Http\Response;
 
 class OptionQuestion extends Model {
     
     protected static string $table = 'option_question';
     protected static string $PK_name = 'id_option';
     protected static array $columns = ['id_option', 'text_option', 'is_correct', 'id_question'];
-    protected static array $fillable = ['text_option', 'is_correct'];
+    protected static array $fillable = ['text_option', 'is_correct', 'id_question'];
 
     public ?int $id_option;
     public string $text_option;
@@ -23,7 +24,11 @@ class OptionQuestion extends Model {
         $this->id_question = $args["id_question"]??0;
     }
 
-    public function validate(){
+    public function validateAPI(){
+        if(!$this->text_option)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar una respuesta valida'], 400);
 
+        if(!$this->id_question)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar a que pregunta pertenece la respuesta'], 400);
     }
 }

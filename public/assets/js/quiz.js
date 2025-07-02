@@ -3,9 +3,11 @@
     const btnExit = document.querySelector("#btn-exit");
     const quizContainer = document.querySelector("#quiz-container");
     const btnConf = document.querySelector('#add_conf_btn');
-    const btnFaq = document.querySelector('#add_FAQ_btn');
     const courseID = getCourseID();
     const containerAlert = document.querySelector("#container-alert");
+    const questionInput = document.querySelector('#new_question');
+    const questionAddButton = document.querySelector('#add_question_btn');
+
 
     let questions = [];
     let quiz = [];
@@ -24,9 +26,23 @@
             quizModal(true);
         });
 
-        btnFaq.addEventListener('click', ()=>{
-
+        questionAddButton.addEventListener('click', ()=>{
+            addQuestion();
         });
+
+        questionInput.addEventListener('input', e=>{
+            if(e.target.value.trim().length == 0){
+                e.target.value = "";
+            }
+        });
+
+        questionInput.addEventListener('keydown', e=>{
+            
+            if(e.key != "Enter")return;
+
+            addQuestion();
+        });
+
     }
 
     async function getQuiz(){
@@ -39,17 +55,18 @@
             
             questions = response.questions;
             quiz = response.quiz;
-            console.log(courseID);
 
             if(quiz.length == 0)
                 quizModal();
+
+            showQuestions();
 
         } catch (error) {
             console.log(error);
         }
     }
 
-    function showQuiz(){
+    function showQuestions(){
 
        //generando preguntas del examen 
         clearQuizContainer();
@@ -60,7 +77,7 @@
         questions.forEach(question =>{
             let newQuestion = createQuestionElement(question);
             quizContainer.appendChild(newQuestion);
-            initAccordion(newModule);
+            initAccordion(newQuestion);
         });
     }
 
@@ -323,13 +340,13 @@
         inputQuestion.value = question.question;
         inputQuestion.id = `question-question-${question.id_question}`;
         inputQuestion.dataset.id=`${question.id_question}`;
-        inputQuestion.onkeydown = (e) =>{ e.target.value = capitalize(e.target.value); }
         inputQuestion.addEventListener('blur', ()=>{
 
             if(!questionChanged(inputQuestion))
                 return;
 
-            updateQuestion({...question}, inputQuestion.value);
+            question.question = inputQuestion.value.trim();
+            updateQuestion(question);
         });
 
         questionContainer.appendChild(inputQuestion);
@@ -340,10 +357,17 @@
 
         const btnAgregar = document.createElement('button');
         btnAgregar.classList.add('module__btn', 'module__btn--agregar');
-        btnAgregar.innerHTML = '<i class="bx bxs-add-to-queue"></i> Clase';
+        btnAgregar.innerHTML = '<i class="bx bxs-add-to-queue"></i> respuesta';
         btnAgregar.dataset.id = question.id_question;
         btnAgregar.onclick = function (){
-            questionModal({...question});
+
+            if(question.answers.length == 4){
+                changeAlert('error', "Respuestas completas: solo se permiten 4 respuestas");
+                resetAlert();
+                return;
+            }
+
+            answerModal(question, false);
         }
 
         const iconDelete = document.createElement('i');
@@ -354,7 +378,7 @@
         btnEliminar.dataset.id = question.id_question;
         btnEliminar.appendChild(iconDelete);
         btnEliminar.onclick = function (){
-            alertDeleteQuestion({...question});   
+            alertDeleteQuestion(question);   
         }
 
 
@@ -374,10 +398,10 @@
         contenido.id = `anwswers-${question.id_question}`;
         
 
-        const answers = question.answers;
+        const option_questions = question.answers;
         clearElementContainer(contenido);        
 
-        if(answers.length === 0){
+        if(option_questions.length === 0){
             const noClases = document.createElement('p');
             noClases.classList.add('module__no-class');
             noClases.textContent = 'Sin respuestas agregadas';
@@ -391,8 +415,8 @@
             return details;
         }
         
-        answers.forEach(answer =>{
-            let newAnswer = createAnswerElement({...answer}, {...question});
+        option_questions.forEach(option_question =>{
+            let newAnswer = createAnswerElement({...option_question}, {...question});
             contenido.appendChild(newAnswer);
         });
         
@@ -402,38 +426,38 @@
         return details;
     }
 
-    function createAnswerElement(answer, question_options) {
-        const {id_question, question, id_quiz} = answer;
+    function createAnswerElement(option_question, question) {
+        const {id_option, text_option} = option_question;
         // Crear contenedor principal
-        const lessonContainer = document.createElement('div');
-        lessonContainer.className = 'lesson';
+        const answerContainer = document.createElement('div');
+        answerContainer.className = 'lesson';
 
         // Crear contenedor izquierdo
         const lessonLeft = document.createElement('div');
         lessonLeft.className = 'lesson__left';
 
-        const iconMenu = document.createElement('i');
-        iconMenu.className = 'bx bx-menu';
-
         const dataContent = document.createElement('div');
-        dataContent.className = 'lesson__data-content';
-
+        dataContent.className = 'lesson__data-question';
+        
+        const correctIcon = document.createElement('i');
+        
+        if(option_question.is_correct){
+            correctIcon.classList.add("bx", "bxs-check-circle", "is-correct-answer");
+        
+        }else{
+            correctIcon.classList.add("bx", "bx-check-circle", "is-correct-answer");
+            
+        }
+        
         const nombre = document.createElement('p');
         nombre.className = 'lesson__name';
-        nombre.textContent = question;
-
-        const enlace = document.createElement('a');
-        enlace.className = 'lesson__video-link link-active';
-        enlace.href = `https://vimeo.com/${id_video}`;
-        enlace.target = '_blank';
-        enlace.textContent = 'Ver clase en vimeo';
-
+        nombre.textContent = text_option??"";
+        
         // Añadir elementos al dataContent
+        dataContent.appendChild(correctIcon);
         dataContent.appendChild(nombre);
-        dataContent.appendChild(enlace);
 
         // Añadir elementos al lessonLeft
-        //lessonLeft.appendChild(iconMenu);
         lessonLeft.appendChild(dataContent);
 
         // Crear contenedor derecho
@@ -442,18 +466,18 @@
 
         const btnEditar = document.createElement('button');
         btnEditar.className = 'module__btn module__btn--agregar';
-        btnEditar.setAttribute('data-id', id_module);
+        btnEditar.setAttribute('data-id', id_option);
         btnEditar.innerHTML = "<i class='bx bx-edit'></i>";
         btnEditar.onclick = function(){
-            lessonModal(module, true, lesson);
+            answerModal(question, true, option_question);
         };
 
         const btnEliminar = document.createElement('button');
         btnEliminar.className = 'module__btn module__btn--eliminar';
-        btnEliminar.setAttribute('data-id', id_module);
+        btnEliminar.setAttribute('data-id', id_option);
         btnEliminar.innerHTML = "<i class='bx bx-trash'></i>";
         btnEliminar.onclick = function(){
-            alertDeleteLesson({...lesson});
+            alertDeleteAnswer(option_question);
         }
 
         // Añadir botones al lessonRight
@@ -461,10 +485,220 @@
         lessonRight.appendChild(btnEliminar);
 
         // Añadir ambos lados al contenedor principal
-        lessonContainer.appendChild(lessonLeft);
-        lessonContainer.appendChild(lessonRight);
+        answerContainer.appendChild(lessonLeft);
+        answerContainer.appendChild(lessonRight);
 
-        return lessonContainer;
+        return answerContainer;
+    }
+
+    function answerModal(question, modeEdit = false, option_question = {}){
+        const {id_question} = question;
+        const {id_option, text_option, is_correct} = option_question;
+
+        const modalWindow = document.createElement("div");
+        modalWindow.classList.add("modal");
+
+        // FORM
+        const form = document.createElement("form");
+        form.classList.add("form", "modal__form");
+
+        // LEGEND
+        const legend = document.createElement("legend");
+        legend.classList.add("form__title");
+        legend.textContent = "Respuesta de pregunta";
+
+        // Instrucciones
+        const instrucciones = document.createElement("p");
+        instrucciones.classList.add("form__instructions");
+        instrucciones.textContent = "Completa los campos requeridos";
+
+        // Grid contenedor
+        const grid = document.createElement("div");
+        grid.classList.add("grid-elements", "border");
+
+        // Input: Nombre
+        const divNombre = document.createElement("div");
+        divNombre.classList.add("form__input", "col-12");
+
+        const labelNombre = document.createElement("label");
+        labelNombre.setAttribute("for", "name");
+        labelNombre.textContent = " Opción de respuesta (obligatorio)";
+
+        const inputNombre = document.createElement("input");
+        inputNombre.setAttribute("autocomplete", "off");
+        inputNombre.type = "text";
+        inputNombre.name = "name";
+        inputNombre.id = "name";
+        inputNombre.classList.add("field");
+        inputNombre.placeholder = "Opción de respuesta a escoger";
+        inputNombre.value = text_option || "";
+        inputNombre.onkeydown =  function(e){
+            //capitalizo primera letra del nombre de la clase
+            e.target.value = capitalize(e.target.value);
+        }
+
+        divNombre.appendChild(labelNombre);
+        divNombre.appendChild(inputNombre);
+
+        // Input: es correcto
+        const divIsCorrect = document.createElement("div");
+        divIsCorrect.classList.add("form__input", "col-12");
+
+        const laberIsCorrect = document.createElement("label");
+        laberIsCorrect.textContent = "La respuesta es correcta";
+
+        const realInputIsCorrect = document.createElement("input");
+        realInputIsCorrect.value  = is_correct?"true":"false";
+        realInputIsCorrect.type = "hidden";
+
+        const inputIsCorrect = document.createElement("i");
+        inputIsCorrect.classList.add("bx", "bx-check-square", "field-checkbox");
+        inputIsCorrect.addEventListener('click', ()=>{
+            
+            if(realInputIsCorrect.value == "true"){
+                realInputIsCorrect.value = "false";
+                inputIsCorrect.classList.remove("bxs-check-square");
+                inputIsCorrect.classList.add("bx-check-square");
+            }else{
+                realInputIsCorrect.value = "true";
+                inputIsCorrect.classList.add("bxs-check-square");
+                inputIsCorrect.classList.remove("bx-check-square");
+            }
+        });
+
+        if(is_correct){
+            inputIsCorrect.classList.remove("bx-check-square");
+            inputIsCorrect.classList.add("bxs-check-square");
+        }else{
+            inputIsCorrect.classList.add("bx-check-square");
+            inputIsCorrect.classList.remove("bxs-check-square");
+        }
+
+        divIsCorrect.appendChild(laberIsCorrect);
+        divIsCorrect.appendChild(realInputIsCorrect);
+        divIsCorrect.appendChild(inputIsCorrect);
+
+        // Agregar inputs al grid
+        grid.appendChild(divNombre);
+        grid.appendChild(divIsCorrect);
+
+        // Submit
+        const divSubmit = document.createElement("div");
+        divSubmit.classList.add("modal__controllers");
+
+        const inputSubmit = document.createElement("input");
+        inputSubmit.type = "submit";
+        inputSubmit.classList.add("submit");
+        inputSubmit.value = "Guardar";
+        inputSubmit.addEventListener('click', function(){
+            const newName = inputNombre.value.trim();
+            const is_correct = realInputIsCorrect.value
+            
+            if(newName.length === 0){
+                Swal.fire({
+                    icon: "error",
+                    title: "Respuesta invalida",
+                    text: "Debe colocar una respuesta valida a la pregunta",
+                });
+                return;
+            }
+
+            const answerObject = {
+                id_option: id_option??null,
+                text_option:newName,
+                is_correct:is_correct=="true"?1:0,
+                id_question:id_question
+            }
+
+            if(!modeEdit){
+                addAnswer(answerObject);
+                return;
+            }
+            
+            updateAnswer(answerObject);
+        });
+
+        const inputClose = document.createElement("button");
+        inputClose.classList.add("modal__cancel");
+        inputClose.textContent = "Cancelar";
+        inputClose.addEventListener("click", function(){
+
+            const form = document.querySelector(".modal__form");
+            form.classList.add("modal-close");
+            
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 550);
+        });
+
+        divSubmit.appendChild(inputClose);
+        divSubmit.appendChild(inputSubmit);
+
+        // Ensamblar el formulario
+        form.appendChild(legend);
+        form.appendChild(instrucciones);
+        form.appendChild(grid);
+        form.appendChild(divSubmit);
+
+        // Agregar el formulario al modal
+        modalWindow.appendChild(form);
+
+        //animación de apertura
+        setTimeout(() => {
+            const form = document.querySelector(".modal__form");
+            form.classList.add("modal-open");
+        }, 100);
+
+        //animación de close
+        modalWindow.addEventListener('click', e =>{
+            e.preventDefault();
+
+            if(e.target.classList.contains("modal")){
+            
+                const form = document.querySelector(".modal__form");
+                form.classList.add("modal-close");
+                
+                setTimeout(() => {
+                    modalWindow.remove();
+                }, 550);
+            }
+        });
+
+        document.querySelector("body").appendChild(modalWindow);
+    }
+
+    function alertDeleteAnswer(option_question){
+        const {text_option} = option_question
+
+        Swal.fire({
+            title: `Estas seguro que quieres eliminar la respuesta "${text_option}"`,
+            text: "Este proceso no se puede revertir",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, eliminalo"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteAnswer(option_question);
+            }
+                
+        });
+    }
+
+    function alertDeleteQuestion(question){
+        Swal.fire({
+            title: "Estas seguro que quieres eliminar esta pregunta",
+            text: `"${question.question}"`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, eliminalo"
+        }).then((result) => {
+            if (result.isConfirmed) 
+                deleteQuestion(question);
+        });
     }
 
     async function addQuiz(newQuiz) {
@@ -481,33 +715,9 @@
             formData.append("max_attempts", max_attempts);
             formData.append("id_course", courseID);
             
-            console.log(courseID);
-
             const url = `/api/quiz/create/${courseID}`;
-            console.log(url);
-
-            const request = await fetch(url, {
-                method:"POST",
-                body:formData
-            });
-
-            const response = await request.json();
-
-            if(!response.ok){
-                Swal.fire({
-                    icon: "error",
-                    title: "Ha ocurrido un error",
-                    text: response.message,
-                });
-                return;
-            }
-
-            //mostramos alerta de confirmación
-            Swal.fire({
-                icon: "success",
-                title: "Registro exitoso",
-                text: response.message,
-            });
+            
+            changeAlert('inProcess', 'Guardando cambios...');
 
             //cerramos modal
             const form = document.querySelector(".modal__form");
@@ -518,6 +728,18 @@
                 modalWindow.remove();
             }, 0);
 
+            const request = await fetch(url, {
+                method:"POST",
+                body:formData
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', response.message);
+                return;
+            }
+            
             //actualizamos DOM
             const newQuiz = {
                 id_quiz:response.id,
@@ -527,7 +749,8 @@
                 max_attempts:max_attempts,
                 id_course:id_course
             }
-
+            changeAlert('success', response.message);
+            resetAlert();
             quiz = newQuiz;
 
         } catch (error) {
@@ -542,6 +765,17 @@
         try {
 
             const url = `/api/quiz/update/${id_quiz}`;
+
+            //cerramos modal
+            const form = document.querySelector(".modal__form");
+            const modalWindow = document.querySelector(".modal");
+            form.classList.add("modal-close");
+
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 0);
+
+            changeAlert('inProcess', 'Guardando cambios...');
 
             const request = await fetch(url, {
                 method:"PUT",
@@ -561,29 +795,9 @@
             const response = await request.json();
 
             if(!response.ok){
-                Swal.fire({
-                    icon: "error",
-                    title: "Ha ocurrido un error",
-                    text: response.message,
-                });
+                changeAlert('error', response.message);
                 return;
             }
-
-            //mostramos alerta de confirmación
-            Swal.fire({
-                icon: "success",
-                title: "Actualización exitosa",
-                text: response.message,
-            });
-
-            //cerramos modal
-            const form = document.querySelector(".modal__form");
-            const modalWindow = document.querySelector(".modal");
-            form.classList.add("modal-close");
-
-            setTimeout(() => {
-                modalWindow.remove();
-            }, 0);
 
             //sincronizo objeto quiz 
             quiz.name = name,
@@ -592,8 +806,292 @@
             quiz.max_attempts = max_attempts,
             quiz.id_course = id_course
 
+            changeAlert('success', response.message);
+            resetAlert();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function addQuestion() {
+        const questionTextInput = questionInput.value.trim();
+        if(!questionTextInput) return;
+
+        //registro de nueva pregunta
+        try{
+            //registro el modelo en la base de datos
+            const formData = new FormData();
+            formData.append("question", questionTextInput);
+            formData.append("id_quiz", quiz.id_quiz);
+            
+            const url = `/api/question/create/${quiz.id_quiz}`;
+
+            changeAlert('inProcess', 'Guardando cambios...');
+
+            const request = await fetch(url, {
+                method:"POST",
+                body:formData
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', response.message);
+                return;
+            }
+
+            changeAlert('success', response.message);
+
+            //registro el nuevo modelo en mi objeto local
+            const   quizObject= {
+                id_question: response.id,
+                question: questionTextInput,
+                id_quiz: quiz.id_quiz,
+                answers: []
+            }
+            
+            questions = [...questions, quizObject];
+        
+            questionInput.value = "";
+            questionInput.focus(); 
+            resetAlert();
+            showQuestions();
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async function updateQuestion(questionObject){
+        const {id_question, question} = questionObject;
+
+        try {
+            const url = `/api/question/question/${id_question}`;
+
+            changeAlert('inProcess', 'Guardando datos...');
+
+            const request = await fetch(url, {
+                method:'PATCH',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify({question:question})
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', response.message);
+                return;
+            }
+
+            questions = questions.map(questionMemory=>{
+                if(questionMemory.id_question == id_question){
+                    questionMemory.question = question
+                }
+                return questionMemory;
+            });
+
+            changeAlert('success', response.message);
+            resetAlert();
+            showQuestions();
 
         } catch (error) {
+            
+        }
+    }
+
+    async function addAnswer(option_question) {
+        const {text_option, is_correct, id_question} = option_question;
+
+        try {
+            const formData = new FormData();
+            formData.append("text_option", text_option);
+            formData.append("is_correct", is_correct);
+            formData.append("id_question", id_question);
+
+            const url = `/api/option_question/create/${id_question}`;
+
+            changeAlert('inProcess', 'Guardando cambios...');
+
+            //cerramos modal
+            const form = document.querySelector(".modal__form");
+            const modalWindow = document.querySelector(".modal");
+            form.classList.add("modal-close");
+            
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 0);
+
+            const request = await fetch(url, {
+                method:"POST",
+                body:formData
+            });
+
+            const response = await request.json();
+            
+            if(!response.ok){
+                changeAlert('error', response.message);
+                return;
+            }
+
+            changeAlert('success', response.message);
+
+            const newOptionQuestion = {
+                id_option: response.id,
+                text_option:text_option,
+                is_correct:is_correct,
+                id_question:id_question
+            }
+
+            questions = questions.map(question =>{
+                if(question.id_question == id_question){
+                    question.answers = [...question.answers, newOptionQuestion]
+                }
+                return question;
+            });
+
+            showQuestions();
+            resetAlert();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function updateAnswer(option_question) {
+        const {id_option, text_option, is_correct, id_question} = option_question;
+
+        try{
+            const url = `/api/option_question/update/${id_option}`;
+
+            changeAlert('inProcess', 'Guardando cambios...');
+
+            //cerramos modal
+            const form = document.querySelector(".modal__form");
+            const modalWindow = document.querySelector(".modal");
+            form.classList.add("modal-close");
+            
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 0);
+
+            const request = await fetch(url, {
+                method:"PUT",
+                headers:{
+                    'Accept': 'application/json',
+                    'content-type':'application/json'
+                },
+                body: JSON.stringify({
+                    id_option:id_option,
+                    text_option:text_option,
+                    is_correct:is_correct,
+                    id_question:id_question
+                })
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', response.message);
+                return;
+            }
+
+            questions = questions.map(question =>{
+                if(question.id_question == id_question){
+
+                    if(is_correct){
+                        question.answers = question.answers.map(option_question =>{
+                            if(option_question.id_option == id_option){
+                                option_question.text_option = text_option;
+                                option_question.is_correct = 1;
+                            }else{
+                                option_question.is_correct = 0;
+                            }
+
+                            return option_question;
+                        });
+                    }else{
+                        question.answers = question.answers.map(option_question =>{
+                            if(option_question.id_option == id_option)
+                                option_question.text_option = text_option;
+                            
+                            return option_question;
+                        });
+                    }
+                }
+                return question;
+            });
+
+            showQuestions();
+            changeAlert('success', response.message);
+            resetAlert();
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async function deleteAnswer(option_question){
+        const {id_option, id_question} = option_question;
+
+        try {
+            const url = `/api/option_question/delete/${id_option}`;
+
+            changeAlert('inProcess', 'Guardando cambios...');
+
+            const request = await fetch(url, {
+                method:'DELETE'
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', response.message);
+                return;
+            }
+
+            questions = questions.map(question =>{
+                if(question.id_question == id_question)
+                    question.answers = question.answers.filter(answer => answer.id_option != id_option);
+                return question;
+            });
+
+            changeAlert('success', response.message);
+            resetAlert();
+            showQuestions();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function  deleteQuestion(question) {
+        const {id_question} = question
+
+        try{
+            const url = `/api/question/delete/${id_question}`;
+
+            const request = await fetch(url, {
+                method:'DELETE'
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', response.message);
+                resetAlert();
+                return;
+            }
+
+            questions = questions.filter(question => question.id_question != id_question);
+
+            changeAlert('success', response.message);
+            showQuestions();            
+            resetAlert();
+
+        }catch(error){
             console.log(error);
         }
     }
@@ -603,9 +1101,9 @@
         const question = questions.find(question => question.id_question == inputElement.dataset.id);
         const newQuestion = inputElement.value.trim();
 
-        if(newQuestion.length === 0)return false;
+        if(newQuestion.length == 0)return false;
         if (!question) return false;
-        return question.question !== newQuestion;
+        return question.question != newQuestion;
     }
     
     function btnExitMessage(){
@@ -693,7 +1191,7 @@
             element.removeChild(element.firstChild);
     }
 
-    function changeAlert(type, message = ""){
+    function changeAlert(type, message = "Error al guardar" ){
         
         containerAlert.className = "";
 

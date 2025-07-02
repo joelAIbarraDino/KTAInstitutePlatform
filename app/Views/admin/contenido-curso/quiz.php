@@ -23,12 +23,23 @@
                 <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
             </div>
 
+            <p class="form__instructions">Agrega las preguntas del examen</p>
+
+            <div class="form__input new-module__form">
+                <input 
+                    type="text" 
+                    id="new_question" 
+                    placeholder="pregunta de examen" 
+                    class="field" 
+                />
+                
+                <button id="add_question_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
+            </div>
             
             <div class="faq-control">
                 <p class="faq-control__instructions">Edite las preguntas y respuestas  que desea cambiar</p>
                 <div class="faq-control__buttons">
                     <button id="add_conf_btn" class="faq-control__btn-conf"><i class='bx bx-cog'></i> Configuración</button>
-                    <button id="add_FAQ_btn" class="faq-control__btn-add"><i class='bx bxs-message-rounded-add'></i> Pregunta de examen</button>
                 </div>
             </div>
             
