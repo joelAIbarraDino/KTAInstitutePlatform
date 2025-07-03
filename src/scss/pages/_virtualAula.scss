@@ -289,7 +289,6 @@
         .content-module__lesson-name{
             color: v.$blanco;
         }
-
     }
 
     @include m.computadora{
@@ -516,6 +515,19 @@
 
         &:hover{
             background-color: #cda02d33;
+        }
+    }
+
+    &__quiz-link{
+        padding: 1rem 1.5rem;
+        text-align: center;
+        font-size: 1.8rem;
+        color: v.$dorado;
+        font-weight: v.$black;
+
+        &:hover{
+            text-decoration: underline;
+            cursor: pointer;
         }
     }
 }

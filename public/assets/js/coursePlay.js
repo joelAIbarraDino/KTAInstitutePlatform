@@ -14,9 +14,10 @@
 
   let modules = [];
   let lessons = [];
+  let quiz = [];
 
   let currentLesson = 0;
-  let player = new Plyr('#player');
+  let player = new Plyr('#player');;
 
   window.addEventListener("DOMContentLoaded", ()=>{
     app();
@@ -41,6 +42,7 @@
       const response = await request.json();
       modules = response.modules;
       lessons = response.lessons;
+      quiz = response.quiz;
 
       showModules();
 
@@ -62,6 +64,13 @@
       modulesContainer.appendChild(newModule);
       beginModule(newModule);
     })
+
+    if(quiz.length == 0)
+      return;
+
+    let newQuestion = createQuiz(quiz);
+    modulesContainer.appendChild(newQuestion)
+    beginModule(newQuestion);
 
   }
 
@@ -120,6 +129,46 @@
     return detailsElement;
   }
 
+  function createQuiz(quiz){
+    const detailsElement = document.createElement('details');
+    detailsElement.classList.add("content-module");
+
+    const summaryElement = document.createElement('summary');
+    summaryElement.classList.add("content-module__header");
+
+    const sumaryTitle = document.createElement("div");
+    sumaryTitle.classList.add("content-module__title");
+
+    sumaryTitle.innerHTML = `
+      <span>Quiz - ${quiz.name}</span>
+    `;
+
+    const icon = document.createElement('i');
+    icon.classList.add("bx", 'bx-chevron-down');
+
+    summaryElement.appendChild(sumaryTitle);
+    summaryElement.appendChild(icon);
+  
+    const contentModule = document.createElement('div');
+    contentModule.classList.add('content-module__lessons');
+    contentModule.id = "course-modules"
+
+    const id = getCourseID();
+    
+    const quizLink = document.createElement('a');
+    quizLink.href = `/quiz/attempts/${id}`;
+    quizLink.classList.add('content-module__quiz-link');
+    quizLink.textContent = 'Ir a intentos';
+
+    contentModule.appendChild(quizLink);
+  
+    detailsElement.appendChild(summaryElement);
+    detailsElement.appendChild(contentModule);
+
+    return detailsElement;
+  }
+
+
   function createLessionElement(lesson, module){
     const lessonCont = document.createElement('div');
     lessonCont.classList.add('content-module__lesson');
@@ -157,7 +206,6 @@
 
     
     const currentLesson = lessons.find(Object => Object.id_lesson == lesson.id_lesson);
-    const currentModule = module;
     const currentIndex = lessons.indexOf(currentLesson);
 
     if(currentIndex === 0){

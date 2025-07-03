@@ -101,8 +101,18 @@ $dino->router->get('/editar-perfil', [UserController::class, 'editProfile'], [ne
 $dino->router->get('/seguridad-acceso', [UserController::class, 'security'], [new StudentLoggedMiddleware('/login')]);
 
 //salón virtual
+$dino->router->get('/api/curso/enroll/{uuid}', [EnrollmentController::class, 'getStudentContent'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
+
 $dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
-// $dino->router->get('/curso/watch', [EnrollmentController::class, 'index']);
+
+$dino->router->get('/quiz/attempts/{uuid}', [EnrollmentController::class, 'attempts'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
+$dino->router->get('/quiz/answer/{uuid}/{id}', [EnrollmentController::class, 'responseQuiz'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->get('/api/quiz/attempt/{id}', [EnrollmentController::class, 'getQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+
+$dino->router->post('/api/answer_student/{id}', [EnrollmentController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->delete('/api/attempts/cancel/{id}', [EnrollmentController::class, 'cancelAttempt'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+
+$dino->router->post('/attempts/create/{uuid}', [EnrollmentController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
 
 //login admin
@@ -138,7 +148,6 @@ $dino->router->get('/kta-admin/course-quiz/{id}', [ContentController::class, 'qu
 
 //administración de modulos de curso
 $dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
-$dino->router->get('/api/curso/enroll/{uuid}', [ContentController::class, 'getStudentContent'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
 $dino->router->post('/api/module/create/{id}', [ModuleController::class, 'create'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->patch('/api/module/order_module/{id}', [ModuleController::class, 'updateOrder'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, ExistsModuleMiddleware::class]);
