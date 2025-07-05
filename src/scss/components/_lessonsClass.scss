@@ -32,6 +32,19 @@
         gap: .5rem;
     }
 
+    &__data-answers{
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+    }
+
+    &__data-answerStudent{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
     &__video-link{
         font-size: 1.5rem;
         font-weight: v.$black;
@@ -77,8 +90,26 @@
         font-weight: v.$bold;
         margin: 0;
     }
+
+    &__question{
+        color: v.$blanco;
+        font-size: 1.8rem;
+        font-weight: v.$bold;
+        margin: 0;
+    }
+
+    &__answer{
+        color: v.$blanco;
+        font-size: 1.5rem;
+        font-weight: v.$regular;
+        margin: 0;
+    }
 }
 
 .is-correct-answer{
     color: v.$blanco;
+}
+
+.not-correct-answer{
+    color: v.$rojo;
 }

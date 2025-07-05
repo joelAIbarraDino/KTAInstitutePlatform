@@ -63,6 +63,44 @@
       gap: 1rem;
       align-items: center;
     }
+
+    &-attempt{
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+
+      &-id{
+        margin: 0;
+        color: v.$blanco;
+        font-size: 1.8rem;
+        margin-bottom: .8rem;
+        font-weight: v.$black;
+        color: v.$dorado;
+      }
+
+      &-score{
+        margin: 0;
+        color: v.$blanco;
+        font-weight: v.$regular;
+        font-size: 1.4rem;
+
+        span{
+          font-weight: v.$black;
+        }
+      }
+
+      &-time{
+        margin: 0;
+        color: v.$blanco;
+        font-weight: v.$regular;
+        font-size: 1.4rem;
+
+        span{
+          font-weight: v.$black;
+        }
+      }
+
+    }
   }
 
   &__name{

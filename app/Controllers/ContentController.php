@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\AnswerStudent;
+use App\Models\Attempt;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
@@ -230,6 +232,66 @@ class ContentController{
             ]);
  
         } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+    public static function attempts(int $id):void{
+        $course = Course::find($id);
+
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        Response::render('/admin/contenido-curso/attempts-quiz', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Intentos del curso',
+            'course'=>$course
+        ]);
+    }
+
+    public static function getAttempts(int $id):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        try{
+
+            $quiz = Quiz::where('id_course', '=', $id)??[];
+
+            //si no tengo un quiz registrado
+            if(!$quiz){
+                Response::json([
+                    'attempts'=>[]
+                ]);
+            }
+
+            $attempts = Attempt::belongsTo('id_quizz', $quiz->id_quiz)??[];
+
+            if(!$attempts){
+                Response::json([
+                    'attempts'=>[]
+                ]);
+            }
+
+            $finalAttempts = [];
+
+            foreach($attempts as $attempt){
+                $answers = AnswerStudent::belongsTo('id_attempt', $attempt->id_attempt)??[];
+
+                $finalAttempts[] =[
+                    'id_attempt'=>$attempt->id_attempt,
+                    'time'=>$attempt->time,
+                    'score'=>$attempt->score,
+                    'min_score'=>$quiz->min_score,
+                    'is_approved'=>$attempt->is_approved,
+                    'answersStudent'=>$answers
+                ];
+            }
+
+            Response::json([
+                'attempts'=>$finalAttempts
+            ]);
+
+        }catch(Exception $e){
             Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }

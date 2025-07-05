@@ -251,10 +251,9 @@ class EnrollmentController{
             $score = 0;
 
             foreach($questions as $question){
-
-                if(isset($answersStudent[$question->id_question]))
-                    $answerStudent = $answersStudent[$question->id_question];
                 
+                $answerStudent = $answersStudent[$question->id_question]??null;
+
                 if($answerStudent && $question->type_question == "multiple"){
                     
                     $respuestaSeleccionada = OptionQuestion::where('id_option', '=', $answerStudent[0]);
@@ -264,7 +263,8 @@ class EnrollmentController{
 
                     $newAnswerStudent->id_attempt =$attempt->id_attempt;
                     $newAnswerStudent->type_question = $question->type_question;
-                    $newAnswerStudent->answer = $respuestaSeleccionada->id_option;
+                    $newAnswerStudent->question = $question->question;
+                    $newAnswerStudent->answer = $respuestaSeleccionada->text_option;
                     $newAnswerStudent->is_correct = $respuestaSeleccionada->is_correct;
 
                     $newAnswerStudent->save();
@@ -275,6 +275,7 @@ class EnrollmentController{
 
                     $newAnswerStudent->id_attempt =$attempt->id_attempt;
                     $newAnswerStudent->type_question = $question->type_question;
+                    $newAnswerStudent->question = $question->question;
                     $newAnswerStudent->answer = $answerStudent['text'];
                     $newAnswerStudent->is_correct = 0;
 
@@ -285,7 +286,8 @@ class EnrollmentController{
 
                     $newAnswerStudent->id_attempt =$attempt->id_attempt;
                     $newAnswerStudent->type_question = $question->type_question;
-                    $newAnswerStudent->answer = null;
+                    $newAnswerStudent->question = $question->question;
+                    $newAnswerStudent->answer = 'Pregunta no responida';
                     $newAnswerStudent->is_correct = 0;
 
                     $newAnswerStudent->save();

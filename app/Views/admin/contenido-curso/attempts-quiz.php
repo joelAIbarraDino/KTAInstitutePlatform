@@ -12,23 +12,24 @@
         <div class="course-options tabs__container">
             <div class="course-options__links">
                 <a class="course-options__tab" href="/kta-admin/course-content/<?=$course->id_course?>"><i class='bx bxs-videos'></i> Contenido</a>
-                <a class="course-options__tab course-options__tab--active" href="/kta-admin/course-faq/<?=$course->id_course?>"><i class='bx bx-question-mark' ></i> FAQ's</a>
+                <a class="course-options__tab" href="/kta-admin/course-faq/<?=$course->id_course?>"><i class='bx bx-question-mark' ></i> FAQ's</a>
                 <a class="course-options__tab" href="/kta-admin/course-quiz/<?=$course->id_course?>"><i class='bx bx-list-check' ></i> Examen</a>
-                <a class="course-options__tab" href="/kta-admin/attempts-quiz/<?=$course->id_course?>"><i class='bx bx-file-find'></i> Evaluación</a>
+                <a class="course-options__tab course-options__tab--active" href="/kta-admin/attempts-quiz/<?=$course->id_course?>"><i class='bx bx-file-find'></i> Evaluación</a>
             </div>
         </div>
 
         <div class="form tabs__container">
             <div class="new-module__title">
-                <legend class="form__title">Contenido de curso</legend>
+                <legend class="form__title">Resoluciones del examen</legend>
                 <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
             </div>
-            
+
             <div class="faq-control">
-                <p class="faq-control__instructions">Edite las preguntas y respuestas presionando enter para guardar su pregunta</p>
-                <button id="add_FAQ_btn" class="faq-control__btn-add"><i class='bx bxs-message-rounded-add'></i> FAQ</button>
+                <p class="faq-control__instructions">De click al boton con el icono de pregunta para calificar la pregunta</p>
             </div>
-            <div id="faq-container" class="modules"></div>
+            
+            <div id="attempts-container" class="modules">
+            </div>
 
         </div>
 
@@ -36,11 +37,14 @@
 </main>
 
 <?php
+
+    $quizVersion = filemtime('assets/css/app.css');
+
     $scripts = '
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/menuDashboard.js"></script>
         <script src="/assets/js/privacyControl.js"></script>
-        <script src="/assets/js/faq.js"></script>
+        <script src="/assets/js/attempts.js"></script>
     ';
 ?>

@@ -123,11 +123,11 @@
                 border-radius: 6px;
                 cursor: pointer;
                 transition: all 0.2s;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: v.$gris_oscuro;
                 
                 &:hover {
-                    background-color: darken(v.$fondo_input, 2%);
+                    background-color: rgba(v.$fondo_input, 0.1);
                     border-color: v.$azul;
                 }
             }
@@ -166,14 +166,14 @@
     
     .question-counter {
         color: v.$gris;
-        font-size: 0.9rem;
+        font-size: 1.5rem;
     }
 }
 
 .navigation-buttons {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3.5rem;
     gap: 2rem;
 }
 
@@ -189,7 +189,7 @@
     border: none;
     border-radius: 6px;
     font-family: v.$fuente_principal;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: v.$bold;
     cursor: pointer;
     transition: all 0.2s;
@@ -198,12 +198,12 @@
     gap: 0.5rem;
     
     &:disabled {
-        opacity: 0.5;
+        opacity: 0;
         cursor: not-allowed;
     }
     
     i {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
     }
 }
 
@@ -212,7 +212,7 @@
     color: v.$gris_oscuro;
     
     &:hover:not(:disabled) {
-        background-color: darken(v.$fondo_claro, 5%);
+        background-color: rgba(v.$fondo_claro, 0.6);
     }
 }
 
@@ -226,11 +226,11 @@
 }
 
 .btn-cancel {
-    background-color: v.$fondo_claro;
-    color: v.$rojo;
+    background-color: v.$rojo;
+    color: v.$blanco;
     
     &:hover:not(:disabled) {
-        background-color: rgba(v.$rojo, 0.1);
+        background-color: rgba(v.$rojo, 0.6);
     }
 }
 
@@ -239,7 +239,7 @@
     color: v.$blanco;
     
     &:hover:not(:disabled) {
-        background-color: darken(v.$verde, 5%);
+        background-color: rgba(v.$verde, 0.6);
     }
 }
 
@@ -247,19 +247,15 @@
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     background-color: v.$verde;
     color: v.$blanco;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 1.4rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    
-    @include m.telefono {
-        font-size: 0.7rem;
-    }
     
     &.offline {
         background-color: v.$rojo;
