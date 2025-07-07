@@ -106,8 +106,8 @@
 }
 
 .options-container {
-    margin-bottom: 1.5rem;
-    min-height: 15rem;
+    margin-bottom: 1rem;
+    min-height: 17rem;
   
     .option-item {
         margin-bottom: 0.8rem;
@@ -143,13 +143,13 @@
     
     .open-answer {
         width: 100%;
-        min-height: 100px;
+        min-height: 15rem;
         padding: 1rem;
         border: 1px solid v.$border_input;
         border-radius: 6px;
         font-family: v.$fuente_principal;
-        font-size: 1rem;
-        resize: vertical;
+        font-size: 1.8rem;
+        resize: none;
         background-color: v.$fondo_input;
         
         &:focus {

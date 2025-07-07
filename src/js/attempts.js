@@ -181,7 +181,7 @@
 
         const answerContent = document.createElement('p');
         answerContent.className = 'lesson__answer';
-        answerContent.textContent = answer??"";
+        answerContent.textContent = answer??"Pregunta no respondida";
         
         dataQuestionContent.appendChild(questionContent)
         dataQuestionContent.appendChild(answerContent)

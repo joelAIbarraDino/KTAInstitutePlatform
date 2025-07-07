@@ -108,13 +108,20 @@ $dino->router->get('/api/curso/enroll/{uuid}', [EnrollmentController::class, 'ge
 $dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
 $dino->router->get('/quiz/attempts/{uuid}', [EnrollmentController::class, 'attempts'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
-$dino->router->get('/quiz/answer/{uuid}/{id}', [EnrollmentController::class, 'responseQuiz'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class, ValidIdMiddleware::class]);
-$dino->router->get('/api/quiz/attempt/{id}', [EnrollmentController::class, 'getQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->get('/quiz/answer/{uuid}/{id}', [AttemptController::class, 'responseQuiz'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->get('/api/quiz/attempt/{id}', [AttemptController::class, 'getQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
-$dino->router->post('/api/answer_student/{id}', [EnrollmentController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-$dino->router->delete('/api/attempts/cancel/{id}', [EnrollmentController::class, 'cancelAttempt'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->get('/quiz/success/{id}', [AttemptController::class, 'successQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->get('/quiz/failed', [AttemptController::class, 'failedQuiz'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/quiz/completed', [AttemptController::class, 'completedQuiz'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/certificado/{id}', [AttemptController::class, 'showDiploma'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
-$dino->router->post('/attempts/create/{uuid}', [EnrollmentController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
+
+
+$dino->router->post('/api/answer_student/{id}', [AttemptController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->delete('/api/attempts/cancel/{id}', [AttemptController::class, 'cancelAttempt'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+
+$dino->router->post('/attempts/create/{uuid}', [AttemptController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
 
 //login admin

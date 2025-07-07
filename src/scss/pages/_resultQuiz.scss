@@ -1,0 +1,100 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.resultado {
+  background-color: v.$fondo_input;
+  border: 1px solid v.$border_input;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0.5rem 1rem rgba(v.$gris_oscuro, 0.1);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-inline: auto;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+    color: v.$gris_oscuro;
+  }
+
+  .botones {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    background-color: v.$azul;
+    color: v.$blanco;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(v.$azul, 0.8);
+    }
+
+    &--certificado {
+      background-color: v.$verde;
+
+      &:hover {
+        background-color: rgba(v.$verde, 0.8);
+      }
+    }
+
+    &--intentar {
+      background-color: v.$amarillo-lesly;
+
+      &:hover {
+        background-color: rgba(v.$amarillo-lesly, 0.8);
+      }
+    }
+
+    &--regresar {
+      background-color: v.$azul;
+
+      &:hover {
+        background-color: rgba(v.$azul, 0.8);
+      }
+    }
+  }
+
+  // Estados específicos
+  &--aprobado {
+    border-left: 8px solid v.$verde;
+  }
+
+  &--pendiente {
+    border-left: 8px solid v.$amarillo-lesly;
+  }
+
+  &--no-aprobado {
+    border-left: 8px solid v.$rojo;
+  }
+
+  &--sin-intentos {
+    border-left: 8px solid v.$gris;
+    p {
+      color: v.$gris;
+    }
+  }
+}
+
+.pagina-resultado {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: v.$fondo_claro;
+  padding: 2rem;
+}

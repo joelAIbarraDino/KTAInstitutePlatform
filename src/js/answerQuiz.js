@@ -85,8 +85,15 @@
                     initializeQuiz();
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Error al cargar el quiz. Por favor recarga la página.');
+                Swal.fire({
+                    title: '¡Error al cargar quiz!',
+                    text: 'Hay un error con la configuración del quiz, por favor de contactar con KTA para alertar de este error',
+                    icon: 'error',
+                    confirmButtonText: 'Entendido'
+                });
+
+                window.location.href = `/quiz/attempts/${uuid}`;
+                
             }
         }
         
@@ -319,80 +326,85 @@
         // Cancelar intento
         async function cancelAttempt() {
             try {
-                if (navigator.onLine) {
-                    await fetch(`/api/attempts/cancel/${idAttempt}`, {
+                if(!navigator.onLine)
+                    return;
+
+                const request = await fetch(`/api/attempts/cancel/${idAttempt}`, {
                         method: 'DELETE'
-                    });
-                }
+                });
+
+                if(!request.ok)
+                    return;
                 
                 // Limpiar localStorage y redirigir
                 localStorage.removeItem(`quizAttempt_${idAttempt}`);
                 window.location.href = `/quiz/attempts/${uuid}`;
             } catch (error) {
-                console.error('Error al cancelar intento:', error);
-                window.location.href = `/quiz/attempts/${uuid}`;
+                console.log(error);
             }
         }
         
         // Enviar quiz
         async function submitQuiz() {
             clearInterval(timer);
-            
-            // Mostrar carga mientras se envía
-            Swal.fire({
-                title: 'Enviando respuestas',
-                html: 'Por favor espera mientras se envían tus respuestas...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-            
+
+            if(!navigator.onLine){
+                saveToLocalStorage();
+                Swal.fire({
+                    title: '¡Conexión inestable!',
+                    text: 'Mantenga la ventana abierta para enviar sus respuestas cuanto vuelva a tener internet',
+                    icon: 'warning',
+                    confirmButtonText: 'Entendido'
+                });                
+                return;
+            }
+                   
             try {
-                if (navigator.onLine) {
-                    const response = await fetch(`/api/answer_student/${idAttempt}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            answers: userAnswers,
-                            timeUsed: maxTime - timeLeft
-                        })
-                    });
-                    
-                    if (!response.ok) throw new Error('Error al enviar respuestas');
-                } else {
-                    // Si no hay conexión, guardar en localStorage para enviar después
-                    saveToLocalStorage();
-                    throw new Error('Sin conexión a internet');
-                }
+
+                const request = await fetch(`/api/answer_student/${idAttempt}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        answers: userAnswers,
+                        timeUsed: maxTime - timeLeft
+                    })
+                });
+
+                const response = await request.json();
                 
-                // Limpiar y redirigir
+                if (!response.ok){
+                    Swal.fire({
+                        title: 'Error al guardar',
+                        text: 'Ha ocurrido un error al enviar las respuestas',
+                        icon: 'error',
+                        confirmButtonText: 'Entendido'
+                    });
+                    return;
+                };
+
+                //limpio memoria 
                 localStorage.removeItem(`quizAttempt_${idAttempt}`);
+
                 Swal.fire({
                     title: '¡Respuestas enviadas!',
                     text: 'Tus respuestas han sido guardadas correctamente.',
                     icon: 'success',
                     confirmButtonText: 'Entendido'
                 }).then(() => {
-                    window.location.href = `/quiz/attempts/${uuid}`;
+
+                    if(!response.openQuestions  && response.approved)
+                        window.location.href = `/quiz/success/${idAttempt}`;
+                    else if(!response.openQuestions && !response.approved)
+                        window.location.href = `/quiz/failed`;
+                    else
+                        window.location.href = `/quiz/completed`;
+
                 });
                 
             } catch (error) {
                 console.error('Error:', error);
-                
-                // Guardar respuestas en localStorage para intentar enviar más tarde
-                saveToLocalStorage();
-                
-                Swal.fire({
-                    title: 'Error al enviar',
-                    text: 'Hubo un problema al enviar tus respuestas. Se guardaron localmente. Por favor conectate a internet y vuelve a intentar.',
-                    icon: 'error',
-                    confirmButtonText: 'Entendido'
-                }).then(() => {
-                    window.location.href = `/quiz/attempts/${uuid}`;
-                });
             }
         }
         
