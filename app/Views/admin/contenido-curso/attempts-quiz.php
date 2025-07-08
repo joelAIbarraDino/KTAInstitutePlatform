@@ -38,13 +38,13 @@
 
 <?php
 
-    $quizVersion = filemtime('assets/css/app.css');
+    $attemptsVersion = filemtime('assets/js/attempts.js');
 
     $scripts = '
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/menuDashboard.js"></script>
         <script src="/assets/js/privacyControl.js"></script>
-        <script src="/assets/js/attempts.js"></script>
+        <script src="/assets/js/attempts.js?v='.$attemptsVersion.'"></script>
     ';
 ?>

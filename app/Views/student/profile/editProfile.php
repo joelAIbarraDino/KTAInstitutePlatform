@@ -57,10 +57,13 @@
 <?php include_once __DIR__.'/../../components/footer.php'; ?>
 
 <?php 
+
+    $updateUserProfileVersion = filemtime('assets/js/updateUserProfile.js');
+
     $scripts ='
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/menuDashboard.js"></script>
-        <script src="/assets/js/updateUserProfile.js"></script>
+        <script src="/assets/js/updateUserProfile.js?v='.$updateUserProfileVersion.'"></script>
     ';
 ?>

@@ -46,12 +46,15 @@
 </main>
 
 <?php
+
+    $courseContentVersion = filemtime('assets/js/courseContent.js');
+
     $scripts = '
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
         <script src="/assets/js/privacyControl.js"></script>
-        <script src="/assets/js/courseContent.js"></script>
+        <script src="/assets/js/courseContent.js?v='.$courseContentVersion.'"></script>
     ';
 ?>

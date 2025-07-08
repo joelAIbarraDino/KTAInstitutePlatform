@@ -53,7 +53,7 @@
 
 <?php
 
-    $quizVersion = filemtime('assets/css/app.css');
+    $quizVersion = filemtime('assets/js/quiz.js');
 
     $scripts = '
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">

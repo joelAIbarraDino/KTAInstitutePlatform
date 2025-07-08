@@ -63,10 +63,13 @@
 
 
 <?php 
+
+    $answerQuizVersion = filemtime('assets/js/answerQuiz.js');
+
     $scripts ='
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-        <script src="/assets/js/answerQuiz.js"></script>
+        <script src="/assets/js/answerQuiz.js?v='.$answerQuizVersion.'"></script>
     ';
 ?>
