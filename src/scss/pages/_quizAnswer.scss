@@ -94,7 +94,7 @@
 .time-progress {
     height: 20px;
     background-color: v.$border_input;
-    border-radius: 5px;
+    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -299,7 +299,7 @@
 .time-critical {
     .time-display {
         background-color: v.$rojoAlerta;
-        // animation: pulse 2.5s infinite;
+        // animation: pulse .9s infinite;
     }
     
     .time-separator{
@@ -308,12 +308,12 @@
 
     .progress-bar {
         background-color: v.$rojoAlerta;
-        // animation: pulse 2.5s infinite;
+        animation: pulse 1s infinite;
     }
 }
 
 @keyframes pulse {
     0% { opacity: 1; }
-    50% { opacity: 0.9; }
+    50% { opacity: 0.7; }
     100% { opacity: 1; }
 }
