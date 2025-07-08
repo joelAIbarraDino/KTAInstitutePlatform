@@ -95,7 +95,7 @@ class AttemptController{
 
         try {
             $attempt = Attempt::where('id_attempt', '=', $id);
-            $quiz = Quiz::where('id_quiz', '=', $attempt->id_quizz)??[];
+            $quiz = Quiz::where('id_quiz', '=', $attempt->id_quiz)??[];
 
             //si no tengo registrado
             if(!$quiz){
@@ -157,7 +157,7 @@ class AttemptController{
             $postData = Request::getBody();
             
             //consulta para obtener quiz para evaluar si la respuesta es correcta o no
-            $quiz = Quiz::where('id_quiz', '=', $attempt->id_quizz);
+            $quiz = Quiz::where('id_quiz', '=', $attempt->id_quiz);
             $questions = Question::belongsTo('id_quiz', $quiz->id_quiz)??[];
             $answersStudent = $postData['answers'];
 
@@ -253,7 +253,7 @@ class AttemptController{
             $attempt = new Attempt;
 
             $attempt->id_enrollment = $enroll->id_enrollment;
-            $attempt->id_quizz = $quiz->id_quiz;
+            $attempt->id_quiz = $quiz->id_quiz;
             $attempt->time = 0;
             $attempt->is_approved = 0;
 

@@ -21,7 +21,7 @@ class AnswerStudentController{
 
             $answerStudent = AnswerStudent::find($id);
             $attempt = Attempt::find($answerStudent->id_attempt);
-            $quiz = Quiz::where('id_quiz', '=', $attempt->id_quizz);
+            $quiz = Quiz::where('id_quiz', '=', $attempt->id_quiz);
             $answerStudent->is_correct = $dataSend['is_correct'];
 
             //guardamos los cambios
