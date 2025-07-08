@@ -9,8 +9,17 @@
   text-align: center;
   box-shadow: 0 0.5rem 1rem rgba(v.$gris_oscuro, 0.1);
   margin-bottom: 2rem;
-  max-width: 600px;
+  width: 90%;
+  height: 22rem;
   margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @include m.tablet{
+    width: 40%;
+  }
 
   h2 {
     font-size: 2.5rem;
@@ -33,10 +42,10 @@
   .btn {
     background-color: v.$azul;
     color: v.$blanco;
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 1.5rem;
     border: none;
     border-radius: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
@@ -45,41 +54,41 @@
     }
 
     &--certificado {
-      background-color: v.$verde;
+      background-color: v.$dorado;
 
       &:hover {
-        background-color: rgba(v.$verde, 0.8);
+        background-color: rgba(v.$dorado, 0.8);
       }
     }
 
     &--intentar {
-      background-color: v.$amarillo-lesly;
+      background-color: v.$dorado;
 
       &:hover {
-        background-color: rgba(v.$amarillo-lesly, 0.8);
+        background-color: rgba(v.$dorado, 0.8);
       }
     }
 
     &--regresar {
-      background-color: v.$azul;
+      background-color: v.$dorado;
 
       &:hover {
-        background-color: rgba(v.$azul, 0.8);
+        background-color: rgba(v.$dorado, 0.8);
       }
     }
   }
 
   // Estados específicos
   &--aprobado {
-    border-left: 8px solid v.$verde;
+    border-left: 8px solid v.$dorado;
   }
 
   &--pendiente {
-    border-left: 8px solid v.$amarillo-lesly;
+    border-left: 8px solid v.$dorado;
   }
 
   &--no-aprobado {
-    border-left: 8px solid v.$rojo;
+    border-left: 8px solid v.$dorado;
   }
 
   &--sin-intentos {

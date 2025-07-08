@@ -160,5 +160,26 @@
         background-color: rgba(v.$rojo, 0.8);
       }
     }
+
+    &--calificar{
+      background-color: transparent;
+      transition: all .4s ease;
+      
+      &:hover{
+        transform: scale(1.2);
+        cursor: pointer;
+
+        i{
+          color: v.$negro;
+        }
+
+      }
+
+      i{
+        transition: all .4s ease;
+        font-size: 3rem;
+      }
+
+    }
   }
 }

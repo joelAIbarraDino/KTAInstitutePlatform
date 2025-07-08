@@ -193,8 +193,24 @@
         // Añadir elementos al lessonLeft
         lessonLeft.appendChild(dataContent);
 
+        // Crear contenedor derecho
+        const lessonRight = document.createElement('div');
+        lessonRight.className = 'lesson__right';
+
+        const btnEditar = document.createElement('button');
+        btnEditar.className = 'module__btn module__btn--calificar';
+        btnEditar.onclick = function(){
+            attempt_answer.is_correct = attempt_answer.is_correct?0:1;
+            updateCorrectAnswer(attempt_answer);
+        };
+
+        btnEditar.innerHTML = is_correct?"<i class='bx bxs-check-circle is-correct-answer'></i>":"<i class='bx bx-x-circle not-correct-answer'></i>";
+
+        lessonRight.appendChild(btnEditar);
+
         // Añadir ambos lados al contenedor principal
         answerContainer.appendChild(lessonLeft);
+        answerContainer.appendChild(lessonRight);
 
         return answerContainer;
     }
