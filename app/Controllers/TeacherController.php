@@ -26,8 +26,6 @@ class TeacherController{
             $alerts = $teacher->validateImage($_FILES);
 
             if(empty($alerts)){
-                //encripto contraseña
-                $teacher->password = Auth::encriptPassword($teacher->password);
                 //proceso y guardo imagen;
                 $teacher->subirImagen($_FILES['photo'], 1000,1000);
 
