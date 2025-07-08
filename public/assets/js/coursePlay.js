@@ -185,7 +185,22 @@
     button.classList.add("content-module__lesson-checked");
 
     const icon = document.createElement('i');
-    icon.classList.add("bx", 'bx-check-circle');
+    
+    if(lesson.progress.length == 0 || !lesson.progress.completed){
+      icon.classList.add("bx", 'bx-check-circle');
+    }else if(lesson.progress.completed){
+      icon.classList.add("bx", 'bxs-check-circle');
+    }
+    
+    button.addEventListener('click', ()=>{
+      if(lesson.progress.length == 0)
+        createProgress(lesson);
+      else{
+        lesson.progress.completed = lesson.progress.completed?0:1;
+        updateProgress(lesson);
+      }
+
+    });
 
     button.appendChild(icon);
 
@@ -453,6 +468,74 @@
       }
 
     });
+  }
+
+  async function createProgress(lesson){
+    const {id_lesson, id_module} = lesson;
+    
+    try {
+      const courseID = getCourseID();
+      const url = `/api/progress/new/${courseID}`;
+
+      //registro el modelo en la base de datos
+      const formData = new FormData();
+      formData.append("id_lesson", id_lesson);
+      formData.append("completed", 1);
+      
+
+      const request = await fetcth(url, {
+        method: 'POST',
+        body:formData
+      });
+
+      const response = await request.json();
+
+      if(!response.ok){
+        Swal.fire({
+          icon: "error",
+          title: "Ha ocurrido un error",
+          text: "error al guardar el progreso, revise su conexion a internet",
+        });
+
+        showModules();
+      }
+
+      progress = {
+        id_progress: response.id_progress,
+        completed:1,
+        id_enrollment:id_enrollment,
+        id_lesson:id_lesson
+      };
+
+      modules = modules.map(module=>{
+        if(module.id_module == id_module){
+          module.lessons.map(lesson=>{
+            if(lesson.id_lesson == id_lesson){
+              lesson.progress = [...lesson.progress, progress]
+            }
+            return lesson;
+          });
+
+        }
+
+        return module;
+      });
+
+      showModules();
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function updateProgress(lesson){
+    const {id_lesson, id_module} = lesson;
+    
+    try {
+      const url = ``;
+    } catch (error) {
+      
+    }
   }
 
   function leccionCompleted(){

@@ -11,7 +11,7 @@ use App\Models\Attempt;
 use App\Models\Lesson;
 use App\Models\Module;
 use App\Models\Course;
-
+use App\Models\ProgressEnrollment;
 use Ramsey\Uuid\Uuid;
 use App\Models\Quiz;
 use Exception;
@@ -65,6 +65,7 @@ class EnrollmentController{
                 foreach($lessons as $lesson){
                     
                     $material = Material::belongsTo('id_lesson', $lesson->id_lesson)??[];
+                    $progress = ProgressEnrollment::where('id_lesson', '=', $lesson->id_lesson)??[];
                     
                     $lessonsMaterial[] = [
                         'id_lesson'=>$lesson->id_lesson,
@@ -73,7 +74,8 @@ class EnrollmentController{
                         'id_video'=>$lesson->id_video,
                         'order_lesson'=>$lesson->order_lesson,
                         'id_module'=>$lesson->id_module,
-                        'material'=>$material
+                        'progress'=>$progress,
+                        'material'=>$material,
                     ];
                     $arrayLessons[] = $lesson;
                 }
@@ -96,6 +98,41 @@ class EnrollmentController{
                 
             ]);      
         } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+    public static function newProgess(string $uuid):void{
+        if(!isset($_SESSION))
+            session_start();
+        
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        $enroll = Enrollment::where('url', '=', $uuid);
+
+        try{
+            $progress = new ProgressEnrollment;
+
+            $dataPost = Request::getPostData();
+            $progress->completed = 1;
+            $progress->id_enrollment = $enroll->id_enrollment;
+            $progress->id_lesson = $dataPost['id_lesson'];
+
+            $id = $progress->save();
+
+            if(!$id)
+                Response::json(['ok'=>false,'message'=>'Error al guardar el progreso, intente mas tarde']);
+
+            Response::json([
+                'ok'=>true,
+                'id_progress'=>$id,
+                'id_enrollment'=>$enroll->id_enrollment,
+                'message'=>'progreso guardado con exito'
+            ]);
+
+
+        }catch(Exception $e){
             Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }

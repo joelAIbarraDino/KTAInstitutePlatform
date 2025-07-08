@@ -7,6 +7,7 @@
   justify-content: center;
   width: 100vw;
   height: 100%;
+  background-color: v.$fondo_oscuro;
 }
 
 .quiz-content {
@@ -21,7 +22,7 @@
     }
 
     @include m.computadora {
-        width: 40%;
+        width: 60%;
     }
 }
 
@@ -30,11 +31,8 @@
     color: v.$dorado;
     margin-bottom: 2rem;
     font-weight: v.$black;
-    font-size: 1.8rem;
-    
-    @include m.tablet {
-        font-size: 3.5rem;
-    }
+    font-size: 3.5rem;
+
 }
 
 .time-container {
@@ -44,12 +42,17 @@
 
 .time-display {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-evenly;
     align-items: center;
-    margin-bottom: 0.5rem;
+    gap: 1rem;
     font-size: 1.5rem;
     font-weight: v.$bold;
-    
+    background-color: v.$dorado;
+    padding: 1rem;
+    width: 24rem;
+    margin: 2.5rem auto;
+    border-radius: .5rem;
+
     span {
         color: v.$dorado;
     }
@@ -60,8 +63,36 @@
     }
 }
 
+.time-separator{
+    border-left: solid .1rem v.$dorado_darken;
+    height: 7rem;
+    width: 1px;
+    padding: 0;
+    content: '';
+}
+
+.time-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+    width: 14rem;
+
+    .time{
+        font-size: 4.4rem;
+        font-weight: v.$black;
+        color: v.$blanco;
+    }
+
+    span{
+        color: v.$blanco;
+        font-size: 1rem;
+    }
+}
+
 .time-progress {
-    height: 10px;
+    height: 20px;
     background-color: v.$border_input;
     border-radius: 5px;
     overflow: hidden;
@@ -86,7 +117,7 @@
 }
 
 .question-container {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .question-header {
@@ -95,12 +126,12 @@
     .question-text {
         font-size: 1.1rem;
         color: v.$negro;
-        font-weight: v.$black;
+        font-weight: v.$bold;
         line-height: 1.4;
         user-select: none;
         
         @include m.tablet {
-            font-size: 2rem;
+            font-size: 2.8rem;
         }
     }
 }
@@ -118,25 +149,27 @@
             + label {
                 display: block;
                 padding: 0.8rem 1rem;
-                background-color: v.$fondo_input;
-                border: 1px solid v.$border_input;
+                background-color: v.$fondo_claro;
+                border: 1px solid v.$dorado;
                 border-radius: 6px;
                 cursor: pointer;
-                transition: all 0.2s;
+                transition: all 0.2s ease;
                 font-size: 1.5rem;
                 color: v.$gris_oscuro;
                 
                 &:hover {
-                    background-color: rgba(v.$fondo_input, 0.1);
-                    border-color: v.$azul;
+                    background-color: rgba(v.$dorado, 0.9);
+                    border-color: v.$dorado;
+                    color: v.$blanco;
+                    font-weight: v.$black;
                 }
             }
             
             &:checked + label {
-                background-color: rgba(v.$azul, 0.1);
-                border-color: v.$azul;
-                color: v.$azul;
-                font-weight: v.$bold;
+                background-color: v.$dorado;
+                border-color: v.$dorado;
+                color: v.$blanco;
+                font-weight: v.$black;
             }
         }
     }
@@ -145,7 +178,7 @@
         width: 100%;
         min-height: 15rem;
         padding: 1rem;
-        border: 1px solid v.$border_input;
+        border: 1px solid v.$dorado;
         border-radius: 6px;
         font-family: v.$fuente_principal;
         font-size: 1.8rem;
@@ -154,8 +187,8 @@
         
         &:focus {
             outline: none;
-            border-color: v.$azul;
-            box-shadow: 0 0 0 2px rgba(v.$azul, 0.2);
+            border-color: v.$dorado;
+            box-shadow: 0 0 0 2px rgba(v.$dorado, 0.2);
         }
     }
 }
@@ -165,7 +198,7 @@
     justify-content: center;
     
     .question-counter {
-        color: v.$gris;
+        color: v.$negro;
         font-size: 1.5rem;
     }
 }
@@ -173,14 +206,14 @@
 .navigation-buttons {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3.5rem;
+    margin-bottom: 1rem;
     gap: 2rem;
 }
 
 .submit-section {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: 3rem;
     gap: 2rem;
 }
 
@@ -226,11 +259,11 @@
 }
 
 .btn-cancel {
-    background-color: v.$negro;
+    background-color: v.$rojo;
     color: v.$blanco;
     
     &:hover:not(:disabled) {
-        background-color: rgba(v.$negro, 0.7);
+        background-color: rgba(v.$rojo, 0.7);
     }
 }
 
@@ -264,18 +297,23 @@
 
 /* Estilos para cuando el tiempo es crítico */
 .time-critical {
-    .time-display span {
-        color: v.$rojo;
-        animation: pulse 1s infinite;
+    .time-display {
+        background-color: v.$rojoAlerta;
+        // animation: pulse 2.5s infinite;
     }
     
+    .time-separator{
+        border-left: solid .1rem v.$rojo;
+    }
+
     .progress-bar {
-        background-color: v.$rojo;
+        background-color: v.$rojoAlerta;
+        // animation: pulse 2.5s infinite;
     }
 }
 
 @keyframes pulse {
     0% { opacity: 1; }
-    50% { opacity: 0.7; }
+    50% { opacity: 0.9; }
     100% { opacity: 1; }
 }

@@ -6,8 +6,17 @@
         
         <div class="time-container">
             <div class="time-display">
-                <span id="time-remaining">00:00</span>
-                <i class="bx bx-time-five"></i>
+                <div class="time-card">
+                    <div class="time" id="minutes-remaining">00</div>
+                    <span>Minutos</span>
+                </div>
+                
+                <div class="time-separator"></div>
+
+                <div class="time-card">
+                    <div class="time" id="seconds-remaining">00</div>
+                    <span>Segundos</span>
+                </div>
             </div>
             <div class="time-progress">
                 <div class="progress-bar" id="progress-bar"></div>
@@ -35,15 +44,15 @@
                     Siguiente <i class="bx bx-chevron-right"></i>
                 </button>
             </div>
-            
-            <div class="submit-section">
-                <button class="btn btn-cancel" id="btn-cancel">
-                    <i class="bx bx-x"></i> Cancelar intento
-                </button>
-                <button class="btn btn-submit" id="btn-submit" disabled>
-                    <i class="bx bx-check"></i> Enviar respuestas
-                </button>
-            </div>
+        </div>
+
+        <div class="submit-section">
+            <button class="btn btn-cancel" id="btn-cancel">
+                <i class="bx bx-x"></i> Cancelar intento
+            </button>
+            <button class="btn btn-submit" id="btn-submit" disabled>
+                <i class="bx bx-check"></i> Enviar respuestas
+            </button>
         </div>
         
         <div class="connection-status" id="connection-status">

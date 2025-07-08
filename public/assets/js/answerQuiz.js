@@ -3,7 +3,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Elementos del DOM
         const quizTitle = document.getElementById('quiz-title');
-        const timeRemaining = document.getElementById('time-remaining');
+        const minuteRemaining = document.getElementById('minutes-remaining');
+        const secondsRemaining = document.getElementById('seconds-remaining');
         const progressBar = document.getElementById('progress-bar');
         const questionText = document.getElementById('question-text');
         const optionsContainer = document.getElementById('options-container');
@@ -25,6 +26,9 @@
         let uuid = null;
         let lastOnlineTime = null;
         let offlineTimer = null;
+        let answeredPercentage = null;
+        let totalQuestions = 0;
+        let answeredQuestions = 0;
         const OFFLINE_LIMIT = 5 * 60 * 1000; // 5 minutos en milisegundos
         
         // Obtener parámetros de la URL
@@ -99,6 +103,11 @@
         
         // Inicializar el quiz
         function initializeQuiz() {
+
+            //inicializar variables para saber el progreso del examen
+            totalQuestions = quizData.questions.length;
+            answeredQuestions = Object.keys(userAnswers).length;
+            
             // Configurar título
             quizTitle.textContent = quizData.quiz.name;
             
@@ -134,7 +143,7 @@
             window.addEventListener('offline', checkConnection);
             
             // Guardar datos en localStorage periódicamente
-            setInterval(saveToLocalStorage, 5000); // Cada 5 segundos
+            setInterval(saveToLocalStorage, 2500); // Cada 5 segundos
         }
         
         // Actualizar el temporizador
@@ -154,8 +163,9 @@
         function updateTimerDisplay() {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
-            timeRemaining.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
+            minuteRemaining.textContent = minutes.toString().padStart(2, '0');
+            secondsRemaining.textContent = seconds.toString().padStart(2, '0');
+        
             const progressPercentage = (timeLeft / maxTime) * 100;
             progressBar.style.width = `${progressPercentage}%`;
         }
@@ -218,14 +228,26 @@
                 optionsContainer.appendChild(textarea);
             }
             
+            //actualizo avance de examen
+            answeredQuestions = Object.keys(userAnswers).length;
+            answeredPercentage = (answeredQuestions / totalQuestions) * 100;
+
+            console.log(answeredPercentage);
             // Actualizar botones de navegación
             btnPrevious.disabled = index === 0;
             btnNext.disabled = index === quizData.questions.length - 1;
             
             // Mostrar botón de enviar si es la última pregunta
-            if (index === quizData.questions.length - 1) {
+            if (index === quizData.questions.length - 1)
                 btnSubmit.disabled = false;
+
+            if(answeredPercentage > 50){
+                btnCancel.disabled = true;
+                btnCancel.style.opacity = 0;
             }
+
+            console.log(btnCancel.disabled)
+
         }
         
         // Guardar respuesta del usuario
@@ -293,9 +315,7 @@
         // Confirmar cancelación de intento
         function confirmCancelAttempt() {
             // Calcular el porcentaje de preguntas respondidas
-            const totalQuestions = quizData.questions.length;
-            const answeredQuestions = Object.keys(userAnswers).length;
-            const answeredPercentage = (answeredQuestions / totalQuestions) * 100;
+            answeredPercentage = (answeredQuestions / totalQuestions) * 100;
 
             // Si ha respondido más del 50%, no permitir cancelar
             if (answeredPercentage > 50) {
