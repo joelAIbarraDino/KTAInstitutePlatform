@@ -1,11 +1,21 @@
-
-
 <main class="quiz-container">
+
     <div class="quiz-content">
+        <div class="logo-container">
+            <img class="logo-quiz" src="/assets/images/logoKTA.jpg" alt="logo de KTA">
+        </div>
+
         <h1 class="quiz-title" id="quiz-title">Cargando quiz...</h1>
         
         <div class="time-container">
             <div class="time-display">
+                <div class="time-card">
+                    <div class="time" id="hours-remaining">00</div>
+                    <span>Horas</span>
+                </div>
+                
+                <div class="time-separator"></div>
+
                 <div class="time-card">
                     <div class="time" id="minutes-remaining">00</div>
                     <span>Minutos</span>
@@ -48,7 +58,7 @@
 
         <div class="submit-section">
             <button class="btn btn-cancel" id="btn-cancel">
-                <i class="bx bx-x"></i> Cancelar intento
+                <i class="bx bx-x"></i> Finalizar test
             </button>
             <button class="btn btn-submit" id="btn-submit" disabled>
                 <i class="bx bx-check"></i> Enviar respuestas

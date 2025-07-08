@@ -295,6 +295,22 @@
     }
 }
 
+.logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.logo-quiz{
+    // position: absolute;
+    // top: 3rem;
+    // left: 4rem;
+    width: 15rem;
+    margin: 0 auto;
+}
+
 /* Estilos para cuando el tiempo es crítico */
 .time-critical {
     .time-display {

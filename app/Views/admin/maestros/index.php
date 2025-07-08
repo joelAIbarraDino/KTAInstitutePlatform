@@ -20,7 +20,6 @@
                             <th>Foto</th>
                             <th>Nombre</th>
                             <th>Especialidad</th>
-                            <th>Email</th>
                             <th>Experiencia</th>
                             <th class="actions-label">Acciones</th>
                         </tr>
@@ -35,7 +34,6 @@
                                     <td><img class="dashboard-table__photo--user" src="/assets/teachers/<?=$teacher->photo?>" alt="foto <?=$teacher->photo?>"></td>
                                     <td><?=$teacher->name?></td>
                                     <td><span class="dashboard-table__status dashboard-table__status--info"><?=$teacher->speciality?></span></td>
-                                    <td><?=$teacher->email?></td>
                                     <td><?=$teacher->experience?> años</td>
                                     <td class="dashboard-table__actions-cell">
                                         <a href="/kta-admin/maestro/update/<?=$teacher->id_teacher?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>

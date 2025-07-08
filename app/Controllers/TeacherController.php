@@ -23,7 +23,6 @@ class TeacherController{
 
             $teacher->sincronize($datosEnviados);
             $alerts = $teacher->validate();
-            $alerts = $teacher->teacherExists();
             $alerts = $teacher->validateImage($_FILES);
 
             if(empty($alerts)){
@@ -66,7 +65,6 @@ class TeacherController{
             $datosEnviados = Request::getPostData();
 
             $teacher->name = $datosEnviados['name'];
-            $teacher->email = $datosEnviados['email'];
             $teacher->speciality = $datosEnviados['speciality'];
             $teacher->experience = $datosEnviados['experience'];
             $teacher->bio = $datosEnviados['bio'];

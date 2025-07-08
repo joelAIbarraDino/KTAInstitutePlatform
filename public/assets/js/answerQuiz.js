@@ -3,6 +3,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Elementos del DOM
         const quizTitle = document.getElementById('quiz-title');
+        const hourRemaining = document.getElementById('hours-remaining');
         const minuteRemaining = document.getElementById('minutes-remaining');
         const secondsRemaining = document.getElementById('seconds-remaining');
         const progressBar = document.getElementById('progress-bar');
@@ -161,8 +162,11 @@
         
         // Actualizar visualización del temporizador
         function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor(timeLeft % 3600 / 60);
             const seconds = timeLeft % 60;
+
+            hourRemaining.textContent = hours.toString().padStart(2, '0');
             minuteRemaining.textContent = minutes.toString().padStart(2, '0');
             secondsRemaining.textContent = seconds.toString().padStart(2, '0');
         

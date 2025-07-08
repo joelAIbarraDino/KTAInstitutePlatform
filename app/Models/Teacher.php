@@ -11,45 +11,30 @@ class Teacher extends Model{
     
     protected static string $table = 'teacher';
     protected static string $PK_name = 'id_teacher';
-    protected static array $columns = ['id_teacher', 'name', 'email', 'password', 'photo', 'speciality', 'experience', 'bio', 'url', 'clave'];
-    protected static array $fillable = ['id_teacher', 'name', 'email', 'password', 'photo', 'speciality', 'experience', 'bio', 'url', 'clave'];
-    protected static array $nulleable = ['url', 'clave'];
+    protected static array $columns = ['id_teacher', 'name', 'photo', 'speciality', 'experience', 'bio'];
+    protected static array $fillable = ['id_teacher', 'name', 'photo', 'speciality', 'experience', 'bio'];
 
     public ?int $id_teacher;
     public string $name;
-    public string $email;
-    public string $password;
     public string $photo;
     public string $speciality;
     public int $experience;
     public string $bio;
-    public ?string $url;
-    public ?string $clave;
-
+    
     public function __construct($args = [])
     {
         $this->id_teacher = $args['id_teacher']??null;
         $this->name = $args['name']??'';
-        $this->email = $args['email']??'';
-        $this->password = $args['password']??'';
         $this->photo = $args['photo']??'';
         $this->speciality = $args['speciality']??'';
         $this->experience = $args['experience']??0;
         $this->bio = $args['bio']??'';
-        $this->url = $args['url']??null;
-        $this->clave = $args['clave']??null;
     }
 
     public function validate():array{
 
         if(!$this->name)
             self::setAlerts('error', "el nombre es obligatorio");
-
-        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
-            self::setAlerts('error', "debe ingresar un correo valido");
-
-        if(!$this->password)
-            self::setAlerts('error', "la contraseña es obligatoria");
 
         if(!$this->speciality)
             self::setAlerts('error', "la especialidad es obligatoria");
@@ -71,9 +56,6 @@ class Teacher extends Model{
         if(!$this->name)
             self::setAlerts('error', "el nombre es obligatorio");
 
-        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
-            self::setAlerts('error', "debe ingresar un correo valido");
-
         if(!$this->speciality)
             self::setAlerts('error', "la especialidad es obligatoria");
 
@@ -86,15 +68,6 @@ class Teacher extends Model{
         if(strlen($this->bio) < 100 || strlen($this->bio) > 1000)
             self::setAlerts('error', "la bio debe tener mas de 100 caracteres y menos de 1000");
 
-        return self::$alerts;
-    }
-
-    public function teacherExists():array{
-        $teacherExists = Teacher::where("email", "=", $this->email);
-
-        if($teacherExists)
-            self::setAlerts('warning', 'Ya existe un maestro registrado con este correo');
-        
         return self::$alerts;
     }
 

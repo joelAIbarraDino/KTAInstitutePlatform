@@ -16,7 +16,7 @@
 
 <div class="grid-elements">
 
-    <div class="form__input col-6">
+    <div class="form__input col-12">
         <label for="name"> Nombre (requerido)</label>
         <input 
             type="text"
@@ -30,25 +30,11 @@
         <span id="msg-name" class="form__input-msg"></span>
     </div>
 
-    <div class="form__input col-6">
-        <label for="email"> Email (requerido)</label>
-        <input 
-            type="email"
-            name="email"
-            id="email"
-            class="field"
-            placeholder="Nombre del categoria"
-            value="<?=$teacher->email??"" ?>"
-            
-        >
-        <span id="msg-email" class="form__input-msg"></span>
-    </div>
-
 </div>
 
 <div class="grid-elements">
 
-    <div class="form__input col-4">
+    <div class="form__input col-6">
         <label for="speciality">Especialidad (requerido)</label>
         <input 
             type="text"
@@ -62,7 +48,7 @@
         <span id="msg-speciality" class="form__input-msg"></span>
     </div>
 
-    <div class="form__input col-4">
+    <div class="form__input col-6">
         <label for="experience">Experiencia (requerido)</label>
         <div class="icon-left">
             <i class='bx bxs-graduation'></i>
@@ -76,22 +62,6 @@
             >
         </div>    
         <span id="msg-experience" class="form__input-msg"></span>
-    </div>
-
-    <div class="form__input col-4">
-        <label for="password">Contraseña (requerido)</label>
-
-        <div class="icon-right">
-            <input 
-                type="password"
-                name="password"
-                id="password"
-                class="field"
-                placeholder="Ingrese una contraseña"
-            >
-            <i id="btn-showPass" class='bx bx-show is-btn'></i>
-        </div>    
-        <span id="msg-password" class="form__input-msg"></span>
     </div>
     
 </div>
