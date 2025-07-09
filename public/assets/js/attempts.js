@@ -66,9 +66,11 @@
         const headerAttempt = document.createElement('div');
         headerAttempt.classList.add("module__header-attempt");
 
+        const names = attempt.student.split(' ');
+
         const attemptName = document.createElement('p');
         attemptName.classList.add("module__header-attempt-id");
-        attemptName.textContent = `Intento #${attempt.id_attempt}`;
+        attemptName.textContent = `Intento de ${names.slice(0, 2).join(' ')}`;
 
         const attemptScore = document.createElement('p');
         attemptScore.classList.add("module__header-attempt-score");
@@ -78,18 +80,43 @@
         attemptTime.classList.add("module__header-attempt-time");
         attemptTime.innerHTML = `<span>Resuelto en:</span> ${attempt.time} Minutos`;
 
+        const dates = attempt.answered_at.split('-');
+
+        const attemptDate = document.createElement('p');
+        attemptDate.classList.add("module__header-attempt-time");
+        attemptDate.innerHTML = `<span>Fecha de aplicación:</span> ${dates.slice(0, 3).join('/')}`;
+
         headerAttempt.appendChild(attemptName);
         headerAttempt.appendChild(attemptScore);
         headerAttempt.appendChild(attemptTime);
+        headerAttempt.appendChild(attemptDate);
 
         // Parte derecha: acciones
         const actionsContainer = document.createElement('div');
         actionsContainer.classList.add('module__header-actions');
 
+        const btnAttemptChecked = document.createElement('button');
+        btnAttemptChecked.dataset.id = attempt.id_attempt;
+        btnAttemptChecked.innerHTML = attempt.checked?'Revisado':'Pendiente';
+        btnAttemptChecked.onclick = function(){
+            attempt.checked = attempt.checked?0:1;
+            changeAttempt(attempt)
+        }
+
+        if(attempt.checked)
+            btnAttemptChecked.classList.add('module__btn', 'module__btn--correcto');
+        else
+            btnAttemptChecked.classList.add('module__btn', 'module__btn--pendiente');
+        
         const btnAttemptApproved = document.createElement('button');
-        btnAttemptApproved.classList.add('module__btn', 'module__btn--agregar');
         btnAttemptApproved.dataset.id = attempt.id_attempt;
         btnAttemptApproved.innerHTML = attempt.is_approved?'Aprobado':'No aprobado';
+        
+        if(attempt.is_approved)
+            btnAttemptApproved.classList.add('module__btn', 'module__btn--correcto');
+        else
+            btnAttemptApproved.classList.add('module__btn', 'module__btn--incorrecto');
+        
 
         const iconDelete = document.createElement('i');
         iconDelete.classList.add('bx', 'bx-trash');
@@ -106,6 +133,7 @@
         const iconChevron = document.createElement('i');
         iconChevron.classList.add('bx', 'bx-chevron-down');
 
+        actionsContainer.appendChild(btnAttemptChecked);
         actionsContainer.appendChild(btnAttemptApproved);
         actionsContainer.appendChild(btnEliminar);
         actionsContainer.appendChild(iconChevron);
@@ -197,16 +225,32 @@
         const lessonRight = document.createElement('div');
         lessonRight.className = 'lesson__right';
 
-        const btnEditar = document.createElement('button');
-        btnEditar.className = 'module__btn module__btn--calificar';
-        btnEditar.onclick = function(){
+        const btnIncorrecto = document.createElement('button');
+        btnIncorrecto.className = 'module__btn module__btn--calificar';
+        btnIncorrecto.onclick = function(){
+            if(!attempt_answer.is_correct)
+                return;
+
             attempt_answer.is_correct = attempt_answer.is_correct?0:1;
             updateCorrectAnswer(attempt_answer);
         };
 
-        btnEditar.innerHTML = is_correct?"<i class='bx bxs-check-circle is-correct-answer'></i>":"<i class='bx bx-x-circle not-correct-answer'></i>";
+        btnIncorrecto.innerHTML = is_correct?"<i class='bx bx-x-circle'></i>":"<i class='bx bxs-x-circle'></i>";
 
-        lessonRight.appendChild(btnEditar);
+        const BtnCorrecto = document.createElement('button');
+        BtnCorrecto.className = 'module__btn module__btn--calificar';
+        BtnCorrecto.onclick = function() {
+            if(attempt_answer.is_correct)
+                return;
+
+            attempt_answer.is_correct = attempt_answer.is_correct?0:1;
+            updateCorrectAnswer(attempt_answer);  
+        };
+
+        BtnCorrecto.innerHTML = is_correct?"<i class='bx bxs-check-circle' ></i>":"<i class='bx bx-check-circle' ></i>";
+
+        lessonRight.appendChild(btnIncorrecto);
+        lessonRight.appendChild(BtnCorrecto);
 
         // Añadir ambos lados al contenedor principal
         answerContainer.appendChild(lessonLeft);
@@ -328,19 +372,51 @@
         }
     }
 
+    async function changeAttempt(attempt){
+        const {id_attempt, checked} = attempt;
+
+        try{
+            const url = `/api/attempt/checked/${id_attempt}`;
+
+            changeAlert('inProcess', 'Guardando cambios...');
+
+            const request = await fetch(url, {
+                method:'PATCH',
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({checked:checked})
+            });
+
+            const response = await request.json();
+
+            if(!response.ok){
+                changeAlert('error', 'Error al guardar los cambios');
+                return;
+            }
+
+            changeAlert('success', response.message);
+
+            attempts = attempts.map(attempt =>{
+                if(attempt.id_attempt == id_attempt)
+                    attempt.checked = checked;
+                
+                return attempt;
+            });
+            
+            resetAlert();
+            showAttempts();
+
+        }catch(error){
+            console.log(error);
+        }
+    }
     
     //funciones auxiliares--------------------------------------------------
     function btnExitMessage(){
         btnExit.addEventListener('click', () =>{
-            Swal.fire({
-                icon: "info",
-                title: `Recuerde`,
-                html: `Puede editar el contenido del curso dando click al icono <i class='bx bxs-widget'></i> en el administrador de cursos`,
-            }).then((result) => {
-                if (result.isConfirmed) 
-                    window.location = "/kta-admin/cursos";
-            });
-
+            window.location = "/kta-admin/cursos";
         });
     }
 

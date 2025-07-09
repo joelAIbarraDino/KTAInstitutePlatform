@@ -11,6 +11,8 @@ use App\Models\OptionQuestion;
 use App\Models\Question;
 use App\Models\Material;
 use App\Models\Course;
+use App\Models\Enrollment;
+use App\Models\EnrollmentView;
 use App\Models\Module;
 use App\Models\Lesson;
 use App\Models\Quiz;
@@ -264,8 +266,8 @@ class ContentController{
                 ]);
             }
 
-            $attempts = Attempt::belongsTo('id_quiz', $quiz->id_quiz)??[];
-
+            $attempts = Attempt::belongsTo('id_quiz', $quiz->id_quiz, 'checked', 'ASC')??[];
+            
             if(!$attempts){
                 Response::json([
                     'attempts'=>[]
@@ -276,13 +278,17 @@ class ContentController{
 
             foreach($attempts as $attempt){
                 $answers = AnswerStudent::belongsTo('id_attempt', $attempt->id_attempt)??[];
+                $enrollment = EnrollmentView::where('id_enrollment', '=', $attempt->id_enrollment)??[];
 
                 $finalAttempts[] =[
                     'id_attempt'=>$attempt->id_attempt,
                     'time'=>$attempt->time,
+                    'answered_at'=>$attempt->date,
                     'score'=>$attempt->score,
+                    'checked'=>$attempt->checked,
                     'min_score'=>$quiz->min_score,
                     'is_approved'=>$attempt->is_approved,
+                    'student'=>$enrollment->student,
                     'answersStudent'=>$answers
                 ];
             }

@@ -20,8 +20,11 @@
 
         <div class="form tabs__container">
             <div class="new-module__title">
-                <legend class="form__title">Evaluación del curso</legend>
-                <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
+                <div class="title-container">
+                    <legend class="form__title">Evaluación del curso</legend>
+                    <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
+                </div>
+                <button id="add_conf_btn" class="faq-control__btn-conf"><i class='bx bx-cog'></i> Configuración</button>
             </div>
 
             <p class="form__instructions">Agrega las preguntas del examen</p>
@@ -39,9 +42,6 @@
             
             <div class="faq-control">
                 <p class="faq-control__instructions">Edite las preguntas y respuestas  que desea cambiar</p>
-                <div class="faq-control__buttons">
-                    <button id="add_conf_btn" class="faq-control__btn-conf"><i class='bx bx-cog'></i> Configuración</button>
-                </div>
             </div>
             
             <div id="quiz-container" class="modules"></div>

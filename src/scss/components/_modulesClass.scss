@@ -11,7 +11,7 @@
   &__title{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
   }
 
   &__btn{
@@ -145,6 +145,22 @@
       }
     }
 
+    &--correcto{
+      background-color: v.$verde;
+    }
+
+    &--incorrecto{
+      background-color: v.$rojo;
+    }
+
+    &--pendiente{
+      background-color: v.$amarillo-lesly;
+
+      &:hover{
+        background-color: rgba(v.$amarillo-lesly, 0.8);
+      }
+    }
+
     &--extra{
       background-color: v.$amarillo-lesly;
 
@@ -170,7 +186,7 @@
         cursor: pointer;
 
         i{
-          color: v.$negro;
+          color: v.$azul;
         }
 
       }

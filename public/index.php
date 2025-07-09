@@ -121,7 +121,7 @@ $dino->router->get('/certificado/{id}', [AttemptController::class, 'showDiploma'
 
 
 $dino->router->post('/api/answer_student/{id}', [AttemptController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-$dino->router->delete('/api/attempts/cancel/{id}', [AttemptController::class, 'cancelAttempt'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->delete('/api/attempt/cancel/{id}', [AttemptController::class, 'cancelAttempt'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
 $dino->router->post('/attempts/create/{uuid}', [AttemptController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
@@ -196,6 +196,7 @@ $dino->router->delete('/api/option_question/delete/{id}', [OptionQuestionControl
 
 //administración de intentos de resolución de examen
 $dino->router->get('/api/attempts/{id}', [ContentController::class, 'getAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->patch('/api/attempt/checked/{id}', [AttemptController::class, 'updateChecked'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->delete('/api/attempt/delete/{id}', [AttemptController::class , 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
 //administracion de answer student

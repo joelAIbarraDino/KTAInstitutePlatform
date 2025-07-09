@@ -275,6 +275,29 @@ class AttemptController{
         }
     }
 
+    public static function updateChecked(int $id):void{
+        if(!Request::isPATCH())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        try {
+            $attempt = Attempt::find($id);
+            $dataSend = Request::getBody();
+            $attempt->checked = $dataSend['checked'];
+
+            $attempt->validateAPI();
+
+            //guardamos los cambios
+            $rowAffected = $attempt->save();
+
+            if($rowAffected === 0)
+                Response::json(['ok'=>false,'message'=>'Error al guardar, intente mas tarde'], 404);
+
+            Response::json(['ok'=>true,'message'=>'Revisión de examen actualizado con exito']);
+        } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()], 400);
+        }    
+    }
+
     public static function cancelAttempt(int $id):void{
         
         if(!Request::isDELETE())

@@ -353,7 +353,7 @@
                 if(!navigator.onLine)
                     return;
 
-                const request = await fetch(`/api/attempts/cancel/${idAttempt}`, {
+                const request = await fetch(`/api/attempt/cancel/${idAttempt}`, {
                         method: 'DELETE'
                 });
 

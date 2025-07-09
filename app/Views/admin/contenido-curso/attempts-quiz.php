@@ -20,8 +20,10 @@
 
         <div class="form tabs__container">
             <div class="new-module__title">
-                <legend class="form__title">Resoluciones del examen</legend>
-                <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
+                <div class="title-container">
+                    <legend class="form__title">Resoluciones del examen</legend>
+                    <div id="container-alert" class="course-info__saved course-info__saved--waiting"></div>
+                </div>
             </div>
 
             <div class="faq-control">
