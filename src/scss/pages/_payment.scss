@@ -1,0 +1,68 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.mensaje-compra-exitosa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    margin: 5rem auto;
+    min-height: 60vh;
+
+    .titulo {
+        font-size: 4rem;
+        font-weight: v.$black;
+        color: v.$dorado;
+        margin-bottom: 2rem;
+    }
+
+    .detalle {
+        font-size: 1.8rem;
+        color: v.$negro;
+        margin-bottom: 1rem;
+
+        span {
+        color: v.$dorado;
+        font-weight: v.$black;
+        }
+
+    }
+
+    .acciones {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        @include m.tablet {
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .boton {
+            padding: 1.2rem 2.5rem;
+            background-color: v.$dorado;
+            color: v.$blanco;
+            font-weight: v.$black;
+            border: none;
+            border-radius: 0.8rem;
+            text-decoration: none;
+            font-size: 1.6rem;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: v.$dorado_darken;
+            }
+
+            &.secundario {
+                background-color: v.$negro;
+                color: v.$blanco;
+
+                &:hover {
+                    background-color: v.$gris_oscuro;
+                }
+            }
+        }
+    }
+}

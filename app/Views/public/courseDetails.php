@@ -48,7 +48,7 @@
 
                 <?php if(!$cursoInscrito):?>
                     <div class="cover-curso__botones">
-                        <a href="/curso/payment/<?=$course->url?>" class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</a>
+                        <a href="/curso/checkout/<?=$course->url?>" class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</a>
                     </div>
                 <?php else:?>
                     <div class="cover-curso__botones">

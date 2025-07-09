@@ -27,6 +27,7 @@ use App\Controllers\AnswerStudentController;
 use App\Controllers\EnrollmentController;
 use App\Controllers\MembershipController;
 use App\Controllers\DashboardController;
+use App\Controllers\PaymentController;
 use App\Controllers\CategoryController;
 use App\Controllers\SlidebarController;
 use App\Controllers\QuestionController;
@@ -56,6 +57,9 @@ define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
 define('DIR_SLIDEBAR',__DIR__.'/assets/slidebar/');
 define('URI_REDIRECT_GOOGLE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/auth/google-callback');
 
+define('REDIRECT_SUCCESS_STRIPE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/pago-exitoso?session_id={CHECKOUT_SESSION_ID}');
+define('REDIRECT_CANCEL_STRIPE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/cursos');
+
 $dbConfig = [
     "host"=>$_ENV['DB_HOST'],
     "port"=>$_ENV['DB_PORT'],
@@ -78,9 +82,15 @@ $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 
 $dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails'], [new PublicCourseMiddleware('/')]);
 
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
-$dino->router->get('/curso/payment/{id}', [EnrollmentController::class, 'createEnrollment'], [new StudentLoggedMiddleware('/login')]);
+
 
 $dino->router->get('/membresias', [PagesController::class, 'membership']);
+
+//proceso de pago de curso
+$dino->router->get('/curso/checkout/{id}', [PaymentController::class, 'checkoutCourse']);
+$dino->router->get('/membresia/checkout/{id}', [PaymentController::class, 'checkoutMembership']);
+$dino->router->get('/pago-exitoso', [PaymentController::class, 'success']);
+$dino->router->post('/webhook-stripe', [PaymentController::class, 'webhook']);
 
 $dino->router->get('/nosotros', [PagesController::class, 'about']);
 

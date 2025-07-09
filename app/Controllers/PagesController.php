@@ -65,7 +65,7 @@ class PagesController{
 
         Response::render('/public/membresias', [
             'nameApp'=>APP_NAME,
-            'title'=>'Membresías',
+            'title'=>'Membresias',
             'membresias'=>$membresias,
             'transparente'=>false
         ]);

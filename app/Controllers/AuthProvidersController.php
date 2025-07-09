@@ -55,7 +55,7 @@ class AuthProvidersController{
             $student->id_student = $student->save();
 
             if(!$student->id_student){
-                Helpers::setSwalAlert('error', '¡Error!', 'Error al actualizar usuario existente', 3000);
+                Helpers::setSwalAlert('error', '¡Error!', 'Error al registrar usuario existente', 3000);
                 Response::redirect('/login');
             }
         }

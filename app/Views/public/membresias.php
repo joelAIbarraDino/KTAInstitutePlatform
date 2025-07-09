@@ -16,7 +16,7 @@
                 <p class="membresia-card__descripcion"><?php echo $membresia->caract; ?></p>
                 
                 <div class="membresia-card__btn-container">
-                    <a class="membresia-card__btn" href="">Comprar ahora</a>
+                    <a class="membresia-card__btn" href="/membresia/checkout/<?=$membresia->id_membership?>">Comprar ahora</a>
                 </div>
                 
             </article>
