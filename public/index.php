@@ -118,11 +118,6 @@ $dino->router->get('/quiz/failed', [AttemptController::class, 'failedQuiz'], [ne
 $dino->router->get('/quiz/completed', [AttemptController::class, 'completedQuiz'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/certificado/{id}', [AttemptController::class, 'showDiploma'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
-
-
-$dino->router->post('/api/answer_student/{id}', [AttemptController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-$dino->router->delete('/api/attempt/cancel/{id}', [AttemptController::class, 'cancelAttempt'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-
 $dino->router->post('/attempts/create/{uuid}', [AttemptController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
 
@@ -156,6 +151,7 @@ $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delet
 $dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 $dino->router->get('/kta-admin/course-faq/{id}', [ContentController::class, 'faq'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 $dino->router->get('/kta-admin/course-quiz/{id}', [ContentController::class, 'quiz'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
+$dino->router->get('/kta-admin/review-quiz/{id}', [ContentController::class, 'reviewAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->get('/kta-admin/attempts-quiz/{id}', [ContentController::class, 'attempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 
 //administración de modulos de curso
@@ -196,8 +192,11 @@ $dino->router->delete('/api/option_question/delete/{id}', [OptionQuestionControl
 
 //administración de intentos de resolución de examen
 $dino->router->get('/api/attempts/{id}', [ContentController::class, 'getAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->get('/api/review-attempts/{id}', [ContentController::class, 'getReviewAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->post('/api/answer_student/{id}', [AttemptController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 $dino->router->patch('/api/attempt/checked/{id}', [AttemptController::class, 'updateChecked'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->delete('/api/attempt/delete/{id}', [AttemptController::class , 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->delete('/api/attempt/cancel/{id}', [AttemptController::class, 'cancelAttempt'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
 //administracion de answer student
 $dino->router->patch('/api/answer_student/is_correct/{id}', [AnswerStudentController::class, 'updateCorrectAnswer'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
@@ -241,7 +240,6 @@ $dino->router->patch('/api/student/password/{id}', [StudentController::class, 'u
 
 
 $dino->router->delete('/api/estudiante/delete/{id}', [StudentController::class, 'delete'], [AdminLoggedMiddleware::class]);
-
 
 //administración de slidebar
 $dino->router->get('/kta-admin/slidebar/create', [SlidebarController::class, 'create'], [AdminLoggedMiddleware::class]);

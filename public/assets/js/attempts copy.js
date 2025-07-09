@@ -100,7 +100,7 @@
         btnAttemptChecked.innerHTML = attempt.checked?'Revisado':'Pendiente';
         btnAttemptChecked.onclick = function(){
             attempt.checked = attempt.checked?0:1;
-            changeChecked(attempt)
+            changeAttempt(attempt)
         }
 
         if(attempt.checked)
@@ -372,7 +372,7 @@
         }
     }
 
-    async function changeChecked(attempt){
+    async function changeAttempt(attempt){
         const {id_attempt, checked} = attempt;
 
         try{

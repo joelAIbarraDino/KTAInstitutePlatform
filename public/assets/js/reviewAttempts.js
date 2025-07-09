@@ -19,7 +19,7 @@
     async function getQuiz(){
         try {
             const id = getCourseID();
-            const url = `/api/attempts/${id}`;
+            const url = `/api/review-attempts/${id}`;
 
             const request = await fetch(url);
             const response = await request.json();
@@ -398,12 +398,7 @@
 
             changeAlert('success', response.message);
 
-            attempts = attempts.map(attempt =>{
-                if(attempt.id_attempt == id_attempt)
-                    attempt.checked = checked;
-                
-                return attempt;
-            });
+            attempts = attempts.filter(attempt => attempt.id_attempt != id_attempt);
             
             resetAlert();
             showAttempts();
