@@ -332,7 +332,7 @@ class ContentController{
                 ]);
             }
 
-            $attempts = Attempt::belongsTo('id_quiz', $quiz->id_quiz, 'checked', 'ASC')??[];
+            $attempts = Attempt::belongsTo('id_quiz', $quiz->id_quiz)??[];
             
             if(!$attempts){
                 Response::json([
