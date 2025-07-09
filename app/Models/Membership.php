@@ -8,24 +8,33 @@ class Membership extends Model {
     
     protected static string $table = 'membership';
     protected static string $PK_name = 'id_membership';
-    protected static array $columns = ['id_membership', 'start_at', 'ends_at', 'type', 'id_payment'];
-    protected static array $fillable = ['start_at', 'ends_at', 'type'];
+    protected static array $columns = ['id_membership', 'type', 'max_time_membership', 'price'];
+    protected static array $fillable = ['type', 'max_time_membership', 'price'];
 
     public ?int $id_membership;
-    public string $start_at;
-    public string $ends_at;
     public string $type;
-    public int $id_payment;
+    public int $max_time_membership;
+    public float $price;
 
     public function __construct($args = []){
         $this->id_membership = $args["id_membership"]??null;
-        $this->start_at = $args["start_at"]??"";
-        $this->ends_at = $args["ends_at"]??"";
         $this->type = $args["type"]??"";
-        $this->id_payment = $args["id_payment"]??0;
+        $this->max_time_membership = $args["max_time_membership"]??0;
+        $this->price = $args["price"]??0.0;
     }
 
-    public function validate(){
+    public function validate():array{
 
+        if(!$this->type)
+            self::setAlerts('error', "el tipo de membresia es obligatoría");
+
+        if(!$this->max_time_membership)
+            self::setAlerts('error', "El acceso a la membresía es obligatoría");
+
+        if(!$this->price)
+            self::setAlerts('error', "El precio es obligatorio");
+
+        return self::$alerts;
     }
+
 }

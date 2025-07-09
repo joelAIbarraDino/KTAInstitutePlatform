@@ -70,6 +70,11 @@
                     </div>
 
                     <div class="nav">
+                        <p class="nav__title">Membresias</p>
+                        <a class="nav__link" href="/kta-admin/membresias"> <i class='bx bxs-certification'></i> Membresias</a>
+                    </div>
+
+                    <div class="nav">
                         <p class="nav__title">Usuarios</p>
                         <a class="nav__link" href="/kta-admin/maestros"> <i class='bx bxs-user-detail'></i> Maestros</a>
                         <a class="nav__link" href="/kta-admin/estudiantes"> <i class='bx bxs-graduation'></i> Estudiantes</a>

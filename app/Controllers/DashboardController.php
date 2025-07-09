@@ -2,15 +2,19 @@
 
 namespace App\Controllers;
 
-use App\Classes\Helpers;
-use App\Models\Admin;
-use App\Models\Category;
-use App\Models\CourseView;
+use DinoEngine\Http\Response;
+
+use App\Models\MembershipView;
 use App\Models\EnrollmentView;
+use App\Models\CourseView;
+use App\Models\Category;
 use App\Models\Slidebar;
 use App\Models\Student;
 use App\Models\Teacher;
-use DinoEngine\Http\Response;
+use App\Models\Admin;
+
+use App\Classes\Helpers;
+use App\Models\Membership;
 
 class DashboardController{
     
@@ -44,6 +48,28 @@ class DashboardController{
             'nameApp' => APP_NAME,
             'title' => 'Admin categorias',
             'categories'=>$categories
+        ]);
+    }
+
+    public static function memberships():void{
+        
+        $membresias = Membership::all();
+
+        Response::render('admin/membresia/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin membresias',
+            'memberships'=>$membresias
+        ]);
+    }
+
+    public static function membershipsLevels():void{
+        
+        $membresias = Membership::all();
+
+        Response::render('admin/membresia/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin membresias',
+            'memberships'=>$membresias
         ]);
     }
 

@@ -25,6 +25,7 @@ use App\Controllers\OptionQuestionController;
 use App\Controllers\AuthProvidersController;
 use App\Controllers\AnswerStudentController;
 use App\Controllers\EnrollmentController;
+use App\Controllers\MembershipController;
 use App\Controllers\DashboardController;
 use App\Controllers\CategoryController;
 use App\Controllers\SlidebarController;
@@ -128,6 +129,8 @@ $dino->router->get('/login-admin', [AuthController::class, 'loginAdmin'], [Admin
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/categorias', [DashboardController::class, 'categories'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/membresias', [DashboardController::class, 'memberships'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/nivel-membresias', [DashboardController::class, 'membershipsLevels'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/inscripciones', [DashboardController::class, 'enrollment'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/slidebar', [DashboardController::class, 'slidebar'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/maestros', [DashboardController::class, 'teachers'], [AdminLoggedMiddleware::class]);
@@ -249,5 +252,15 @@ $dino->router->get('/kta-admin/slidebar/update/{id}', [SlidebarController::class
 $dino->router->post('/kta-admin/slidebar/update/{id}', [SlidebarController::class, 'update'], [AdminLoggedMiddleware::class]);
 
 $dino->router->delete('/api/slidebar/delete/{id}', [SlidebarController::class, 'delete'], [AdminLoggedMiddleware::class]);
+
+//administración de membership
+$dino->router->get('/kta-admin/membresia/create', [MembershipController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/membresia/create', [MembershipController::class, 'create'], [AdminLoggedMiddleware::class]);
+
+$dino->router->get('/kta-admin/membresia/update/{id}', [MembershipController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/membresia/update/{id}', [MembershipController::class, 'update'], [AdminLoggedMiddleware::class]);
+
+$dino->router->delete('/api/membresia/delete/{id}', [MembershipController::class, 'delete'], [AdminLoggedMiddleware::class]);
+
 
 $dino->router->dispatch();
