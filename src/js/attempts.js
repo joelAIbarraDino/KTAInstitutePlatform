@@ -262,7 +262,7 @@
     function alertDeleteAttempt(attempt){
         Swal.fire({
             title: "Estas seguro que quieres eliminar este intento",
-            text: `intento #"${attempt.id_attempt}"`,
+            text: `intento de ${attempt.student}`,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
