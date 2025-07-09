@@ -62,6 +62,7 @@ class MembershipController{
             $membership->type = $datosEnviados['type'];
             $membership->max_time_membership = $datosEnviados['max_time_membership'];
             $membership->price = $datosEnviados['price'];
+            $membership->caract = $datosEnviados['caract'];
 
             $alerts = $membership->validate();
 
