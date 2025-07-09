@@ -12,11 +12,11 @@
     
     
     <nav class="header__nav">
-        <!-- <a class="btn-nav <?=$title == "Inicio"?'btn-nav--active':''?>" href="/">Inicio</a> -->
+        <a class="btn-nav <?=$title == "Inicio"?'btn-nav--active':''?>" href="/">Inicio</a>
         <a class="btn-nav <?=$title == "Cursos"?'btn-nav--active':''?>" href="/cursos">Cursos</a>
         <a href="/"><img class="header__logo" src="/assets/images/logoKTA.jpg" alt="logo de KTA" ></a>
         <a class="btn-nav <?=$title == "Nosotros"?'btn-nav--active':''?>" href="/nosotros">Nosotros</a>
-        <!-- <a class="btn-nav <?=$title == "Membresias"?'btn-nav--active':''?>" href="/mebresias">Membresias</a> -->
+        <a class="btn-nav <?=$title == "Membresias"?'btn-nav--active':''?>" href="/membresias">Membresias</a>
     </nav>
 
     <div class="header__actions">

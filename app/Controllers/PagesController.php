@@ -7,6 +7,7 @@ use App\Models\CourseView;
 use App\Models\EnrollmentView;
 use App\Models\FAQ;
 use App\Models\Lesson;
+use App\Models\Membership;
 use App\Models\Module;
 use App\Models\Slidebar;
 use App\Models\Teacher;
@@ -54,6 +55,18 @@ class PagesController{
             'title'=>'Cursos',
             'courses'=>$courses,
             'categories'=>$categories,
+            'transparente'=>false
+        ]);
+    }
+
+    public static function membership():void{
+        
+        $membresias = Membership::all()??[];
+
+        Response::render('/public/membresias', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Membresías',
+            'membresias'=>$membresias,
             'transparente'=>false
         ]);
     }

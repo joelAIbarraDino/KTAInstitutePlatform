@@ -1,4 +1,20 @@
 <div class="grid-elements">
+    <div class="form__file col-4">
+        <label for="photo-btn"> Foto de membresia (requerido)</label>
+        <input 
+            type="file"
+            name="photo"
+            id="photo"
+            accept="image/*"
+            hidden
+            class="real-btn-file"
+        >
+        <button type="button" class="form__file-btn btn-file">Seleccionar foto</button>
+        <span class="form__input-msg name-file"></span>
+    </div>
+</div>
+
+<div class="grid-elements">
 
     <div class="form__input col-12">
         <label for="type"> Nombre de membresía (requerido)</label>

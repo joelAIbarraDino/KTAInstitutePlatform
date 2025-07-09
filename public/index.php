@@ -51,6 +51,7 @@ date_default_timezone_set('America/Mexico_City');
 
 define('APP_NAME','KTA Institute');
 define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
+define('DIR_MEMBRESIAS',__DIR__.'/assets/membresias/');
 define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
 define('DIR_SLIDEBAR',__DIR__.'/assets/slidebar/');
 define('URI_REDIRECT_GOOGLE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/auth/google-callback');
@@ -70,12 +71,16 @@ $dino = new Dino(dirname(__DIR__), $runMode, $dbConfig);
 
 //public zone
 $dino->router->get('/', [PagesController::class, 'index']);
-$dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails'], [new PublicCourseMiddleware('/')]);
-$dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
-$dino->router->get('/curso/payment/{id}', [EnrollmentController::class, 'createEnrollment'], [new StudentLoggedMiddleware('/login')]);
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);
+
+$dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails'], [new PublicCourseMiddleware('/')]);
+
+$dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
+$dino->router->get('/curso/payment/{id}', [EnrollmentController::class, 'createEnrollment'], [new StudentLoggedMiddleware('/login')]);
+
+$dino->router->get('/membresias', [PagesController::class, 'membership']);
 
 $dino->router->get('/nosotros', [PagesController::class, 'about']);
 

@@ -17,15 +17,18 @@ class MembershipController{
         $alerts = [];
         $membership = new Membership;
 
-
         if(Request::isPOST()){
             $alerts = [];
             $datosEnviados = Request::getPostData();
 
             $membership->sincronize($datosEnviados);
             $alerts = $membership->validate();
+            $alerts = $membership->validateImage($_FILES);
 
             if(empty($alerts)){
+                //proceso para guardar imagen
+                $membership->subirImagen($_FILES['photo'], 920, 780);
+
                 //guardo registro
                 $id = $membership->save();
                 
@@ -67,6 +70,11 @@ class MembershipController{
             $alerts = $membership->validate();
 
             if(empty($alerts)){
+
+                if($_FILES['photo']['size'] > 0){
+                    $alerts = $membership->validateImage($_FILES);
+                    $membership->subirImagen($_FILES['photo'], 920, 780);
+                }
 
                 //guardo registro
                 $id = $membership->save();

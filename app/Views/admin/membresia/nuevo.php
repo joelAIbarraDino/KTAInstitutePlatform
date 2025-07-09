@@ -8,7 +8,7 @@
         </div>
 
         
-        <form class="form form-admin" method="post">
+        <form class="form form-admin" method="post" enctype="multipart/form-data">
             <legend class="form__title">Nueva membresia</legend>
             
             <p class="form__instructions">Completa los campos para registrar un nuevo maestro</p>
@@ -27,6 +27,7 @@
 
 <?php
     $scripts = '
+        <script src="/assets/js/btnFile.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
     ';
 ?>
