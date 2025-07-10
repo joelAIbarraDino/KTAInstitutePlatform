@@ -1,8 +1,11 @@
 <?php include_once __DIR__.'/../components/header.php'; ?>
 
-
 <main class="">
     <?php include_once __DIR__.'/../components/slider.php'; ?>
+
+    <div class="gif-content">
+        <img src="assets/images/gif.gif" alt="gif de inicio">
+    </div>
 
     <?php include __DIR__.'/../components/kioskoCurso.php'; ?>
 
