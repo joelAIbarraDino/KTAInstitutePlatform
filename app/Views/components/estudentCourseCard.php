@@ -11,11 +11,11 @@
         <div class="curso__contenido">
             <a href="/curso/watch/<?=$course->enroll_url?>"><h3 class="curso__nombre"><?=$course->course?></h3></a>
 
-            <div class="curso__progress">
+            <!-- <div class="curso__progress">
                 <p class="curso__progress-label">Progreso:</p>
                 <progress class="curso__progress-bar" max="100" value="20"></progress>
                 <p class="curso__progress-percentage">20%</p>
-            </div>
+            </div> -->
 
             <div class="curso__links">
                 <a href="/curso/view/<?=$course->course_url?>" class="curso__link">Ver detalles</a>
@@ -38,10 +38,10 @@
         <div class="curso__contenido">
             <h3 class="curso__nombre"><?=$course->course?></h3>
 
-            <div class="curso__progress">
+            <!-- <div class="curso__progress">
                 <p class="curso__progress-no-progress">Empezar curso</p>
                 <progress class="curso__progress-bar" max="100" value="0"></progress>
-            </div>
+            </div> -->
 
             <div class="curso__links">
                 <p class="curso__link--disabled">Ver detalles</p>

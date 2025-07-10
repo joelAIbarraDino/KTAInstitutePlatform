@@ -143,9 +143,11 @@ $dino->router->get('/login-admin', [AuthController::class, 'loginAdmin'], [Admin
 //zona privada de administrador
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/pago-cursos', [DashboardController::class, 'paymentCourses'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/categorias', [DashboardController::class, 'categories'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/membresias', [DashboardController::class, 'memberships'], [AdminLoggedMiddleware::class]);
-$dino->router->get('/kta-admin/nivel-membresias', [DashboardController::class, 'membershipsLevels'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/pago-membresias', [DashboardController::class, 'paymentMemberships'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/estudiante-membresia', [DashboardController::class, 'studentMemberships'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/inscripciones', [DashboardController::class, 'enrollment'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/slidebar', [DashboardController::class, 'slidebar'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/maestros', [DashboardController::class, 'teachers'], [AdminLoggedMiddleware::class]);

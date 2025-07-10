@@ -21,7 +21,7 @@ class MembershipView extends Model {
     public function __construct($args = []){
         $this->id_membership = $args["id_membership"]??null;
         $this->type = $args["type"]??"";
-        $this->max_time_membership = $args["max_time_membership"]??"";
+        $this->max_time_membership = $args["max_time_membership"]??0;
         $this->created_at = $args["created_at"]??"";
         $this->id_payment = $args["id_payment"]??0;
         $this->id_student = $args["id_student"]??0;

@@ -66,12 +66,15 @@
                     <div class="nav">
                         <p class="nav__title">Cursos</p>
                         <a class="nav__link" href="/kta-admin/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
+                        <a class="nav__link" href="/kta-admin/pago-cursos"> <i class='bx bx-credit-card'></i> Pagos de cursos</a>
                         <a class="nav__link" href="/kta-admin/categorias"> <i class='bx bxs-category'></i> Categorias</a>
                     </div>
 
                     <div class="nav">
                         <p class="nav__title">Membresias</p>
                         <a class="nav__link" href="/kta-admin/membresias"> <i class='bx bxs-certification'></i> Membresias</a>
+                        <a class="nav__link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Pagos de membresías</a>
+                        <a class="nav__link" href="/kta-admin/estudiante-membresia"> <i class='bx bxs-user-badge' ></i> Estudiantes con membresías</a>
                     </div>
 
                     <div class="nav">

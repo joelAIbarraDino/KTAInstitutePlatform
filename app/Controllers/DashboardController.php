@@ -15,6 +15,8 @@ use App\Models\Admin;
 
 use App\Classes\Helpers;
 use App\Models\Membership;
+use App\Models\PaymentCourseView;
+use App\Models\PaymentMembershipView;
 
 class DashboardController{
     
@@ -40,6 +42,16 @@ class DashboardController{
 
     }
 
+    public static function paymentCourses():void{
+        $pagos = PaymentCourseView::all();
+
+        Response::render('admin/cursos/pagos', [
+            'nameApp' => APP_NAME,
+            'title' => 'Pagos cursos',
+            'pagos'=>$pagos
+        ]);
+    }
+
     public static function categories():void{
         
         $categories = Category::all();
@@ -62,14 +74,25 @@ class DashboardController{
         ]);
     }
 
-    public static function membershipsLevels():void{
+    public static function paymentMemberships():void{
         
-        $membresias = Membership::all();
+        $pagos = PaymentMembershipView::all();
 
-        Response::render('admin/membresia/index', [
+        Response::render('admin/membresia/pagos', [
             'nameApp' => APP_NAME,
-            'title' => 'Admin membresias',
-            'memberships'=>$membresias
+            'title' => 'Pagos membresias',
+            'pagos'=>$pagos
+        ]);
+    }
+
+    public static function studentMemberships():void{
+        
+        $membresias = MembershipView::all(0, 'created_at', 'DESC');
+
+        Response::render('admin/membresia/subs', [
+            'nameApp' => APP_NAME,
+            'title' => 'Membresias registradas',
+            'membresias'=>$membresias
         ]);
     }
 
