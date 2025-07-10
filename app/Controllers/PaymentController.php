@@ -129,7 +129,8 @@ class PaymentController{
     }
 
     public static function webhook():void{
-        $endpoint_secret = $_ENV['LOCAL_SIGN_WEBHOOK_COURSE'];
+
+        $endpoint_secret = $_SERVER['HTTP_HOST']=='localhost:3000'?$_ENV['LOCAL_SIGN_WEBHOOK_COURSE']:$_ENV['SIGN_WEBHOOK_COURSE'];
 
         $payload = @file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
@@ -210,9 +211,11 @@ class PaymentController{
                     if(!$rows)
                         Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
                 }
+
+                Response::json(['ok'=>true, 'message'=>'Proceso completado']);
             }
 
-            Response::json(['ok'=>true, 'message'=>'Proceso completado']);
+            Response::json(['ok'=>true, 'message'=>'Evento recibido: '. $event->type]);
 
         }catch(UnexpectedValueException $e){
             Response::json(['ok'=>false, 'message'=> $e->getMessage()], 400);
