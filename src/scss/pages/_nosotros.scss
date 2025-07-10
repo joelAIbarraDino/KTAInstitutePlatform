@@ -1,135 +1,207 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.nosotros {
-    padding: v.$separacion;
-    font-family: v.$fuente_principal;
-    color: v.$gris_oscuro;
+.about-gold-bg{
+    background-color: v.$fondo_oscuro_claro;
+}
 
-    &__intro {
+.about-dark-bg{
+    background-color: v.$fondo_oscuro;
+
+    .about-main__text{
+        color: v.$blanco;
+    }
+
+    .about-main__picture{
+        box-shadow: none;
+    }
+}
+
+.about-main {
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    width: 92%;
+    margin: 0 auto;
+
+    @include m.tablet{
+        width: 90%;
+        padding: 7rem 0;
+    }
+    
+    @include m.computadora{
+        flex-direction: row;
+        width: 80%;
+        padding: 10rem 0;
+    }
+
+    &__pin{
+        border: solid .1rem v.$dorado;
+        width: 11rem;
         text-align: center;
-        margin-bottom: v.$separacion;
+        padding: .8rem;
+        border-radius: 2rem;
+        color: v.$dorado;
+        font-weight: v.$bold;
+        font-size: 1.2rem;
+    }
 
-        & .nosotros__titulo {
-            font-weight: v.$black;
+    &__title{
+        text-align: left;
+        color: v.$dorado;
+        font-weight: v.$black;
+        font-size: 2.6rem;
+        margin: 0;
+        margin-bottom: 1rem;
+
+        @include m.tablet{
+            font-size: 2.7rem;
+        }
+
+        @include m.computadora{
+            font-size: 4.9rem;
+        }
+    }
+
+    &__text-min{
+        color: v.$dorado;
+        font-weight: v.$bold;
+        font-size: 1.4rem;
+        margin: 0;
+        margin-bottom: 1.2rem;
+    }
+
+    &__text{
+        font-size: 1rem;
+        margin: 0;
+        margin-bottom: 1.4rem;
+        line-height: 1.8rem;
+
+        @include m.tablet{
+            font-size: 1.2rem;
+            line-height: 2rem;
+        }
+
+        @include m.computadora{
+            font-size: 1.7rem;
+            line-height: 2.2rem;
+        }
+    }
+
+    &__courses{
+        background-color: v.$dorado;
+        padding: 1rem;
+        color: v.$blanco;
+        width: 100%;
+        text-align: center;
+        font-weight: v.$black;
+        border-radius: .8rem;
+        transition: all .5s ease;
         
-            color: v.$dorado;
+
+        @include m.tablet{
+            width: 20rem;
         }
 
-        & .nosotros__texto {
-            max-width: 800px;
-            margin: 0 auto 1.5rem;
-            font-weight: v.$regular;
-            font-size: 2rem;
-            line-height: 1.6;
+        &:hover{
+            background-color: v.$negro;
+            cursor: pointer;
+            transform: translateY(-5px);
         }
     }
 
-    &__fundadores {
+    &__founders{
+        display: none;
+        gap:1rem;
+
+        @include m.computadora{
+            display: flex;
+        }
+    }
+
+    &__founder{
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        border: .2rem solid v.$dorado;
+    }
+
+    &__left{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        margin-bottom: v.$separacion;
+        width: 100%;
+        gap: 1.5rem;
 
-        .fundador {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 100%;
-            border: 5px solid v.$dorado;
-        }
-
-        .nosotros__historia {
-            max-width: 900px;
-            text-align: center;
-            
-            h3 {
-                color: v.$azul;
-                font-weight: v.$bold;
-                margin-bottom: 1rem;
-            }
-
-            p {
-                margin-bottom: 1rem;
-                line-height: 1.6;
-                font-size: 2rem;
-            }
-        }
-
-        @include m.computadora {
-            flex-direction: row;
-            justify-content: center;
-
-            .fundador {
-                margin: 0 1rem;
-            }
-
-            .nosotros__historia {
-                text-align: left;
-            }
+        @include m.computadora{
+            width: 50%;
         }
     }
 
-    &__clase {
+    &__right{
+        width: 100%;
+
+        @include m.computadora{
+            width: 50%;
+        }
+    }
+
+    &__picture{
+        border-radius: 1rem;
+        box-shadow: 14px 16px 43px -7px rgba(177,177,177,0.75);
+        -webkit-box-shadow: 14px 16px 43px -7px rgba(177,177,177,0.75);
+        -moz-box-shadow: 14px 16px 43px -7px rgba(177,177,177,0.75);    
+    }
+}
+
+.about-history{
+    
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    width: 92%;
+    margin: 0 auto;
+
+    @include m.tablet{
+        width: 90%;
+        padding: 7rem 0;
+    }
+    
+    @include m.computadora{
+        flex-direction: row;
+        width: 80%;
+        padding: 10rem 0;
+    }
+
+    &__left{
+        width: 100%;
+
+        @include m.computadora{
+            width: 45%;
+        }
+    }
+
+    &__right{
         display: flex;
         flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-        margin-bottom: v.$separacion;
+        width: 100%;
+        gap: 1.5rem;
 
-        img {
-            max-width: 100%;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        &-texto {
-            max-width: 800px;
-
-            h3 {
-                color: v.$dorado;
-                font-weight: v.$bold;
-                margin-bottom: 1rem;
-            }
-
-            p {
-                line-height: 1.6;
-                margin-bottom: 1rem;
-                font-size: 2rem;
-            }
-        }
-
-        @include m.computadora {
-            flex-direction: row;
-
-            img {
-                flex: 1;
-            }
-
-            &-texto {
-                flex: 1;
-                padding-left: 2rem;
-            }
+        @include m.computadora{
+            width: 55%;
         }
     }
 
-    &__cierre {
-        text-align: center;
-        max-width: 700px;
-        margin: 0 auto;
+    &__right-2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        gap: 5rem;
 
-        h3 {
-            font-weight: v.$black;
-            color: v.$azul;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.125rem;
-            line-height: 1.6;
-            font-size: 2rem;
+        @include m.computadora{
+            width: 55%;
         }
     }
 }
