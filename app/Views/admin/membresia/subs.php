@@ -35,10 +35,10 @@ use App\Classes\Helpers;
                                     <td><?=$membresia->type?></td>
                                     <td><?=$membresia->student?></td>
                                     <td><?=$membresia->email?></td>
-                                    <td><?=date('m / d / Y', strtotime($membresia->created_at)) ?></td>
-                                    <td><?=date('m / d / Y', strtotime('+'.$membresia->max_time_membership.' month', strtotime($membresia->created_at)) )?></td>
+                                    <td><?=date('Y / m / d', strtotime($membresia->created_at)) ?></td>
+                                    <td><?=date('Y / m / d', strtotime('+'.$membresia->max_time_membership.' months', strtotime($membresia->created_at)) )?></td>
                                     <td>
-                                        <?=date('m / d / Y') < date('m / d / Y', strtotime('+'.$membresia->max_time_membership.' month', strtotime($membresia->created_at)) )?
+                                        <?=strtotime(date('Y-m-d')) < strtotime('+'.$membresia->max_time_membership.' months', strtotime($membresia->created_at))?
                                             '<span class="dashboard-table__status dashboard-table__status--active">Activo</span>':
                                             '<span class="dashboard-table__status dashboard-table__status--inactive">Caducado</span>'
                                         ?>

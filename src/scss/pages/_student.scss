@@ -46,6 +46,65 @@
     }
 }
 
+.membresia{
+    width: 100rem;
+    margin: 2rem auto 7rem auto;
+    background-color: v.$negro;
+    padding: 2rem;
+    border-radius: 1rem;
+    -webkit-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    -moz-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+
+    &__datos{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 2rem;
+        height: 100%;
+
+    }
+
+    &__titulo{
+        margin: 0;
+        color: v.$dorado;
+        font-weight: v.$black;
+        font-size: 2rem;
+    }
+
+    &__nivel{
+        margin: 0;
+        font-size: 1.5rem;
+        color: v.$blanco;
+
+        span{
+            font-weight: v.$black;
+            color: v.$dorado;
+        }
+    }
+
+    &__fechas{
+        display: flex;
+        gap: 2rem;
+    }
+
+    &__fecha{
+        margin: 0;
+        font-weight: v.$regular;
+        font-size: 1.3rem;
+        color: v.$dorado;
+
+        span{
+            font-weight: v.$black;
+            color: v.$blanco;
+        }
+    }
+
+}
+
 .profile-menu{
     padding: 1.5rem;
 

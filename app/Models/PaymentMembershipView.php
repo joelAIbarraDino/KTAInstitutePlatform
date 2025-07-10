@@ -12,7 +12,7 @@ class PaymentMembershipView extends Model {
     public ?int $id_membership_student;
     public string $type;
     public string $photo;
-    public string $student;
+    public ?string $student;
     public string $email;
     public float $amount;
     public string $currency;

@@ -12,7 +12,7 @@ class PaymentCourseView extends Model {
     public ?int $id_enrollment;
     public string $thumbnail;
     public string $name;
-    public string $photo;
+    public ?string $photo;
     public string $student;
     public string $email;
     public float $amount;

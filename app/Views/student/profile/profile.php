@@ -9,6 +9,19 @@
         </div>
     </div>
 
+    <?php if($membership):?>
+        <div class="membresia">
+            <div class="membresia__datos">
+                <p class="membresia__titulo">Membresia Activa</p>
+                <p class="membresia__nivel">Membresía: <span><?=$membership->type?></span></p>
+            </div>
+
+            <div class="membresia__fechas">
+                <p class="membresia__fecha">Valido hasta: <span><?=date('Y/m/d', strtotime('+'.$membership->max_time_membership.' months', strtotime($membership->created_at)) )?></span></p>
+            </div>
+        </div>
+    <?php endif;?>
+
     <div class="profile">
 
         <?php if(isset($_SESSION['student']['photo'])): ?>

@@ -3,7 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\EnrollmentView;
+use App\Models\Membership;
+use App\Models\MembershipStudent;
+use App\Models\MembershipView;
 use App\Models\Student;
+use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 
 class UserController{
@@ -73,11 +77,25 @@ class UserController{
         $idStudent = $_SESSION['student']['id_student'];
 
         $student = Student::where('id_student', '=', $idStudent);
+        $memberships = MembershipView::belongsTo('id_student', $idStudent)??[];
+        
+        $activeMembership = null;
+        
+        foreach($memberships as $membership){
+            $valido = strtotime(date('Y-m-d')) < strtotime('+'.$membership->max_time_membership.' months', strtotime($membership->created_at));
 
+            if($valido){
+                $activeMembership = $membership;
+                break;
+            }
+            
+        }
+        
         Response::render('/student/profile/profile',[
             'nameApp'=>APP_NAME,
             'title'=>'Mi perfil',
-            'student'=>$student
+            'student'=>$student,
+            'membership'=> $activeMembership
         ]);
     }
 
