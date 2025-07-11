@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
-<div class="">
+<main>
     <div class="cover-curso" style="background-image: url(/assets/thumbnails/<?=$course->thumbnail?>);">
         <div class="cover-curso__cover">
 
@@ -153,8 +153,7 @@
             </div>
         </div>
     </div>
-
-</div>
+</main>
 
 <?php include_once __DIR__.'/../components/footer.php';?>
 
@@ -162,7 +161,6 @@
     $scripts ='
         <script src="/assets/js/listaPlegable.js"></script>
         <script src="/assets/js/tabs.js"></script>
-        <script src="/assets/js/kiskoCurso.js"></script>
-        <script src="/assets/js/header.js"></script>
+        <script src="/assets/js/menu.js"></script>
     ';
 ?>

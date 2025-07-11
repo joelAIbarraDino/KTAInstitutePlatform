@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
-<div class="principal">
+<main>
     <div class="about-gold-bg">
         <section class="about-main">
             <div class="about-main__left">
@@ -98,12 +98,12 @@
         </section>
     </div>
 
-</div>
+</main>
 
 <?php include_once __DIR__.'/../components/footer.php';?>
 
 <?php 
     $scripts ='
-        
+        <script src="/assets/js/menu.js"></script>
     ';
 ?>

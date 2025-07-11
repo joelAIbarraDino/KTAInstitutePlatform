@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../components/header.php'; ?>
 
-<div class="principal cursos-principal">
+<main class="cursos-principal">
     <section class="membresias">
         <?php foreach ($membresias as $membresia): ?>
             <article class="membresia-card">
@@ -23,12 +23,12 @@
         <?php endforeach; ?>
     </section>
 
-</div>
+</main>
 
 <?php include_once __DIR__.'/../components/footer.php'; ?>
 
 <?php 
     $scripts ='
-        <script src="/assets/js/header.js"></script>
+        <script src="/assets/js/menu.js"></script>
     ';
 ?>

@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
-<div class="principal">
+<main>
 
     <div class="ver-profesor">   
         <h1 class="ver-profesor__titulo">Conoce a tu instructor</h1>
@@ -33,12 +33,12 @@
             <?php endforeach;?>
         </div>
     </div>
-</div>
+</main>
 
 <?php include_once __DIR__.'/../components/footer.php';?>
 
 <?php 
     $scripts ='
-        <script src="/assets/js/header.js"></script>
+        <script src="/assets/js/menu.js"></script>
     ';
 ?>

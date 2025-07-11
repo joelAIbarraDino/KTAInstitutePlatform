@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../components/header.php'; ?>
 
-<div class="principal cursos-principal">
+<main class="cursos-principal">
 
     <div class="cursos-filtro width-80">
         <h1 class="cursos-filtro__titulo" >Nuestros cursos</h1>
@@ -43,15 +43,13 @@
             <?php endif;?>
             
         </div>
-    </div>
-
-    
-</div>
+    </div>    
+</main>
 
 <?php include_once __DIR__.'/../components/footer.php'; ?>
 
 <?php 
     $scripts ='
-        <script src="/assets/js/header.js"></script>
+        <script src="/assets/js/menu.js"></script>
     ';
 ?>

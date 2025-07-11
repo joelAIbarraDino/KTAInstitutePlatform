@@ -1,6 +1,6 @@
 <?php include_once __DIR__.'/../../components/header.php';?>
 
-<div class="principal">
+<main>
     <?php if($type_product == "course"):?>
         <div class="mensaje-compra-exitosa">    
             <h2 class="titulo">¡Gracias por tu compra, <?= $name ?>!</h2>
@@ -33,7 +33,7 @@
         </div>
     <?php endif;?>
 
-</div>
+</main>
 
 <?php include_once __DIR__.'/../../components/footer.php';?>
 

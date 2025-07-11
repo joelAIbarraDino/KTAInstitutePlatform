@@ -1,355 +1,141 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
+.header{
+    padding: 1rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-.gif-content{
-    background-color: v.$fondo_claro;    
-    padding: 0;
-    img{
-        width: 100%;
-        height: auto;
-        margin: 0;
-        padding: 0;
+    &__logo{
+        width: 7rem;
     }
-}
 
-.kiosko {
-    
-    padding: 2rem;
-    background-color: v.$fondo_claro;
-
-    &.empty{
-        min-height: 20rem;
-        margin: 0;
+    &__nav{
         display: flex;
+        flex-direction: column;
+        align-items: end;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: v.$negro;
+        padding: 4rem;
+        transition: opacity 0.4s ease;
+        opacity: 0;
+        visibility: hidden;
+
+        &.nav-visble{
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        @include m.tablet{
+            position: relative;
+            background-color: transparent;
+            box-shadow: none;
+            opacity: 1;
+            visibility:visible;
+            padding: 0;
+        }
+    }
+
+    &__nav-list{
+        list-style: none;
+        padding: 0;
+        display: flex;
+        align-items: end;
+        justify-content: start;
+        flex-direction: column;
+        gap: 3rem;
+
+        @include m.tablet{
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+
+        li{
+            text-align: center;
+        }
+    }
+
+    &__link{
+        color: v.$dorado;
+        font-weight: v.$regular;
+        font-size: 1.6rem;
+        text-align: center;
+
+        &:hover{
+            color: v.$blanco;
+
+            @include m.tablet{
+                color: v.$negro;
+            }
+        }
+
+    }
+
+    &__login{
+        display: flex;
+        gap: 1rem;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
-        background-color: v.$negro;
-        gap: 1rem;
-    }
-    &__content{
-        width: 90%;
-        max-width: 1500px;
-        margin: 0 auto;
-
-        position: relative;
-            
-    }
-
-    &__titulo {
-        text-align: center;
-        font-weight: v.$black;
-        color: v.$negro;
-        font-size: 4rem;
-        margin: 0;
-
-        &.empty{
-            color: v.$dorado;
-        }
-
-        @include m.tablet {
-            font-size: 4.5rem;
-        }
-    }
-
-    &__title{
-        text-align: center;
-        font-weight: v.$black;
-        color: v.$negro;
-        font-size: 4rem;
-        margin: 0;
-
-        &.empty{
-            color: v.$blanco;
-        }
-
-        @include m.tablet {
-            font-size: 4.5rem;
-        }
     }
     
-    &__contenedor {
-        display: flex;
-        overflow: hidden;
-        scroll-behavior: smooth;
-        gap: 2rem;
-        padding: 1rem 0;
-
-        @include m.tablet{
-            padding: 2rem 0;
-        }
-    }
-    
-    &__controles {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-    
-    &__boton {
-        background-color: rgba(v.$dorado, 0.7);
+    &__button-login{
         color: v.$blanco;
-        font-weight: v.$bold;
-        font-size: 2.5rem;
-        border: none;
-        padding: 0.5rem;
-        height: 5rem;
-        width: 5rem;
-        border-radius: 50%;
-        cursor: pointer;
-        font-weight: v.$bold;
-        transition: background-color 0.3s ease;
-        
-        &:hover {
-            background-color: rgba(v.$dorado, 0.8);
-        }
-        
-        &--anterior,
-        &--siguiente {
-            @include m.computadora {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 10;
+        padding: 1rem;
+        background-color: v.$dorado;
+        border-radius: .5rem;
+        text-align: center;
+
+        &--menu{
+            display: block;
+
+            @include m.tablet{
+                display: none;
             }
         }
-        
-        &--anterior {
-            @include m.computadora {
-                left: -6rem;
-            }
-        }
-        
-        &--siguiente {
-            @include m.computadora {
-                right: -6rem;
+
+        &--login{
+            display: none;
+
+            @include m.tablet{
+                display: block;
             }
         }
     }
-    
-    &__puntos {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 2rem;
-        
-        .punto {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: v.$gris;
-            cursor: pointer;
-            
-            &--activo {
-                background-color: v.$dorado;
-            }
+
+
+    &__hamburger{
+        color: v.$dorado;
+        font-weight: v.$black;
+        font-size: 3rem;
+        display: block;
+
+        @include m.tablet{
+            display: none;
+        }
+    }
+
+    &__close{
+        color: v.$dorado;
+        font-weight: v.$black;
+        font-size: 3rem;
+        display: block;
+
+        @include m.tablet{
+            display: none;
         }
     }
 }
 
-.why-us{
-    text-align: center;
-    padding: 5rem 3rem;
-    background-color: v.$fondo_claro;
-
-    &__title{
-        font-size: 4.5rem;
-    }
-
-    &__text{
-        font-size: 1.7rem;
-        width: 70%;
-        max-width: 70rem;
-        margin: 3rem auto;
-        color: v.$gris;
-    }
-
-    &__grid{
-        
-        display: block;
-        margin: 0 auto;
-        width: 80%;
-
-        @include m.tablet{
-            width: 90%;
-            @include m.grid(2, 3rem);
-        }
-
-        @include m.computadora{
-            width: 90%;
-            @include m.grid(4, 3rem);
-        }
-    }
-
-    .razon{
-        padding: 3rem;
-        border-radius: 1rem;
-        background-color: v.$blanco;
-        margin-bottom: 3rem;
-        border-bottom: .3rem solid v.$dorado;
-
-        @include m.computadora{
-            margin-bottom: 0;
-        }
-
-        &__sub{
-            border-top: .2rem solid v.$dorado;
-            border-style: dashed none none none;
-            text-align: left;
-            font-size: 2rem;
-            color: v.$gris;
-            margin-top: 1rem;
-            padding-top: 1rem;
-        }
-
-        &__title{
-            text-align: left;
-            font-size: 2.8rem;
-        }
-    }
-}
-
-.about{
-    display: block;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 90%;
-    gap: 3rem;
-    padding: 10rem 0;
-
-    @include m.computadora{
-        display: flex;
-    }
-
-    &__grid{
-        display: block;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 2rem;
+.gif{
+    &__image{
         width: 100%;
-        margin-bottom: 2rem;
-
-        @include m.tablet{
-            display: grid;
-        }
-
-        @include m.computadora{
-            width: 50%;
-            margin-bottom: 0;
-        }
-
-        .foto-fundador-1{
-            width: 100%;
-            height: 40rem;
-            grid-row: 1 / 3;
-            border-radius: 1rem;
-            background-image: url('/assets/images/img-1.jpg');
-            background-repeat: no-repeat;
-            background-position: top center;
-            background-size: cover;
-            margin-bottom: 2rem;
-
-            @include m.tablet{
-                margin-bottom: 0;
-                background-position: center center;
-            }
-
-        }
-
-        .foto-fundador-2{
-            width: 100%;
-            height: 40rem;
-            grid-column: 2 / 3;
-            grid-row: 2 / 4;
-            border-radius: 1rem;
-            background-image: url('/assets/images/img-2.jpg');
-            background-repeat: no-repeat;
-            background-position: top center;
-            background-size: cover;
-            margin-bottom: 2rem;
-
-            @include m.tablet{
-                margin-bottom: 0;
-                background-position: center center;
-            }
-
-        }
-
-        .info-1{
-            grid-row: 1 / 2;
-            grid-column: 2 / 3;
-            padding: 3.5rem 2rem;
-            background-color: v.$dorado;
-            color: v.$blanco;
-            border-radius: 1rem;
-            font-size: 8rem;
-            margin-bottom: 2rem;
-            
-            @include m.tablet{
-                margin-bottom: 0;
-            }
-
-            p{
-                color: v.$blanco;
-                margin: 0;
-                font-weight: v.$bold;
-            }
-        }
-
-        .info-2{
-            grid-row: 3 / 4;
-            grid-column: 1 / 2;
-            padding: 3.5rem 2rem;
-            background-color: v.$dorado;
-            color: v.$blanco;
-            border-radius: 1rem;
-            font-size: 8rem;
-            margin-bottom: 2rem;
-            
-            @include m.tablet{
-                margin-bottom: 0;
-            }
-            
-            p{
-                color: v.$blanco;
-                margin: 0;
-                font-weight: v.$bold;
-            }
-        }
-    }
-
-    &__cont{
-        width: 100%;
-
-        @include m.computadora{
-            width: 50%;
-        }
-
-        &-title{
-            display: inline-block;
-            padding: .5rem 3rem;
-            font-size: 1.8rem;
-            background-color: v.$dorado;
-            color: v.$blanco;
-            border-radius: 1rem;
-            margin-bottom: 0;
-        }
-
-        &-sub{
-            font-size: 4.8rem;
-            margin-top: 1.5rem;
-            font-weight: v.$bold;
-        }
-
-        &-btn{
-            padding: 2rem;
-            margin-top: 1.5rem;
-            border-radius: .5rem;
-            font-size: 1.8rem;
-            @include m.boton(v.$negro, v.$dorado, v.$blanco, v.$blanco, inline-block)
-        }
     }
 }
