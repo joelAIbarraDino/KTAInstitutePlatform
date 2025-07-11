@@ -1,6 +1,74 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
+.admin-header{
+    background-color: v.$negro;
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    @include m.tablet{
+        flex-direction: row;
+    }
+
+    &__left{
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        @include m.tablet{
+            justify-content: center;
+            width: auto;
+        }
+    }
+
+    &__title{
+        text-align: left;
+        margin: 0;
+        color: v.$dorado;
+        font-size: 1.5rem;
+        font-weight: v.$black;
+    }
+
+    &__admin{
+        color: v.$blanco;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    &__right{
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        @include m.tablet{
+            justify-content: center;
+            width: auto;
+        }
+    }
+
+    &__name{
+        margin: 0;
+        color: v.$dorado;
+        font-size: 1.5rem;
+        font-weight: v.$bold;
+    }
+
+    &__logout{
+        color: v.$blanco;
+        font-size: 2.5rem;
+        font-weight: v.$black;
+    }
+}
+
 .header{
     padding: 1rem 4rem;
     display: flex;
@@ -134,8 +202,98 @@
     }
 }
 
+.slider{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+
+    @include m.tablet{
+        height: 65vh;
+    }
+
+    &__video{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+
+    &__cover{
+        position: relative;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(v.$negro, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        gap: 0;
+
+        @include m.tablet{
+            justify-content: start;
+            padding: 2rem 10rem;
+        }
+    }
+
+    &__text-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        gap: 2rem;
+        width: 98%;
+        max-width: 70rem;
+        background-color: rgba(v.$negro, 0.5);
+        padding: 1rem;
+
+        @include m.tablet{
+            justify-content: start;
+        }
+    }
+
+    &__text-title{
+        text-transform: uppercase;
+        text-align: center;
+        color: v.$dorado;
+        font-size: 3rem;
+        margin: 0;
+
+        @include m.tablet{
+            text-align: left;
+            font-size: 4rem;
+        }
+    }
+
+    &__text-description{
+        text-align: center;
+        color: v.$blanco;
+        font-size: 2rem;
+        margin: 0;
+
+        @include m.tablet{
+            text-align: left;
+            font-size: 2.5rem;
+        }
+    }
+
+}
+
 .gif{
+    margin: 0 auto;
+    width: 97%;
+
     &__image{
         width: 100%;
+        
     }
 }
