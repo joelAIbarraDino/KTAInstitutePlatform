@@ -212,6 +212,7 @@ $dino->router->delete('/api/option_question/delete/{id}', [OptionQuestionControl
 
 //administración de intentos de resolución de examen
 $dino->router->get('/api/attempts/{id}', [ContentController::class, 'getAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->get('/api/attempts/search/{id}/{attribute}/{value}', [ContentController::class, 'searchAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->get('/api/review-attempts/{id}', [ContentController::class, 'getReviewAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->post('/api/answer_student/{id}', [AttemptController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 $dino->router->patch('/api/attempt/checked/{id}', [AttemptController::class, 'updateChecked'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);

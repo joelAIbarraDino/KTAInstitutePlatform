@@ -7,12 +7,15 @@ use App\Models\Attempt;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
+use DinoEngine\Helpers\Helpers;
+
 use App\Models\OptionQuestion;
 use App\Models\Question;
 use App\Models\Material;
 use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\EnrollmentView;
+use App\Models\AttemptView;
 use App\Models\Module;
 use App\Models\Lesson;
 use App\Models\Quiz;
@@ -265,9 +268,11 @@ class ContentController{
                     'attempts'=>[]
                 ]);
             }
-
-            $attempts = Attempt::belongsTo('id_quiz', $quiz->id_quiz, 'checked', 'ASC')??[];
             
+            $attempts = AttemptView::querySQL('SELECT * FROM attempt_view WHERE id_quiz=:id_quiz AND checked = 0', [
+                ':id_quiz'=>$quiz->id_quiz
+            ])??[];
+
             if(!$attempts){
                 Response::json([
                     'attempts'=>[]
@@ -277,22 +282,21 @@ class ContentController{
             $finalAttempts = [];
 
             foreach($attempts as $attempt){
-                if(!$attempt->checked){
-                    $answers = AnswerStudent::belongsTo('id_attempt', $attempt->id_attempt)??[];
-                    $enrollment = EnrollmentView::where('id_enrollment', '=', $attempt->id_enrollment)??[];
-
-                    $finalAttempts[] =[
-                        'id_attempt'=>$attempt->id_attempt,
-                        'time'=>$attempt->time,
-                        'answered_at'=>$attempt->date,
-                        'score'=>$attempt->score,
-                        'checked'=>$attempt->checked,
-                        'min_score'=>$quiz->min_score,
-                        'is_approved'=>$attempt->is_approved,
-                        'student'=>$enrollment->student,
-                        'answersStudent'=>$answers
-                    ];
-                }
+                
+                $answers = AnswerStudent::belongsTo('id_attempt', $attempt['id_attempt'])??[];
+                
+                $finalAttempts[] =[
+                    'id_attempt'=>$attempt['id_attempt'],
+                    'time'=>$attempt['time'],
+                    'answered_at'=>$attempt['date'],
+                    'score'=>$attempt['score'],
+                    'checked'=>$attempt['checked'],
+                    'min_score'=>$attempt['min_score'],
+                    'is_approved'=>$attempt['is_approved'],
+                    'student'=>$attempt['student'],
+                    'email'=>$attempt['email'],
+                    'answersStudent'=>$answers
+                ];
             }
 
             Response::json([
@@ -332,7 +336,7 @@ class ContentController{
                 ]);
             }
 
-            $attempts = Attempt::belongsTo('id_quiz', $quiz->id_quiz)??[];
+            $attempts = AttemptView::belongsTo('id_quiz', $quiz->id_quiz)??[];
             
             if(!$attempts){
                 Response::json([
@@ -344,7 +348,6 @@ class ContentController{
 
             foreach($attempts as $attempt){
                 $answers = AnswerStudent::belongsTo('id_attempt', $attempt->id_attempt)??[];
-                $enrollment = EnrollmentView::where('id_enrollment', '=', $attempt->id_enrollment)??[];
 
                 $finalAttempts[] =[
                     'id_attempt'=>$attempt->id_attempt,
@@ -352,9 +355,67 @@ class ContentController{
                     'answered_at'=>$attempt->date,
                     'score'=>$attempt->score,
                     'checked'=>$attempt->checked,
-                    'min_score'=>$quiz->min_score,
+                    'min_score'=>$attempt->min_score,
                     'is_approved'=>$attempt->is_approved,
-                    'student'=>$enrollment->student,
+                    'student'=>$attempt->student,
+                    'student'=>$attempt->student,
+                    'email'=>$attempt->email,
+                    'answersStudent'=>$answers
+                ];
+            }
+
+            Response::json([
+                'attempts'=>$finalAttempts
+            ]);
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+    public static function searchAttempts(int $id, string $attribute, string $value):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        if(!property_exists(AttemptView::class, $attribute))
+            Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
+
+        try{
+            $quiz = Quiz::where('id_course', '=', $id)??[];
+
+            //si no tengo un quiz registrado
+            if(!$quiz){
+                Response::json([
+                    'attempts'=>[]
+                ]);
+            }
+
+            $attempts = AttemptView::querySQL('SELECT * FROM attempt_view WHERE '.$attribute.' LIKE :value', [
+                ':value'=>'%'.$value.'%'
+            ])??[];
+
+            if(!$attempts){
+                Response::json([
+                    'attempts'=>[]
+                ]);
+            }
+
+            $finalAttempts = [];
+
+            foreach($attempts as $attempt){
+                
+                $answers = AnswerStudent::belongsTo('id_attempt', $attempt['id_attempt'])??[];
+                
+                $finalAttempts[] =[
+                    'id_attempt'=>$attempt['id_attempt'],
+                    'time'=>$attempt['time'],
+                    'answered_at'=>$attempt['date'],
+                    'score'=>$attempt['score'],
+                    'checked'=>$attempt['checked'],
+                    'min_score'=>$attempt['min_score'],
+                    'is_approved'=>$attempt['is_approved'],
+                    'student'=>$attempt['student'],
+                    'email'=>$attempt['email'],
                     'answersStudent'=>$answers
                 ];
             }

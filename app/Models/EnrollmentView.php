@@ -7,13 +7,14 @@ use DinoEngine\Core\Model;
 class EnrollmentView extends Model {
     
     protected static string $table = 'enrollment_view';
-    protected static array $columns = ['id_enrollment', 'enrollment_at', 'enroll_url', 'id_student', 'student', 'id_course', 'thumbnail', 'course', 'privacy', 'category', 'course_url', 'max_months_enroll'];
+    protected static array $columns = ['id_enrollment', 'enrollment_at', 'enroll_url', 'id_student', 'student', 'email', 'id_course', 'thumbnail', 'course', 'privacy', 'category', 'course_url', 'max_months_enroll'];
 
     public ?int $id_enrollment;
     public string $enrollment_at;
     public string $enroll_url;
     public int $id_student;
     public string $student;
+    public string $email;
     public int $id_course;
     public string $thumbnail;
     public string $course;
@@ -28,6 +29,7 @@ class EnrollmentView extends Model {
         $this->enroll_url = $args["enroll_url"]??"";
         $this->id_student = $args["id_student"]??0;
         $this->student = $args["student"]??"";
+        $this->email = $args["email"]??"";
         $this->id_course = $args["id_course"]??0;
         $this->thumbnail = $args["thumbnail"]??"";
         $this->course = $args["course"]??"";

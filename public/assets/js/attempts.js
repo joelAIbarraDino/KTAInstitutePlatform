@@ -3,7 +3,8 @@
     const btnExit = document.querySelector("#btn-exit");
     const attemptsContainer = document.querySelector("#attempts-container");
     const containerAlert = document.querySelector("#container-alert");
-
+    const inputName = document.querySelector('#search-input');
+    const btnInput = document.querySelector('#search_btn');
 
     let attempts = [];
     
@@ -13,6 +14,7 @@
     function app(){
         btnExitMessage();
         getQuiz();
+        searchConfig();
 
     }
 
@@ -31,6 +33,57 @@
         } catch (error) {
             console.log(error);
         }
+    }
+
+    function searchConfig(){
+        inputName.addEventListener('keydown', (e)=>{
+            const value = e.target.value;
+
+            if(e.key !== 'Enter') return;
+
+            if(!value){
+                getQuiz();
+                return;
+            };
+
+            const attribute = isValidEmail(value)?'email':'student';
+
+            search(value, attribute);
+            showAttempts();
+
+        });
+
+        btnInput.addEventListener('click', ()=>{
+            const value = inputName.value;
+
+            if(!value){
+                getQuiz();
+                return;
+            };
+
+            const attribute = isValidEmail(value)?'email':'student';
+            search(value, attribute);
+            showAttempts();
+
+        });
+    }
+    
+    async function search(value, attribute){
+         try {
+            const id = getCourseID();
+            const url = `/api/attempts/search/${id}/${attribute}/${value}`;
+
+            const request = await fetch(url);
+
+            const response = await request.json();
+            
+            attempts = response.attempts;
+
+            showAttempts();
+
+        } catch (error) {
+            console.log(error);
+        }   
     }
 
     function showAttempts(openAttemptID = 0){
@@ -72,6 +125,10 @@
         attemptName.classList.add("module__header-attempt-id");
         attemptName.textContent = `Intento de ${names.slice(0, 2).join(' ')}`;
 
+        const attemptEmail = document.createElement('p');
+        attemptEmail.classList.add("module__header-attempt-score");
+        attemptEmail.innerHTML = `<span>Email:</span> ${attempt.email}`;
+
         const attemptScore = document.createElement('p');
         attemptScore.classList.add("module__header-attempt-score");
         attemptScore.innerHTML = `<span>Porcentaje:</span> ${attempt.score}%`;
@@ -87,6 +144,7 @@
         attemptDate.innerHTML = `<span>Fecha de aplicación:</span> ${dates.slice(0, 3).join('/')}`;
 
         headerAttempt.appendChild(attemptName);
+        headerAttempt.appendChild(attemptEmail);
         headerAttempt.appendChild(attemptScore);
         headerAttempt.appendChild(attemptTime);
         headerAttempt.appendChild(attemptDate);
@@ -538,6 +596,11 @@
         setTimeout(() => {
             changeAlert('waiting')
         }, 5000);
+    }
+
+    function isValidEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
     }
 
 })();

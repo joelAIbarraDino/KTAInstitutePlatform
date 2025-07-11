@@ -27,6 +27,19 @@
                 </div>
             </div>
 
+            <p class="form__instructions">Ingresa el nombre  o correo del estudiante</p>
+            
+            <div class="form__input new-module__form">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Nombre del estudiante" 
+                    class="field" 
+                />
+                
+                <button id="search_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
+            </div>
+
             <div class="faq-control">
                 <p class="faq-control__instructions">De click al boton con el icono de pregunta para calificar la pregunta</p>
             </div>
