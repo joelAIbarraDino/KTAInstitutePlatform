@@ -500,8 +500,8 @@
         summary.addEventListener("click", (e) => {
             e.preventDefault(); // Evita el comportamiento nativo
 
-            if(!e.target.classList.contains("module__header"))
-            return;
+            if(!e.target.classList.contains("module__header") && !e.target.classList.contains("bx-chevron-down"))
+                return;
 
             const isOpen = modulo.hasAttribute("open");
             modulo.classList.add("animating");

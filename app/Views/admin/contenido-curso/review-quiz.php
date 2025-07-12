@@ -37,7 +37,7 @@
                     class="field" 
                 />
                 
-                <button id="search_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
+                <button id="search_btn" type="button" class="new-module__btn"><i class='bx bx-search-alt'></i></button>
             </div>
             
             

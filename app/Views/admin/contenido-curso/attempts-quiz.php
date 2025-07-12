@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <p class="form__instructions">Ingresa el nombre  o correo del estudiante</p>
+            <p class="form__instructions">Ingresa el nombre o correo del estudiante</p>
             
             <div class="form__input new-module__form">
                 <input 
@@ -37,7 +37,7 @@
                     class="field" 
                 />
                 
-                <button id="search_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
+                <button id="search_btn" type="button" class="new-module__btn"><i class='bx bx-search-alt'></i></button>
             </div>
 
             <div class="faq-control">

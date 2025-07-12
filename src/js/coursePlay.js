@@ -119,8 +119,12 @@
     }
 
     lessons.forEach(lesson =>{
-      let newLesson = createLessionElement(lesson, module);
+      let newLesson = createLessionElement(lesson);
       contentModule.appendChild(newLesson);
+
+      newLesson.addEventListener('click', ()=>{
+        showLesson(module, lesson);
+      })
     });
 
     detailsElement.appendChild(summaryElement);
@@ -169,17 +173,13 @@
   }
 
 
-  function createLessionElement(lesson, module){
+  function createLessionElement(lesson){
     const lessonCont = document.createElement('div');
     lessonCont.classList.add('content-module__lesson');
 
     const name = document.createElement('p');
     name.classList.add("content-module__lesson-name");
     name.textContent = lesson.name;
-
-    name.addEventListener('click', ()=>{
-       showLesson(module, lesson);
-    });
 
     const button = document.createElement('button');
     button.classList.add("content-module__lesson-checked");

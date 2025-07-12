@@ -17,37 +17,12 @@
         const currentPrivacy = btnPrivacy.dataset.status;
 
         if(currentPrivacy == privacy[0] || currentPrivacy == privacy[1]){
-            // Avisa de eliminar módulo
-            Swal.fire({
-                title: "Estas cambiando la privacidad del curso",
-                text: "¿Estas seguro que quieres cambiar la privacidad a Público?",
-                icon: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Si, publicalo"
-            }).then((result) => {
-                if (result.isConfirmed) 
-                    updatePrivacy(privacy[2], currentPrivacy);
-            });
-
+            updatePrivacy(privacy[2], currentPrivacy);
             return;
         }
 
         if(currentPrivacy == privacy[2]){
-            // Avisa de eliminar módulo
-            Swal.fire({
-                title: "Estas cambiando la privacidad del curso",
-                text: "¿Estas seguro que quieres cambiar la privacidad a Privado?",
-                icon: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Si, ocultalo"
-            }).then((result) => {
-                if (result.isConfirmed) 
-                    updatePrivacy(privacy[1], currentPrivacy);
-            });
+            updatePrivacy(privacy[1], currentPrivacy);
         }
         
     }
@@ -76,12 +51,6 @@
                 });
                 return;
             }
-
-            Swal.fire({
-                title: "Privacidad de curso actualizado",
-                text: response.message,
-                icon: "success",
-            });
 
             updateButton(newPrivacy, currentPrivacy);
 

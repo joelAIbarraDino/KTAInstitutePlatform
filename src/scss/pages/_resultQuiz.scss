@@ -2,8 +2,7 @@
 @use 'base/mixins' as m;
 
 .resultado {
-  background-color: v.$fondo_input;
-  border: 1px solid v.$border_input;
+  background-color: v.$negro;
   border-radius: 1rem;
   padding: 2rem;
   text-align: center;
@@ -24,11 +23,12 @@
   h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: v.$dorado;
   }
 
   p {
     font-size: 1.6rem;
-    color: v.$gris_oscuro;
+    color: v.$blanco;
   }
 
   .botones {
@@ -104,6 +104,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: v.$fondo_claro;
+  background-color: v.$fondo_oscuro;
   padding: 2rem;
 }
