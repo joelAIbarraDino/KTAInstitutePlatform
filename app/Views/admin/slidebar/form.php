@@ -1,6 +1,16 @@
 <?php include_once __DIR__.'/../../components/fontFamilyCB.php'; ?>
 
 <div class="grid-elements border">
+
+    <div class="form__input col-4">
+        <label for="id_category">Tipo de fondo (obligatorio)</label>
+            <select name="id_category" id="id_category" class="field" >
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="picture" <?=$slidebar->type_background ==="picture"?"SELECTED":"" ?> >Imagen de fondo</option>
+                <option value="video" <?=$slidebar->type_background ==="video"?"SELECTED":"" ?> > Video de fondo</option>
+            </select>
+    </div>
+
     <div class="form__file col-4">
         <label for="photo-btn"> Background de slider (requerido)</label>
         <input 
@@ -17,7 +27,8 @@
 </div>
 
 <div class="grid-elements border">
-    <div class="form__input col-11">
+
+    <div class="form__input col-8">
         <label for="title"> Titulo (requerido)</label>
         <input 
             type="text"
@@ -43,7 +54,7 @@
         <span id="msg-color_title" class="form__input-msg"></span>
     </div>
 
-    <div class="form__input col-6">
+    <div class="form__input col-3">
         <label for="font_title"> Fuente (requerido)</label>
         <select name="font_title" id="font_title" class="field">
             <option value="" SELECTED DISABLED>Seleccione una fuente</option>
@@ -57,26 +68,11 @@
         </select>
         <span id="msg-name" class="form__input-msg"></span>
     </div>
-
-    <div class="form__input col-6">
-        <label for="size_title"> Tamaño de fuente (requerido)</label>
-        <select name="size_title" id="size_title" class="field">
-            <option value="" SELECTED DISABLED>Seleccione tamaño de titulo</option>
-            <?php for ($size = 1; $size <= 10; $size++): ?>
-                <?php 
-                    $value = $size;
-                    $selected = (isset($slidebar) && $slidebar->size_title == $size) ? 'SELECTED' : '';
-                ?>
-                <option value="<?= $value ?>" <?= $selected ?>><?= $size * 10?> px</option>
-            <?php endfor; ?>
-        </select>
-        <span id="msg-font_title" class="form__input-msg"></span>
-    </div>
 </div>
 
 <div class="grid-elements border">
 
-    <div class="form__input col-11">
+    <div class="form__input col-8">
         <label for="subtitule"> Subtitulo (requerido)</label>
         <input
             type="text"
@@ -102,7 +98,7 @@
         <span id="msg-color_subtitle" class="form__input-msg"></span>
     </div>
 
-    <div class="form__input col-6">
+    <div class="form__input col-3">
         <label for="font_subtitle"> Fuente (requerido)</label>
         <select name="font_subtitle" id="font_subtitle" class="field">
             <option value="" SELECTED DISABLED>Seleccione una fuente</option>
@@ -117,28 +113,23 @@
         <span id="msg-font_subtitle" class="form__input-msg"></span>
     </div>
 
-    <div class="form__input col-6">
-        <label for="size_subtitle"> Tamaño de fuente (requerido)</label>
-
-        <select name="size_subtitle" id="size_subtitle" class="field">
-            <option value="" SELECTED DISABLED>Seleccione tamaño de subtitulo</option>
-            
-            <?php for ($size = 1; $size <= 10; $size++): ?>
-                <?php 
-                    $value = $size;
-                    $selected = (isset($slidebar) && $slidebar->size_subtitle == $size) ? 'SELECTED' : '';
-                ?>
-                <option value="<?= $value ?>" <?= $selected ?> ><?= $size * 10 ?> px</option>
-            <?php endfor; ?>
-
-        </select>
-
-        <span id="msg-font_subtitle" class="form__input-msg"></span>
-    </div>
-
 </div>
 
 <div class="grid-elements border">
+    
+    <div class="form__input col-6">
+        <label for="CTA"> Call to Action</label>
+        <input
+            type="text"
+            name="CTA"
+            id="CTA"
+            class="field"
+            placeholder="el texto que aparecera en el boton del enlace"
+            value="<?=$slidebar->CTA?>"
+            
+        >
+        <span id="msg-email" class="form__input-msg"></span>
+    </div>
 
     <div class="form__input col-6">
         <label for="link"> Enlace</label>
@@ -154,20 +145,6 @@
             >
         </div>  
         <span id="msg-name" class="form__input-msg"></span>
-    </div>
-
-    <div class="form__input col-6">
-        <label for="CTA"> Call to Action</label>
-        <input
-            type="text"
-            name="CTA"
-            id="CTA"
-            class="field"
-            placeholder="el texto que aparecera en el boton del enlace"
-            value="<?=$slidebar->CTA?>"
-            
-        >
-        <span id="msg-email" class="form__input-msg"></span>
     </div>
 
 </div>

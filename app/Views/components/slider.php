@@ -1,38 +1,15 @@
-<div class="slider-container">
-  <div class="slider">
-    <!-- Ejemplo de slide - esto se generará dinámicamente con PHP -->  
-    <?php if(count($sliders) > 0):?>
-      <?php foreach($sliders as $slide):?>
-        <div class="slide">
-          <!-- Slide con imagen de fondo -->
-          <div class="slide-bg slide-bg--image" style="background-image: url('/assets/slidebar/<?=$slide->background?>')"></div>
-          
-          <div class="slide-content">
-            <h2 class="slide-title" style="color:<?=$slide->color_title?>; font-family:'<?=$slide->font_title?>'; font-size:<?=$slide->size_title?>rem;"><?=$slide->title?></h2>
-            <p class="slide-subtitle" style="color:<?=$slide->color_subtitle?>; font-family:'<?=$slide->font_subtitle?>'; font-size:<?=$slide->size_subtitle?>rem;"><?=$slide->subtitle?></p>
-            <?php if(!empty($slide->link)):?>
-              <a href="<?=$slide->link?>" class="slide-button"><?=$slide->CTA?></a>
-            <?php endif;?>
-          </div>
-        </div>
-      <?php endforeach;?>
-    <?php else:?>
-        <div class="slide">
-          <!-- Slide con imagen de fondo -->
-          <div class="slide-bg slide-bg--image" style="background-image: url('/assets/images/banner-alterno.jpg')"></div>
-          
-          <div class="slide-content">
-            <h2 class="slide-title" style="color:#cda02d">Cursos de Impuestos, Contabilidad, QB, Inmigración y más…</h2>
-            <p class="slide-subtitle" style="color:#fff">Aprende de profesionales con +de 30 años de experiencia, se parte de los +de 2500 estudiantes exitosos e inicia tu propio Negocio.</p>
-          </div>
-        </div>
-      <?php endif;?>
-  </div>
-  
-  <!-- Controles del slider -->
-  <button class="slider-control slider-control--prev"><i class='bx bx-chevron-left'></i></button>
-  <button class="slider-control slider-control--next"><i class='bx bx-chevron-right' ></i></button>
-  
-  <!-- Indicadores/paginación -->
-  <div class="slider-indicators"></div>
-</div>
+<section class="slider">
+
+    <!-- <img src="/assets/slidebar/5099c82a7c1761b46f3ecd9bea46deb2.png" alt="imagen de fondo" class="slider__background"> -->
+
+    <video autoplay muted loop playsinline class="slider__video">
+        <source src="/assets/videos/placeholder.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="slider__cover">
+        <div class="slider__text-container">
+          <h1 class="slider__text-title">SI QUIERES CRECER EN TU CARRERA COMO PREPARADOR DE IMPUESTOS, EN LABITAX PODEMOS AYUDARTE.</h1>
+          <p class="slider__text-description">Llevamos más de 27 años formando en español a los mejores profesionales tributarios del país.</p>
+      </div>
+    </div>
+</section>

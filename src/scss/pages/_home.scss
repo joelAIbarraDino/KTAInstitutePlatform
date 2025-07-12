@@ -209,7 +209,7 @@
     overflow: hidden;
 
     @include m.tablet{
-        height: 65vh;
+        height: 62vh;
     }
 
     &__video{
@@ -220,6 +220,17 @@
         min-height: 100%;
         width: auto;
         height: auto;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+
+    &__background{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
         z-index: 0;
         transform: translate(-50%, -50%);
         object-fit: cover;
@@ -264,7 +275,7 @@
     &__text-title{
         text-transform: uppercase;
         text-align: center;
-        color: v.$dorado;
+        color: v.$blanco;
         font-size: 3rem;
         margin: 0;
 
@@ -276,13 +287,14 @@
 
     &__text-description{
         text-align: center;
-        color: v.$blanco;
-        font-size: 2rem;
+        color: v.$fondo_claro;
+        font-size: 1.8rem;
         margin: 0;
 
         @include m.tablet{
             text-align: left;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
+            font-weight: v.$bold;
         }
     }
 
