@@ -35,10 +35,12 @@ class CourseController{
             $course->sincronize($datosEnviados);
 
             $alerts = $course->validate();
-            $alerts = $course->validateFile($_FILES);
+            $alerts = $course->validateFileThumbnail($_FILES);
+            $alerts = $course->validateFileBackground($_FILES);
 
             if(empty($alerts)){
-                $course->uploadImage($_FILES['thumbnail'], 1280, 720);
+                $course->uploadImageThumbnail($_FILES['thumbnail'], 1000, 1000);
+                $course->uploadImageBackground($_FILES['background'], 1280, 720);
                 $course->generateURL();
                 
                 $id = $course->save();
@@ -95,13 +97,19 @@ class CourseController{
             $alerts = $course->validate();
 
             if($_FILES['thumbnail']['size'] > 0)
-                $alerts = $course->validateFile($_FILES);
+                $alerts = $course->validateFileThumbnail($_FILES);
+
+            if($_FILES['background']['size'] > 0)
+                $alerts = $course->validateFileBackground($_FILES);
 
             
             if(empty($alerts)){
                 //subir la nueva imagen si se subio una
                 if($_FILES['thumbnail']['size'] > 0)
-                    $course->uploadImage($_FILES['thumbnail'], 1280, 720);
+                    $course->uploadImageThumbnail($_FILES['thumbnail'], 1000, 1000);
+
+                if($_FILES['background']['size'] > 0)
+                    $course->uploadImageBackground($_FILES['thumbnail'], 1280, 720);
                 
                 $id = $course->save();
 

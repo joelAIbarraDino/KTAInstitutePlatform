@@ -12,14 +12,14 @@ class Course extends Model {
     protected static string $table = 'course';
     protected static string $PK_name = 'id_course';
     protected static array $columns = [ 
-        'id_course', 'name', 'watchword', 'thumbnail', 'description', 
+        'id_course', 'name', 'watchword', 'thumbnail', 'background', 'description', 
         'price','discount', 'discount_ends_date', 'discount_ends_time', 
         'max_months_enroll', 'created_at', 'url', 
         'privacy', 'id_category', 'id_teacher'
     ];
 
     protected static array $fillable = [
-        'name', 'watchword', 'thumbnail', 'description', 
+        'name', 'watchword', 'thumbnail', 'background', 'description', 
         'price','discount', 'discount_ends_date', 'discount_ends_time',
         'max_months_enroll', 
         'privacy', 'id_category', 'id_teacher'
@@ -29,6 +29,7 @@ class Course extends Model {
     public ?int $id_course;
     public string $name;
     public string $watchword;
+    public string $background;
     public string $thumbnail;
     public string $description;
     public float $price;
@@ -49,6 +50,7 @@ class Course extends Model {
         $this->id_course = $args["id_course"]??null;
         $this->name = $args["name"]??"";
         $this->watchword = $args["watchword"]??"";
+        $this->background = $args["background"]??"";
         $this->thumbnail = $args["thumbnail"]??"";
         $this->description = $args["description"]??"";
         $this->price = $args["price"]??0.0;
@@ -110,26 +112,41 @@ class Course extends Model {
         $this->url = bin2hex(random_bytes(8));
     }
 
-    public function validateFile(?array $file):array{
+    public function validateFileThumbnail(?array $file):array{
         
         if(!isset($file['thumbnail'])){
             self::setAlerts('error', "Debe ingresar la caratula del curso");
             return self::$alerts;
         }
 
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        
-        
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                
         if (!in_array($file['thumbnail']['type'], $allowedTypes))
-            self::setAlerts('error', "Solo se permiten imágenes (JPEG, PNG, GIF)");
+            self::setAlerts('error', "Solo se permiten imágenes en las caratulas (JPEG, PNG, GIF, WEBP)");
         
         return self::$alerts;
     }
 
-    public function uploadImage(array $imagen, $ancho = null, $alto = null):void{   
+    public function validateFileBackground(?array $file):array{
+        
+        if(!isset($file['background'])){
+            self::setAlerts('error', "Debe ingresar el fondo del curso");
+            return self::$alerts;
+        }
+
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        
+        if (!in_array($file['background']['type'], $allowedTypes))
+            self::setAlerts('error', "Solo se permiten imágenes en el fondo del curso(JPEG, PNG, GIF, WEBP)");
+        
+        
+        return self::$alerts;
+    }
+
+    public function uploadImageThumbnail(array $imagen, $ancho = null, $alto = null):void{   
         // Eliminar la imagen anterior si existe
         if ($this->thumbnail && Storage::exists(DIR_CARATULAS.'/'.$this->thumbnail))
-            Storage::delete(DIR_PROFESORES.'/'.$this->thumbnail);
+            Storage::delete(DIR_CARATULAS.'/'.$this->thumbnail);
         
         // Generar un nombre único para la imagen
         $nombreImagen = Storage::uniqName(".png");
@@ -149,6 +166,31 @@ class Course extends Model {
 
         // Actualizar el atributo del modelo
         $this->thumbnail = $nombreImagen;
+    }
+
+    public function uploadImageBackground(array $imagen, $ancho = null, $alto = null):void{   
+        // Eliminar la imagen anterior si existe
+        if ($this->background && Storage::exists(DIR_FONDO_CURSO.'/'.$this->background))
+            Storage::delete(DIR_FONDO_CURSO.'/'.$this->background);
+        
+        // Generar un nombre único para la imagen
+        $nombreImagen = Storage::uniqName(".png");
+        
+        // Procesar la imagen con Intervention Image
+        $manager = new ImageManager(Driver::class);
+        $processImage = $manager->read($imagen['tmp_name']);
+
+        // Redimensionar si se especifican dimensiones
+        if ($ancho && $alto)
+            $processImage->cover($ancho, $alto);
+
+        if(!is_dir(DIR_FONDO_CURSO))
+            mkdir(DIR_FONDO_CURSO);
+        
+        $processImage->toPng()->save(DIR_FONDO_CURSO.'/'.$nombreImagen);
+
+        // Actualizar el atributo del modelo
+        $this->background = $nombreImagen;
     }
 
 }

@@ -31,6 +31,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/btnFile.js"></script>
+        <script src="/assets/js/btnFile2.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
     ';
 ?>

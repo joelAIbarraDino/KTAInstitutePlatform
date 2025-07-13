@@ -52,9 +52,9 @@ date_default_timezone_set('America/Mexico_City');
 
 define('APP_NAME','KTA Institute');
 define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
+define('DIR_FONDO_CURSO',__DIR__.'/assets/background-courses/');
 define('DIR_MEMBRESIAS',__DIR__.'/assets/membresias/');
 define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
-define('DIR_SLIDEBAR_VIDEO',__DIR__.'/assets/slidebar/video/');
 define('DIR_SLIDEBAR_PICTURE',__DIR__.'/assets/slidebar/picture/');
 define('DIR_GIF',__DIR__.'/assets/gifs/');
 define('URI_REDIRECT_GOOGLE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/auth/google-callback');

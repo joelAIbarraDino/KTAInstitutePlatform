@@ -1,7 +1,7 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
 <main>
-    <div class="cover-curso" style="background-image: url(/assets/thumbnails/<?=$course->thumbnail?>);">
+    <div class="cover-curso" style="background-image: url(/assets/background-courses/<?=$course->background?>);">
         <div class="cover-curso__cover">
 
             <div class="cover-curso__datos" id="main-content">

@@ -8,7 +8,7 @@ class CourseView extends Model {
     
     protected static string $table = 'course_view';
     protected static array $columns = [
-        'id_course', 'name', 'watchword', 'id_category', 'category', 'thumbnail', 'description', 
+        'id_course', 'name', 'watchword', 'background', 'id_category', 'category', 'thumbnail', 'description', 
         'price', 'discount', 'discount_ends_date', 'discount_ends_time', 
         'max_months_enroll', 'created_at', 'url', 'privacy',
         'enrollment', 'id_teacher', 'teacher'
@@ -17,6 +17,7 @@ class CourseView extends Model {
     public ?int $id_course;
     public string $name;
     public string $watchword;
+    public string $background;
     public int $id_category;
     public string $category;
     public string $thumbnail;
@@ -37,6 +38,7 @@ class CourseView extends Model {
         $this->id_course = $args["id_course"]??null;
         $this->name = $args["name"]??"";
         $this->watchword = $args["watchword"]??"";
+        $this->background = $args["background"]??"";
         $this->id_category = $args["id_category"]??0;
         $this->category = $args["category"]??"";
         $this->thumbnail = $args["thumbnail"]??"";

@@ -1,17 +1,31 @@
 <div class="grid-elements border">
         
-    <div class="form__file col-4">
-        <label for="thumbnail-btn"> Caratula de curso (requerido)</label>
+    <div class="form__file col-6">
+        <label for="background"> Fondo del curso (requerido)</label>
         <input 
             type="file"
-            name="thumbnail"
-            id="thumbnail"
+            name="background"
+            id="background"
             accept="image/*"
             hidden
             class="real-btn-file"
         >
         <button type="button" class="form__file-btn  btn-file">Seleccionar caratula de curso</button>
         <span class="form__input-msg name-file"></span>
+    </div>
+
+    <div class="form__file col-6">
+        <label for="thumbnail"> Caratula de curso (requerido)</label>
+        <input 
+            type="file"
+            name="thumbnail"
+            id="thumbnail"
+            accept="image/*"
+            hidden
+            class="real-btn-file-2"
+        >
+        <button type="button" class="form__file-btn  btn-file-2">Seleccionar fondo de curso</button>
+        <span class="form__input-msg name-file-2"></span>
     </div>
 
 </div>
