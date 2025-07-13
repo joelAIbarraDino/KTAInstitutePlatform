@@ -49,6 +49,9 @@ class QuizController{
 
             $quiz->name = $dataSend['name'];
             $quiz->min_score = $dataSend['min_score'];
+            $quiz->tutorial_id = $dataSend['tutorial_id'];
+            $quiz->quiz_mode = $dataSend['quiz_mode'];
+            $quiz->show_answers = $dataSend['show_answers'];
             $quiz->max_time = $dataSend['max_time'];
             $quiz->max_attempts = $dataSend['max_attempts'];
             $quiz->id_course = $dataSend['id_course'];

@@ -31,7 +31,7 @@
 
                                 <tr>
                                     <?php if($slide->type_background == "picture"):?>
-                                        <td><img class="dashboard-table__photo--rectangule" src="/assets/slidebar/picture/<?=$slide->background?>" alt="foto <?=$slide->background?>"></td>
+                                        <td><img class="dashboard-table__photo--rectangule" src="/assets/slidebar/<?=$slide->background?>" alt="foto <?=$slide->background?>"></td>
                                     <?php elseif($slide->type_background == "video"):?>
                                         <td>Video subido en Vimeo</td>
                                     <?php endif;?>

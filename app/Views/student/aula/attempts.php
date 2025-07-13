@@ -10,6 +10,8 @@
                 <p class="quiz-info__info">Calificación minima: <span><?=$quiz->min_score?>%</span></p>
                 <p class="quiz-info__info">Intentos para pasar: <span><?=$quiz->max_attempts?> intentos</span></p>
                 <p class="quiz-info__info">Tiempo para terminar: <span><?=$quiz->max_time?> minutos</span></p>
+                <p class="quiz-info__info">Modo de avanzar preguntas: <span><?=$quiz->quiz_mode?></span></p>
+                <p class="quiz-info__info">Puedo ver las respuestas: <span><?=$quiz->show_answers=='ocultar'?'No':'Si' ?></span></p>
             </div>
 
             <button class="quiz-info__attempt-btn" id="new-attempt">Tomar quiz</button>

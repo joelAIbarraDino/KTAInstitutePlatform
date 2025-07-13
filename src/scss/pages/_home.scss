@@ -273,8 +273,8 @@
 
     &__text-container{
         display: flex;
-        align-items: center;
         justify-content: space-evenly;
+        align-items: center;
         flex-direction: column;
         gap: 2rem;
         width: 98%;
@@ -283,14 +283,13 @@
         padding: 1rem;
 
         @include m.tablet{
-            justify-content: start;
+            align-items: start;
         }
     }
 
     &__text-title{
         text-transform: uppercase;
         text-align: center;
-        color: v.$blanco;
         font-size: 3rem;
         margin: 0;
 
@@ -302,7 +301,6 @@
 
     &__text-description{
         text-align: center;
-        color: v.$fondo_claro;
         font-size: 1.8rem;
         margin: 0;
 

@@ -82,7 +82,7 @@
     }
 
     function quizModal(modeEdit = false){
-        const {id_quiz, name, tutorial_id, min_score, max_time, max_attempts} = quiz;
+        const {id_quiz, name, tutorial_id, quiz_mode, show_answers, min_score, max_time, max_attempts} = quiz;
 
         const modalWindow = document.createElement("div");
         modalWindow.classList.add("modal");
@@ -149,6 +149,84 @@
         divTutorialID.appendChild(labelTutorialID);
         divTutorialID.appendChild(inputTutorialID);
 
+        // Input: quizmode
+        const divQuizMode = document.createElement("div");
+        divQuizMode.classList.add("form__input", "col-12");
+
+        const laberQuizMode = document.createElement("label");
+        laberQuizMode.textContent = "¿El estudiante puede retroceder las preguntas?";
+
+        const realInputQuizMode = document.createElement("input");
+        realInputQuizMode.value  = quiz_mode || "estricto";
+        realInputQuizMode.type = "hidden";
+
+
+        const inputQuizMode = document.createElement("i");
+        inputQuizMode.classList.add("bx", "bx-check-square", "field-checkbox");
+        inputQuizMode.addEventListener('click', ()=>{
+            
+            if(realInputQuizMode.value == "libre"){
+                realInputQuizMode.value = "estricto";
+                inputQuizMode.classList.remove("bxs-check-square");
+                inputQuizMode.classList.add("bx-check-square");
+            }else{
+                realInputQuizMode.value = "libre";
+                inputQuizMode.classList.add("bxs-check-square");
+                inputQuizMode.classList.remove("bx-check-square");
+            }
+        });
+
+        if(quiz_mode){
+            inputQuizMode.classList.remove("bx-check-square");
+            inputQuizMode.classList.add("bxs-check-square");
+        }else{
+            inputQuizMode.classList.add("bx-check-square");
+            inputQuizMode.classList.remove("bxs-check-square");
+        }
+
+        divQuizMode.appendChild(laberQuizMode);
+        divQuizMode.appendChild(realInputQuizMode);
+        divQuizMode.appendChild(inputQuizMode);
+
+        // Input: show answers
+        const divShowAnswers = document.createElement("div");
+        divShowAnswers.classList.add("form__input", "col-12");
+
+        const laberShowAnswers = document.createElement("label");
+        laberShowAnswers.textContent = "¿El estudiante puede ver las respuestas al final del exámen?";
+
+        const realInputShowAnswers = document.createElement("input");
+        realInputShowAnswers.value  = show_answers;
+        realInputShowAnswers.type = "hidden";
+
+
+        const inputShowAnswers = document.createElement("i");
+        inputShowAnswers.classList.add("bx", "bx-check-square", "field-checkbox");
+        inputShowAnswers.addEventListener('click', ()=>{
+            
+            if(realInputShowAnswers.value == "mostrar"){
+                realInputShowAnswers.value = "ocultar";
+                inputShowAnswers.classList.remove("bxs-check-square");
+                inputShowAnswers.classList.add("bx-check-square");
+            }else{
+                realInputShowAnswers.value = "mostrar";
+                inputShowAnswers.classList.add("bxs-check-square");
+                inputShowAnswers.classList.remove("bx-check-square");
+            }
+        });
+
+        if(show_answers == "mostrar"){
+            inputShowAnswers.classList.remove("bx-check-square");
+            inputShowAnswers.classList.add("bxs-check-square");
+        }else{
+            inputShowAnswers.classList.add("bx-check-square");
+            inputShowAnswers.classList.remove("bxs-check-square");
+        }
+
+        divShowAnswers.appendChild(laberShowAnswers);
+        divShowAnswers.appendChild(realInputShowAnswers);
+        divShowAnswers.appendChild(inputShowAnswers);
+
         // Input: Min score
         const divMinScore = document.createElement("div");
         divMinScore.classList.add("form__input", "col-12");
@@ -212,6 +290,8 @@
         // Agregar inputs al grid
         grid.appendChild(divNombre);
         grid.appendChild(divTutorialID);
+        grid.appendChild(divQuizMode);
+        grid.appendChild(divShowAnswers);
         grid.appendChild(divMinScore);
         grid.appendChild(divMaxTime);
         grid.appendChild(divMaxAttempts);
@@ -227,6 +307,8 @@
         inputSubmit.addEventListener('click', function(){
             const newName = inputNombre.value.trim();
             const newIDVimeo = inputTutorialID.value.trim();
+            const freeMode = realInputQuizMode.value;
+            const showAnswers = realInputShowAnswers.value;
             const newMinScore = inputMinScore.value.trim();
             const newMaxTime = inputMaxTime.value.trim();
             const newAttempts = inputMaxAttempts.value.trim();
@@ -281,6 +363,8 @@
                 id_quiz:id_quiz??null,
                 name:newName,
                 tutorial_id:newIDVimeo,
+                quiz_mode:freeMode,
+                show_answers:showAnswers,
                 min_score:newMinScore,
                 max_time:newMaxTime,
                 max_attempts:newAttempts,
@@ -762,7 +846,7 @@
 
     async function addQuiz(newQuiz) {
 
-        const {name, tutorial_id, min_score, max_time, max_attempts, id_course} = newQuiz;
+        const {name, tutorial_id, quiz_mode, show_answers, min_score, max_time, max_attempts, id_course} = newQuiz;
 
         try {
 
@@ -770,6 +854,8 @@
             const formData = new FormData();
             formData.append("name", name);
             formData.append("tutorial_id", tutorial_id);
+            formData.append("quiz_mode", quiz_mode);
+            formData.append("show_answers", show_answers);
             formData.append("min_score", min_score);
             formData.append("max_time", max_time);
             formData.append("max_attempts", max_attempts);
@@ -805,6 +891,8 @@
                 id_quiz:response.id,
                 name:name,
                 tutorial_id:tutorial_id,
+                quiz_mode:quiz_mode,
+                show_answers:show_answers,
                 min_score:min_score,
                 max_time:max_time,
                 max_attempts:max_attempts,
@@ -821,7 +909,7 @@
     }
 
     async function updateQuiz(quizMemory){
-        const {id_quiz, name, tutorial_id, min_score, max_time, max_attempts, id_course} = quizMemory;
+        const {id_quiz, name, tutorial_id, quiz_mode, show_answers, min_score, max_time, max_attempts, id_course} = quizMemory;
 
         try {
 
@@ -847,7 +935,9 @@
                 body: JSON.stringify({
                     name: name,
                     tutorial_id: tutorial_id,
-                    min_score: min_score ,
+                    quiz_mode: quiz_mode,
+                    show_answers: show_answers,
+                    min_score: min_score,
                     max_time:max_time,
                     max_attempts:max_attempts,
                     id_course:id_course
@@ -862,12 +952,14 @@
             }
 
             //sincronizo objeto quiz 
-            quiz.name = name,
-            quiz.tutorial_id = tutorial_id,
-            quiz.min_score = min_score ,
-            quiz.max_time = max_time,
-            quiz.max_attempts = max_attempts,
-            quiz.id_course = id_course
+            quiz.name = name;
+            quiz.tutorial_id = tutorial_id;
+            quiz.quiz_mode = quiz_mode;
+            quiz.show_answers = show_answers;
+            quiz.min_score = min_score;
+            quiz.max_time = max_time;
+            quiz.max_attempts = max_attempts;
+            quiz.id_course = id_course;
 
             changeAlert('success', response.message);
             resetAlert();

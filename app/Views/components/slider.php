@@ -5,7 +5,7 @@
             
             <div class="slider slider <?= $key==1?'active':''?>">
                 <?php if($slider->type_background=="picture"):?>
-                    <img src="/assets/slidebar/picture/<?=$slider->background?>" alt="imagen de fondo" class="slider__background">
+                    <img src="/assets/slidebar/<?=$slider->background?>" alt="imagen de fondo" class="slider__background">
                 <?php else:?>
                     <video autoplay muted loop playsinline class="slider__video">
                         <source src="/assets/videos/placeholder.mp4" type="video/mp4" />
