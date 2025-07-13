@@ -291,7 +291,7 @@
                 return;
             }
 
-            if(!Number.isInteger( Number(newIDVideo))){
+            if(!newIDVideo ||!Number.isInteger( Number(newIDVideo))){
                 Swal.fire({
                     icon: "error",
                     title: "Vimeo ID invalido",

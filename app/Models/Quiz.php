@@ -9,11 +9,12 @@ class Quiz extends Model {
     
     protected static string $table = 'quiz';
     protected static string $PK_name = 'id_quiz';
-    protected static array $columns = ['id_quiz', 'name', 'min_score', 'max_time', 'max_attempts', 'id_course'];
-    protected static array $fillable = ['name', 'min_score', 'max_time', 'max_attempts', 'id_course'];
+    protected static array $columns = ['id_quiz', 'name', 'tutorial_id', 'min_score', 'max_time', 'max_attempts', 'id_course'];
+    protected static array $fillable = ['name', 'tutorial_id', 'min_score', 'max_time', 'max_attempts', 'id_course'];
 
     public ?int $id_quiz;
     public string $name;
+    public int $tutorial_id;
     public float $min_score;
     public float $max_time;
     public int $max_attempts;
@@ -22,6 +23,7 @@ class Quiz extends Model {
     public function __construct($args = []){
         $this->id_quiz = $args["id_quiz"]??null;
         $this->name = $args["name"]??"";
+        $this->tutorial_id = $args["tutorial_id"]??0;
         $this->min_score = $args["min_score"]??80.0;
         $this->max_time = $args["max_time"]??180;
         $this->max_attempts = $args["max_attempts"]??3;
@@ -40,6 +42,9 @@ class Quiz extends Model {
 
         if($this->max_attempts < 1)
             Response::json(['ok'=>false, 'message'=>'El numero de intentos no puede ser negativo'], 400);
+
+        if(!$this->tutorial_id)
+            Response::json(['ok'=>false, 'message'=>'Debe ingresar el ID del video en Vimeo del tutorial'], 400);
 
         if(!$this->id_course)
             Response::json(['ok'=>false, 'message'=>'Debe ingresar a que curso pertenece'], 400);

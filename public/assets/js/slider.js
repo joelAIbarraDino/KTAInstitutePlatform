@@ -3,7 +3,7 @@
   const container = document.querySelector('.slider-container');
   const slides = container.querySelectorAll('.slider');
   let currentIndex = 0;
-  const delay = 5000; // 5 segundos, cambia a 10000 para 10s
+  const delay = 20000; // 5 segundos, cambia a 10000 para 10s
 
   setInterval(() => {
     // Quitar clase al actual

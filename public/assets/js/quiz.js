@@ -82,7 +82,7 @@
     }
 
     function quizModal(modeEdit = false){
-        const {id_quiz, name, min_score, max_time, max_attempts} = quiz;
+        const {id_quiz, name, tutorial_id, min_score, max_time, max_attempts} = quiz;
 
         const modalWindow = document.createElement("div");
         modalWindow.classList.add("modal");
@@ -128,6 +128,26 @@
 
         divNombre.appendChild(labelNombre);
         divNombre.appendChild(inputNombre);
+
+        // Input: Video tutorial
+        const divTutorialID = document.createElement("div");
+        divTutorialID.classList.add("form__input", "col-12");
+
+        const labelTutorialID = document.createElement("label");
+        labelTutorialID.setAttribute("for", "tutorial_id");
+        labelTutorialID.textContent = " Vimeo ID(obligatorio)";
+
+        const inputTutorialID = document.createElement("input");
+        inputTutorialID.setAttribute("autocomplete", "off");
+        inputTutorialID.type = "text";
+        inputTutorialID.name = "tutorial_id";
+        inputTutorialID.id = "tutorial_id";
+        inputTutorialID.classList.add("field");
+        inputTutorialID.placeholder = "ID de tutorial en Vimeo";
+        inputTutorialID.value = tutorial_id || "";
+        
+        divTutorialID.appendChild(labelTutorialID);
+        divTutorialID.appendChild(inputTutorialID);
 
         // Input: Min score
         const divMinScore = document.createElement("div");
@@ -191,6 +211,7 @@
         
         // Agregar inputs al grid
         grid.appendChild(divNombre);
+        grid.appendChild(divTutorialID);
         grid.appendChild(divMinScore);
         grid.appendChild(divMaxTime);
         grid.appendChild(divMaxAttempts);
@@ -205,6 +226,7 @@
         inputSubmit.value = "Guardar";
         inputSubmit.addEventListener('click', function(){
             const newName = inputNombre.value.trim();
+            const newIDVimeo = inputTutorialID.value.trim();
             const newMinScore = inputMinScore.value.trim();
             const newMaxTime = inputMaxTime.value.trim();
             const newAttempts = inputMaxAttempts.value.trim();
@@ -215,6 +237,15 @@
                     icon: "error",
                     title: "Nombre invalido",
                     text: "El nombre del quiz es obligatorio",
+                });
+                return;
+            }
+
+            if(!newIDVimeo || !Number.isInteger( Number(newIDVimeo))){
+                Swal.fire({
+                    icon: "error",
+                    title: "Vimeo ID invalido",
+                    text: "El ID ingresado es invalido",
                 });
                 return;
             }
@@ -249,6 +280,7 @@
             const quizObject = {
                 id_quiz:id_quiz??null,
                 name:newName,
+                tutorial_id:newIDVimeo,
                 min_score:newMinScore,
                 max_time:newMaxTime,
                 max_attempts:newAttempts,
@@ -730,13 +762,14 @@
 
     async function addQuiz(newQuiz) {
 
-        const {name, min_score, max_time, max_attempts, id_course} = newQuiz;
+        const {name, tutorial_id, min_score, max_time, max_attempts, id_course} = newQuiz;
 
         try {
 
             //registro el modelo en la base de datos
             const formData = new FormData();
             formData.append("name", name);
+            formData.append("tutorial_id", tutorial_id);
             formData.append("min_score", min_score);
             formData.append("max_time", max_time);
             formData.append("max_attempts", max_attempts);
@@ -771,6 +804,7 @@
             const newQuiz = {
                 id_quiz:response.id,
                 name:name,
+                tutorial_id:tutorial_id,
                 min_score:min_score,
                 max_time:max_time,
                 max_attempts:max_attempts,
@@ -787,7 +821,7 @@
     }
 
     async function updateQuiz(quizMemory){
-        const {id_quiz, name, min_score, max_time, max_attempts, id_course} = quizMemory;
+        const {id_quiz, name, tutorial_id, min_score, max_time, max_attempts, id_course} = quizMemory;
 
         try {
 
@@ -812,6 +846,7 @@
                 },
                 body: JSON.stringify({
                     name: name,
+                    tutorial_id: tutorial_id,
                     min_score: min_score ,
                     max_time:max_time,
                     max_attempts:max_attempts,
@@ -828,6 +863,7 @@
 
             //sincronizo objeto quiz 
             quiz.name = name,
+            quiz.tutorial_id = tutorial_id,
             quiz.min_score = min_score ,
             quiz.max_time = max_time,
             quiz.max_attempts = max_attempts,
