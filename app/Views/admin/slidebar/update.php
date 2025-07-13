@@ -28,5 +28,6 @@
     $scripts = '
         <script src="/assets/js/btnFile.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
+        <script src="/assets/js/enableInputs.js"></script>
     ';
 ?>

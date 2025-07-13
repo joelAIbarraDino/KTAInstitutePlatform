@@ -3,16 +3,16 @@
 <div class="grid-elements border">
 
     <div class="form__input col-4">
-        <label for="id_category">Tipo de fondo (obligatorio)</label>
-            <select name="id_category" id="id_category" class="field" >
+        <label for="type_background">Tipo de fondo (obligatorio)</label>
+            <select name="type_background" id="type_background" class="field" >
                 <option value="" disabled selected>Seleccionar</option>
                 <option value="picture" <?=$slidebar->type_background ==="picture"?"SELECTED":"" ?> >Imagen de fondo</option>
                 <option value="video" <?=$slidebar->type_background ==="video"?"SELECTED":"" ?> > Video de fondo</option>
             </select>
     </div>
 
-    <div class="form__file col-4">
-        <label for="photo-btn"> Background de slider (requerido)</label>
+    <div id="input-image" class="form__file col-4 <?=$slidebar->type_background=="picture"?'':'no-show-input'?>">
+        <label for="background"> Imagen de fondo (requerido)</label>
         <input 
             type="file"
             name="background"
@@ -23,6 +23,19 @@
         >
         <button type="button" class="form__file-btn btn-file">Seleccionar foto</button>
         <span class="form__input-msg name-file"></span>
+    </div>
+
+    <div id="input-vimeo" class="form__input col-4 <?=$slidebar->type_background=="video"?'':'no-show-input'?>">
+        <label for="id_video"> Vimeo ID(requerido)</label>
+        <input 
+            type="number"
+            name="id_video"
+            id="id_video"
+            class="field"
+            placeholder="ID de video en Vimeo"
+            value="<?=$slidebar->id_video?>"
+        >
+        <span id="msg-name" class="form__input-msg"></span>
     </div>
 </div>
 
@@ -73,7 +86,7 @@
 <div class="grid-elements border">
 
     <div class="form__input col-8">
-        <label for="subtitule"> Subtitulo (requerido)</label>
+        <label for="subtitle"> Subtitulo (requerido)</label>
         <input
             type="text"
             name="subtitle"
@@ -91,7 +104,7 @@
         <input 
             type="color"
             name="color_subtitle"
-            id="color_subtiule"
+            id="color_subtitle"
             class="field-color"
             value="<?=$slidebar->color_subtitle?>"
         >

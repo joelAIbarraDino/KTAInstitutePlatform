@@ -8,6 +8,11 @@
     background-color: v.$blanco;
     border-radius: 1rem;
     padding: 3rem;
+    display: block;
+    
+    .no-show-input{
+        display: none;
+    }
     
     &.no-background{
         background-color: none;

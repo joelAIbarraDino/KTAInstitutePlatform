@@ -11,9 +11,9 @@ class Slidebar extends Model{
     
     protected static string $table = 'slidebar';
     protected static string $PK_name = 'id_slidebar';
-    protected static array $columns = ['id_slidebar', 'title', 'font_title', 'color_title', 'subtitle', 'font_subtitle', 'color_subtitle', 'type_background', 'background', 'link', 'CTA'];
-    protected static array $fillable = ['title', 'font_title', 'color_title', 'subtitle', 'font_subtitle', 'color_subtitle', 'type_background', 'background', 'link', 'CTA'];
-    protected static array $nulleable = ['link', 'CTA'];
+    protected static array $columns = ['id_slidebar', 'title', 'font_title', 'color_title', 'subtitle', 'font_subtitle', 'color_subtitle', 'type_background', 'background', 'id_video', 'link', 'CTA'];
+    protected static array $fillable = ['title', 'font_title', 'color_title', 'subtitle', 'font_subtitle', 'color_subtitle', 'type_background', 'background', 'id_video', 'link', 'CTA'];
+    protected static array $nulleable = ['link', 'CTA', 'background', 'id_video'];
 
     public ?int $id_slidebar;
     public string $title;
@@ -23,7 +23,8 @@ class Slidebar extends Model{
     public string $font_subtitle;
     public string $color_subtitle;
     public string $type_background;
-    public string $background;
+    public ?string $background;
+    public int $id_video;
     public ?string $link;
     public ?string $CTA;
 
@@ -35,8 +36,9 @@ class Slidebar extends Model{
         $this->subtitle = $args['subtitle']??'';
         $this->font_subtitle = $args['font_subtitle']??'';
         $this->color_subtitle = $args['color_subtitle']??'#cda02d';
-        $this->type_background = $args['type_background']??"";
-        $this->background = $args['background']??'';
+        $this->type_background = $args['type_background']??"picture";
+        $this->background = $args['background']??null;
+        $this->id_video = $args['id_video']??0;
         $this->link = $args['link']??null;
         $this->CTA = $args['CTA']??null;
     }
@@ -61,8 +63,14 @@ class Slidebar extends Model{
         if(!$this->color_subtitle)
             self::setAlerts('error', "El color del subtitulo es obligatorio");
 
+        return self::$alerts;
+    }
+
+    public function validateTypeBackground():array{
         if(!$this->type_background)
-            self::setAlerts('error', "El tipo de fondo es obligatoria");
+            self::setAlerts('error', "Debe seleccionar que tipo de fondo tendra el slidebar");    
+        elseif($this->type_background == "video" && !$this->id_video)
+                self::setAlerts('error', "El ID del video es obligatorio");
 
         return self::$alerts;
     }
@@ -104,46 +112,6 @@ class Slidebar extends Model{
             self::setAlerts('error', 'la imagen de fondo es muy pequeña (se recomienda imagenes de 1800 x 1200 px o superior)');
         
 
-        return self::$alerts;
-    }
-
-    public function validateVideo(?array $file):array{
-
-        $maxFileSize = 1024 * 1024 * 100;
-
-        if($file['background']['size'] == 0){
-            self::setAlerts('error', 'No se ha subido una imagen');
-            return self::$alerts;
-        }
-
-        if($file['background']['size'] > $maxFileSize){
-            self::setAlerts('error', 'La imagen no debe superar de los 100 MB');
-            return self::$alerts;
-        }
-
-        $allowedTypes = ['video/mp4', 'video/avi', 'video/quicktime'];
-
-        if(!Storage::validateFormat($file['background']['type'], $allowedTypes))
-            self::setAlerts('error', 'Solo se permiten video (mp4, avi, quicktime)');
-        
-
-        return self::$alerts;
-    }
-
-    public function subirVideo(array $imagen):array{
-        //eliminar el video anterior si existe
-        if ($this->background && Storage::exists(DIR_SLIDEBAR_VIDEO.'/'.$this->background))
-            Storage::delete(DIR_SLIDEBAR_VIDEO.'/'.$this->background);
-
-        $nombreVideo = Storage::uniqName(basename($imagen["tmp_name"]));
-
-        if(!is_dir(DIR_SLIDEBAR_VIDEO))
-            mkdir(DIR_SLIDEBAR_VIDEO);
-
-        Storage::save($imagen["tmp_name"], DIR_SLIDEBAR_VIDEO);
-        
-        $this->background = $nombreVideo;
-        
         return self::$alerts;
     }
 

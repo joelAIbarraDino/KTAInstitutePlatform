@@ -21,13 +21,18 @@ class SlidebarController{
             $datosEnviados = Request::getPostData();
 
             $slidebar->sincronize($datosEnviados);
+
             $alerts = $slidebar->validate();
             $alerts = $slidebar->validateLink();
-            $alerts = $slidebar->validateImage($_FILES);
+            $alerts = $slidebar->validateTypeBackground();
 
+            if($slidebar->type_background == 'picture')
+                $alerts = $slidebar->validateImage($_FILES);
+    
             if(empty($alerts)){
                 //proceso y guardo imagen;
-                $slidebar->subirImagen($_FILES['background'], 1200, 628);
+                if($slidebar->type_background == 'picture')
+                    $slidebar->subirImagen($_FILES['background'], 1200, 628);
 
                 //guardo registro
                 $id = $slidebar->save();
@@ -62,28 +67,30 @@ class SlidebarController{
             $alerts = [];
             $datosEnviados = Request::getPostData();
 
+            $slidebar->type_background = $datosEnviados['type_background'];
+            $slidebar->id_video = $datosEnviados['id_video'];
+
             $slidebar->title = $datosEnviados['title'];
             $slidebar->font_title = $datosEnviados['font_title'];
             $slidebar->color_title = $datosEnviados['color_title'];
-            $slidebar->size_title = $datosEnviados['size_title'];
 
             $slidebar->subtitle = $datosEnviados['subtitle'];
             $slidebar->font_subtitle = $datosEnviados['font_subtitle'];
             $slidebar->color_subtitle = $datosEnviados['color_subtitle'];
-            $slidebar->size_subtitle = $datosEnviados['size_subtitle'];
 
             $slidebar->link = $datosEnviados['link'];
             $slidebar->CTA = $datosEnviados['CTA'];
 
             $alerts = $slidebar->validate();
             $alerts = $slidebar->validateLink();
+            $alerts = $slidebar->validateTypeBackground();
             
-            if($_FILES['background']['size'] > 0)
+            if($slidebar->type_background == 'picture' && $_FILES['background']['size'] > 0)
                 $alerts = $slidebar->validateImage($_FILES);
 
             if(empty($alerts)){    
                 
-                if($_FILES['background']['size'] > 0)
+                if($slidebar->type_background == 'picture' && $_FILES['background']['size'] > 0)
                     $slidebar->subirImagen($_FILES['background'], 1200, 628);
                 //guardo registro
                 $id = $slidebar->save();
