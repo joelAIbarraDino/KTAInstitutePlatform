@@ -47,6 +47,7 @@
             <?php elseif(isset($_SESSION['admin'])):?>
         
             <?php else:?>
+                <li><a class="header__button-signin" href="/sign-in">Registrate</a></li>
                 <li><a class="header__button-login" href="/login">Iniciar sesión</a></li>
             <?php endif;?>
         </ul>

@@ -134,7 +134,7 @@
     &__link{
         color: v.$dorado;
         font-weight: v.$regular;
-        font-size: 1.9rem;
+        font-size: 1.5rem;
         text-align: center;
 
         &:hover{
@@ -156,18 +156,34 @@
     
     &__button-login{
         color: v.$blanco;
-        padding: 1rem;
+        padding: 1rem 1.5rem;
         background-color: v.$dorado;
         border-radius: .5rem;
         text-align: center;
+        font-size: 1.5rem;
+        transition: all .5s ease;
 
-        &--menu{
-            display: block;
+        &--login{
+            display: none;
 
             @include m.tablet{
-                display: none;
+                display: block;
             }
         }
+
+        &:hover{
+            background-color: v.$dorado_darken;
+        }
+    }
+
+    &__button-signin{
+        color: v.$dorado;
+        padding: 1rem 1.5rem;
+        background-color: transparent;
+        border: solid .2rem v.$dorado;
+        border-radius: .5rem;
+        text-align: center;
+        font-size: 1.5rem;
 
         &--login{
             display: none;
@@ -213,6 +229,10 @@
     visibility: hidden;
     transition: opacity 1s;
 
+    @include m.computadora{
+        height: 62vh;
+    }
+
     &-container{
         background-color: v.$fondo_oscuro;
     }
@@ -221,10 +241,6 @@
         opacity: 1;
         visibility: visible;
         display: block;
-    }
-
-    @include m.tablet{
-        height: 62vh;
     }
 
     &__video{
@@ -258,15 +274,17 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(v.$negro, 0.5);
+        background-color: rgba(v.$negro, 0.3);
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         padding: 2rem;
-        gap: 0;
+        gap: 1.5rem;
 
         @include m.tablet{
-            justify-content: start;
+            align-items: start;
+            justify-content: center;
             padding: 2rem 10rem;
         }
     }
@@ -279,7 +297,7 @@
         gap: 2rem;
         width: 98%;
         max-width: 70rem;
-        background-color: rgba(v.$negro, 0.7);
+        background-color: rgba(v.$negro, 0.6);
         padding: 1rem;
 
         @include m.tablet{
@@ -299,13 +317,27 @@
     }
 
     &__text-description{
+        font-weight: v.$regular;
         text-align: center;
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin: 0;
 
         @include m.tablet{
             text-align: left;
-            font-weight: v.$bold;
+        }
+    }
+
+    &__link{
+        background-color: v.$dorado;
+        padding: 1rem 3rem;
+        color: v.$blanco;
+        border-radius: .5rem;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+        transition: all 0.5s ease;
+
+        &:hover{
+            background-color: v.$negro;
         }
     }
 
@@ -326,7 +358,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 6rem;
+    gap: 1rem;
     padding: 2rem 0;
 
     @include m.tablet{
@@ -334,16 +366,19 @@
     }
 
     @include m.computadora{
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 .last-courses{
-    padding: 2rem 0;
+    padding:  1rem 0;
+
     &__title{
         color: v.$dorado;
         text-transform: uppercase;
         font-weight: v.$black;
+        margin: 0;
+        font-size: 2rem;
     }
 }
 
@@ -373,7 +408,6 @@
     &__more-info{
         text-align: center;
         padding: 1rem;
-        width: 30%;
         margin: 0 auto;
         border-radius: .5rem;
         background-color: v.$dorado;
@@ -385,10 +419,6 @@
             transform: translateY(-5px);
 
         }
-    }
-
-    &:hover{
-        transform: translateY(-5px);
     }
 
 }
@@ -477,7 +507,7 @@
     }
 
     &__text{
-        color: v.$dorado;
+        color: v.$negro;
         text-align: center;
         font-size: 1.8rem;
     }
@@ -486,6 +516,7 @@
 .estadisticas{
     background-color: v.$negro;
     padding: 4rem 0;
+    margin-bottom: 3rem;
 
     &__container{
         width: 90%;
@@ -557,7 +588,7 @@
         padding-bottom: 3rem;
 
         @include m.computadora{
-            width: 70%;
+            width: 55%;
             grid-template-columns: repeat(2, 1fr);
             padding-bottom: 5rem;
         }
@@ -568,7 +599,8 @@
 .membresia-index{
     margin: 0 auto;
     background-color: v.$negro;
-
+    height: auto;
+    border-radius: .5rem;
     &__titulo{
         color: v.$dorado;
         text-align: center;
