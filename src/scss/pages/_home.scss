@@ -134,7 +134,7 @@
     &__link{
         color: v.$dorado;
         font-weight: v.$regular;
-        font-size: 1.6rem;
+        font-size: 1.9rem;
         text-align: center;
 
         &:hover{
@@ -206,7 +206,7 @@
 
     position: relative;
     width: 100%;
-    height: 50%;
+    height: 50vh;
     overflow: hidden;
     display: none;
     opacity: 0;
@@ -258,7 +258,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(v.$negro, 0.1);
+        background-color: rgba(v.$negro, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -279,7 +279,7 @@
         gap: 2rem;
         width: 98%;
         max-width: 70rem;
-        background-color: rgba(v.$negro, 0.5);
+        background-color: rgba(v.$negro, 0.7);
         padding: 1rem;
 
         @include m.tablet{
@@ -290,23 +290,21 @@
     &__text-title{
         text-transform: uppercase;
         text-align: center;
-        font-size: 3rem;
+        font-size: 4.2rem;
         margin: 0;
 
         @include m.tablet{
             text-align: left;
-            font-size: 4rem;
         }
     }
 
     &__text-description{
         text-align: center;
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin: 0;
 
         @include m.tablet{
             text-align: left;
-            font-size: 1.8rem;
             font-weight: v.$bold;
         }
     }
@@ -315,10 +313,302 @@
 
 .gif{
     margin: 0 auto;
-    width: 97%;
+    width: 90%;
 
     &__image{
         width: 100%;
         
+    }
+}
+
+.main-courses{
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 6rem;
+    padding: 2rem 0;
+
+    @include m.tablet{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include m.computadora{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.last-courses{
+    padding: 2rem 0;
+    &__title{
+        color: v.$dorado;
+        text-transform: uppercase;
+        font-weight: v.$black;
+    }
+}
+
+.main-course{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    transition: all .4s ease;
+
+    &__picture{
+        border-radius: .5rem;
+    }
+
+    &__name{
+        color: v.$dorado;
+        margin: 0;
+        text-align: center;
+        font-weight: v.$black;
+    }
+
+    &__more-info-container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__more-info{
+        text-align: center;
+        padding: 1rem;
+        width: 30%;
+        margin: 0 auto;
+        border-radius: .5rem;
+        background-color: v.$dorado;
+        color: v.$blanco;
+        transition: all 0.4s ease;
+
+        &:hover{
+            background-color: v.$dorado_darken;
+            transform: translateY(-5px);
+
+        }
+    }
+
+    &:hover{
+        transform: translateY(-5px);
+    }
+
+}
+
+.empty-main-course{
+    width: 100%;
+    background-color: v.$negro;
+    color: v.$blanco;
+    text-align: center;
+    padding: 3rem 0;
+
+    &__empty{
+        color: v.$dorado;
+        font-size: 4rem;
+        font-weight: v.$black;
+        margin: 0;
+    }
+}
+
+.caracts-main{
+    padding: 2rem 0;
+
+    &__container{
+        width: 90%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+
+        @include m.tablet{
+            width: 90%;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.computadora{
+            grid-template-columns: repeat(4, 1fr);
+            width: 70%;
+        }
+    }
+
+    &__irs{
+        padding: 3rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2rem;
+
+        @include m.tablet{
+            flex-direction: row;
+        }
+    }
+
+    &__irs-logo{
+        width: 40%;
+        @include m.tablet{
+            width: 20rem;
+        }
+    }
+}
+
+.caract-main{
+    text-align: center;
+    background-color: v.$blanco;
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    box-shadow: 10px 10px 45px 0px rgba(233,233,233,0.75);
+    -webkit-box-shadow: 10px 10px 45px 0px rgba(233,233,233,0.75);
+    -moz-box-shadow: 10px 10px 45px 0px rgba(233,233,233,0.75);
+
+    &__icon{
+        width: 9rem;
+        margin-bottom: 5rem;
+    }
+
+    &__title{
+        text-transform: uppercase;
+        color: v.$dorado;
+        font-size: 2rem;
+        height: 5rem;
+        font-weight: v.$black;
+    }
+
+    &__text{
+        color: v.$dorado;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+}
+
+.estadisticas{
+    background-color: v.$negro;
+    padding: 4rem 0;
+
+    &__container{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+
+        @include m.computadora{
+            flex-direction: row;
+            width: 70%;
+        }
+    }
+}
+
+.estadistica{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2rem;
+
+    @include m.computadora{
+        justify-content: center;
+    }
+
+    i{
+        font-size: 5.5rem;
+        color: v.$dorado;
+    }
+
+    &__title{
+        margin: 0;
+        font-weight: v.$black;
+        color: v.$blanco;
+    }
+
+    &__desc{
+        margin: 0;
+        font-size: 1.5rem;
+        color: v.$dorado;
+    }
+}
+
+
+.membresias-index{ 
+    padding-top: 6rem;
+
+    &__titulo{
+        font-size: 4rem;
+        color: v.$negro;
+        text-align: center;
+    }
+
+    &__subtitulo{
+        color: v.$dorado;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: v.$black;
+        text-align: center;
+    }
+    
+    &__container{
+        display: grid;
+        gap: 4rem;
+        width: 90%;
+        margin: 0 auto;
+        grid-template-columns: repeat(1, 1fr);
+        padding-bottom: 3rem;
+
+        @include m.computadora{
+            width: 70%;
+            grid-template-columns: repeat(2, 1fr);
+            padding-bottom: 5rem;
+        }
+    }
+}
+
+
+.membresia-index{
+    margin: 0 auto;
+    background-color: v.$negro;
+
+    &__titulo{
+        color: v.$dorado;
+        text-align: center;
+        font-weight: v.$black;
+        margin: 3rem 0;
+    }
+
+    &__texto{
+        text-align: center;
+        font-size: 2rem;
+        color: v.$blanco;
+        margin: 0 2rem;
+    }
+
+    &__imagen{
+        width: 100%;
+    }
+
+    &__container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    &__container-link{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+
+    &__enlace{
+        background-color: v.$dorado;
+        color: v.$blanco;
+        padding: 1rem;
+        border-radius: .5rem;
+
+        &:hover{
+            background-color: v.$dorado_darken;
+        }
     }
 }

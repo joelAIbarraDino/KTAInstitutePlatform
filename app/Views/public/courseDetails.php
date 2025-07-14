@@ -14,10 +14,12 @@
                 <p class="cover-curso__lema"><?=$course->watchword?></p>
 
                 <div class="cover-curso__detalles">
-                    <div class="cover-curso__detalle">
+                    <!-- <div class="cover-curso__detalle">
                         <i class='bx bx-movie'></i> 0 <span>lecciones</span>
+                    </div> -->
+                    <div class="cover-curso__tipo">
+                        <i class='bx bx-camera-movie'></i> Contenido grabado
                     </div>
-                    
                     <div class="cover-curso__detalle">
                         <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>meses de estudio</span>
                     </div>

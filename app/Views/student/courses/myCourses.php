@@ -3,6 +3,8 @@
 <main class="background-profile">
     <div class="courses-container">
 
+        <?php include_once __DIR__.'/../../components/lastCourses.php'; ?>
+
         <h1 class="course-title" >Mis cursos</h1>
 
         <div class="my-courses">

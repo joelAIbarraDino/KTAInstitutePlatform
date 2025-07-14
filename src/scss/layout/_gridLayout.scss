@@ -5,6 +5,7 @@
 .grid-elements{
     display: block;
     margin: .5rem auto;
+    gap: 1rem;
     @include m.computadora{
         display: grid;
         grid-template-columns: repeat(12, 1fr);

@@ -19,7 +19,7 @@ class PagesController{
     public static function index(): void{
 
         $sliders = Slidebar::all();
-        $courses = CourseView::all(15);
+        $courses = CourseView::all(5, 'created_at', 'ASC');
         
         Response::render('public/index', [
             'nameApp'=>APP_NAME, 
@@ -62,6 +62,9 @@ class PagesController{
     public static function membership():void{
         
         $membresias = Membership::all()??[];
+
+        if(empty($membresias))
+            Response::redirect('/');
 
         Response::render('/public/membresias', [
             'nameApp'=>APP_NAME,

@@ -93,12 +93,31 @@
     }
   }
 
+  &__tipo{
+    color: v.$blanco;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.7rem;
+    border: solid .1rem v.$dorado;
+    border-radius: .5rem;
+    padding: 1rem;
+    background-color: v.$dorado;
+    font-weight: v.$black;
+
+    i{
+      color: v.$blanco;
+      font-size: 2rem;
+      margin-top: -.4rem;
+    }
+  }
+
   &__detalle{
     color: v.$blanco;
     display: flex;
     gap: 1rem;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 
     i{
       color: v.$dorado;

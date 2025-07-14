@@ -36,9 +36,9 @@
         <ul class="header__nav-list">
             <li><a class="header__link" href="/">Inicio</a></li>
             <li><a class="header__link" href="/cursos">Cursos grabados</a></li>
-            <li><a class="header__link" href="/lives">Cursos en vivo</a></li>
-            <li><a class="header__link" href="/calendario">Calendario</a></li>
-            <li><a class="header__link" href="/reviews">Reviews</a></li>
+            <!-- <li><a class="header__link" href="/lives">Cursos en vivo</a></li> -->
+            <!-- <li><a class="header__link" href="/calendario">Calendario</a></li> -->
+            <!-- <li><a class="header__link" href="/reviews">Reviews</a></li> -->
             <li><a class="header__link" href="/nosotros">¿Quienes somos?</a></li>
             <li><a class="header__link" href="/membresias">Membresías</a></li>
 

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CourseView;
 use App\Models\EnrollmentView;
 use App\Models\Membership;
 use App\Models\MembershipStudent;
@@ -21,6 +22,7 @@ class UserController{
         $currentDate = strtotime(date('Y-m-d'));
 
         $myCourses = EnrollmentView::belongsTo('id_student', $idStudent)??[];
+        $courses = CourseView::all(5, 'created_at', 'ASC');
 
         $finalCourses = [];
 
@@ -36,7 +38,8 @@ class UserController{
         Response::render('/student/courses/myCourses',[
             'nameApp'=>APP_NAME,
             'title'=>'Mis cursos',
-            'myCourses'=>$finalCourses
+            'myCourses'=>$finalCourses,
+            'courses'=>$courses
         ]);
         
     }
