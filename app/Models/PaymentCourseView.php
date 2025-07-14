@@ -7,7 +7,7 @@ use DinoEngine\Core\Model;
 class PaymentCourseView extends Model {
     
     protected static string $table = 'payment_course_view';
-    protected static array $columns = ['id_enrollment', 'thumbnail', 'name', 'photo', 'student', 'email', 'amount', 'currency', 'created_at', 'status', 'stripe_id'];
+    protected static array $columns = ['id_enrollment', 'thumbnail', 'name', 'photo', 'student', 'email', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
 
     public ?int $id_enrollment;
     public string $thumbnail;
@@ -17,6 +17,7 @@ class PaymentCourseView extends Model {
     public string $email;
     public float $amount;
     public string $currency;
+    public string $method;
     public string $created_at;
     public string $status;
     public string $stripe_id;
@@ -30,6 +31,7 @@ class PaymentCourseView extends Model {
         $this->email = $args["email"]??"";
         $this->amount = $args["amount"]??0;
         $this->currency = $args["currency"]??"";
+        $this->method = $args["method"]??"";
         $this->created_at = $args["created_at"]??"";
         $this->status = $args["status"]??"";
         $this->stripe_id = $args["stripe_id"]??"";

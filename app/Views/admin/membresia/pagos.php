@@ -24,6 +24,8 @@ use App\Classes\Helpers;
                             <th>Email</th>
                             <th>Monto</th>
                             <th>Status</th>
+                            <th>Metodo</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="dashboard-table__tbody">
@@ -44,12 +46,16 @@ use App\Classes\Helpers;
                                             <span class="dashboard-table__status dashboard-table__status--inactive"><?=$pago->status ?></span>
                                         <?php endif; ?>
                                     </td>
+                                    <td><?=$pago->method?></td>
+                                    <td class="dashboard-table__actions-cell">
+                                        <a href="#" class="dashboard-table__action dashboard-table__action--extra"><i class='bx bxs-file-pdf'></i></a>
+                                    </td>
                                 </tr>                    
                             <?php endforeach;?>
                         <?php else: ?>
 
                             <tr>
-                                <td colspan="7" class="dashboard-table__no-result">no hay registros</td>
+                                <td colspan="8" class="dashboard-table__no-result">no hay registros</td>
                             </tr>     
                         <?php endif; ?>               
                     </tbody>

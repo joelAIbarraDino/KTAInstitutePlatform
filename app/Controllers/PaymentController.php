@@ -18,6 +18,7 @@ use Stripe\Exception\UnexpectedValueException;
 use Stripe\Checkout\Session;
 use Stripe\Webhook;
 use Stripe\Stripe;
+use \Stripe\PaymentIntent;
 use Exception;
 
 Stripe::setApiKey($_ENV['CLIENT_SECRET_STRIPE']);
@@ -150,6 +151,10 @@ class PaymentController{
                 $monto = $session->amount_total / 100;
                 $moneda = strtoupper($session->currency);
 
+                $payment_intent_id = $session->payment_intent;
+                $payment_intent = PaymentIntent::retrieve($payment_intent_id);
+                $metodo_pago = $payment_intent->payment_method_types[0];
+
                 $type_product = $session->metadata->type_product;
                 $product_id = $session->metadata->product_id;
 
@@ -179,6 +184,7 @@ class PaymentController{
 
                 $payment->amount = $monto;
                 $payment->currency = $moneda;
+                $payment->method = $metodo_pago;
                 $payment->status = 'pagado';
                 $payment->stripe_id = $session_id;
 
