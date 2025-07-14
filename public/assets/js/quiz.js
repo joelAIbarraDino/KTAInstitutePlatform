@@ -157,7 +157,7 @@
         laberQuizMode.textContent = "¿El estudiante puede retroceder las preguntas?";
 
         const realInputQuizMode = document.createElement("input");
-        realInputQuizMode.value  = quiz_mode || "estricto";
+        realInputQuizMode.value  = quiz_mode;
         realInputQuizMode.type = "hidden";
 
 
@@ -166,7 +166,7 @@
         inputQuizMode.addEventListener('click', ()=>{
             
             if(realInputQuizMode.value == "libre"){
-                realInputQuizMode.value = "estricto";
+                realInputQuizMode.value = "restringido";
                 inputQuizMode.classList.remove("bxs-check-square");
                 inputQuizMode.classList.add("bx-check-square");
             }else{
@@ -176,7 +176,7 @@
             }
         });
 
-        if(quiz_mode){
+        if(quiz_mode == "libre"){
             inputQuizMode.classList.remove("bx-check-square");
             inputQuizMode.classList.add("bxs-check-square");
         }else{

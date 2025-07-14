@@ -4,6 +4,7 @@
 .main-class{
     display: block;
     height: calc(100% - 7rem);
+
     @include m.computadora{
         display: flex;
     }
@@ -534,4 +535,5 @@
     --plyr-color-main: #CDA02D;
     --plyr-progress-loading-background:#cda02d71;
     --plyr-video-progress-buffered-background: #cda02d3f;
+    
 }

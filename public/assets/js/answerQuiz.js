@@ -419,11 +419,11 @@
                 }).then(() => {
 
                     if(!response.openQuestions  && response.approved)
-                        window.location.href = `/quiz/success/${idAttempt}`;
+                        window.location.href = `/quiz/success/${uuid}/${idAttempt}`;
                     else if(!response.openQuestions && !response.approved)
-                        window.location.href = `/quiz/failed`;
+                        window.location.href = `/quiz/failed/${uuid}/${idAttempt}`;
                     else
-                        window.location.href = `/quiz/completed`;
+                        window.location.href = `/quiz/completed/${uuid}/${idAttempt}`;
 
                 });
                 

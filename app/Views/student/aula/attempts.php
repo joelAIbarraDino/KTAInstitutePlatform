@@ -1,52 +1,85 @@
+<?php 
+
+    $topScripts = '
+        <link rel="preload" href="https://cdn.plyr.io/3.7.8/plyr.css" as="style"> 
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    ';
+?>
+
 <?php include_once __DIR__.'/../../components/estudentToolbar.php'; ?>
 
 <main class="quiz-attempts">
     <a href="/curso/watch/<?=$url?>" class="quiz-attempts__return"><i class='bx bx-left-arrow-alt'></i> Regresar</a>
     
     <div class="quiz-attempts__container">
+
         <div class="quiz-info">
             <div class="quiz-info__container">
                 <h1 class="quiz-info__name"><?=$quiz->name?></h1>
-                <p class="quiz-info__info">Calificación minima: <span><?=$quiz->min_score?>%</span></p>
-                <p class="quiz-info__info">Intentos para pasar: <span><?=$quiz->max_attempts?> intentos</span></p>
-                <p class="quiz-info__info">Tiempo para terminar: <span><?=$quiz->max_time?> minutos</span></p>
-                <p class="quiz-info__info">Modo de avanzar preguntas: <span><?=$quiz->quiz_mode?></span></p>
-                <p class="quiz-info__info">Puedo ver las respuestas: <span><?=$quiz->show_answers=='ocultar'?'No':'Si' ?></span></p>
+
+                <div class="quiz-info__container-info">
+                    <p class="quiz-info__label-info">Calificación minima:</p>
+                    <p class="quiz-info__label-data"><?=$quiz->min_score?>%</p>
+                </div>
+
+                <div class="quiz-info__container-info">
+                    <p class="quiz-info__label-info">Intentos para pasar:</p>
+                    <p class="quiz-info__label-data"><?=$quiz->max_attempts?></p>
+                </div>
+
+                <div class="quiz-info__container-info">
+                    <p class="quiz-info__label-info">Tiempo para terminar(minutos):</p>
+                    <p class="quiz-info__label-data"><?=$quiz->max_time?></p>
+                </div>
+
+                <div class="quiz-info__container-info">
+                    <p class="quiz-info__label-info">Modo de avanzar preguntas:</p>
+                    <p class="quiz-info__label-data"><?=$quiz->quiz_mode?></p>
+                </div>
+
+                <div class="quiz-info__container-info">
+                    <p class="quiz-info__label-info">Puedo ver las respuestas despues de responer:</p>
+                    <p class="quiz-info__label-data"><?=$quiz->show_answers=='ocultar'?'No':'Si' ?></p>
+                </div>
             </div>
 
             <button class="quiz-info__attempt-btn" id="new-attempt">Tomar quiz</button>
+
+            <div class="attempts"></div>
         </div>    
     
-        <div class="attempts">
+        <div class="messages">
 
-            <?php if(!empty($attempts)):?>
-                <?php foreach($attempts as $key=>$attempt):?>      
-                    
-                    <div class="attempt">
-                        <div class="attempt__header">
-                            <h2 class="attempt__title">Intento # <?=$key + 1?></h2>
-                        </div>
+            <div class="video-container active">
+                    <h3 class="video-container__title">¿Como realizar el examen?</h3>
 
-                        <p class="attempt__info">Tiempo: <span><?=$attempt->time?></span></p>
-                        <p class="attempt__info">Score: <span><?=$attempt->score?>%</span></p>
-
-                        <?php if($attempt->is_approved):?>
-                            <p class="attempt__info attempt__info--aprobado">Status: <span>aprobado</span></p>
-                        <?php else:?>
-                                <p class="attempt__info attempt__info--reprobado">Status: <span>Pendiente revisión</span></p>
-                        <?php endif;?>
-
+                    <div id="player">
+                        <iframe
+                            src="https://player.vimeo.com/video/<?=$quiz->tutorial_id?>"
+                            allowfullscreen
+                            allowtransparency
+                            allow="autoplay"
+                        ></iframe>
                     </div>
-                <?php endforeach;?>
-
-            <?php else:?>
-                <p class="attempt__empty">Sin intentos registrados</p>
-            <?php endif;?>
+            </div>
             
+            <div id="result-container" class="results-container">
+                <div class="results-container__close">
+                    <button id="result-container__close" class="results-container__close-btn">Cerrar <i class='bx bxs-x-circle'></i></button>
+                </div>
+                <div id="result-container__answers"></div>
+            </div>
+
         </div>
     </div>
     
 </main>
+
+<script>
+    let player = new Plyr('#player');
+</script>
+
 
 <?php 
 

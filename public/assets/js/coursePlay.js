@@ -17,7 +17,7 @@
   let quiz = [];
 
   let currentLesson = 0;
-  let player = new Plyr('#player');;
+  let player = new Plyr('#player');
 
   window.addEventListener("DOMContentLoaded", ()=>{
     app();

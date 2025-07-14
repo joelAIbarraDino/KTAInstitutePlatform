@@ -93,6 +93,6 @@ class CertificadoPDF extends FPDF {
     }
 
     public function mostrar(string $nombreArchivo = 'certificado.pdf') {
-        $this->Output('I', $nombreArchivo);
+        $this->Output('D', $nombreArchivo);
     }
 }

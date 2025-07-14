@@ -131,9 +131,9 @@ $dino->router->get('/quiz/attempts/{uuid}', [EnrollmentController::class, 'attem
 $dino->router->get('/quiz/answer/{uuid}/{id}', [AttemptController::class, 'responseQuiz'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->get('/api/quiz/attempt/{id}', [AttemptController::class, 'getQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
-$dino->router->get('/quiz/success/{id}', [AttemptController::class, 'successQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-$dino->router->get('/quiz/failed', [AttemptController::class, 'failedQuiz'], [new StudentLoggedMiddleware('/login')]);
-$dino->router->get('/quiz/completed', [AttemptController::class, 'completedQuiz'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/quiz/success/{uuid}/{id}', [AttemptController::class, 'successQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->get('/quiz/failed/{uuid}/{id}', [AttemptController::class, 'failedQuiz'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/quiz/completed/{uuid}/{id}', [AttemptController::class, 'completedQuiz'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/certificado/{id}', [AttemptController::class, 'showDiploma'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
 $dino->router->post('/attempts/create/{uuid}', [AttemptController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
@@ -216,6 +216,8 @@ $dino->router->delete('/api/option_question/delete/{id}', [OptionQuestionControl
 $dino->router->get('/api/attempts/{id}', [ContentController::class, 'getAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->get('/api/attempts/search/{id}/{attribute}/{value}', [ContentController::class, 'searchAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->get('/api/review-attempts/{id}', [ContentController::class, 'getReviewAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+
+$dino->router->get('/api/quiz-uuid/{uuid}', [AttemptController::class, 'getQuizUuid'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->post('/api/answer_student/{id}', [AttemptController::class, 'saveAnswerStudent'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 $dino->router->patch('/api/attempt/checked/{id}', [AttemptController::class, 'updateChecked'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->delete('/api/attempt/delete/{id}', [AttemptController::class , 'delete'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);

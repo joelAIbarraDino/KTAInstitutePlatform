@@ -25,7 +25,7 @@ class AttemptController{
         ]);
     }
 
-    public static function successQuiz(int $id):void{
+    public static function successQuiz(string $uuid, int $id):void{
         if(!isset($_SESSION))
             session_start();
 
@@ -45,7 +45,8 @@ class AttemptController{
         Response::render('/student/quiz/success', [
             'nameApp'=>APP_NAME,
             'title'=>'Resultados de examen',
-            'id'=>$id
+            'id'=>$id,
+            'uuid'=>$uuid
         ]);
     }
 
@@ -74,18 +75,51 @@ class AttemptController{
         $certificado->mostrar('certificado de '.$_SESSION['student']['nombre']);
     }
 
-    public static function failedQuiz():void{
+    public static function failedQuiz(string $uuid, int $id):void{
+
+        if(!isset($_SESSION))
+            session_start();
+
+        $attempt = Attempt::find($id);
+        
+        if(!$attempt)
+            Response::redirect('/');
+
+        $enrollment = Enrollment::where('id_enrollment', '=', $attempt->id_enrollment);
+        
+        if($enrollment->id_student != $_SESSION['student']['id_student'])
+            Response::redirect('/');
+
 
         Response::render('/student/quiz/error', [
             'nameApp'=>APP_NAME,
-            'title'=>'Resultados de examen'
+            'title'=>'Resultados de examen',
+            'id'=>$id,
+            'uuid'=>$uuid
         ]);
     }
 
-    public static function completedQuiz():void{
+    public static function completedQuiz(string $uuid, int $id):void{
+
+        if(!isset($_SESSION))
+            session_start();
+
+        $attempt = Attempt::find($id);
+        
+        if(!$attempt)
+            Response::redirect('/');
+
+        $enrollment = Enrollment::where('id_enrollment', '=', $attempt->id_enrollment);
+        
+        if($enrollment->id_student != $_SESSION['student']['id_student'])
+            Response::redirect('/');
+
+
         Response::render('/student/quiz/completed', [
             'nameApp'=>APP_NAME,
-            'title'=>'Resultados de examen'
+            'title'=>'Resultados de examen',
+            'id'=>$id,
+            'uuid'=>$uuid
         ]);
     }
 
@@ -145,6 +179,42 @@ class AttemptController{
             ]);
  
         } catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+    public static function getQuizUuid(string $uuid){
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"], 404);
+        
+        try{
+            $enroll = Enrollment::where('url', '=', $uuid);
+            $quiz = Quiz::where('id_course', '=', $enroll->id_course);
+            $attempts = Attempt::belongsTo('id_enrollment', $enroll->id_enrollment)??[];
+            $finalAttempts =[];
+
+            foreach($attempts as $attempt){
+
+                $answers = AnswerStudent::belongsTo('id_attempt', $attempt->id_attempt)??[];
+                
+                $finalAttempts[] =[
+                    'id_attempt'=>$attempt->id_attempt,
+                    'time'=>$attempt->time,
+                    'date'=>$attempt->date,
+                    'score'=>$attempt->score,
+                    'checked'=>$attempt->checked,
+                    'is_approved'=>$attempt->is_approved,
+                    'id_quiz'=>$attempt->id_quiz,
+                    'answersStudent'=>$answers
+                ];
+            }
+
+            Response::json([
+                'quiz'=>$quiz,
+                'attempts'=>$finalAttempts
+            ]);
+
+        }catch(Exception $e){
             Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
