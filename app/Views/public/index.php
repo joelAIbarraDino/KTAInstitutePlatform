@@ -105,11 +105,11 @@
             <div class="membresia-index__container">
                 <p class="membresia-index__titulo">Nuestros cursos</p>
                 <p class="membresia-index__texto">
-                    Aprende de profesionales con +de 30 años de experiencia, se parte de los +de 2500 estudiantes exitosos e inicia tu propio Negocio.
+                    Aprende de profesionales con más de 30 años de experiencia. Sé parte de nuestros +2,500 estudiantes exitosos e inicia tu propio negocio.
                 </p>
 
                 <div class="membresia-index__container-link">
-                    <a class="membresia-index__enlace" href="/cursos">Ver mas info</a>
+                    <a class="membresia-index__enlace" href="/cursos">Ver más</a>
                 </div>
             </div>
         </div>
@@ -117,10 +117,10 @@
         <div class="membresia-index">
             <img class="membresia-index__imagen" src="/assets/images/membresia1.png" alt="imagen">
             <div class="membresia-index__container">
-                <p class="membresia-index__titulo">membresia KTA</p>
+                <p class="membresia-index__titulo">Membresia KTA</p>
                 <p class="membresia-index__texto">
-                    ¿Ya tienes experiencia como preparador de impuestos y quieres pasar al siguiente nivel?
-                    Con nuestra membresía Business lab tendrás todo lo que necesitas para llegar a lo más alto.
+                    ¿Ya  tienes experiencia como preparador de impuestos y quieres pasar al siguiente nivel?. 
+                    Con nuestra <strong>Membresía Business Lab<strong> tendrás todo lo que necesitas para llegar a lo mas alto.
                 </p>
 
                 <div class="membresia-index__container-link">

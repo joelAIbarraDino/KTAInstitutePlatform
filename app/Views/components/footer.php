@@ -33,7 +33,7 @@
 
     <div class="contact">
 
-        <h3 class="contact__title">Contactanos</h3>
+        <h3 class="contact__title">Contáctanos</h3>
 
         <div class="information">
             <div class="information__icon">

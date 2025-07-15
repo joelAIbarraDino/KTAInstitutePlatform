@@ -11,7 +11,7 @@
                         <img class="main-course__picture" src="/assets/background-courses/<?=$course->background?>" alt="thumbnail">
                     </a>
                     <div class="main-course__more-info-container">
-                        <a class="main-course__more-info" href="/curso/view/<?=$course->url?>">+ info</a>   
+                        <a class="main-course__more-info" href="/curso/view/<?=$course->url?>">+ Info</a>   
                     </div>
                 </div>
             <?php endforeach;?>
