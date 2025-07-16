@@ -12,9 +12,12 @@
         form.addEventListener('submit', async (e)=>{
             e.preventDefault();
 
-            const inputName = document.querySelector("#name").value.trim();
-            const inputPhone = document.querySelector("#phone").value.trim();
             const idStudent = document.querySelector("#id_student").value.trim();
+            
+            const inputStreet = document.querySelector("#street").value.trim();
+            const inputnumberStreet = document.querySelector("#number_street").value.trim();
+            const inputState = document.querySelector("#state").value.trim();
+            const inputCP = document.querySelector("#cp").value.trim();
 
             if(!idStudent){
                 Swal.fire({
@@ -25,20 +28,38 @@
                 return;
             }
 
-            if(!inputName){
+            if(!inputStreet){
                 Swal.fire({
                     icon: "error",
-                    title: "Nombre invalido",
-                    text: "El nombre es obligatorio",
+                    title: "Calle invalida",
+                    text: "La calle es obligatorio",
                 });
                 return;
             }
 
-            if(!inputPhone){
+            if(!inputnumberStreet){
                 Swal.fire({
                     icon: "error",
                     title: "Numero invalido",
-                    text: "El numero de telefono es inválido",
+                    text: "El numero de calle es obligatorio",
+                });
+                return;
+            }
+
+            if(!inputState){
+                Swal.fire({
+                    icon: "error",
+                    title: "Estado invalido",
+                    text: "El estado es obligatorio",
+                });
+                return;
+            }
+
+            if(!inputCP){
+                Swal.fire({
+                    icon: "error",
+                    title: "CP invalido",
+                    text: "El CP es obligatorio",
                 });
                 return;
             }
@@ -46,7 +67,7 @@
             //consulto si son correctas las credenciales
             try {
 
-                const url = `/api/student/profile/${idStudent}`;
+                const url = `/api/student/direction/${idStudent}`;
 
                 const request = await fetch(url, {
                     method:"PATCH",
@@ -55,8 +76,10 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        name: inputName,
-                        phone: inputPhone
+                        street: inputStreet,
+                        number_street: inputnumberStreet,
+                        state: inputState,
+                        cp: inputCP
                     })
                 });
 

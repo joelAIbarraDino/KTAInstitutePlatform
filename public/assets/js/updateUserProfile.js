@@ -13,6 +13,7 @@
             e.preventDefault();
 
             const inputName = document.querySelector("#name").value.trim();
+            const inputPhone = document.querySelector("#phone").value.trim();
             const idStudent = document.querySelector("#id_student").value.trim();
 
             if(!idStudent){
@@ -33,10 +34,19 @@
                 return;
             }
 
+            if(!inputPhone){
+                Swal.fire({
+                    icon: "error",
+                    title: "Numero invalido",
+                    text: "El numero de telefono es inválido",
+                });
+                return;
+            }
+
             //consulto si son correctas las credenciales
             try {
 
-                const url = `/api/student/name/${idStudent}`;
+                const url = `/api/student/profile/${idStudent}`;
 
                 const request = await fetch(url, {
                     method:"PATCH",
@@ -45,7 +55,8 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        name: inputName
+                        name: inputName,
+                        phone: inputPhone
                     })
                 });
 

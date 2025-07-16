@@ -4,7 +4,7 @@
     
     <div class="cover">
         <div class="cover__content">
-            <p class="cover__name">¡Hola Joel Alejandro!</p>
+            <p class="cover__name">¡Hola, <?=$_SESSION['student']['nombre']?>!</p>
             <p class="cover__instructions">Gestiona tu información en un solo lugar: datos personales, historial de compras, membresias y cursos</p>
         </div>
     </div>
@@ -47,6 +47,41 @@
             <div class="profile__data">
                 <p class="profile__type">Email:</p>
                 <p class="profile__value"><?=$student->email?></p>
+            </div>
+
+            <div class="profile__data">
+                <p class="profile__type">Teléfono:</p>
+                <p class="profile__value"><?=$student->phone?></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile">
+
+        <div class="profile__top">
+            <p class="profile__title">Dirección</p>
+            <a class="profile__edit" href="/editar-direccion"> <i class='bx bx-pencil'></i> Editar</a>
+        </div>
+
+        <div class="profile__content">     
+            <div class="profile__data">
+                <p class="profile__type">Calle:</p>
+                <p class="profile__value"><?=$student->street??"?????" ?></p>
+            </div>
+
+            <div class="profile__data">
+                <p class="profile__type">Número:</p>
+                <p class="profile__value"><?=$student->number_street??"?????" ?></p>
+            </div>
+
+            <div class="profile__data">
+                <p class="profile__type">Estado:</p>
+                <p class="profile__value"><?=$student->state??"?????" ?></p>
+            </div>
+
+            <div class="profile__data">
+                <p class="profile__type">Código postal:</p>
+                <p class="profile__value"><?=$student->cp??"?????" ?></p>
             </div>
         </div>
     </div>

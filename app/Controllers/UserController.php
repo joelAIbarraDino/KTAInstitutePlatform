@@ -118,6 +118,22 @@ class UserController{
         ]);
     }
 
+    public static function editDirection():void{
+
+        if(!isset($_SESSION))
+            session_start();
+
+        $idStudent = $_SESSION['student']['id_student'];
+
+        $student = Student::where('id_student', '=', $idStudent);
+
+        Response::render('/student/profile/editDirection',[
+            'nameApp'=>APP_NAME,
+            'title'=>'Editar dirección',
+            'student'=>$student
+        ]);
+    }
+
     public static function security():void{
 
         if(!isset($_SESSION))

@@ -206,16 +206,16 @@
         },
         {
             "name": "dinozign/dino-framework",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joelAIbarraDino/DinoFramework.git",
-                "reference": "f6b5198799a927f0f706801dbf8ff86f0da82a61"
+                "reference": "0f48b81df0f61e263718cf884424d80260e3fa99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joelAIbarraDino/DinoFramework/zipball/f6b5198799a927f0f706801dbf8ff86f0da82a61",
-                "reference": "f6b5198799a927f0f706801dbf8ff86f0da82a61",
+                "url": "https://api.github.com/repos/joelAIbarraDino/DinoFramework/zipball/0f48b81df0f61e263718cf884424d80260e3fa99",
+                "reference": "0f48b81df0f61e263718cf884424d80260e3fa99",
                 "shasum": ""
             },
             "require": {
@@ -245,9 +245,9 @@
             "description": "Framework chido para aplicaciones web chidas",
             "support": {
                 "issues": "https://github.com/joelAIbarraDino/DinoFramework/issues",
-                "source": "https://github.com/joelAIbarraDino/DinoFramework/tree/v1.2.3"
+                "source": "https://github.com/joelAIbarraDino/DinoFramework/tree/v1.2.4"
             },
-            "time": "2025-06-08T07:46:10+00:00"
+            "time": "2025-07-16T10:30:02+00:00"
         },
         {
             "name": "filp/whoops",
@@ -454,7 +454,7 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.402.0",
+            "version": "v0.403.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
@@ -492,7 +492,7 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.402.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.403.0"
             },
             "time": "2025-06-04T17:28:44+00:00"
         },

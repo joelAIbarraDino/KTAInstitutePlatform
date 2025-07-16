@@ -7,7 +7,7 @@ use DinoEngine\Core\Model;
 class PaymentCourseView extends Model {
     
     protected static string $table = 'payment_course_view';
-    protected static array $columns = ['id_enrollment', 'thumbnail', 'name', 'photo', 'student', 'email', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
+    protected static array $columns = ['id_enrollment', 'thumbnail', 'name', 'photo', 'student', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
 
     public ?int $id_enrollment;
     public string $thumbnail;
@@ -15,6 +15,11 @@ class PaymentCourseView extends Model {
     public ?string $photo;
     public string $student;
     public string $email;
+    public string $phone;
+    public string $street;
+    public string $number_street;
+    public string $state;
+    public string $cp;
     public float $amount;
     public string $currency;
     public string $method;
@@ -29,6 +34,11 @@ class PaymentCourseView extends Model {
         $this->photo = $args["photo"]??"";
         $this->student = $args["student"]??"";
         $this->email = $args["email"]??"";
+        $this->phone = $args['phone']??"";
+        $this->street = $args['street']??"";
+        $this->number_street = $args['number_street']??"";
+        $this->state = $args['state']??"";
+        $this->cp = $args['cp']??"";
         $this->amount = $args["amount"]??0;
         $this->currency = $args["currency"]??"";
         $this->method = $args["method"]??"";

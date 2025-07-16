@@ -9,13 +9,18 @@ class Student extends Model {
     
     protected static string $table = 'student';
     protected static string $PK_name = 'id_student';
-    protected static array $columns = ['id_student', 'name', 'email', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret', 'totp_active', 'user_confirmed'];
-    protected static array $fillable = ['name', 'email', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret', 'totp_active', 'user_confirmed'];
-    protected static array $nulleable = ['password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret'];
+    protected static array $columns = ['id_student', 'name', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret', 'totp_active', 'user_confirmed'];
+    protected static array $fillable = ['name', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret', 'totp_active', 'user_confirmed'];
+    protected static array $nulleable = ['street', 'number_street', 'state', 'cp', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret'];
 
     public ?int $id_student;
     public string $name;
     public string $email;
+    public string $phone;
+    public ?string $street;
+    public ?string $number_street;
+    public ?string $state;
+    public ?string $cp;
     public ?string $password;
     public ?string $photo;
     public ?string $oauth_provider;
@@ -29,6 +34,11 @@ class Student extends Model {
         $this->id_student = $args["id_student"]??null;
         $this->name = $args["name"]??"";
         $this->email = $args["email"]??"";
+        $this->phone = $args['phone']??"";
+        $this->street = $args['street']??null;
+        $this->number_street = $args['number_street']??null;
+        $this->state = $args['state']??null;
+        $this->cp = $args['cp']??null;
         $this->password = $args["password"]??null;
         $this->photo = $args["photo"]??null;
         $this->oauth_provider = $args["oauth_provider"]??"";
@@ -41,15 +51,55 @@ class Student extends Model {
     public function validate():array{
 
         if(!$this->name)
-            self::setAlerts('error', "el nombre es obligatorio");
+            self::setAlerts('error', "El nombre es obligatorio");
 
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
-            self::setAlerts('error', "debe ingresar un correo valido");
+            self::setAlerts('error', "Debe ingresar un correo valido");
 
         if(!$this->password)
-            self::setAlerts('error', "la contraseña es obligatoria");
+            self::setAlerts('error', "La contraseña es obligatoria");
+
+        if(!$this->phone)
+            self::setAlerts('error', "El teléfono es obligatorio");
 
         return self::$alerts;
+    }
+
+    public function validateDirection():array{
+        $direction = [
+            'street'=>$this->street??null,
+            'number_street'=>$this->number_street??null,
+            'state'=>$this->state??null,
+            'cp'=>$this->cp??null,
+        ];
+
+        $anyFilled = array_filter($direction, fn($value)=>!empty($value));
+
+        if($this->cp && strlen($this->cp) > 5)
+            self::setAlerts('error', "El CP es invalido");
+
+        if($anyFilled && count($anyFilled) < count($direction))
+            self::setAlerts('error', "Debe completar los datos de la dircción");
+
+        return self::$alerts;
+    }
+
+    public function validateDirectionAPI():void{
+        $direction = [
+            'street'=>$this->street??null,
+            'number_street'=>$this->number_street??null,
+            'state'=>$this->state??null,
+            'cp'=>$this->cp??null,
+        ];
+
+        $anyFilled = array_filter($direction, fn($value)=>!empty($value));
+
+        if($this->cp && strlen($this->cp) > 5)
+            Response::json(['ok'=>false, 'message'=>'El CP es invalido'], 400);
+
+        if($anyFilled && count($anyFilled) < count($direction))
+            Response::json(['ok'=>false, 'message'=>'Debe completar los datos de la dircción'], 400);
+
     }
 
     public function validateAPI():void{
@@ -59,8 +109,8 @@ class Student extends Model {
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
             Response::json(['ok'=>false, 'message'=>'Debe ingresar un correo valido'], 400);
 
-        if(!$this->password)
-            Response::json(['ok'=>false, 'message'=>'La contraseña es obligatoria'], 400);
+        if(!$this->photo)
+            Response::json(['ok'=>false, 'message'=>'El teléfono es obligatorio'], 400);
 
     }
 

@@ -118,6 +118,7 @@ $dino->router->get('/mis-cursos', [UserController::class, 'cursos'], [new Studen
 $dino->router->get('/cursos-pasados', [UserController::class, 'endedCourses'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/mi-perfil', [UserController::class, 'profile'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/editar-perfil', [UserController::class, 'editProfile'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/editar-direccion', [UserController::class, 'editDirection'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/seguridad-acceso', [UserController::class, 'security'], [new StudentLoggedMiddleware('/login')]);
 
 //salón virtual
@@ -260,9 +261,9 @@ $dino->router->post('/kta-admin/estudiante/create', [StudentController::class, '
 $dino->router->get('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [AdminLoggedMiddleware::class]);
 $dino->router->post('/kta-admin/estudiante/update/{id}', [StudentController::class, 'update'], [AdminLoggedMiddleware::class]);
 
-$dino->router->patch('/api/student/name/{id}', [StudentController::class, 'updateName'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->patch('/api/student/profile/{id}', [StudentController::class, 'updateProfile'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 $dino->router->patch('/api/student/password/{id}', [StudentController::class, 'updatePassword'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-
+$dino->router->patch('/api/student/direction/{id}', [StudentController::class, 'updateDirection'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
 $dino->router->delete('/api/estudiante/delete/{id}', [StudentController::class, 'delete'], [AdminLoggedMiddleware::class]);
 

@@ -21,24 +21,29 @@ class StudentController{
         if(Request::isPOST()){
             $datosEnviados = Request::getPostData();
 
-            $student->sincronize($datosEnviados);
-            $alerts = $student->validate();
-            $alerts = $student->studentExists();
+            try{
+                $student->sincronize($datosEnviados);
+                $alerts = $student->validate();
+                $alerts = $student->validateDirection();
+                $alerts = $student->studentExists();
 
-            if(empty($alerts)){
-                //encripto contraseña
-                $student->password = Auth::encriptPassword($student->password);
-                
-                //guardo registro
-                $id = $student->save();
-                
-                if($id){
-                    Helpers::setSwalAlert('success', '¡Genial!', 'Estudiante registrado con exito', 3000);
-                    Response::redirect('/kta-admin/estudiantes');
-                }else{
-                    $alerts['error'][] = 'error al registrar el estudiante, intente mas tarde';
+                if(empty($alerts)){
+                    //encripto contraseña
+                    $student->password = Auth::encriptPassword($student->password);
+                    
+                    //guardo registro
+                    $id = $student->save();
+                    
+                    if($id){
+                        Helpers::setSwalAlert('success', '¡Genial!', 'Estudiante registrado con exito', 3000);
+                        Response::redirect('/kta-admin/estudiantes');
+                    }else{
+                        $alerts['error'][] = 'error al registrar el estudiante, intente mas tarde';
+                    }
                 }
 
+            }catch(Exception){
+                $alerts['error'][] = 'Error al llenar los datos';
             }
         }
 
@@ -97,8 +102,14 @@ class StudentController{
 
             $student->name = $datosEnviados['name'];
             $student->email = $datosEnviados['email'];
+            $student->phone = $datosEnviados['phone'];
+            $student->street = $datosEnviados['street'];
+            $student->number_street = $datosEnviados['number_street'];
+            $student->state = $datosEnviados['state'];
+            $student->cp = $datosEnviados['cp'];
 
             $alerts = $student->validateUpdate();
+            $alerts = $student->validateDirection();
 
             if(empty($alerts)){
                 
@@ -130,7 +141,7 @@ class StudentController{
 
     }
 
-    public static function updateName(int $id):void{
+    public static function updateProfile(int $id):void{
         if(!Request::isPATCH())
             Response::json(['ok'=>false, 'message'=>'Metodo no soportado'], 400);
 
@@ -149,9 +160,11 @@ class StudentController{
         if(!$student)
             Response::json(['ok'=>false, 'message'=>'Estudiante no encontrado, contactar con KTA para mas información'], 400);
 
-        $student->validateAPI();
-
+        
         $student->name = $datosEnviados['name'];
+        $student->phone = $datosEnviados['phone'];
+        
+        $student->validateAPI();
 
         if(!$student->save())
             Response::json(['ok'=>false, 'message'=>'Error al actualizar nombre, intente mas tarde'], 400);
@@ -159,7 +172,7 @@ class StudentController{
         Response::json(['ok'=>true, 'message'=>'Nombre actualizado con exito']);
 
     }
-
+    
     public static function updatePassword(int $id):void{
         if(!Request::isPATCH())
             Response::json(['ok'=>false, 'message'=>'Metodo no soportado'], 400);
@@ -185,6 +198,39 @@ class StudentController{
         $student->validateAPI();
 
         $student->password = Auth::encriptPassword($student->password);
+
+        if(!$student->save())
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar contraseña, intente mas tarde'], 400);
+
+        Response::json(['ok'=>true, 'message'=>'Contraseña actualizada con exito']);
+
+    }
+
+    public static function updateDirection(int $id):void{
+        if(!Request::isPATCH())
+            Response::json(['ok'=>false, 'message'=>'Metodo no soportado'], 400);
+
+        if(!isset($_SESSION))
+            session_start();
+
+        $idStudent = $_SESSION['student']['id_student'];
+
+        if($id != $idStudent)
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar estudiante'], 400);
+    
+        $datosEnviados = Request::getBody();
+
+        $student = Student::where('id_student', '=', $idStudent);
+
+        if(!$student)
+            Response::json(['ok'=>false, 'message'=>'Estudiante no encontrado, contactar con KTA para mas información'], 400);
+
+        $student->street = $datosEnviados['street'];
+        $student->number_street = $datosEnviados['number_street'];
+        $student->state = $datosEnviados['state'];
+        $student->cp = $datosEnviados['cp'];
+        
+        $student->validateDirectionAPI();
 
         if(!$student->save())
             Response::json(['ok'=>false, 'message'=>'Error al actualizar contraseña, intente mas tarde'], 400);

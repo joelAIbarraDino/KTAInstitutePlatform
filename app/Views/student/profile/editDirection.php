@@ -11,16 +11,8 @@
 
     <div class="profile">
         
-        <?php if(isset($_SESSION['student']['photo'])): ?>
-            <div class="profile__photo">
-                <img class="toolbar-right__photo" src="<?=$_SESSION['student']['photo']?>" alt="profile picture">    
-            </div>
-        <?php else:?>
-            <div class="profile__photo"><?=$_SESSION['student']['iniciales']?></div>
-        <?php endif;?>
-        
         <div class="profile__top">
-            <p class="profile__title">Datos personales</p>
+            <p class="profile__title">Dirección</p>
             <a class="profile__edit" href="/mi-perfil"><i class='bx bx-left-arrow-alt'></i> Regresar</a>
         </div>
     
@@ -33,26 +25,49 @@
             >
 
             <div class="profile__data">
-                <p class="profile__type">Nombre:</p>
+                <p class="profile__type">Calle:</p>
                 <input 
                     type="text" 
-                    placeholder="Nombre de estudiante" 
+                    placeholder="Calle" 
                     class="profile__input-edit" 
-                    value="<?=$student->name?>"
-                    id="name"
+                    value="<?=$student->street?>"
+                    id="street"
                 >
             </div>
 
             <div class="profile__data">
-                <p class="profile__type">Teléfono:</p>
+                <p class="profile__type">Número:</p>
                 <input 
                     type="text" 
-                    placeholder="Teléfono de estudiante" 
+                    placeholder="Numero" 
                     class="profile__input-edit" 
-                    value="<?=$student->phone?>"
-                    id="phone"
+                    value="<?=$student->number_street?>"
+                    id="number_street"
                 >
             </div>
+
+            <div class="profile__data">
+                <p class="profile__type">Estado:</p>
+                <input 
+                    type="text" 
+                    placeholder="Estado" 
+                    class="profile__input-edit" 
+                    value="<?=$student->state?>"
+                    id="state"
+                >
+            </div>
+
+            <div class="profile__data">
+                <p class="profile__type">Código postal:</p>
+                <input 
+                    type="text" 
+                    placeholder="Código postal" 
+                    class="profile__input-edit" 
+                    value="<?=$student->cp?>"
+                    id="cp"
+                >
+            </div>
+
 
             <div class="profile__submit-container">
                 <input class="profile__submit-btn" type="submit" value="Guardar">
@@ -68,12 +83,12 @@
 
 <?php 
 
-    $updateUserProfileVersion = filemtime('assets/js/updateUserProfile.js');
+    $updateUserProfileVersion = filemtime('assets/js/updateDirection.js');
 
     $scripts ='
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/assets/js/menuDashboard.js"></script>
-        <script src="/assets/js/updateUserProfile.js?v='.$updateUserProfileVersion.'"></script>
+        <script src="/assets/js/updateDirection.js?v='.$updateUserProfileVersion.'"></script>
     ';
 ?>
