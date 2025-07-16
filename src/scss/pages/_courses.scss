@@ -6,7 +6,12 @@
 }
 
 .cursos-filtro{
-    padding: 3rem 1rem;
+    width: 95%;
+    margin: 0 auto;
+
+    @include m.computadora{
+        width: 90%;
+    }
 
     &__titulo{
         color: v.$dorado;
@@ -24,10 +29,19 @@
     }
 
     &__categorias{        
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
+        display: grid;
+        gap: .5rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        @include m.tablet{
+            grid-template-columns: repeat(5, 1fr);
+            gap: .5rem;
+        }
+
+        @include m.computadora{
+            grid-template-columns: repeat(10, 1fr);
+            gap: 1rem;
+        }
     }
 
     &__categoria{
@@ -51,11 +65,16 @@
 }
 
 .cursos-container{
-    width: 100%;
+    width: 95%;
+    margin: 0 auto;
     height: 80vh;
     overflow-y: scroll;   
     scrollbar-width: thin;
     scrollbar-color: v.$blanco v.$blanco;
+    
+    @include m.computadora{
+        width: 90%;
+    }
 
     &__empty{
         color: v.$rojo;
@@ -67,7 +86,12 @@
         grid-template-columns: repeat(1, 1fr);
         gap: 3rem;
         padding: 2rem 1rem;
+        
         @include m.tablet{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+        @include m.computadora{
             grid-template-columns: repeat(3, 1fr);
         }
     }

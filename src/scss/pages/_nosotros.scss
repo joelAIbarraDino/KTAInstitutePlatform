@@ -1,10 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.about-gold-bg{
-    background-color: v.$fondo_oscuro_claro;
-}
-
 .about-dark-bg{
     background-color: v.$fondo_oscuro;
 
@@ -38,13 +34,13 @@
 
     &__pin{
         border: solid .1rem v.$dorado;
-        width: 11rem;
+        width: 16rem;
         text-align: center;
         padding: .8rem;
         border-radius: 2rem;
         color: v.$dorado;
         font-weight: v.$bold;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     &__title{
@@ -67,7 +63,7 @@
     &__text-min{
         color: v.$dorado;
         font-weight: v.$bold;
-        font-size: 1.4rem;
+        font-size: 1.8rem;
         margin: 0;
         margin-bottom: 1.2rem;
     }
@@ -75,21 +71,25 @@
     &__text{
         font-size: 1rem;
         margin: 0;
-        margin-bottom: 1.4rem;
-        line-height: 1.8rem;
+        margin-bottom: 1.2rem;
 
         @include m.tablet{
-            font-size: 1.2rem;
-            line-height: 2rem;
+            font-size: 1.4rem;
         }
 
         @include m.computadora{
-            font-size: 1.7rem;
-            line-height: 2.2rem;
+            font-size: 2.1rem;
+            line-height: 3rem;
         }
     }
 
-    &__courses{
+    &__courses-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__courses-btn{
         background-color: v.$dorado;
         padding: 1rem;
         color: v.$blanco;
@@ -101,7 +101,7 @@
         
 
         @include m.tablet{
-            width: 20rem;
+            width: 30rem;
         }
 
         &:hover{
@@ -117,12 +117,14 @@
 
         @include m.computadora{
             display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 
     &__founder{
-        width: 6rem;
-        height: 6rem;
+        width: 8rem;
+        height: 8rem;
         border-radius: 50%;
         border: .2rem solid v.$dorado;
     }

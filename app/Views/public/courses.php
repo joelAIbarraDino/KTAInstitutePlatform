@@ -2,7 +2,7 @@
 
 <main class="cursos-principal">
 
-    <div class="cursos-filtro width-80">
+    <div class="cursos-filtro">
         <h1 class="cursos-filtro__titulo" >Nuestros cursos</h1>
         <p class="cursos-filtro__desc" id="main-content">Empieza, cambia o avanza en tu carrera con KTA como guía.</p>
 
@@ -31,7 +31,7 @@
 
     <div class="cursos-container">
         
-        <div class="cursos-container__grid width-80">
+        <div class="cursos-container__grid">
             <?php if(!empty($courses)):?>
                 <?php foreach($courses as $course):?>
                     <?php if($course->privacy == 'Público'):?>

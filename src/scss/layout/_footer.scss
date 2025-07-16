@@ -36,10 +36,14 @@
             padding: 0;
             display: flex;
             justify-content: start;
-            gap: 3rem;
+            gap: 1rem;
             padding-top: 1rem;
             padding-bottom: 1rem;
             
+            @include m.tablet{
+                gap: 3rem;
+            }
+
             &__item a{
                 color: v.$blanco;
                 padding: 1.6rem 1rem 1rem 1rem;

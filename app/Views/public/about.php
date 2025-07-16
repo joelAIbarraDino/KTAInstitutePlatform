@@ -1,7 +1,7 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
 <main>
-    <div class="about-gold-bg">
+    <div>
         <section class="about-main">
             <div class="about-main__left">
 
@@ -29,8 +29,8 @@
                     </p>
                 </div>
 
-                <a href="/cursos" class="about-main__courses">
-                    ¡Quiero aprender ahora!
+                <a href="/cursos" class="about-main__courses-container">
+                    <div class="about-main__courses-btn">¡Quiero aprender ahora!</div>
                 </a>
 
                 <div class="about-main__founders">

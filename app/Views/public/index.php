@@ -89,9 +89,11 @@
     </div>
 </section>
 
-<!-- Elfsight Google Reviews | Untitled Google Reviews -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-3d89288d-8b7b-48c8-91cd-90483692c0c2" data-elfsight-app-lazy></div>
+<section>
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-3d89288d-8b7b-48c8-91cd-90483692c0c2" data-elfsight-app-lazy></div>
+</section>
+
 
 
 <section class="membresias-index">
@@ -101,7 +103,7 @@
     <div class="membresias-index__container">
         
         <div class="membresia-index">
-            <img class="membresia-index__imagen" src="/assets/images/membresia1.png" alt="imagen">
+            <img class="membresia-index__imagen" src="/assets/images/membresia2.jpg" alt="imagen">
             <div class="membresia-index__container">
                 <p class="membresia-index__titulo">Nuestros cursos</p>
                 <p class="membresia-index__texto">
@@ -115,24 +117,21 @@
         </div>
 
         <div class="membresia-index">
-            <img class="membresia-index__imagen" src="/assets/images/membresia1.png" alt="imagen">
+            <img class="membresia-index__imagen" src="/assets/images/membresia2.jpg" alt="imagen">
             <div class="membresia-index__container">
-                <p class="membresia-index__titulo">Membresia KTA</p>
+                <p class="membresia-index__titulo">Membresía KTA</p>
                 <p class="membresia-index__texto">
                     ¿Ya  tienes experiencia como preparador de impuestos y quieres pasar al siguiente nivel?. 
                     Con nuestra <strong>Membresía Business Lab<strong> tendrás todo lo que necesitas para llegar a lo mas alto.
                 </p>
 
                 <div class="membresia-index__container-link">
-                    <a class="membresia-index__enlace" href="/membresias">Ver mas info</a>
+                    <a class="membresia-index__enlace" href="/membresias">Ver más</a>
                 </div>
             </div>
         </div>
 
     </div>    
-
-    
-
 </section>
 
 <div id="purchase-popup" class="popup hidden">

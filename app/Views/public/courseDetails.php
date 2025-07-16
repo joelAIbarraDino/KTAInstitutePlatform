@@ -1,64 +1,56 @@
 <?php include_once __DIR__.'/../components/header.php';?>
 
 <main>
-    <div class="cover-curso" style="background-image: url(/assets/background-courses/<?=$course->background?>);">
-        <div class="cover-curso__cover">
 
-            <div class="cover-curso__datos" id="main-content">
-                
-                <div class="cover-curso__cont-regreso">
-                    <a class="cover-curso__regreso" href="javascript:history.back();">&laquo Regresar</a>
+    <div class="info-curso">
+        <img class="info-curso__background" src="/assets/background-courses/<?=$course->background?>" alt="<?=$course->background?>">
+
+        <div class="info-curso__cover">
+            <a class="info-curso__return" href="javascript:history.back()"><i class='bx bx-left-arrow-alt'></i> Regresar</a>
+            
+            <div class="info-curso__type">
+                <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
+            </div>
+            
+            <h1 class="info-curso__name" ><?=$course->name?></h1>
+            <p class="info-curso__lema"><?=$course->watchword?></p>
+
+            <div class="info-curso__details">
+
+                <div class="info-curso__detail">
+                    <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>Acceso a material</span>
                 </div>
 
-                <h1 class="cover-curso__name"><?=$course->name?></h1>
-                <p class="cover-curso__lema"><?=$course->watchword?></p>
-
-                <div class="cover-curso__detalles">
-                    <!-- <div class="cover-curso__detalle">
-                        <i class='bx bx-movie'></i> 0 <span>lecciones</span>
-                    </div> -->
-                    <div class="cover-curso__tipo">
-                        <i class='bx bx-camera-movie'></i> Contenido grabado
-                    </div>
-                    <div class="cover-curso__detalle">
-                        <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>meses de estudio</span>
-                    </div>
-
-                    <?php if($course->enrollment):?>
-                        <div class="cover-curso__detalle">
-                            <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span>estudiantes</span>
-                        </div>
-                    <?php endif;?>
-
-                    <div class="cover-curso__detalle">
-                        <i class='bx bx-book-bookmark'></i> Profesor: <span><a href="/profesor/view/<?=$course->id_teacher?>"><?=$course->teacher?></a></span>
-                    </div>
-                </div>
-
-                <div class="cover-curso__description">
-                    <?=$course->description?>
-                </div>
-
-                <div class="cover-curso__cont-precio">
-                    <?php if($course->discount && date('Y-m-d') <= $course->discount_ends_date &&  date('H:i:s') <= $course->discount_ends_time): ?>
-                            <p class="cover-curso__precio cover-curso__precio--original">$ <?=$course->price?> USD</p>
-                            <p class="cover-curso__precio cover-curso__precio--oferta">$ <?= $course->price * (1 - ($course->discount/100))?> USD</p>
-                        <?php else: ?>
-                            <p class="cover-curso__precio cover-curso__precio--normal">$ <?=$course->price?> USD</p>
-                    <?php endif;?>
-                </div>
-
-                <?php if(!$cursoInscrito):?>
-                    <div class="cover-curso__botones">
-                        <a href="/curso/checkout/<?=$course->url?>" class="cover-curso__boton cover-curso__boton--comprar">Comprar ahora</a>
-                    </div>
-                <?php else:?>
-                    <div class="cover-curso__botones">
-                        <a href="/curso/watch/<?=$enroll_url?>" class="cover-curso__boton cover-curso__boton--comprar">Continuar curso</a>
+                <?php if($course->enrollment >2): ?>
+                    <div class="info-curso__detail">
+                        <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span>estudiantes</span>
                     </div>
                 <?php endif;?>
 
+                <div class="info-curso__detail">
+                    <i class='bx bx-book-bookmark'></i> Profesor: <span><a href="/profesor/view/<?=$course->id_teacher?>"><?=$course->teacher?></a></span>
+                </div>
+
             </div>
+
+            <div class="info-curso__description">
+                <?=$course->description ?>
+            </div>
+
+            <div class="info-curso__price-container">
+                <?php if($course->discount && date('Y-m-d') <= $course->discount_ends_date &&  date('H:i:s') <= $course->discount_ends_time): ?>
+                        <p class="info-curso__price info-curso__price--original">$ <?=$course->price?> USD</p>
+                        <p class="info-curso__price info-curso__price--oferta">$ <?= $course->price * (1 - ($course->discount/100))?> USD</p>
+                <?php else: ?>
+                        <p class="info-curso__price info-curso__price--normal">$ <?=$course->price?> USD</p>
+                <?php endif;?>
+            </div>
+
+            <?php if(!$cursoInscrito):?>
+                <a href="/curso/checkout/<?=$course->url?>" class="info-curso__button">Comprar ahora</a>
+            <?php else:?>
+                <a href="/curso/watch/<?=$enroll_url?>" class="info-curso__button">Continuar curso</a>
+            <?php endif;?>
 
         </div>
     </div>

@@ -5,15 +5,19 @@
   position: fixed;
   bottom: 1rem;
   left: 2rem;
-  background: v.$dorado;
+  background: rgba(v.$negro, 0.8);
   color: v.$blanco;
-  font-weight: v.$black;
+  font-weight: v.$regular;
   padding: 1rem;
   border-radius: .5rem;
   z-index: 1;
   opacity: 0;
   transition: opacity 0.5s ease;
   width: 22rem;
+
+  @include m.tablet{
+    width: 45rem;
+  }
 
   &.visible{
     opacity: 1;
@@ -28,11 +32,12 @@
 
 .whatsapp{
   position: fixed;
-  bottom: 2rem;
+  bottom: 1rem;
   right: 2rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  z-index: 10;
   
   &__tooltip{
     margin: 0;

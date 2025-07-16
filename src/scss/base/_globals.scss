@@ -34,16 +34,11 @@ html {
     height: 100%;
 }
 body {
-    min-height: 100%;
     display: flex;
     flex-direction: column;
     font-family: v.$fuente_principal;
     font-size: 1.8rem;
     overflow-x: hidden;
-
-    @include m.tablet{
-        height: 100%;
-    }
 
     &.no-scroll{
         overflow-y: hidden;
