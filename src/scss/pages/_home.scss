@@ -207,7 +207,7 @@
 
     position: relative;
     width: 100%;
-    min-height: 80vh;
+    min-height: 70vh;
     overflow: hidden;
     display: none;
     opacity: 0;
@@ -215,7 +215,7 @@
     transition: opacity 1s;
 
     @include m.computadora{
-        min-height: 62vh;
+        min-height: 60vh;
     }
 
     &-container{
@@ -232,13 +232,17 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: 0;
+        width: 400%;
+        height: 400%;
         transform: translate(-50%, -50%);
+        z-index: 0;
+        pointer-events: none;
         object-fit: cover;
+        
+        @include m.tablet{
+            height: 200%;
+            width: 200%;
+        }
     }
 
     &__background{
@@ -257,7 +261,7 @@
         z-index: 1;
         top: 0;
         left: 0;
-        min-height: 80vh;
+        min-height: 70vh;
         background-color: rgba(v.$negro, 0.3);
         display: flex;
         align-items: center;
@@ -273,7 +277,7 @@
         }
 
         @include m.computadora{
-            min-height: 62vh;
+            min-height: 60vh;
         }
     }
 

@@ -43,7 +43,7 @@
     const popup = document.getElementById("purchase-popup");
     const text = document.getElementById("popup-text");
 
-    text.innerText = `¡${name} de ${city}, USA es un nuevo estudiante y compró un curso`;
+    text.innerText = `¡${name} de ${city}, USA es un nuevo estudiante y compró un curso¡`;
     popup.classList.remove("hidden");
     popup.classList.add("visible");
 

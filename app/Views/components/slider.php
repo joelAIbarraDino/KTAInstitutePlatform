@@ -7,9 +7,13 @@
                 <?php if($slider->type_background=="picture"):?>
                     <img src="/assets/slidebar/<?=$slider->background?>" alt="imagen de fondo" class="slider__background" loading="lazy">
                 <?php else:?>
-                    <video autoplay muted loop playsinline class="slider__video">
-                        <source src="/assets/videos/placeholder2.mp4" type="video/mp4" />
-                    </video>
+                      <iframe
+                        src="https://player.vimeo.com/video/<?=$slider->id_video?>?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                        frameborder="0"
+                        allow="autoplay; fullscreen"
+                        allowfullscreen
+                        class="slider__video"
+                    ></iframe>
                 <?php endif;?>
                 
                 <div class="slider__cover">
