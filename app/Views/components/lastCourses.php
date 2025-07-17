@@ -6,14 +6,7 @@
         <?php endif;?>
         <div class="main-courses">
             <?php foreach($courses as $course):?>
-                <div class="main-course">
-                    <a href="/curso/view/<?=$course->url?>"> 
-                        <img class="main-course__picture" src="/assets/background-courses/<?=$course->background?>" alt="thumbnail">
-                    </a>
-                    <div class="main-course__more-info-container">
-                        <a class="main-course__more-info" href="/curso/view/<?=$course->url?>">+ Info</a>   
-                    </div>
-                </div>
+                <?php include __DIR__.'/courseCard.php';?>
             <?php endforeach;?>
         </div>
     </section>

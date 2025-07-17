@@ -18,7 +18,7 @@
             <div class="info-curso__details">
 
                 <div class="info-curso__detail">
-                    <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>Acceso a material</span>
+                    <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>Meses de acceso a material</span>
                 </div>
 
                 <?php if($course->enrollment >2): ?>

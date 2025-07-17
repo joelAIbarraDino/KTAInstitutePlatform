@@ -19,7 +19,7 @@ class PagesController{
     public static function index(): void{
 
         $sliders = Slidebar::all();
-        $courses = CourseView::all(5, 'created_at', 'ASC');
+        $courses = CourseView::all(4, 'id_course', 'DESC');
         
         Response::render('public/index', [
             'nameApp'=>APP_NAME, 
