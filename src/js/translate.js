@@ -49,8 +49,8 @@
 
     async function idiomaPagina(idioma) {
         try {
-            const staticUrl = `/assets/lang/${idioma}.json`;
-            const dynamicUrl = `/assets/lang/${idioma}.dynamic.json`;
+            const staticUrl = `/assets/lang/${idioma}.json?v=${Date.now()}`;
+            const dynamicUrl = `/assets/lang/${idioma}.dynamic.json?v=${Date.now()}`;
 
             const [staticRes, dynamicRes] = await Promise.all([
                 fetch(staticUrl),
