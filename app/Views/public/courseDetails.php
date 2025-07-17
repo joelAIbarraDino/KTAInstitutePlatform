@@ -6,34 +6,34 @@
         <img class="info-curso__background" src="/assets/background-courses/<?=$course->background?>" alt="<?=$course->background?>">
 
         <div class="info-curso__cover">
-            <a class="info-curso__return" href="javascript:history.back()"><i class='bx bx-left-arrow-alt'></i> Regresar</a>
+            <a class="info-curso__return" href="javascript:history.back()" data-section="course-details" data-label="return"><i class='bx bx-left-arrow-alt'></i> Regresar</a>
             
-            <div class="info-curso__type">
+            <div class="info-curso__type" data-section="course-details" data-label="type-content">
                 <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
             </div>
             
-            <h1 class="info-curso__name" ><?=$course->name?></h1>
-            <p class="info-curso__lema"><?=$course->watchword?></p>
+            <h1 class="info-curso__name" data-section="course-<?=$course->id_course?>" data-label="name"><?=$course->name?></h1>
+            <p class="info-curso__lema" data-section="course-<?=$course->id_course?>" data-label="watchword"><?=$course->watchword?></p>
 
             <div class="info-curso__details">
 
                 <div class="info-curso__detail">
-                    <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>Meses de acceso a material</span>
+                    <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span data-section="course-details" data-label="access-content">Meses de acceso a material</span>
                 </div>
 
                 <?php if($course->enrollment >2): ?>
                     <div class="info-curso__detail">
-                        <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span>estudiantes</span>
+                        <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span data-section="course-details" data-label="students">estudiantes</span>
                     </div>
                 <?php endif;?>
 
                 <div class="info-curso__detail">
-                    <i class='bx bx-book-bookmark'></i> Profesor: <span><a href="/profesor/view/<?=$course->id_teacher?>"><?=$course->teacher?></a></span>
+                    <i class='bx bx-book-bookmark'></i> <div data-section="course-details" data-label="teacher">Profesor:</div> <span><a href="/profesor/view/<?=$course->id_teacher?>"><?=$course->teacher?></a></span>
                 </div>
 
             </div>
 
-            <div class="info-curso__description">
+            <div class="info-curso__description" data-section="course-<?=$course->id_course?>" data-label="description">
                 <?=$course->description ?>
             </div>
 
@@ -47,9 +47,9 @@
             </div>
 
             <?php if(!$cursoInscrito):?>
-                <a href="/curso/checkout/<?=$course->url?>" class="info-curso__button">Comprar ahora</a>
+                <a href="/curso/checkout/<?=$course->url?>" class="info-curso__button" data-section="course-details" data-label="checkout">Comprar ahora</a>
             <?php else:?>
-                <a href="/curso/watch/<?=$enroll_url?>" class="info-curso__button">Continuar curso</a>
+                <a href="/curso/watch/<?=$enroll_url?>" class="info-curso__button" data-section="course-details" data-label="continue">Continuar curso</a>
             <?php endif;?>
 
         </div>

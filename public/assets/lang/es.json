@@ -1,0 +1,51 @@
+{
+    "header":{
+        "home":"Inicio",
+        "self-study":"Cursos grabados",
+        "lives":"Cursos en vivo",
+        "calendar":"Calendario",
+        "about-us":"¿Quienes somos?",
+        "membership":"Membresías",
+        "my-space":"Mi espacio",
+        "sign-up":"Registrarse",
+        "login":"Iniciar sesión"
+    },
+    "footer":{
+        "text":"Ayudando al inmigrante en su integración total y exitosa en los Estados Unidos, ayudamos a las personas a alcanzar sus metas y perseguir sus sueños.",
+        "contact-us":"Contáctanos",
+        "kta-location":"Dirección KTA",
+        "contact":"Contacto",
+        "phone":"Teléfono"
+    },
+    "index":{
+        "caract-title-1":"Seminarios presenciales",
+        "caract-text-1":"Organizamos distintos seminarios presenciales para que pueda continuar con tu formación tributaria en distintas ciudades del país como Los Ángeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc...",
+        "caract-title-2":"LIVE WEBINARS",
+        "caract-text-2":"La mayoría de nuestros cursos ofrecen la posibilidad de ser realizados en vivo, permiten la interacción con el instructor y aseguran que los contenidos estén siempre actualizados.",
+        "caract-title-3":"ON DEMAND WEBINARS",
+        "caract-text-3":"Ofrecemos todos nuestros cursos en formato On Demand para que  estudie cuándo, dónde y cómo desee. Todos los cursos son actualizados permanentemente.",
+        "caract-title-4":"LIBROS TRIBUTARIOS",
+        "caract-text-4":"Tenemos a tu disposición una completa colección de libros tributarios constantemente actualizados y editados incorporando así todos los cambios y novedades fiscales.",
+        "stadistic-1":"Estudiantes exitosos",
+        "stadistic-2":"Video tutoriales",
+        "stadistic-3":"Maestros especializados",
+        "stadistic-4":"Cursos unicos",
+        "membership-button":"Más detalles",
+        "memberships-title":"Descubre cómo podemos ayudarte",
+        "memberships-subtitle":"Tenemos la solución adecuada para cada persona",
+        "membership-title-1":"Nuestros cursos",
+        "membership-text-1":"Aprende de profesionales con más de 30 años de experiencia. Sé parte de nuestros +2,500 estudiantes exitosos e inicia tu propio negocio.",
+        "membership-title-2":"Membresía KTA",
+        "membership-text-2":"¿Ya  tienes experiencia como preparador de impuestos y quieres pasar al siguiente nivel?. Con nuestra <strong>Membresía Business Lab<strong> tendrás todo lo que necesitas para llegar a lo mas alto."
+    },
+    "course-details":{
+        "return":"<i class='bx bx-left-arrow-alt'></i> Regresar",
+        "type-content":"<i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>",
+        "access-content":"Meses de acceso a material",
+        "students":"Estudiantes:",
+        "teacher":"Profesor:",
+        "checkout":"Comprar ahora",
+        "continue":"Continuar curso"
+    }
+
+}

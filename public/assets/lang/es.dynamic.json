@@ -1,0 +1,45 @@
+{
+    "slidebar-1": {
+        "title": "slider de prueba",
+        "font_title": "Lato",
+        "color_title": "#ffffff",
+        "subtitle": "subtitulo de prueba",
+        "font_subtitle": "Lato",
+        "color_subtitle": "#ebebeb",
+        "type_background": "video",
+        "background": "d3aef731d2c7dcbbf2388e8ac723ecd0.png",
+        "link": "https:\/\/www.youtube.com\/watch?v=m1kHEdK1U28&#38;ab_channel=UnPocoDeRobertoCein",
+        "CTA": "Hola mundo"
+    },
+    "course-5": {
+        "name": "Formulario 1120s",
+        "watchword": "fasdfasdfs",
+        "background": "1230f95c4ffdf42f064618331ed40a82.png",
+        "thumbnail": "a390d5392459022715c8183c354b1d91.png",
+        "description": "fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd",
+        "created_at": "2025-07-12",
+        "url": "9a527fe839b88acb",
+        "privacy": "Público"
+    },
+    "slidebar-2": {
+        "title": "slider con video",
+        "font_title": "Anton",
+        "color_title": "#cda02d",
+        "subtitle": "subtitulo de prueba",
+        "font_subtitle": "Lato",
+        "color_subtitle": "#cda02d",
+        "type_background": "picture",
+        "background": "4889abbdf95c6766497bc98c24575f79.png"
+    },
+    "slidebar-3": {
+        "title": "vcvzxcs",
+        "font_title": "Anton",
+        "color_title": "#cda02d",
+        "subtitle": "vzxcvzxs",
+        "font_subtitle": "Dancing Script",
+        "color_subtitle": "#cda02d",
+        "type_background": "video",
+        "link": "https:\/\/www.youtube.com\/watch?v=rxhyddGvkG0&#38;ab_channel=ReaccionaCein",
+        "CTA": "vxcvzxcvs"
+    }
+}

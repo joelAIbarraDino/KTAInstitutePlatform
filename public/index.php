@@ -108,7 +108,7 @@ $dino->router->post('/auth/google-callback', [AuthProvidersController::class, 'g
 $dino->router->get('/forgot', [AuthController::class, 'forgot'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->post('/forgot', [AuthController::class, 'forgot']);
 
-$dino->router->get('/sign-in', [AuthController::class, 'signIn']);
+$dino->router->get('/sign-up', [AuthController::class, 'signIn']);
 $dino->router->post('/auth/sign-in', [StudentController::class, 'signIn']);
 
 $dino->router->get('/logout', [AuthController::class, 'logout']);

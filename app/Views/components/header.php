@@ -17,7 +17,7 @@
         </div>
 
         <div class="admin-header__right">
-            <p class="admin-header__name">Hola<?=$nameUser?></p>
+            <p class="admin-header__name">Hola, <?=$nameUser?></p>
             <a class="admin-header__logout"href="/logout"> <i class="bx bx-log-out"></i></a>
         </div>
     </div>
@@ -34,21 +34,20 @@
         </div>
 
         <ul class="header__nav-list">
-            <li><a class="header__link" href="/">Inicio</a></li>
-            <li><a class="header__link" href="/cursos">Cursos grabados</a></li>
-            <!-- <li><a class="header__link" href="/lives">Cursos en vivo</a></li> -->
-            <!-- <li><a class="header__link" href="/calendario">Calendario</a></li> -->
-            <!-- <li><a class="header__link" href="/reviews">Reviews</a></li> -->
-            <li><a class="header__link" href="/nosotros">¿Quienes somos?</a></li>
-            <li><a class="header__link" href="/membresias">Membresías</a></li>
+            <li><a class="header__link" href="/" data-section="header" data-label="home">Inicio</a></li>
+            <li><a class="header__link" href="/cursos" data-section="header" data-label="self-study">Cursos grabados</a></li>
+            <!-- <li><a class="header__link" href="/lives" data-section="header" data-label="lives">Cursos en vivo</a></li> -->
+            <!-- <li><a class="header__link" href="/calendario" data-section="header" data-label="calendar">Calendario</a></li> -->
+            <li><a class="header__link" href="/nosotros" data-section="header" data-label="about-us">¿Quienes somos?</a></li>
+            <li><a class="header__link" href="/membresias" data-section="header" data-label="membership">Membresías</a></li>
 
             <?php if(isset($_SESSION['student'])): ?>
-                <li><a class="header__button-login" href="/mis-cursos">Mi espacio</a></li>
+                <li><a class="header__button-login" href="/mis-cursos" data-section="header" data-label="my-space">Mi espacio</a></li>
             <?php elseif(isset($_SESSION['admin'])):?>
         
             <?php else:?>
-                <li><a class="header__button-signin" href="/sign-in">Registrate</a></li>
-                <li><a class="header__button-login" href="/login">Iniciar sesión</a></li>
+                <li><a class="header__button-signin" href="/sign-up" data-section="header" data-label="sign-up">Registrate</a></li>
+                <li><a class="header__button-login" href="/login" data-section="header" data-label="login">Iniciar sesión</a></li>
             <?php endif;?>
         </ul>
     </nav>

@@ -45,6 +45,7 @@ class CourseController{
                 
                 $id = $course->save();
                 if($id){
+                    Helpers::traducirYGuardarJson("course", $id, $course);
                     Response::redirect("/kta-admin/course-content/$id");
                 }else{
                     $alerts['error'][] = 'error al registrar el curso, intente mas tarde';
@@ -70,6 +71,7 @@ class CourseController{
     public static function update($id):void{
         
         $course = Course::find($id);
+        $original = clone $course;
         $alerts = [];
 
         if(!$course)
@@ -115,6 +117,7 @@ class CourseController{
 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Curso actualizado con exito');
+                    Helpers::traducirYGuardarJson("course", $course->id_course, $course);
                     Response::redirect('/kta-admin/cursos');
                 }else{
                     $alerts['error'][] = 'Eror al actualizar el curso, intente mas tarde';

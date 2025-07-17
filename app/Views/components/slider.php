@@ -18,11 +18,11 @@
                 
                 <div class="slider__cover">
                     <div class="slider__text-container">
-                        <h2 class="slider__text-title" style="color:<?=$slider->color_title?>; font-family:<?=$slider->font_title?>"><?=$slider->title?></h2>
-                        <p loading="lazy" class="slider__text-description" style="color:<?=$slider->color_subtitle?>; font-family:<?=$slider->font_subtitle?>"><?=$slider->subtitle?></p>
+                        <h2 class="slider__text-title" style="color:<?=$slider->color_title?>; font-family:<?=$slider->font_title?>" data-section="slidebar-<?=$slider->id_slidebar?>" data-label="title" ><?=$slider->title?></h2>
+                        <p loading="lazy" class="slider__text-description" style="color:<?=$slider->color_subtitle?>; font-family:<?=$slider->font_subtitle?>" data-section="slidebar-<?=$slider->id_slidebar?>" data-label="subtitle" ><?=$slider->subtitle?></p>
                     </div>
                     <?php if($slider->link && $slider->CTA):?>
-                        <a class="slider__link" href="<?=$slider->link?>"><?=$slider->CTA?></a>
+                        <a class="slider__link" href="<?=$slider->link?>" data-section="slidebar-<?=$slider->id_slidebar?>" data-label="CTA" ><?=$slider->CTA?></a>
                     <?php endif;?>
                 </div>
             </div>

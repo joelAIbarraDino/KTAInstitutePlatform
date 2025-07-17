@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 
+use ReflectionClass;
+
 class Helpers{
 
     static function saludo():string{
@@ -80,4 +82,96 @@ class Helpers{
         
         return ', '.$palabras[0]??'';
     }
+
+    static function traducirYGuardarJson($entidad, $id, $objNuevo, $objOriginal = null, $format = "text") {
+        $clase = new ReflectionClass($objNuevo);
+        $propiedades = $clase->getProperties();
+        $clavesTraducidas = [];
+        $clavesOriginales = [];
+
+        foreach ($propiedades as $prop) {
+            $nombre = $prop->getName();
+            $tipo = $prop->getType()?->getName();
+
+            if ($tipo === 'string') {
+                $valorNuevo = $objNuevo->$nombre ?? '';
+                $valorOriginal = $objOriginal?->$nombre ?? '';
+
+                if (empty($valorNuevo)) continue;
+
+                // Guardamos el texto original en español
+                $clavesOriginales[$nombre] = $valorNuevo;
+
+                // Si no hay original o ha cambiado, traducimos
+                if ($objOriginal === null || $valorNuevo !== $valorOriginal) {
+                    $traduccion = self::traducirGoogle($valorNuevo, 'es', 'en', $format);
+                    $clavesTraducidas[$nombre] = $traduccion;
+                }
+            }
+        }
+
+        if (!empty($clavesTraducidas)) {
+            // Guardar JSON en inglés
+            $rutaJsonEN = __DIR__ . "/../../public/assets/lang/en.dynamic.json";
+            $jsonEN = file_exists($rutaJsonEN) ? json_decode(file_get_contents($rutaJsonEN), true) : [];
+
+            $claveEntidad = "{$entidad}-{$id}";
+
+            if (!isset($jsonEN[$claveEntidad])) {
+                $jsonEN[$claveEntidad] = [];
+            }
+
+            foreach ($clavesTraducidas as $k => $v) {
+                $jsonEN[$claveEntidad][$k] = $v;
+            }
+
+            file_put_contents($rutaJsonEN, json_encode($jsonEN, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        }
+
+        if (!empty($clavesOriginales)) {
+            // Guardar JSON en español
+            $rutaJsonES = __DIR__ . "/../../public/assets/lang/es.dynamic.json";
+            $jsonES = file_exists($rutaJsonES) ? json_decode(file_get_contents($rutaJsonES), true) : [];
+
+            $claveEntidad = "{$entidad}-{$id}";
+
+            if (!isset($jsonES[$claveEntidad])) {
+                $jsonES[$claveEntidad] = [];
+            }
+
+            foreach ($clavesOriginales as $k => $v) {
+                $jsonES[$claveEntidad][$k] = $v;
+            }
+
+            file_put_contents($rutaJsonES, json_encode($jsonES, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        }
+    }
+
+    private static function traducirGoogle($texto, $from = 'es', $to = 'en', $format = "text") {
+        $apiKey = $_ENV['GOOGLE_TRANSLATE'];
+        $url = 'https://translation.googleapis.com/language/translate/v2';
+
+        $params = [
+            'q' => $texto,
+            'source' => $from,
+            'target' => $to,
+            'format' => $format,
+            'key' => $apiKey
+        ];
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/x-www-form-urlencoded'
+        ]);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $data = json_decode($response, true);
+
+        return $data['data']['translations'][0]['translatedText'] ?? $texto;
+    }
+
 }

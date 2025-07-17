@@ -1,0 +1,26 @@
+{
+    "slidebar-1": {
+        "title": "test slider",
+        "subtitle": "test subtitle",
+        "CTA": "Hello world"
+    },
+    "course-5": {
+        "name": "Form 1120s",
+        "watchword": "fasdfasdfs",
+        "background": "1230f95c4ffdf42f064618331ed40a82.png",
+        "thumbnail": "a390d5392459022715c8183c354b1d91.png",
+        "description": "fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd",
+        "created_at": "2025-07-12",
+        "url": "9a527fe839b88acb",
+        "privacy": "Public"
+    },
+    "slidebar-2": {
+        "title": "slider with video",
+        "subtitle": "test subtitle"
+    },
+    "slidebar-3": {
+        "title": "vcvzxcs",
+        "subtitle": "vzxcvzxs",
+        "CTA": "vxcvzxcvs"
+    }
+}

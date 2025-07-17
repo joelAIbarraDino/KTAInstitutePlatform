@@ -39,6 +39,7 @@ class SlidebarController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Slidebar creado con exito', 3000);
+                    Helpers::traducirYGuardarJson("slidebar", $id, $slidebar);
                     Response::redirect('/kta-admin/slidebar');
                 }else{
                     $alerts['error'][] = 'error al crear el slidebar, intente mas tarde';
@@ -58,6 +59,7 @@ class SlidebarController{
     public static function update($id):void{
 
         $slidebar = Slidebar::find($id);
+        $original = clone $slidebar;
         $alerts = [];
 
         if(!$slidebar)
@@ -97,6 +99,7 @@ class SlidebarController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'slidebar actualizado con exito', 3000);
+                    Helpers::traducirYGuardarJson("slidebar", $slidebar->id_slidebar, $slidebar, $original);
                     Response::redirect('/kta-admin/slidebar');
                 }else{
                     $alerts['error'][] = 'error al actualizar el slidebar, intente mas tarde';

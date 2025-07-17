@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="Cursos de Impuestos aprobados por el IRS de Contabilidad, QB, Inmigración, bookkeeping y mas">
@@ -24,6 +24,13 @@
 <body>
     
     <?= $content ?>
+
+    <div class="lang-switcher">
+        <img class="lang-switcher__flag" id="lang-switcher" src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="Bandera de idiomas">
+    </div>
+
     <?= $scripts??''; ?>
+    <?php $translateVersion = filemtime('assets/js/translate.js');  ?>
+    <script src="/assets/js/translate.js?v=<?=$translateVersion?>"></script>
 </body>
 </html>

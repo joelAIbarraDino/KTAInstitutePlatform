@@ -1,0 +1,51 @@
+{
+    "header":{
+        "home":"Home",
+        "self-study":"Self study",
+        "lives":"live courses",
+        "calendar":"Calendar",
+        "about-us":"About us",
+        "membership":"memberships",
+        "my-space":"My space",
+        "sign-up":"Sign up",
+        "login":"Sign-in"
+    },
+    "footer":{
+        "text":"By helping immigrants in their full and successful integration into the United States, we help people achieve their goals and pursue their dreams.",
+        "contact-us":"Contact us",
+        "kta-location":"KTA location",
+        "contact":"Contact",
+        "phone":"Phone"
+    },
+    "index": {
+        "caract-title-1": "Presencial Seminars",
+        "caract-text-1": "We organize various in-person seminars so you can continue your tax training in different cities across the country, such as Los Angeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc.",
+        "caract-title-2": "LIVE WEBINARS",
+        "caract-text-2": "Most of our courses can be taken live, allowing interaction with the instructor and ensuring the content is always up to date.",
+        "caract-title-3": "ON DEMAND WEBINARS",
+        "caract-text-3": "We offer all our courses in On-Demand format so you can study whenever, wherever, and however you prefer. All courses are continuously updated.",
+        "caract-title-4": "TAX BOOKS",
+        "caract-text-4": "We offer a comprehensive collection of tax books that are constantly updated and edited to reflect the latest fiscal changes and developments.",
+        "stadistic-1": "Successful students",
+        "stadistic-2": "Video tutorials",
+        "stadistic-3": "Expert instructors",
+        "stadistic-4": "Unique courses",
+        "membership-button": "More details",
+        "memberships-title": "Discover how we can help you",
+        "memberships-subtitle": "We have the right solution for every person",
+        "membership-title-1": "Our Courses",
+        "membership-text-1": "Learn from professionals with over 30 years of experience. Join our 2,500+ successful students and start your own business.",
+        "membership-title-2": "KTA Membership",
+        "membership-text-2": "Already have experience as a tax preparer and want to take it to the next level? With our <strong>Business Lab Membership<strong> you'll have everything you need to reach the top."
+    },
+    "course-details":{
+        "return":"<i class='bx bx-left-arrow-alt'></i> Return",
+        "type-content":"<i class='bx bx-camera-movie'></i> <span>Recorded content</span>",
+        "access-content":"Months of access to the material",
+        "students":"Students",
+        "teacher":"Teacher:",
+        "checkout":"Buy now",
+        "continue":"Continue watch"   
+    }
+
+}
