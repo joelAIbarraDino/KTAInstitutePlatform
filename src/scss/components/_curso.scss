@@ -49,8 +49,8 @@
         position: absolute;
         top: 1rem;
         left: 1rem;
-        background-color: v.$negro;
-        color: v.$blanco;
+        background-color: v.$blanco;
+        color: v.$negro;
         padding: 0.3rem 0.8rem;
         border-radius: 1rem;
         font-size: 1.3rem;
@@ -74,12 +74,47 @@
         padding: 1.5rem;
     }
     
-    &__tipo{
-        background-color: v.$dorado;
-        padding: .5rem;
-        border-radius: .5rem;
+    &__botones{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        padding: 0 1.5rem 1.5rem 1.5rem;
+
+        @include m.tablet{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__boton{
+        padding: 1rem;
         color: v.$blanco;
+        font-weight: v.$black;
+        border-radius: .5rem;
+        text-align: center;
+        transition: all 0.4s ease;
+
+        &--venta{
+            background-color: v.$dorado;
+
+            &:hover{
+                background-color: v.$dorado_darken;
+            }
+        }
+
+        &--ver{
+            background-color: v.$negro;
+
+            &:hover{
+                background-color: rgba(v.$negro, 0.7);
+            }
+        }
+    }
+
+    &__tipo{
+        padding: .5rem;
         font-size: 1.6rem;
+        border-top: solid v.$dorado .1rem;
+        border-bottom: solid v.$dorado .1rem;
         text-align: center;
         margin-bottom: 1rem;
         display: flex;
@@ -90,6 +125,23 @@
         span{
             font-weight: v.$black;
         }
+        &--grabado{
+            color: v.$dorado;
+
+            i{
+                font-size: 1.8rem;
+                color: v.$rojo;
+            }
+        }
+
+        &--live{
+            color: v.$dorado;
+
+            i{
+                font-size: 1.8rem;
+                color: #2D8CFF;
+            }
+        }
     }
 
     &__nombre {
@@ -99,7 +151,6 @@
         margin: 1rem 0 1.5rem 0;
         text-align: left;
         padding-bottom: .5rem;
-        border-bottom: solid .1rem v.$dorado;
 
         &:hover{
             color: v.$dorado;
@@ -116,12 +167,19 @@
         color: v.$negro;
         font-weight: v.$black;
         margin: .5rem;
+
         i{
             color: v.$dorado;
         }
 
         span{
             font-weight: v.$regular;
+
+            &.curso__detail-timezone{
+                color: v.$dorado;
+                font-size: 1rem;
+                vertical-align: text-top;
+            }
 
             a{
                 color: v.$dorado;

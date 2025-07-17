@@ -11,7 +11,7 @@
         </div>
         <div class="curso__contenido">
             
-            <div class="curso__tipo curso__tipo--grabado">
+            <div class="curso__tipo">
                 <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
             </div>
 
@@ -35,15 +35,18 @@
             
             <span class="curso__categoria"><?=$course->category?></span>
         </div>
-        
         <div class="curso__contenido">
-            <div class="curso__tipo curso__tipo--grabado">
-                <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
+            <div class="curso__tipo curso__tipo--live">
+                <i class='bx bxl-zoom' ></i> <span>Contenido en vivo</span>
             </div>
             <a href="/curso/view/<?=$course->url?>"><h3 class="curso__nombre"><?=$course->name?></h3></a>
             
             <div class="curso__detail">
-                <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span>Meses de acceso a material</span>
+                <i class='bx bx-calendar'></i> 20 de Enero
+            </div>
+
+            <div class="curso__detail">
+                <i class='bx bx-time'></i> 5 pm <span class="curso__detail-timezone">Hora del este</span>
             </div>
 
             <div class="curso__detail">
@@ -52,7 +55,7 @@
 
             <?php if($course->enrollment >2): ?>
                 <div class="curso__detail">
-                    <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span>estudiantes</span>
+                    <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span>inscritos</span>
                 </div>
             <?php endif;?>
 
@@ -62,8 +65,8 @@
         </div>
 
         <div class="curso__botones">
-            <a href="/curso/checkout/<?=$course->url?>" class="curso__boton curso__boton--venta">¡Comprar ahora!</a>
-            <a href="/curso/watch/<?=$course->url?>" class="curso__boton curso__boton--ver">Ver curso</a>
+            <a href="/live/checkout/<?=$course->url?>" class="curso__boton curso__boton--venta">¡Comprar ahora!</a>
+            <a href="/live/watch/<?=$course->url?>" class="curso__boton curso__boton--ver">Ver curso</a>
         </div>
     </div>
 
