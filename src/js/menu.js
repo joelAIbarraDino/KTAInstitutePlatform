@@ -6,12 +6,14 @@
     if(menuBtn){
         menuBtn.addEventListener('click', ()=>{
             menu.classList.toggle('nav-visble');
+            document.querySelector('html').classList.toggle('no-scroll');
         });
     }
 
     if(closeBtn){
         closeBtn.addEventListener('click', ()=>{
             menu.classList.toggle('nav-visble');
+            document.querySelector('html').classList.toggle('no-scroll');
         });
     }
 

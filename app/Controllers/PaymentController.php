@@ -40,6 +40,7 @@ class PaymentController{
                     'currency' => 'usd',
                     'product_data' => [
                         'name' => $curso->name,
+                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/thumbnails/'.$curso->thumbnail]
                     ],
                     'unit_amount' => $precio,
                 ],

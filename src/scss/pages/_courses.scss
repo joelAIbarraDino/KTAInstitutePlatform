@@ -71,6 +71,7 @@
     overflow-y: scroll;   
     scrollbar-width: thin;
     scrollbar-color: v.$blanco v.$blanco;
+    margin-top: 2rem;
     
     @include m.computadora{
         width: 90%;
@@ -92,7 +93,7 @@
         }
     
         @include m.computadora{
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 }

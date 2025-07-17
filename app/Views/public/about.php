@@ -103,7 +103,9 @@
 <?php include_once __DIR__.'/../components/footer.php';?>
 
 <?php 
+
+    $menuVersion = filemtime('assets/js/menu.js');
     $scripts ='
-        <script src="/assets/js/menu.js"></script>
+        <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
     ';
 ?>

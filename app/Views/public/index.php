@@ -149,12 +149,13 @@
 
 <?php 
 
+    $menuVersion = filemtime('assets/js/menu.js');
     $sliderVersion = filemtime('assets/js/slider.js');
     $saleVersion = filemtime('assets/js/saleAlerts.js');
     $animationVersion = filemtime('assets/js/counter.js');
 
     $scripts ='
-        <script src="/assets/js/menu.js"></script>
+        <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
         <script src="/assets/js/counter.js?v='.$animationVersion.'"></script>
         <script src="/assets/js/slider.js?v='.$sliderVersion.'"></script>
         <script src="/assets/js/saleAlerts.js?v='.$saleVersion.'"></script>
