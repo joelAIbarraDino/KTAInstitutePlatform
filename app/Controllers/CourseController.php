@@ -30,7 +30,8 @@ class CourseController{
 
         if(Request::isPOST()){
             $alerts = [];
-            $datosEnviados = Request::getPostData();
+            $datosEnviados = Request::getPostData(['details']);
+
             
             $course->sincronize($datosEnviados);
 
@@ -45,7 +46,9 @@ class CourseController{
                 
                 $id = $course->save();
                 if($id){
-                    Helpers::traducirYGuardarJson("course", $id, $course);
+                    $atributosTraducibles = ['name', 'watchword', 'description', 'details']; 
+                    Helpers::traducirYGuardarJson("course", $id, $course, null, $atributosTraducibles, "html");
+
                     Response::redirect("/kta-admin/course-content/$id");
                 }else{
                     $alerts['error'][] = 'error al registrar el curso, intente mas tarde';
@@ -83,7 +86,7 @@ class CourseController{
 
         if(Request::isPOST()){
             $alerts = [];
-            $datosEnviados = Request::getPostData();
+            $datosEnviados = Request::getPostData(['details']);
 
             $course->name = $datosEnviados['name'];
             $course->watchword = $datosEnviados['watchword'];
@@ -95,6 +98,7 @@ class CourseController{
             $course->id_teacher = $datosEnviados['id_teacher'];
             $course->id_category = $datosEnviados['id_category'];
             $course->description = $datosEnviados['description'];
+            $course->details = $datosEnviados['details'];
 
             $alerts = $course->validate();
 
@@ -117,7 +121,10 @@ class CourseController{
 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Curso actualizado con exito');
-                    Helpers::traducirYGuardarJson("course", $course->id_course, $course);
+                    
+                    $atributosTraducibles = ['name', 'watchword', 'description', 'details']; 
+                    Helpers::traducirYGuardarJson("course", $course->id_course, $course, $original, $atributosTraducibles, "html");
+
                     Response::redirect('/kta-admin/cursos');
                 }else{
                     $alerts['error'][] = 'Eror al actualizar el curso, intente mas tarde';

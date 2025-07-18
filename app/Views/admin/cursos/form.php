@@ -67,7 +67,7 @@
         <div class="icon-left">
             <i class='bx bx-calendar-check'></i>
             <input 
-                type="text"
+                type="number"
                 name="max_months_enroll"
                 id="max_months_enroll"
                 class="field"
@@ -175,5 +175,15 @@
             
         ><?=$course->description?></textarea>
         <span id="msg-description" class="form__input-msg"></span>
+    </div>
+</div>
+
+<div class="grid-elements border">
+    <div class="form__input col-12">
+        <label for="description">Caracteristicas del curso</label>
+        
+        <div id="editor" style="height: 40rem;"></div>
+        <input type="hidden" id="input-editor" name="details" value="<?= htmlspecialchars($course->details, ENT_QUOTES) ?>">
+        
     </div>
 </div>

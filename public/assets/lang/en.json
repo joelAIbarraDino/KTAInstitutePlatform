@@ -45,7 +45,20 @@
         "students":"Students",
         "teacher":"Teacher:",
         "checkout":"Buy now",
-        "continue":"Continue watch"   
+        "continue":"Continue watch",
+        "tab-content":"Content",
+        "tab-instructor":"Instructor",
+        "teacher-button":"My courses",
+        "exp-teacher":"years of <span>experience</span>"
+    },
+    "teacher-details":{
+        "meet-teacher":"Meet your teacher",
+        "course-by":"Courses by"
+    },
+    "courses":{
+        "title":"Our courses",
+        "label":"Start, change, or advance your career with KTA as your guide.",
+        "all-courses":"All courses"
     }
 
 }

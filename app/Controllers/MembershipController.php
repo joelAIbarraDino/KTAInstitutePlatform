@@ -19,7 +19,7 @@ class MembershipController{
 
         if(Request::isPOST()){
             $alerts = [];
-            $datosEnviados = Request::getPostData();
+            $datosEnviados = Request::getPostData(['caract']);
 
             $membership->sincronize($datosEnviados);
             $alerts = $membership->validate();
@@ -33,6 +33,8 @@ class MembershipController{
                 $id = $membership->save();
                 
                 if($id){
+                    $atributosTraducibles = ['type', 'caract']; 
+                    Helpers::traducirYGuardarJson("membership", $id, $membership, null, $atributosTraducibles, "html");
                     Helpers::setSwalAlert('success', '¡Genial!', 'Membresia registrada con exito', 3000);
                     Response::redirect('/kta-admin/membresias');
                 }else{
@@ -53,6 +55,7 @@ class MembershipController{
     public static function update($id):void{
 
         $membership = Membership::find($id);
+        $original = clone $membership;
         $alerts = [];
 
         if(!$membership)
@@ -60,7 +63,7 @@ class MembershipController{
 
         if(Request::isPOST()){
             $alerts = [];
-            $datosEnviados = Request::getPostData();
+            $datosEnviados = Request::getPostData(['caract']);
 
             $membership->type = $datosEnviados['type'];
             $membership->max_time_membership = $datosEnviados['max_time_membership'];
@@ -80,6 +83,8 @@ class MembershipController{
                 $id = $membership->save();
                 
                 if($id){
+                    $atributosTraducibles = ['type', 'caract']; 
+                    Helpers::traducirYGuardarJson("membership", $membership->id_membership, $membership, $original, $atributosTraducibles, "html");
                     Helpers::setSwalAlert('success', '¡Genial!', 'Membresia actualizada con exito', 3000);
                     Response::redirect('/kta-admin/membresias');
                 }else{

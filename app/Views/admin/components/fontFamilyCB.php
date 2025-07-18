@@ -1,7 +1,7 @@
 <?php
 
 $fonts = [
-    'Lato' => 'Fuente de página',
+    'Lato' => 'Lato',
     'Caveat'=>'Caveat',
     'Anton'=>'Anton',
     'Pacifico'=>'Pacifico',

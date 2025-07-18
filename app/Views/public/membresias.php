@@ -4,19 +4,19 @@
     <section class="membresias">
         <?php foreach ($membresias as $membresia): ?>
             <article class="membresia-card">
-                <h3 class="membresia-card__titulo"><?php echo ucfirst($membresia->type); ?></h3>
+                <h3 class="membresia-card__titulo"><?= ucfirst($membresia->type); ?></h3>
                 
                 <div class="membresia-card__logo-container">
                     <img class="membresia-card__logo" src="/assets/membresias/<?=$membresia->photo?>" alt="logo membresia">
                 </div>
                 <div class="membresia-card__info">
-                    <p class="membresia-card__precio">$<?php echo number_format($membresia->price, 2); ?> USD</p>
-                    <p class="membresia-card__duracion">Acceso por <?php echo $membresia->max_time_membership; ?> meses</p>
+                    <p class="membresia-card__precio">$<?=number_format($membresia->price, 2); ?> USD</p>
+                    <p class="membresia-card__duracion">Acceso por <?= $membresia->max_time_membership; ?> meses</p>
                 </div>
-                <p class="membresia-card__descripcion"><?php echo $membresia->caract; ?></p>
+                <div data-section="membership-<?=$membresia->id_membership?>" data-label="caract"><?=$membresia->caract; ?></div>
                 
                 <div class="membresia-card__btn-container">
-                    <a class="membresia-card__btn" href="/membresia/checkout/<?=$membresia->id_membership?>">Comprar ahora</a>
+                    <a class="membresia-card__btn" href="/membresia/checkout/<?=$membresia->id_membership?>" data-section="course-details" data-label="checkout">Comprar ahora</a>
                 </div>
                 
             </article>

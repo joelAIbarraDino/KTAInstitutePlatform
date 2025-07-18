@@ -83,39 +83,33 @@ class Helpers{
         return ', '.$palabras[0]??'';
     }
 
-    static function traducirYGuardarJson($entidad, $id, $objNuevo, $objOriginal = null, $format = "text") {
-        $clase = new ReflectionClass($objNuevo);
-        $propiedades = $clase->getProperties();
+    static function traducirYGuardarJson($entidad, $id, $objNuevo, $objOriginal = null, array $atributosTraducibles = [], $format = "text") {
         $clavesTraducidas = [];
         $clavesOriginales = [];
 
-        foreach ($propiedades as $prop) {
-            $nombre = $prop->getName();
-            $tipo = $prop->getType()?->getName();
+        foreach ($atributosTraducibles as $nombre) {
+            if (!property_exists($objNuevo, $nombre)) continue;
 
-            if ($tipo === 'string') {
-                $valorNuevo = $objNuevo->$nombre ?? '';
-                $valorOriginal = $objOriginal?->$nombre ?? '';
+            $valorNuevo = $objNuevo->$nombre ?? '';
+            $valorOriginal = $objOriginal?->$nombre ?? '';
 
-                if (empty($valorNuevo)) continue;
+            if (empty($valorNuevo)) continue;
 
-                // Guardamos el texto original en español
-                $clavesOriginales[$nombre] = $valorNuevo;
+            // Guardamos el texto original en español
+            $clavesOriginales[$nombre] = $valorNuevo;
 
-                // Si no hay original o ha cambiado, traducimos
-                if ($objOriginal === null || $valorNuevo !== $valorOriginal) {
-                    $traduccion = self::traducirGoogle($valorNuevo, 'es', 'en', $format);
-                    $clavesTraducidas[$nombre] = $traduccion;
-                }
+            // Solo traduce si no existe el original o ha cambiado
+            if ($objOriginal === null || $valorNuevo !== $valorOriginal) {
+                $traduccion = self::traducirGoogle($valorNuevo, 'es', 'en', $format);
+                $clavesTraducidas[$nombre] = $traduccion;
             }
         }
 
+        $claveEntidad = "{$entidad}-{$id}";
+
         if (!empty($clavesTraducidas)) {
-            // Guardar JSON en inglés
             $rutaJsonEN = __DIR__ . "/../../public/assets/lang/en.dynamic.json";
             $jsonEN = file_exists($rutaJsonEN) ? json_decode(file_get_contents($rutaJsonEN), true) : [];
-
-            $claveEntidad = "{$entidad}-{$id}";
 
             if (!isset($jsonEN[$claveEntidad])) {
                 $jsonEN[$claveEntidad] = [];
@@ -129,11 +123,8 @@ class Helpers{
         }
 
         if (!empty($clavesOriginales)) {
-            // Guardar JSON en español
             $rutaJsonES = __DIR__ . "/../../public/assets/lang/es.dynamic.json";
             $jsonES = file_exists($rutaJsonES) ? json_decode(file_get_contents($rutaJsonES), true) : [];
-
-            $claveEntidad = "{$entidad}-{$id}";
 
             if (!isset($jsonES[$claveEntidad])) {
                 $jsonES[$claveEntidad] = [];

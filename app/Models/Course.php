@@ -12,14 +12,14 @@ class Course extends Model {
     protected static string $table = 'course';
     protected static string $PK_name = 'id_course';
     protected static array $columns = [ 
-        'id_course', 'name', 'watchword', 'thumbnail', 'background', 'description', 
+        'id_course', 'name', 'watchword', 'thumbnail', 'background', 'description', 'details', 
         'price','discount', 'discount_ends_date', 'discount_ends_time', 
         'max_months_enroll', 'created_at', 'url', 
         'privacy', 'id_category', 'id_teacher'
     ];
 
     protected static array $fillable = [
-        'name', 'watchword', 'thumbnail', 'background', 'description', 
+        'name', 'watchword', 'thumbnail', 'background', 'description', 'details', 
         'price','discount', 'discount_ends_date', 'discount_ends_time',
         'max_months_enroll', 
         'privacy', 'id_category', 'id_teacher'
@@ -32,6 +32,7 @@ class Course extends Model {
     public string $background;
     public string $thumbnail;
     public string $description;
+    public string $details;
     public float $price;
     public float $discount;
     public ?string $discount_ends_date;
@@ -53,6 +54,7 @@ class Course extends Model {
         $this->background = $args["background"]??"";
         $this->thumbnail = $args["thumbnail"]??"";
         $this->description = $args["description"]??"";
+        $this->details = $args["details"]??"";
         $this->price = $args["price"]??0.0;
         $this->discount = $args["discount"]??0;
         $this->discount_ends_date = $args["discount_ends_date"]??null;
@@ -80,6 +82,9 @@ class Course extends Model {
         
         if(strlen($this->description) < 80)
             self::setAlerts("error", "La descripción debe tener mas de 80 caracteres");
+
+        if(strlen($this->details) === 0)
+            self::setAlerts("error", "El curso no tiene detalles agregados");
 
         if(!$this->price)
             self::setAlerts("error", "Debe ingresar el precio del curso");

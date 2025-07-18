@@ -8,7 +8,7 @@ class CourseView extends Model {
     
     protected static string $table = 'course_view';
     protected static array $columns = [
-        'id_course', 'name', 'watchword', 'background', 'id_category', 'category', 'thumbnail', 'description', 
+        'id_course', 'name', 'watchword', 'background', 'id_category', 'category', 'thumbnail', 'description', 'details', 
         'price', 'discount', 'discount_ends_date', 'discount_ends_time', 
         'max_months_enroll', 'created_at', 'url', 'privacy',
         'enrollment', 'id_teacher', 'teacher'
@@ -22,6 +22,7 @@ class CourseView extends Model {
     public string $category;
     public string $thumbnail;
     public string $description;
+    public string $details;
     public float $price;
     public ?float $discount;
     public ?string $discount_ends_date;
@@ -43,6 +44,7 @@ class CourseView extends Model {
         $this->category = $args["category"]??"";
         $this->thumbnail = $args["thumbnail"]??"";
         $this->description = $args["description"]??"";
+        $this->details = $args["details"]??"";
         $this->price = $args["price"]??0;
         $this->discount = $args["discount"]??null;
         $this->discount_ends_date = $args["discount_ends_date"]??null;

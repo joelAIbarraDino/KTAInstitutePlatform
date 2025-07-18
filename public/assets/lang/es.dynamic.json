@@ -12,14 +12,15 @@
         "CTA": "Hola mundo"
     },
     "course-5": {
-        "name": "Formulario 1120s",
+        "name": "Formulario 1120",
         "watchword": "fasdfasdfs",
         "background": "1230f95c4ffdf42f064618331ed40a82.png",
         "thumbnail": "a390d5392459022715c8183c354b1d91.png",
         "description": "fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd",
         "created_at": "2025-07-12",
         "url": "9a527fe839b88acb",
-        "privacy": "Público"
+        "privacy": "Público",
+        "details": "<p>Duplica tus ingresos como preparador de taxes con el método probado para escalar en la industria de los impuestos<\/p><p><strong>Objetivo:<\/strong><\/p><p><strong style=\"color: rgb(178, 178, 0);\">Este curso está dirigido a todo preparador profesional de taxes que quiera formarse como preparador de impuestos corporativos. Se ensenará a los participantes a elaborar el Anexo C, el Formulario 1065, los Formularios 1120 y 1120 S.<\/strong><\/p><p><strong>👉🏻A quien a dirigido:<\/strong><\/p><p><strong style=\"color: rgb(178, 178, 0);\">A preparadores profesionales de taxes personales, ya que el curso requiere el manejo de la Forma 1040 y Schedule C.<\/strong><\/p><p><strong>⏰Horas:<\/strong><\/p><ul><li>24 Horas.<\/li><\/ul><p><strong>📚Contenido del curso:<\/strong><\/p><ol><li>Historia Empresarial<\/li><li>Conocer las Estructuras Comerciales y Industrial<\/li><li>Ventajas y desventajas de cada tipo de empresa<\/li><li>Organización de una empresa<\/li><li>Registrar una Empresa en el Estado y al Federal<\/li><li>Declaraciones obligatorias a cada tipo de empresa y sus anexos<\/li><li>Como leer e interpretar los informes contables y bancarios<\/li><li>Cómo informar y llenar los formularios; Schedule C, 1065, 1120S and 1120<\/li><li>Documentos y Obligaciones de registros y declaraciones al Estado y Federal según; El Tipo de compañía, Actividad, Empleo y situación económica y geográfica.<\/li><li>Compañía en Offshore (paraísos fiscales)<\/li><li>Explicación de los Formularios 1065, 1120 y 1120-S Y anexos<\/li><li>Obligaciones fiscales para Residentes extranjeros Socios o Miembros de una compañía doméstica<\/li><li>Leer e Interpretar informes contables<\/li><li>Nómina y obligaciones de empleadores y empleados (payroll)<\/li><li>Consejos de RH y Admin y Gestión de Empresa<\/li><\/ol><p><br><\/p>"
     },
     "slidebar-2": {
         "title": "slider con video",
@@ -41,5 +42,38 @@
         "type_background": "video",
         "link": "https:\/\/www.youtube.com\/watch?v=rxhyddGvkG0&#38;ab_channel=ReaccionaCein",
         "CTA": "vxcvzxcvs"
+    },
+    "teacher-1": {
+        "speciality": "Bookkeeper",
+        "bio": "Profesor Taxes, Bookkeeping, Payroll, Constitution Corporaciones&#13;&#10;Carlos Catarino&#13;&#10;EA, CAA, MBA Administración de Empresa y Recursos Humanos&#13;&#10;Con más de 30 años de experiencia Tributación, Restructuración de Corporaciones a nivel Mundial, trae toda su experiencia, conocimiento y Pasión a cada Curso, Seminario y Especialización que imparte.&#13;&#10;Fundador de Kta Institute&#13;&#10;Tiene como único objetivo Educar y Guiar al inmigrante en su integración total y Exitosa en los Estados Unidos."
+    },
+    "course-6": {
+        "name": "fsdaf",
+        "watchword": "fasdf",
+        "description": "fsdafasfsdfas fsdafasfsdfas fsdafasfsdfas fsdafasfsdfas fsdafasfsdfas fsdafasfsdfas"
+    },
+    "course-7": {
+        "name": "fdsaf",
+        "watchword": "fsadfasd",
+        "description": "fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd fsdafasdfasdfd"
+    },
+    "course-8": {
+        "name": "fdasfasf",
+        "watchword": "fasdfasdf",
+        "description": "fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfasfsadfas fsadfas fsadfas fsadfas fsadfasfsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas fsadfas"
+    },
+    "course-9": {
+        "name": "fasdf",
+        "watchword": "fsdafasdfassfda",
+        "description": "fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda fdsaff mfkask fas  fjasdnm, flnsam,fasfnasd asnd fnasd f asdff jbfsad fjas  f   f fasdjfnf fksad k fsda"
+    },
+    "course-10": {
+        "name": "curso",
+        "watchword": "fsdafasd",
+        "description": "fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd"
+    },
+    "membership-1": {
+        "type": "business lab",
+        "caract": "<p><strong class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">&nbsp;Mejores Cursos y Talleres<\/strong><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">&nbsp;.<\/span><\/p><p><a href=\"https:\/\/ktainstitute.com\/membresia-businesslab\/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjE5ODU0IiwidG9nZ2xlIjpmYWxzZX0%3D\" target=\"_blank\" class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Ver Lista de Cursos y Talleres<\/a><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">15 minutos al mes Asesoría directa con Carlos Catarino. (debe entrar en el calendario y agendar su cita)<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Participación reunión con preparadores 1 vez a la semana (temporada de impuestos) respondiendo preguntas y aclarando dudas de impuestos.<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Participación de Grupo de Whatsapp.<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Libro digital Domina los Impuestos 2024<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Comunidad Preparadores<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Certificado de asistencia<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Horas CE Reportadas al IRS<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Cartel Conocimiento Tributario 2025<\/span><\/p><p><br><\/p>"
     }
 }

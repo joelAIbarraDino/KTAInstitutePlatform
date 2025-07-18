@@ -58,15 +58,26 @@
     <div class="detalles-curso">
         <div class="detalles-curso__top">
             <div class="detalles-curso__tabs">
-                <button data-step="1" class="btn_tab detalles-curso__tab detalles-curso__tab--active">Contenido</button>
-                <button data-step="2" class="btn_tab detalles-curso__tab">Instructor</button>
-                <button data-step="3" class="btn_tab detalles-curso__tab">FAQ</button>
+                <button data-step="1" class="btn_tab detalles-curso__tab detalles-curso__tab--active" data-section="course-details" data-label="tab-details">Detalles</button>
+                <button data-step="2" class="btn_tab detalles-curso__tab" data-section="course-details" data-label="tab-content">Contenido</button>
+                <button data-step="3" class="btn_tab detalles-curso__tab" data-section="course-details" data-label="tab-instructor">Instructor</button>
+                <button data-step="4" class="btn_tab detalles-curso__tab">FAQ</button>
             </div>
         </div>
 
         <div class="detalles-cursos__tab-cont">
-
+            
             <div id="step-1" class="detalles-curso__content detalles-curso__content--active">
+                <?php if($course->details):?>
+                    <div class="width-70" data-section="course-<?=$course->id_course?>" data-label="details">
+                        <?=$course->details?>
+                    </div>
+                <?php else:?>
+                    <p class="acordeon__vacio">No hay detalles agregados</p>
+                <?php endif;?>
+            </div>
+
+            <div id="step-2" class="detalles-curso__content">
                 <?php if(!empty($modules)):?>
                     <?php foreach($modules as $key=>$module): ?>
                         <details class="acordeon__modulo width-70">
@@ -96,7 +107,7 @@
                 <?php endif;?>
             </div>
 
-            <div id="step-2" class="detalles-curso__content">
+            <div id="step-3" class="detalles-curso__content">
 
                 <div class="detalle-profesor width-70">
                     
@@ -104,26 +115,26 @@
 
                     <div>
                         
-                        <div class="detalle-profesor__name">
+                        <div class="detalle-profesor__name" data-section="teacher-<?=$teacher->id_teacher?>" data-label="name">
                             <?=$teacher->name?>
-                            <div class="detalle-profesor__speciality"><?=$teacher->speciality?></div>
+                            <div class="detalle-profesor__speciality" data-section="teacher-<?=$teacher->id_teacher?>" data-label="speciality"><?=$teacher->speciality?></div>
                         </div>
 
                         <div class="detalle-profesor__experience">
-                            <?=$teacher->experience?> años de <span>experiencia</span>
+                            <?=$teacher->experience?>  <span data-section="course-details" data-label="exp-teacher">años de experiencia</span>
                         </div>
 
-                        <div class="detalle-profesor__bio">
+                        <div class="detalle-profesor__bio" data-section="teacher-<?=$teacher->id_teacher?>" data-label="bio">
                             <?=$teacher->bio?>
                         </div>
 
-                        <a class="detalle-profesor__btn" href="/profesor/view/<?=$course->id_teacher?>?#cursos-profesor">Mis cursos</a>
+                        <a class="detalle-profesor__btn" href="/profesor/view/<?=$course->id_teacher?>?#cursos-profesor" data-section="course-details" data-label="teacher-button">Mis cursos</a>
 
                     </div>
                 </div>
             </div>
 
-            <div id="step-3" class="detalles-curso__content">
+            <div id="step-4" class="detalles-curso__content">
 
                 <?php if(!is_null($faq)):?>
                     <?php foreach($faq as $index=>$question):?>

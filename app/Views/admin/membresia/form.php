@@ -62,14 +62,8 @@
 <div class="grid-elements">
     <div class="form__input col-12">
         <label for="caract">Descripción de membresía</label>
-        <textarea 
-            name="caract" 
-            id="caract"
-            class="text-area"
-            placeholder="Descripción detallada de la membreía"
-            
-        ><?=$membership->caract?></textarea>
-        <span id="msg-description" class="form__input-msg"></span>
+        <div id="editor" style="height: 40rem;"></div>
+        <input type="hidden" id="input-editor" name="caract" value="<?= htmlspecialchars($membership->caract, ENT_QUOTES) ?>">
     </div>
 </div>
 

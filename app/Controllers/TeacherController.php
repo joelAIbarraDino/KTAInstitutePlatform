@@ -34,6 +34,9 @@ class TeacherController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Profesor registrado con exito', 3000);
+
+                    $atributosTraducibles = ['speciality', 'bio']; 
+                    Helpers::traducirYGuardarJson("teacher", $id, $teacher, null, $atributosTraducibles);
                     Response::redirect('/kta-admin/maestros');
                 }else{
                     $alerts['error'][] = 'error al registrar el profesor, intente mas tarde';
@@ -53,6 +56,7 @@ class TeacherController{
     public static function update($id):void{
 
         $teacher = Teacher::find($id);
+        $original = clone $teacher;
         $alerts = [];
 
         if(!$teacher)
@@ -86,6 +90,10 @@ class TeacherController{
                 
                 if($id){
                     Helpers::setSwalAlert('success', '¡Genial!', 'Profesor actualizado con exito', 3000);
+
+                    $atributosTraducibles = ['speciality', 'bio']; 
+                    Helpers::traducirYGuardarJson("teacher", $teacher->id_teacher, $teacher, $original, $atributosTraducibles);
+
                     Response::redirect('/kta-admin/maestros');
                 }else{
                     $alerts['error'][] = 'error al actualizar el profesor, intente mas tarde';

@@ -22,8 +22,8 @@
         "caract-text-1":"Organizamos distintos seminarios presenciales para que pueda continuar con tu formación tributaria en distintas ciudades del país como Los Ángeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc...",
         "caract-title-2":"LIVE WEBINARS",
         "caract-text-2":"La mayoría de nuestros cursos ofrecen la posibilidad de ser realizados en vivo, permiten la interacción con el instructor y aseguran que los contenidos estén siempre actualizados.",
-        "caract-title-3":"ON DEMAND WEBINARS",
-        "caract-text-3":"Ofrecemos todos nuestros cursos en formato On Demand para que  estudie cuándo, dónde y cómo desee. Todos los cursos son actualizados permanentemente.",
+        "caract-title-3":"Cursos self study",
+        "caract-text-3":"Ofrecemos todos nuestros cursos en formato self study para que  estudie cuándo, dónde y cómo desee. Todos los cursos son actualizados permanentemente.",
         "caract-title-4":"LIBROS TRIBUTARIOS",
         "caract-text-4":"Tenemos a tu disposición una completa colección de libros tributarios constantemente actualizados y editados incorporando así todos los cambios y novedades fiscales.",
         "stadistic-1":"Estudiantes exitosos",
@@ -45,7 +45,20 @@
         "students":"Estudiantes:",
         "teacher":"Profesor:",
         "checkout":"Comprar ahora",
-        "continue":"Continuar curso"
+        "continue":"Continuar curso",
+        "tab-content":"Contenido",
+        "tab-instructor":"Instructor",
+        "teacher-button":"Mis cursos",
+        "exp-teacher":"años de <span>experiencia</span>"
+    },
+    "teacher-details":{
+        "meet-teacher":"Conoce a tu instructor",
+        "course-by":"Cursos de"
+    },
+        "courses":{
+        "title":"Nuestros cursos",
+        "label":"Empieza, cambia o avanza en tu carrera con KTA como guía.",
+        "all-courses":"Todos los cursos"
     }
 
 }
