@@ -75,6 +75,21 @@
     align-items: center;
     justify-content: space-between;
 
+    &__left{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    &__title{
+        margin: 0;
+        -webkit-background-clip: text;
+        color: v.$negro;
+        font-size: 1.8rem;
+        font-weight: v.$bold;
+    }
+
     &__logo{
         width: 6rem;
     }
@@ -164,6 +179,22 @@
         font-size: 1.5rem;
         transition: all .5s ease;
 
+        &--nav{
+            display: block;
+
+            @include m.tablet{
+                display: none;
+            }
+        }
+
+        &--login{
+            display: none;
+
+            @include m.tablet{
+                display: block;
+            }
+        }
+
         &:hover{
             background-color: v.$dorado_darken;
         }
@@ -178,6 +209,22 @@
         text-align: center;
         font-size: 1.5rem;
         transition: all .5s ease;
+
+        &--nav{
+            display: block;
+
+            @include m.tablet{
+                display: none;
+            }
+        }
+
+        &--login{
+            display: none;
+
+            @include m.tablet{
+                display: block;
+            }
+        }
 
         &:hover{
             border: solid .2rem v.$negro;
@@ -370,7 +417,7 @@
     }
 
     @include m.computadora{
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
@@ -521,6 +568,10 @@
     background-color: v.$negro;
     padding: 4rem 0;
     margin-bottom: 3rem;
+
+    @include m.tablet{
+        padding: 17rem 10rem;
+    }
 
     &__container{
         width: 90%;
