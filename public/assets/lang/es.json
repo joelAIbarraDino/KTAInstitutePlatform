@@ -46,6 +46,7 @@
         "teacher":"Profesor:",
         "checkout":"Comprar ahora",
         "continue":"Continuar curso",
+        "tab-details":"Detalles",
         "tab-content":"Contenido",
         "tab-instructor":"Instructor",
         "teacher-button":"Mis cursos",
@@ -55,10 +56,14 @@
         "meet-teacher":"Conoce a tu instructor",
         "course-by":"Cursos de"
     },
-        "courses":{
+    "courses":{
         "title":"Nuestros cursos",
         "label":"Empieza, cambia o avanza en tu carrera con KTA como guía.",
         "all-courses":"Todos los cursos"
+    },
+    "live-details":{
+        "type-content":"<i class='bx bxl-zoom' ></i> <span>Contenido en vivo</span>",
+        "lema":"<strong>Este es un curso en vivo que se dara el:</strong>"
     }
 
 }

@@ -1,4 +1,4 @@
-<?php include_once __DIR__.'/../components/header.php'; ?>
+<?php include_once __DIR__.'/../../components/header.php'; ?>
 
 <main class="cursos-principal">
 
@@ -35,7 +35,7 @@
             <?php if(!empty($courses)):?>
                 <?php foreach($courses as $course):?>
                     <?php if($course->privacy == 'Público'):?>
-                        <?php include __DIR__.'/../components/courseCard.php'; ?>
+                        <?php include __DIR__.'/../../components/courseCard.php'; ?>
                     <?php endif;?>
                 <?php endforeach;?>
             <?php else:?>
@@ -46,7 +46,7 @@
     </div>    
 </main>
 
-<?php include_once __DIR__.'/../components/footer.php'; ?>
+<?php include_once __DIR__.'/../../components/footer.php'; ?>
 
 <?php 
     $menuVersion = filemtime('assets/js/menu.js');

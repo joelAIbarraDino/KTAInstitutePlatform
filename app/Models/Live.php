@@ -62,7 +62,7 @@ class Live extends Model {
         $this->discount_ends_time = $args["discount_ends_time"]??null;
         $this->created_at = $args["created_at"]??date('Y-m-d');
         $this->url = $args["url"]??null;
-        $this->privacy = $args["privacy"]??self::PRIVACY[0];
+        $this->privacy = $args["privacy"]??self::PRIVACY[2];
         $this->id_category = $args["id_category"]??0;
     }
 

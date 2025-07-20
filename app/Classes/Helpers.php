@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use DateTime;
 use ReflectionClass;
 
 class Helpers{
@@ -164,5 +165,29 @@ class Helpers{
 
         return $data['data']['translations'][0]['translatedText'] ?? $texto;
     }
+
+    public static function formatearFechasHoras(string $jsonFechas): array {
+        $fechas = json_decode($jsonFechas);
+        $diasMeses = [];
+        $horas = [];
+
+        foreach ($fechas as $fechaRaw) {
+            $fecha = new DateTime($fechaRaw);
+            $diasMeses[] = $fecha->format('j M');
+            $horas[] = $fecha->format('H:i');
+        }
+
+        // Eliminar duplicados en caso de que todas las horas sean iguales
+        $horasUnicas = array_unique($horas);
+        // Ordenar las fechas (por si acaso)
+        sort($diasMeses);
+        sort($horasUnicas);
+
+        return [
+            'fechas' => implode(', ', $diasMeses),
+            'horas' => implode(', ', $horasUnicas)
+        ];
+    }
+
 
 }

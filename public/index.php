@@ -18,6 +18,7 @@ use App\Middlewares\ExistsCourseMiddleware;
 use App\Middlewares\ExistsLessonMiddleware;
 use App\Middlewares\AdminLoggedMiddleware;
 use App\Middlewares\ExistsQuizMiddleware;
+use App\Middlewares\PublicLiveMiddleware;
 use App\Middlewares\ExistsFaqMiddleware;
 use App\Middlewares\ValidIdMiddleware;
 
@@ -87,13 +88,15 @@ $dino->router->get('/', [PagesController::class, 'index']);
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);
-
 $dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails'], [new PublicCourseMiddleware('/')]);
 
-$dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
-
+$dino->router->get('/lives', [PagesController::class, 'lives']);
+$dino->router->get('/lives/categoria/{category_url}', [PagesController::class, 'liveCategory']);
+$dino->router->get('/live/view/{id}', [PagesController::class, 'liveDetails'], [new PublicLiveMiddleware('/') ]);
 
 $dino->router->get('/membresias', [PagesController::class, 'membership']);
+
+$dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 
 //proceso de pago de curso
 $dino->router->get('/curso/checkout/{id}', [PaymentController::class, 'checkoutCourse']);
@@ -105,7 +108,6 @@ $dino->router->get('/nosotros', [PagesController::class, 'about']);
 
 //login sign-in and sign-up
 $dino->router->get('/login', [AuthController::class, 'login'], [new StudentLoggedMiddleware('/login')]);
-
 
 //rutas de autenticacion
 $dino->router->post('/auth/login-callback', [AuthController::class, 'ktaAuth']);

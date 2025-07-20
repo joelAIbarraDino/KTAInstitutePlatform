@@ -7,6 +7,7 @@ use App\Models\CourseView;
 use App\Models\EnrollmentView;
 use App\Models\FAQ;
 use App\Models\Lesson;
+use App\Models\LiveView;
 use App\Models\Membership;
 use App\Models\Module;
 use App\Models\Slidebar;
@@ -50,26 +51,11 @@ class PagesController{
         if(!$categories)
             Response::redirect('/');
         
-        Response::render('/public/courses', [
+        Response::render('/public/courses/courses', [
             'nameApp'=>APP_NAME,
             'title'=>'Cursos',
             'courses'=>$courses,
             'categories'=>$categories,
-            'transparente'=>false
-        ]);
-    }
-
-    public static function membership():void{
-        
-        $membresias = Membership::all()??[];
-
-        if(empty($membresias))
-            Response::redirect('/');
-
-        Response::render('/public/membresias', [
-            'nameApp'=>APP_NAME,
-            'title'=>'Membresias',
-            'membresias'=>$membresias,
             'transparente'=>false
         ]);
     }
@@ -81,7 +67,7 @@ class PagesController{
         if(!$categories)
             Response::redirect('/');
         
-        Response::render('/public/courses', [
+        Response::render('/public/courses/courses', [
             'nameApp'=>APP_NAME,
             'title'=>'Cursos',
             'courses'=>$courses,
@@ -149,7 +135,7 @@ class PagesController{
 
         }
 
-        Response::render('public/courseDetails', [
+        Response::render('public/courses/courseDetails', [
             'nameApp'=>APP_NAME,
             'title'=>$course->name,
             'course'=>$course,
@@ -159,6 +145,69 @@ class PagesController{
             'transparente'=>true,
             'cursoInscrito'=>$inscrito,
             'enroll_url'=>$enroll_url
+        ]);
+    }
+
+    public static function lives():void{
+        $lives = LiveView::all();
+        $categories = Category::all();
+                
+        if(!$lives)
+            Response::redirect('/');
+
+        if(!$categories)
+            Response::redirect('/');
+        
+        Response::render('/public/lives/lives', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Cursos',
+            'lives'=>$lives,
+            'categories'=>$categories
+        ]);
+    }
+
+    public static function liveCategory(string $category_url):void{
+        $lives = LiveView::belongsTo('id_category', $category_url)??[];
+        $categories = Category::all();
+        
+        if(!$categories)
+            Response::redirect('/');
+        
+        Response::render('/public/lives/lives', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Cursos en vivo',
+            'lives'=>$lives,
+            'categories'=>$categories,
+            'category_url'=>$category_url
+        ]);
+    }
+
+    public static function liveDetails($id):void{
+    
+        $live = LiveView::where('url', '=', $id);
+
+        if(!$live)
+            Response::redirect('/');
+
+        Response::render('public/lives/liveDetails', [
+            'nameApp'=>APP_NAME,
+            'title'=>$live->name,
+            'live'=>$live
+        ]);
+    }
+
+    public static function membership():void{
+        
+        $membresias = Membership::all()??[];
+
+        if(empty($membresias))
+            Response::redirect('/');
+
+        Response::render('/public/membresias', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Membresias',
+            'membresias'=>$membresias,
+            'transparente'=>false
         ]);
     }
 
