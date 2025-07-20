@@ -7,8 +7,8 @@ use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Classes\Helpers;
 use App\Models\Category;
+use App\Models\LiveView;
 use App\Models\Live;
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
 
 class LiveController{
 
@@ -155,5 +155,26 @@ class LiveController{
             }
 
         }
+    }
+
+    public static function lives():void{
+
+        $eventos = LiveView::all();
+        $listaEventos = [];
+
+        foreach($eventos as $evento){
+            
+            $fechas = json_decode($evento->dates_times);
+
+            foreach($fechas as $fecha){
+                $listaEventos[] =[
+                    'title'=>$evento->name,
+                    'start'=>$fecha,
+                    'url'=>'/live/view/'.$evento->url
+                ];
+            }
+        }
+
+        Response::json($listaEventos);
     }
 }

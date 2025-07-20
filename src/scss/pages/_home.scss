@@ -84,10 +84,14 @@
 
     &__title{
         margin: 0;
-        -webkit-background-clip: text;
         color: v.$negro;
         font-size: 1.8rem;
         font-weight: v.$bold;
+        display: none;
+
+        @include m.computadora{
+            display: block;
+        }
     }
 
     &__logo{
@@ -114,7 +118,7 @@
             z-index: 10;
         }
 
-        @include m.tablet{
+        @include m.computadora{
             position: relative;
             background-color: transparent;
             box-shadow: none;
@@ -133,7 +137,7 @@
         flex-direction: column;
         gap: 4rem;
 
-        @include m.tablet{
+        @include m.computadora{
             flex-direction: row;
             align-items: center;
             justify-content: center;
@@ -156,7 +160,7 @@
         &:hover{
             color: v.$blanco;
 
-            @include m.tablet{
+            @include m.computadora{
                 color: v.$negro;
             }
         }
@@ -182,7 +186,7 @@
         &--nav{
             display: block;
 
-            @include m.tablet{
+            @include m.computadora{
                 display: none;
             }
         }
@@ -190,7 +194,7 @@
         &--login{
             display: none;
 
-            @include m.tablet{
+            @include m.computadora{
                 display: block;
             }
         }
@@ -213,7 +217,7 @@
         &--nav{
             display: block;
 
-            @include m.tablet{
+            @include m.computadora{
                 display: none;
             }
         }
@@ -221,7 +225,7 @@
         &--login{
             display: none;
 
-            @include m.tablet{
+            @include m.computadora{
                 display: block;
             }
         }
@@ -239,7 +243,7 @@
         font-size: 5rem;
         display: block;
 
-        @include m.tablet{
+        @include m.computadora{
             display: none;
         }
     }
@@ -250,7 +254,7 @@
         font-size: 5rem;
         display: block;
 
-        @include m.tablet{
+        @include m.computadora{
             display: none;
         }
     }

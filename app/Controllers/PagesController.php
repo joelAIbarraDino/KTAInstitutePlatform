@@ -12,7 +12,8 @@ use App\Models\Membership;
 use App\Models\Module;
 use App\Models\Slidebar;
 use App\Models\Teacher;
-use DinoEngine\Helpers\Helpers;
+use App\Classes\Helpers;
+use DinoEngine\Helpers\Helpers as HelpersHelpers;
 use DinoEngine\Http\Response;
 
 class PagesController{
@@ -232,4 +233,12 @@ class PagesController{
         ]);
     }
 
+    public static function calendario():void{
+
+        Response::render('public/lives/calendario', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Calendario de eventos'
+        ]);
+        
+    }
 }

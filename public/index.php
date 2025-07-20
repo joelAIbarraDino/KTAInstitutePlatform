@@ -95,11 +95,13 @@ $dino->router->get('/lives/categoria/{category_url}', [PagesController::class, '
 $dino->router->get('/live/view/{id}', [PagesController::class, 'liveDetails'], [new PublicLiveMiddleware('/') ]);
 
 $dino->router->get('/membresias', [PagesController::class, 'membership']);
+$dino->router->get('/calendario', [PagesController::class, 'calendario']);
 
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 
 //proceso de pago de curso
 $dino->router->get('/curso/checkout/{id}', [PaymentController::class, 'checkoutCourse']);
+// $dino->router->get('/live/checkout/{id}', [PaymentController::class, 'checkoutLive']);
 $dino->router->get('/membresia/checkout/{id}', [PaymentController::class, 'checkoutMembership']);
 $dino->router->get('/pago-exitoso', [PaymentController::class, 'success']);
 $dino->router->post('/webhook-stripe', [PaymentController::class, 'webhook']);
@@ -245,6 +247,8 @@ $dino->router->get('/kta-admin/live/update/{id}', [LiveController::class, 'updat
 $dino->router->post('/kta-admin/live/update/{id}', [LiveController::class, 'update'], [AdminLoggedMiddleware::class]);
 
 $dino->router->delete('/api/curso/live/{id}', [LiveController::class, 'delete'], [AdminLoggedMiddleware::class]);
+
+$dino->router->get('/api/lives', [LiveController::class, 'lives']);
 
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create'], [AdminLoggedMiddleware::class]);
