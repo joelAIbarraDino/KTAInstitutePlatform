@@ -206,16 +206,16 @@
         },
         {
             "name": "dinozign/dino-framework",
-            "version": "v1.2.6",
+            "version": "v1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joelAIbarraDino/DinoFramework.git",
-                "reference": "29a4a5d5b80f421d9d7a4102e3a0ed09926cdda3"
+                "reference": "48c9e3f245b96228c646e226d06f67da6a88e25d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joelAIbarraDino/DinoFramework/zipball/29a4a5d5b80f421d9d7a4102e3a0ed09926cdda3",
-                "reference": "29a4a5d5b80f421d9d7a4102e3a0ed09926cdda3",
+                "url": "https://api.github.com/repos/joelAIbarraDino/DinoFramework/zipball/48c9e3f245b96228c646e226d06f67da6a88e25d",
+                "reference": "48c9e3f245b96228c646e226d06f67da6a88e25d",
                 "shasum": ""
             },
             "require": {
@@ -245,9 +245,9 @@
             "description": "Framework chido para aplicaciones web chidas",
             "support": {
                 "issues": "https://github.com/joelAIbarraDino/DinoFramework/issues",
-                "source": "https://github.com/joelAIbarraDino/DinoFramework/tree/v1.2.6"
+                "source": "https://github.com/joelAIbarraDino/DinoFramework/tree/v1.2.7"
             },
-            "time": "2025-07-18T07:50:35+00:00"
+            "time": "2025-07-19T23:54:13+00:00"
         },
         {
             "name": "filp/whoops",

@@ -1,6 +1,6 @@
 <div class="curso">
     <div class="curso__imagen-contenedor">
-        <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
+        <img src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
 
         <span class="curso__categoria"><?=$course->category?></span>
     </div>

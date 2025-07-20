@@ -10,7 +10,7 @@
             hidden
             class="real-btn-file"
         >
-        <button type="button" class="form__file-btn  btn-file">Seleccionar caratula de curso</button>
+        <button type="button" class="form__file-btn  btn-file">Seleccionar el fondo de curso</button>
         <span class="form__input-msg name-file"></span>
     </div>
 
@@ -24,7 +24,7 @@
             hidden
             class="real-btn-file-2"
         >
-        <button type="button" class="form__file-btn  btn-file-2">Seleccionar fondo de curso</button>
+        <button type="button" class="form__file-btn  btn-file-2">Seleccionar caratula de curso</button>
         <span class="form__input-msg name-file-2"></span>
     </div>
 
@@ -166,7 +166,7 @@
 
 <div class="grid-elements border">
     <div class="form__input col-12">
-        <label for="description">Descripción (minimo 80 caracteres)</label>
+        <label for="description">Descripción corta(minimo 80 caracteres)</label>
         <textarea 
             name="description" 
             id="description"

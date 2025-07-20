@@ -1,46 +1,22 @@
 {
     "slidebar-1": {
         "title": "slider de prueba",
-        "font_title": "Lato",
-        "color_title": "#ffffff",
         "subtitle": "subtitulo de prueba",
-        "font_subtitle": "Lato",
-        "color_subtitle": "#ebebeb",
-        "type_background": "video",
-        "background": "d3aef731d2c7dcbbf2388e8ac723ecd0.png",
-        "link": "https:\/\/www.youtube.com\/watch?v=m1kHEdK1U28&#38;ab_channel=UnPocoDeRobertoCein",
         "CTA": "Hola mundo"
     },
     "course-5": {
         "name": "Formulario 1120",
         "watchword": "fasdfasdfs",
-        "background": "1230f95c4ffdf42f064618331ed40a82.png",
-        "thumbnail": "a390d5392459022715c8183c354b1d91.png",
         "description": "fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd fdasfasd",
-        "created_at": "2025-07-12",
-        "url": "9a527fe839b88acb",
-        "privacy": "Público",
         "details": "<p>Duplica tus ingresos como preparador de taxes con el método probado para escalar en la industria de los impuestos<\/p><p><strong>Objetivo:<\/strong><\/p><p><strong style=\"color: rgb(178, 178, 0);\">Este curso está dirigido a todo preparador profesional de taxes que quiera formarse como preparador de impuestos corporativos. Se ensenará a los participantes a elaborar el Anexo C, el Formulario 1065, los Formularios 1120 y 1120 S.<\/strong><\/p><p><strong>👉🏻A quien a dirigido:<\/strong><\/p><p><strong style=\"color: rgb(178, 178, 0);\">A preparadores profesionales de taxes personales, ya que el curso requiere el manejo de la Forma 1040 y Schedule C.<\/strong><\/p><p><strong>⏰Horas:<\/strong><\/p><ul><li>24 Horas.<\/li><\/ul><p><strong>📚Contenido del curso:<\/strong><\/p><ol><li>Historia Empresarial<\/li><li>Conocer las Estructuras Comerciales y Industrial<\/li><li>Ventajas y desventajas de cada tipo de empresa<\/li><li>Organización de una empresa<\/li><li>Registrar una Empresa en el Estado y al Federal<\/li><li>Declaraciones obligatorias a cada tipo de empresa y sus anexos<\/li><li>Como leer e interpretar los informes contables y bancarios<\/li><li>Cómo informar y llenar los formularios; Schedule C, 1065, 1120S and 1120<\/li><li>Documentos y Obligaciones de registros y declaraciones al Estado y Federal según; El Tipo de compañía, Actividad, Empleo y situación económica y geográfica.<\/li><li>Compañía en Offshore (paraísos fiscales)<\/li><li>Explicación de los Formularios 1065, 1120 y 1120-S Y anexos<\/li><li>Obligaciones fiscales para Residentes extranjeros Socios o Miembros de una compañía doméstica<\/li><li>Leer e Interpretar informes contables<\/li><li>Nómina y obligaciones de empleadores y empleados (payroll)<\/li><li>Consejos de RH y Admin y Gestión de Empresa<\/li><\/ol><p><br><\/p>"
     },
     "slidebar-2": {
         "title": "slider con video",
-        "font_title": "Anton",
-        "color_title": "#cda02d",
-        "subtitle": "subtitulo de prueba",
-        "font_subtitle": "Lato",
-        "color_subtitle": "#cda02d",
-        "type_background": "picture",
-        "background": "4889abbdf95c6766497bc98c24575f79.png"
+        "subtitle": "subtitulo de prueba"
     },
     "slidebar-3": {
         "title": "vcvzxcs",
-        "font_title": "Anton",
-        "color_title": "#cda02d",
         "subtitle": "vzxcvzxs",
-        "font_subtitle": "Dancing Script",
-        "color_subtitle": "#cda02d",
-        "type_background": "video",
-        "link": "https:\/\/www.youtube.com\/watch?v=rxhyddGvkG0&#38;ab_channel=ReaccionaCein",
         "CTA": "vxcvzxcvs"
     },
     "teacher-1": {
@@ -70,10 +46,16 @@
     "course-10": {
         "name": "curso",
         "watchword": "fsdafasd",
-        "description": "fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd"
+        "description": "fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd fsdafasd ,mfasdk fsdafk asdkf asd fkasd fs ad dskmnf dskjfk knf sf f lkasf  fk nfs ffn   fasdnfsda fasdbas fasd hff sd",
+        "details": "<p>Duplica tus ingresos como preparador de taxes con el método probado para escalar en la industria de los impuestos<\/p><p><br><\/p><p><strong style=\"font-size: 2rem;\">Objetivo:<\/strong><\/p><p>Este curso está dirigido a todo preparador profesional de taxes que quiera formarse como preparador de impuestos corporativos. Se ensenará a los participantes a elaborar el Anexo C, el Formulario 1065, los Formularios 1120 y 1120 S.<\/p><p><br><\/p><p><strong style=\"font-size: 2rem;\">👉🏻A quien a dirigido:<\/strong><\/p><p>A preparadores profesionales de taxes personales, ya que el curso requiere el manejo de la Forma 1040 y Schedule C.<\/p><p><br><\/p><p><strong style=\"font-size: 2rem;\">⏰Horas:<\/strong><\/p><ul><li><span style=\"font-size: 2rem;\">24 Horas.<\/span><\/li><\/ul><p><br><\/p><p><strong style=\"font-size: 2rem;\">📚Contenido del curso:<\/strong><\/p><ol><li><span style=\"font-size: 2rem;\">Historia Empresarial<\/span><\/li><li><span style=\"font-size: 2rem;\">Conocer las Estructuras Comerciales y Industrial<\/span><\/li><li><span style=\"font-size: 2rem;\">Ventajas y desventajas de cada tipo de empresa<\/span><\/li><li><span style=\"font-size: 2rem;\">Organización de una empresa<\/span><\/li><li><span style=\"font-size: 2rem;\">Registrar una Empresa en el Estado y al Federal<\/span><\/li><li><span style=\"font-size: 2rem;\">Declaraciones obligatorias a cada tipo de empresa y sus anexos<\/span><\/li><li><span style=\"font-size: 2rem;\">Como leer e interpretar los informes contables y bancarios<\/span><\/li><li><span style=\"font-size: 2rem;\">Cómo informar y llenar los formularios; Schedule C, 1065, 1120S and 1120<\/span><\/li><li><span style=\"font-size: 2rem;\">Documentos y Obligaciones de registros y declaraciones al Estado y Federal según; El Tipo de compañía, Actividad, Empleo y situación económica y geográfica.<\/span><\/li><li><span style=\"font-size: 2rem;\">Compañía en Offshore (paraísos fiscales)<\/span><\/li><li><span style=\"font-size: 2rem;\">Explicación de los Formularios 1065, 1120 y 1120-S Y anexos<\/span><\/li><li><span style=\"font-size: 2rem;\">Obligaciones fiscales para Residentes extranjeros Socios o Miembros de una compañía doméstica<\/span><\/li><li><span style=\"font-size: 2rem;\">Leer e Interpretar informes contables<\/span><\/li><li><span style=\"font-size: 2rem;\">Nómina y obligaciones de empleadores y empleados (payroll)<\/span><\/li><li><span style=\"font-size: 2rem;\">Consejos de RH y Admin y Gestión de Empresa<\/span><\/li><\/ol><p>&nbsp;<\/p><p><strong>👨🏻‍🎓Después&nbsp;de finalizado el curso podrás<\/strong><\/p><ol><li><span style=\"font-size: 2rem;\"> Realizar declaraciones a compañías LLC, C Corp y S Corp de 1 o varios miembros<\/span><\/li><li><span style=\"font-size: 2rem;\">Hacer enmiendas&nbsp;&nbsp;<\/span><\/li><li><span style=\"font-size: 2rem;\">Asesora a tu cliente de que es lo más recomendable para seguir creciendo&nbsp;<\/span><\/li><li><span style=\"font-size: 2rem;\">Realizar la declaración de Impuestos de tu compañía de manera correcta&nbsp;&nbsp;<\/span><\/li><\/ol><p><strong>&nbsp;<\/strong><\/p><p><strong>😉Beneficios como preparador de taxes cuando aprendes Taxes Corporativos<\/strong><\/p><ol><li><span style=\"font-size: 2rem;\">Expansión de servicios: Ofrece atención a empresas además de individuos, ampliando así tu base de clientes.<\/span><\/li><li><span style=\"font-size: 2rem;\">Comprensión completa del sistema tributario: Mejora tu conocimiento general de impuestos al aprender sobre impuestos corporativos.<\/span><\/li><li><span style=\"font-size: 2rem;\">Diversificación de ingresos: Añade otra fuente de ingresos al poder trabajar con empresas, lo que aumentará tu ingreso anual.<\/span><\/li><li><span style=\"font-size: 2rem;\">Mejor atención a clientes empresariales: Ofrece un servicio más especializado y efectivo a empresas al comprender sus necesidades fiscales únicas.<\/span><\/li><\/ol>"
     },
     "membership-1": {
         "type": "business lab",
         "caract": "<p><strong class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">&nbsp;Mejores Cursos y Talleres<\/strong><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">&nbsp;.<\/span><\/p><p><a href=\"https:\/\/ktainstitute.com\/membresia-businesslab\/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjE5ODU0IiwidG9nZ2xlIjpmYWxzZX0%3D\" target=\"_blank\" class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Ver Lista de Cursos y Talleres<\/a><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">15 minutos al mes Asesoría directa con Carlos Catarino. (debe entrar en el calendario y agendar su cita)<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Participación reunión con preparadores 1 vez a la semana (temporada de impuestos) respondiendo preguntas y aclarando dudas de impuestos.<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Participación de Grupo de Whatsapp.<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Libro digital Domina los Impuestos 2024<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Comunidad Preparadores<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Certificado de asistencia<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Horas CE Reportadas al IRS<\/span><\/p><p><span class=\"ql-size-small\" style=\"color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);\">Cartel Conocimiento Tributario 2025<\/span><\/p><p><br><\/p>"
+    },
+    "live-1": {
+        "name": "Taller de visa F2",
+        "description": "este es un taller para aprender a sacar la visa F1  en estados unidos, saldra con todas las herramientas necesarias par poder hacer este paso",
+        "details": "<p><span class=\"ql-size-small\">hola mundo test <\/span><\/p>"
     }
 }

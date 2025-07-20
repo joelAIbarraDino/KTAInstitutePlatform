@@ -71,6 +71,12 @@
                     </div>
 
                     <div class="nav">
+                        <p class="nav__title">Lives</p>
+                        <a class="nav__link" href="/kta-admin/lives"> <i class='bx bx-chalkboard'></i> Cursos en vivo</a>
+                        <a class="nav__link" href="#"> <i class='bx bx-credit-card'></i> Pagos de lives</a>
+                    </div>
+
+                    <div class="nav">
                         <p class="nav__title">Membresias</p>
                         <a class="nav__link" href="/kta-admin/membresias"> <i class='bx bxs-certification'></i> Membresias</a>
                         <a class="nav__link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Pagos de membresías</a>

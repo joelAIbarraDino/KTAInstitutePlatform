@@ -150,8 +150,8 @@ class Course extends Model {
 
     public function uploadImageThumbnail(array $imagen, $ancho = null, $alto = null):void{   
         // Eliminar la imagen anterior si existe
-        if ($this->thumbnail && Storage::exists(DIR_CARATULAS.'/'.$this->thumbnail))
-            Storage::delete(DIR_CARATULAS.'/'.$this->thumbnail);
+        if ($this->thumbnail && Storage::exists(DIR_CARATULAS_CURSO.'/'.$this->thumbnail))
+            Storage::delete(DIR_CARATULAS_CURSO.'/'.$this->thumbnail);
         
         // Generar un nombre único para la imagen
         $nombreImagen = Storage::uniqName(".png");
@@ -164,10 +164,10 @@ class Course extends Model {
         if ($ancho && $alto)
             $processImage->cover($ancho, $alto);
 
-        if(!is_dir(DIR_CARATULAS))
-            mkdir(DIR_CARATULAS);
+        if(!is_dir(DIR_CARATULAS_CURSO))
+            mkdir(DIR_CARATULAS_CURSO);
         
-        $processImage->toPng()->save(DIR_CARATULAS.'/'.$nombreImagen);
+        $processImage->toPng()->save(DIR_CARATULAS_CURSO.'/'.$nombreImagen);
 
         // Actualizar el atributo del modelo
         $this->thumbnail = $nombreImagen;

@@ -3,7 +3,7 @@
     <div class="curso">
         <div class="curso__imagen-contenedor">
             <a href="/curso/view/<?=$course->url?>">
-                <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
+                <img src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
             </a>
 
             <span class="curso__categoria"><?=$course->category?></span>
@@ -30,7 +30,7 @@
     <div class="curso">
         <div class="curso__imagen-contenedor">
             <a href="/curso/view/<?=$course->url?>">
-                <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
+                <img src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
             </a>
             
             <span class="curso__categoria"><?=$course->category?></span>

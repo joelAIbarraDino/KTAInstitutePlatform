@@ -9,9 +9,9 @@
 
     <div class="dashboard-table">
             <div class="dashboard-table__header">
-                <h2 class="dashboard-table__title">Cursos</h2>
+                <h2 class="dashboard-table__title">Cursos en vivo</h2>
                 <div class="dashboard-table__actions">
-                <a href="/kta-admin/curso/create" class="dashboard-table__button"> <i class='bx bx-plus'></i> Nuevo </a>
+                <a href="/kta-admin/live/create" class="dashboard-table__button"> <i class='bx bx-plus'></i> Nuevo </a>
                 </div>
             </div>
             
@@ -22,37 +22,36 @@
                             <th>Caratula</th>
                             <th>Nombre</th>
                             <th>Creado el </th>
-                            <th>Privacidad</th>
-                            <th>Inscritos</th>
-                            <th>Acceso a contenido</th>
-                            <th>Maestro</th>
+                            <th>Horario(s) de evento</th>
                             <th class="actions-label">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="dashboard-table__tbody">
 
-                        <?php if(count($courses) > 0): ?>
+                        <?php if(count($lives) > 0): ?>
 
-                            <?php foreach($courses as $course): ?>
+                            <?php foreach($lives as $live): ?>
                                 <tr>
-                                    <td><a href="/curso/view/<?=$course->url?>"  target="_blank"><img class="dashboard-table__photo--square" src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="foto <?=$course->thumbnail?>"></a></td>
-                                    <td><?=$course->name?></td>
-                                    <td><?=$course->created_at?></td>
-                                    <td><span class="dashboard-table__status dashboard-table__status--info"><?=$course->privacy ?></span></td>
-                                    <td><?=$course->enrollment?></td>
-                                    <td><span class="dashboard-table__status dashboard-table__status--pending"><?=$course->max_months_enroll ?> meses</span></td>
-                                    <td class="dashboard-table__link"><a href="/kta-admin/maestro/update/<?=$course->id_teacher?>"><?=$course->teacher ?></a></td>
+                                    <td><a href="/live/view/<?=$live->url?>"  target="_blank"><img class="dashboard-table__photo--square" src="/assets/thumbnails/lives/<?=$live->thumbnail?>" alt="foto <?=$live->thumbnail?>"></a></td>
+                                    <td><?=$live->name?></td>
+                                    <td><?=$live->created_at?></td>
+                                    <td>
+                                        <?php $fechas = json_decode($live->dates_times);
+                                        foreach($fechas as $key=>$fecha):?>
+                                            <?php $fechaFormateada = new DateTime($fecha); ?>
+                                            Día <?= ($key+1).'- ' ?><?= $fechaFormateada->format('d / m / Y H:i') ?></br>
+                                        <?php endforeach;?>
+                                    </td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/kta-admin/course-content/<?=$course->id_course ?>" class="dashboard-table__action dashboard-table__action--extra"><i class='bx bxs-widget'></i></i></a>
-                                        <a href="/kta-admin/curso/update/<?=$course->id_course ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
-                                        <button data-id="<?=$course->id_course?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
+                                        <a href="/kta-admin/live/update/<?=$live->id_live ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <button data-id="<?=$live->id_live?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    
                             <?php endforeach;?>
                         <?php else: ?>
 
                             <tr>
-                                <td colspan="8" class="dashboard-table__no-result">no hay registros</td>
+                                <td colspan="5" class="dashboard-table__no-result">no hay registros</td>
                             </tr>     
                         <?php endif; ?>               
                     </tbody>

@@ -14,6 +14,7 @@ use App\Models\Teacher;
 use App\Models\Admin;
 
 use App\Classes\Helpers;
+use App\Models\Live;
 use App\Models\Membership;
 use App\Models\PaymentCourseView;
 use App\Models\PaymentMembershipView;
@@ -50,6 +51,18 @@ class DashboardController{
             'title' => 'Pagos cursos',
             'pagos'=>$pagos
         ]);
+    }
+
+    public static function lives():void{
+
+        $lives = Live::all();
+
+        Response::render('admin/lives/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin lives',
+            'lives'=>$lives
+        ]);
+
     }
 
     public static function categories():void{

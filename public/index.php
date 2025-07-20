@@ -40,6 +40,7 @@ use App\Controllers\ModuleController;
 use App\Controllers\LessonController;
 use App\Controllers\PagesController;
 use App\Controllers\AdminController;
+use App\Controllers\LiveController;
 use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\QuizController;
@@ -51,12 +52,18 @@ $dotenv->safeLoad();
 date_default_timezone_set('America/Mexico_City');
 
 define('APP_NAME','KTA Institute');
-define('DIR_CARATULAS',__DIR__.'/assets/thumbnails/');
-define('DIR_FONDO_CURSO',__DIR__.'/assets/background-courses/');
-define('DIR_MEMBRESIAS',__DIR__.'/assets/membresias/');
-define('DIR_PROFESORES',__DIR__.'/assets/teachers/');
-define('DIR_SLIDEBAR_PICTURE',__DIR__.'/assets/slidebar/');
-define('DIR_GIF',__DIR__.'/assets/gifs/');
+
+define('DIR_CARATULAS_CURSO',__DIR__.'/assets/thumbnails/courses');
+define('DIR_FONDO_CURSO',__DIR__.'/assets/background/courses');
+
+define('DIR_CARATULAS_LIVE',__DIR__.'/assets/thumbnails/lives');
+define('DIR_FONDO_CURSO_LIVE',__DIR__.'/assets/background/lives');
+
+define('DIR_MEMBRESIAS',__DIR__.'/assets/membresias');
+define('DIR_PROFESORES',__DIR__.'/assets/teachers');
+define('DIR_SLIDEBAR_PICTURE',__DIR__.'/assets/slidebar');
+define('DIR_GIF',__DIR__.'/assets/gifs');
+
 define('URI_REDIRECT_GOOGLE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/auth/google-callback');
 
 define('REDIRECT_SUCCESS_STRIPE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/pago-exitoso?session_id={CHECKOUT_SESSION_ID}');
@@ -146,6 +153,7 @@ $dino->router->get('/login-admin', [AuthController::class, 'loginAdmin'], [Admin
 //zona privada de administrador
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/lives', [DashboardController::class, 'lives'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/pago-cursos', [DashboardController::class, 'paymentCourses'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/categorias', [DashboardController::class, 'categories'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/membresias', [DashboardController::class, 'memberships'], [AdminLoggedMiddleware::class]);
@@ -226,6 +234,15 @@ $dino->router->delete('/api/attempt/cancel/{id}', [AttemptController::class, 'ca
 
 //administracion de answer student
 $dino->router->patch('/api/answer_student/is_correct/{id}', [AnswerStudentController::class, 'updateCorrectAnswer'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+
+//administración de lives
+$dino->router->get('/kta-admin/live/create', [LiveController::class, 'create'], [AdminLoggedMiddleware::class, new ExistsCategoryMiddleware('/kta-admin/categoria/create')]);
+$dino->router->post('/kta-admin/live/create', [LiveController::class, 'create'], [AdminLoggedMiddleware::class]);
+
+$dino->router->get('/kta-admin/live/update/{id}', [LiveController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/live/update/{id}', [LiveController::class, 'update'], [AdminLoggedMiddleware::class]);
+
+$dino->router->delete('/api/curso/live/{id}', [LiveController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 //administración de categoria
 $dino->router->get('/kta-admin/categoria/create', [CategoryController::class, 'create'], [AdminLoggedMiddleware::class]);

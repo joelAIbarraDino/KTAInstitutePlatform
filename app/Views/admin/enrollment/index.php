@@ -35,7 +35,7 @@
                         <div class="cell">
                             <div class="col-main">
                                 <a class="col-main-thumbnail" href="/curso/<?=$enroll->id_course?>">
-                                    <img src="/assets/thumbnails/<?=$enroll->thumbnail?>" alt="caratula de curso">
+                                    <img src="/assets/thumbnails/courses/<?=$enroll->thumbnail?>" alt="caratula de curso">
                                 </a>
                             </div>
                         </div>

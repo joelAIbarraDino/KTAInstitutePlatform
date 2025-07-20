@@ -24,8 +24,6 @@ class CourseController{
         $alerts = [];
         $teachers = Teacher::all();
         $categories = Category::all();
-        $modules = [];
-
         $course = new Course;
 
         if(Request::isPOST()){
@@ -63,7 +61,6 @@ class CourseController{
             'title'=>'Nuevo curso',
             'arrayStatus'=>Course::PRIVACY,
             'course'=>$course,
-            'modules'=>$modules,
             'teachers'=> $teachers,
             'categories' => $categories,
             'alerts'=>$alerts

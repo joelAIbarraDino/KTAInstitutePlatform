@@ -3,7 +3,7 @@
 <main>
 
     <div class="info-curso">
-        <img class="info-curso__background" src="/assets/background-courses/<?=$course->background?>" alt="<?=$course->background?>">
+        <img class="info-curso__background" src="/assets/background/courses/<?=$course->background?>" alt="<?=$course->background?>">
 
         <div class="info-curso__cover">
             <a class="info-curso__return" href="javascript:history.back()" data-section="course-details" data-label="return"><i class='bx bx-left-arrow-alt'></i> Regresar</a>

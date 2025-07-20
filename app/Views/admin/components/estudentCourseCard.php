@@ -3,7 +3,7 @@
     <div class="curso">
         <div class="curso__imagen-contenedor">
             <a href="/curso/watch/<?=$course->enroll_url?>">
-                <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
+                <img src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
             </a>
 
             <span class="curso__categoria"><?=$course->category?></span>
@@ -29,7 +29,7 @@
 
     <div class="curso">
         <div class="curso__imagen-contenedor">
-            <img src="/assets/thumbnails/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
+            <img src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
 
             <div class="curso__filter"></div>
             <span class="curso__categoria"><?=$course->category?></span>

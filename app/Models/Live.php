@@ -4,6 +4,7 @@ namespace App\Models;
 
 use DinoEngine\Classes\Storage;
 use DinoEngine\Core\Model;
+use DinoEngine\Helpers\Helpers;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -13,14 +14,14 @@ class Live extends Model {
     protected static string $PK_name = 'id_live';
     protected static array $columns = [ 
         'id_live', 'name', 'thumbnail', 'background', 'description', 'details', 
-        'date_times','places','price', 'discount', 'discount_ends_date', 'discount_ends_time',
+        'dates_times','places','price', 'discount', 'discount_ends_date', 'discount_ends_time',
         'created_at', 'url', 
         'privacy', 'id_category'
     ];
 
     protected static array $fillable = [
         'name', 'thumbnail', 'background', 'description', 'details', 
-        'date_times','places','price', 'discount', 'discount_ends_date', 'discount_ends_time',
+        'dates_times','places','price', 'discount', 'discount_ends_date', 'discount_ends_time',
         'created_at', 'url', 
         'privacy', 'id_category'
     ];
@@ -32,6 +33,8 @@ class Live extends Model {
     public string $thumbnail;
     public string $description;
     public string $details;
+    public string $dates_times;
+    public int $places;
     public float $price;
     public float $discount;
     public ?string $discount_ends_date;
@@ -51,6 +54,8 @@ class Live extends Model {
         $this->thumbnail = $args["thumbnail"]??"";
         $this->description = $args["description"]??"";
         $this->details = $args["details"]??"";
+        $this->dates_times = $args["dates_times"]??"";
+        $this->places = $args["places"]??0;
         $this->price = $args["price"]??0.0;
         $this->discount = $args["discount"]??0;
         $this->discount_ends_date = $args["discount_ends_date"]??null;
@@ -67,12 +72,6 @@ class Live extends Model {
         
         if(strlen($this->name) > 100)
             self::setAlerts("error", "El nombre debe tener menos de 100 caracteres");
-
-        if(!$this->watchword)
-            self::setAlerts("error", "Debe ingresar un lema al curso");
-
-        if(strlen($this->watchword) > 200)
-            self::setAlerts("error", "El lema debe tener menos de 200 caracteres");
         
         if(strlen($this->description) < 80)
             self::setAlerts("error", "La descripción debe tener mas de 80 caracteres");
@@ -94,15 +93,24 @@ class Live extends Model {
             $this->discount_ends_date = null;
             $this->discount_ends_time = null;
         }
-        
-        if(!$this->max_months_enroll)
-            self::setAlerts("error", "Debe ingresar el maximo de meses para ver el curso");
 
         if(!$this->id_category)
             self::setAlerts("error", "Debe seleccionar una categoria");
 
-        if(!$this->id_teacher)
-            self::setAlerts("error", "Debe seleccionar un maestro");
+        return self::$alerts;
+    }
+
+    public function validateDates($array):array{
+        if(empty($array)){
+            self::setAlerts("error", "Debe ingresar por lo menos una fecha al curso en vivo");
+        }
+
+        foreach($array as $element){
+            if(!$element){
+                self::setAlerts("error", "La fecha ingresada no esta configurada");
+                break;
+            }
+        }
 
         return self::$alerts;
     }
@@ -144,8 +152,8 @@ class Live extends Model {
 
     public function uploadImageThumbnail(array $imagen, $ancho = null, $alto = null):void{   
         // Eliminar la imagen anterior si existe
-        if ($this->thumbnail && Storage::exists(DIR_CARATULAS.'/'.$this->thumbnail))
-            Storage::delete(DIR_CARATULAS.'/'.$this->thumbnail);
+        if ($this->thumbnail && Storage::exists(DIR_CARATULAS_LIVE.'/'.$this->thumbnail))
+            Storage::delete(DIR_CARATULAS_LIVE.'/'.$this->thumbnail);
         
         // Generar un nombre único para la imagen
         $nombreImagen = Storage::uniqName(".png");
@@ -158,10 +166,10 @@ class Live extends Model {
         if ($ancho && $alto)
             $processImage->cover($ancho, $alto);
 
-        if(!is_dir(DIR_CARATULAS))
-            mkdir(DIR_CARATULAS);
+        if(!is_dir(DIR_CARATULAS_LIVE))
+            mkdir(DIR_CARATULAS_LIVE);
         
-        $processImage->toPng()->save(DIR_CARATULAS.'/'.$nombreImagen);
+        $processImage->toPng()->save(DIR_CARATULAS_LIVE.'/'.$nombreImagen);
 
         // Actualizar el atributo del modelo
         $this->thumbnail = $nombreImagen;
@@ -169,8 +177,8 @@ class Live extends Model {
 
     public function uploadImageBackground(array $imagen, $ancho = null, $alto = null):void{   
         // Eliminar la imagen anterior si existe
-        if ($this->background && Storage::exists(DIR_FONDO_CURSO.'/'.$this->background))
-            Storage::delete(DIR_FONDO_CURSO.'/'.$this->background);
+        if ($this->background && Storage::exists(DIR_FONDO_CURSO_LIVE.'/'.$this->background))
+            Storage::delete(DIR_FONDO_CURSO_LIVE.'/'.$this->background);
         
         // Generar un nombre único para la imagen
         $nombreImagen = Storage::uniqName(".png");
@@ -183,10 +191,10 @@ class Live extends Model {
         if ($ancho && $alto)
             $processImage->cover($ancho, $alto);
 
-        if(!is_dir(DIR_FONDO_CURSO))
-            mkdir(DIR_FONDO_CURSO);
+        if(!is_dir(DIR_FONDO_CURSO_LIVE))
+            mkdir(DIR_FONDO_CURSO_LIVE);
         
-        $processImage->toPng()->save(DIR_FONDO_CURSO.'/'.$nombreImagen);
+        $processImage->toPng()->save(DIR_FONDO_CURSO_LIVE.'/'.$nombreImagen);
 
         // Actualizar el atributo del modelo
         $this->background = $nombreImagen;
