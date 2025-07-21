@@ -1,0 +1,197 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.about-page{
+    padding: 2rem 0 ;   
+}
+
+.top-about{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    width: 95%;
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 5rem 3rem;
+    background-color: v.$fondo_claro;
+    border-radius: 1rem;
+
+    @include m.computadora{
+        width: 65%;
+    }
+
+    &__text-content{
+        flex: 1 0 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2.5rem;
+
+        @include m.computadora{
+            flex: 1 0 40rem;
+        }
+    }
+
+    &__title{
+        color: v.$dorado;
+        margin: 0;
+    }
+
+    &__text{
+        text-align: justify;
+        margin: 0;
+        font-size: 1.9rem;
+        color: v.$dorado;
+    }
+
+    &__image{
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-width: 15rem;
+        width: 25rem;
+        height: 25rem;
+        content: '';
+        border-radius: 1rem;
+
+        @include m.computadora{
+            width: 15rem;
+            height: 35rem;
+        }
+    }
+
+    &__image-container-side{
+        padding-top: 0;
+
+        @include m.computadora{
+            padding-top: 4rem;
+        }
+    }
+
+    &__image-container-center{
+        padding-bottom: 0;
+
+        @include m.computadora{
+            padding-bottom: 4rem;
+        }
+    }
+}
+
+.text-about{
+    width: 95%;
+    margin: 0 auto;
+    padding: 1rem 0;
+
+    @include m.computadora{
+        width: 65%;
+    }
+
+    &__text{
+        text-align: justify;
+        font-size: 1.9rem;
+        color: v.$dorado;
+    }
+}
+
+.text-image-about{
+    display: flex;
+    gap: 4rem;
+
+    width: 95%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    flex-direction: column;
+
+    @include m.computadora{
+        width: 65%;
+        flex-direction: row;
+    }
+
+    &__image-container{
+        width: 100%;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+
+        @include m.computadora{
+            width: 40%;
+        }
+    }
+
+    &__image{
+        border-radius: 1rem;
+    }
+
+    &__text-container{
+        width: 100%;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        gap: 2rem;
+        flex-direction: column;
+
+        @include m.computadora{
+            width: 60%;
+        }
+    }
+
+    &__text{
+        text-align: justify;
+        font-size: 1.9rem;
+        color: v.$dorado;
+        margin: 0;
+    }
+
+}
+
+.middle-about{
+    background-color: v.$dorado;
+    display: flex;
+    height: auto;
+    margin-top: 5rem;
+    flex-direction: column;
+
+    @include m.tablet{
+        flex-direction: row;
+        height: 50rem;
+    }
+
+    &__image{
+        width: 100%;
+
+        @include m.tablet{
+            width: 50%;
+        }
+        
+    }
+
+    &__text-container{
+        width: 100%;
+        padding: 2rem;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        @include m.tablet{
+            width: 50%;
+        }
+    }
+
+    &__title{
+        text-align: left;
+        color: v.$blanco;
+        font-weight: v.$black;
+        font-size: 4rem;
+    }
+
+    &__text{
+        text-align: justify;
+        color: v.$blanco;
+        font-size: 1.9rem;
+    }
+
+}

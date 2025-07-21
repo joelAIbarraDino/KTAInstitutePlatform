@@ -34,7 +34,7 @@ class PagesController{
 
     public static function about(): void{
         
-        Response::render('public/about', [
+        Response::render('public/whoarewe', [
             'nameApp'=>APP_NAME, 
             'title' => 'Nosotros',
             'transparente'=>false
