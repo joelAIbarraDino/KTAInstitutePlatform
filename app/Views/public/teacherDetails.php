@@ -27,10 +27,16 @@
 
     <div id="cursos-profesor" class="cursos-profesor">
         <h2 class="cursos-profesor__titulo"><span data-section="teacher-details" data-label="course-by">Cursos de</span> <?=$teacher->name?></h2>
-        <div class="cursos-profesor__container width-80">
-            <?php foreach($courses as $course):?>
-                <?php include __DIR__.'/../components/courseCard.php'; ?>
-            <?php endforeach;?>
+        <div class="cursos-profesor__container">
+            <?php if(!empty($courses)): ?>
+                <?php foreach($courses as $course):?>
+                    <?php include __DIR__.'/../components/courseCard.php'; ?>
+                <?php endforeach;?>
+            <?php else:?>
+                <p class="cursos-profesor__empty">Proximamente mas cursos</p>
+            <?php endif;?>
+
+            
         </div>
     </div>
 </main>

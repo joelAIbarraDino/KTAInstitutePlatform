@@ -236,10 +236,8 @@ class PagesController{
         if(!$teacher)
             Response::redirect('/');
         
-        $courses = CourseView::belongsTo('id_teacher', $teacher->id_teacher);
+        $courses = CourseView::belongsTo('id_teacher', $teacher->id_teacher)??[];
 
-        if(!$courses)
-            Response::redirect('/');
 
         Response::render('public/teacherDetails', [
             'nameApp'=>APP_NAME, 
