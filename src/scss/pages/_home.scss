@@ -539,10 +539,12 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 2rem;
+        gap: 5rem;
+        text-align: center;
 
         @include m.tablet{
             flex-direction: row;
+            gap: 10rem;
         }
     }
 
@@ -721,5 +723,23 @@
         &:hover{
             background-color: v.$dorado_darken;
         }
+    }
+}
+
+.maestros-index{
+    padding: 3rem;
+
+    &__subtitulo{
+        color: v.$dorado;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: v.$black;
+        text-align: center;
+    }
+
+    &__titulo{
+        font-size: 4rem;
+        color: v.$negro;
+        text-align: center;
     }
 }

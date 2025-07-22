@@ -2,10 +2,14 @@
 @use 'base/mixins' as m;
 
 .footer{
-    background: v.$negro;
+    background-color: v.$negro;
+    color: v.$blanco;
 
     color: v.$blanco;
     padding: 5rem 3rem;
+}
+
+.footer-top{
     display: block;
 
     @include m.tablet{
@@ -166,5 +170,68 @@
             }
         }
 
+    }
+}
+
+.footer-middle{
+
+    &__certificados{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        justify-content: start;
+
+        @include m.tablet{
+            justify-content: center;
+        }
+
+        img{
+            width: 12rem;
+        }
+    }
+
+    &__links{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        justify-content: start;
+        margin-top: 3rem;
+        font-weight: v.$regular;
+
+        @include m.tablet{
+            justify-content: center;
+        }
+
+        a{
+            color: v.$dorado;
+            text-decoration: none;
+
+            &:hover{
+                color: v.$blanco;
+            }
+        }
+    }
+}
+
+.footer-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 3rem;
+    
+    @include m.tablet{
+        justify-content: center;
+    }
+
+    p{
+        color: v.$blanco;
+        margin: 0;
+        text-align: left;
+        font-weight: v.$regular;
+        font-size: 1.8rem;
+
+        @include m.tablet{
+            text-align: center;
+        }
     }
 }

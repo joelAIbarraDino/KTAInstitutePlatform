@@ -107,6 +107,8 @@ $dino->router->get('/pago-exitoso', [PaymentController::class, 'success']);
 $dino->router->post('/webhook-stripe', [PaymentController::class, 'webhook']);
 
 $dino->router->get('/nosotros', [PagesController::class, 'about']);
+$dino->router->get('/terminos-condiciones', [PagesController::class, 'terminos']);
+$dino->router->get('/politica-privacidad', [PagesController::class, 'politica']);
 
 //login sign-in and sign-up
 $dino->router->get('/login', [AuthController::class, 'login'], [new StudentLoggedMiddleware('/login')]);

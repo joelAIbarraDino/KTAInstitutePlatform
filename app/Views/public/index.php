@@ -1,3 +1,9 @@
+<?php 
+    $topScripts ='
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    ';
+?>
+
 <?php include_once __DIR__.'/../components/header.php'; ?>
 
 <?php include_once __DIR__.'/../components/slider.php'; ?>
@@ -45,7 +51,13 @@
     </div>
 
     <div class="caracts-main__irs">
-        <img class="caracts-main__irs-logo" src="https://ktainstitute.com/wp-content/uploads/2024/11/CE_Continuing_Education-300x178.jpeg">
+        <a href="https://www.ceprovider.us/public/default/listing">
+            <img class="caracts-main__irs-logo" src="/assets/images/certificado1.jpg">
+        </a> 
+        
+        <a href="https://ctec.org/taxpreparers/find-education-provider/?nav=tax-professionals">
+            <img class="caracts-main__irs-logo" src="/assets/images/certificado2.jpg">
+        </a>
     </div>
 
 
@@ -94,6 +106,11 @@
     <div class="elfsight-app-3d89288d-8b7b-48c8-91cd-90483692c0c2" data-elfsight-app-lazy></div>
 </section>
 
+<section class="maestros-index">
+    <p class="maestros-index__subtitulo" data-section="index" data-label="teachers-title">Conoce al equipo KTA</p>
+    <h3 class="maestros-index__titulo" data-section="index" data-label="teachers-subtitle">Tenemos a los mejores maestros que te ayudaran a pasar al siguiente nivel</h3>
+    <?php include_once __DIR__.'/../components/teachers.php'; ?>
+</section>
 
 
 <section class="membresias-index">
@@ -134,16 +151,7 @@
     </div>    
 </section>
 
-<div id="purchase-popup" class="popup hidden">
-  <span id="popup-text"></span>
-</div>
-
-<a class="whatsapp" target="_blank" href="https://api.whatsapp.com/send/?phone=17866124893&text=Hola%20KTA,%20tengo%20una%20duda%20y%20necesito%20ayuda">
-    <div class="whatsapp__icon">
-        <i class='bx bxl-whatsapp'></i>
-    </div>
-    <p class="whatsapp__tooltip">WhatsApp</p>
-</a>
+<?php include_once __DIR__.'/../components/popups.php'; ?>
 
 <?php include_once __DIR__.'/../components/footer.php'; ?>
 
@@ -153,12 +161,15 @@
     $sliderVersion = filemtime('assets/js/slider.js');
     $saleVersion = filemtime('assets/js/saleAlerts.js');
     $animationVersion = filemtime('assets/js/counter.js');
+    $swiperVersion = filemtime('assets/js/swiper.js');
 
     $scripts ='
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
         <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
         <script src="/assets/js/counter.js?v='.$animationVersion.'"></script>
         <script src="/assets/js/slider.js?v='.$sliderVersion.'"></script>
         <script src="/assets/js/saleAlerts.js?v='.$saleVersion.'"></script>
+        <script src="/assets/js/swiper.js?v='.$swiperVersion.'"></script>
     ';
 ?>
 

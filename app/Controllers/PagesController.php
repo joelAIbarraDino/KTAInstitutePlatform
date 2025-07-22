@@ -22,13 +22,14 @@ class PagesController{
 
         $sliders = Slidebar::all();
         $courses = CourseView::all(5, 'id_course', 'DESC');
+        $teachers = Teacher::all()??[];
         
         Response::render('public/index', [
             'nameApp'=>APP_NAME, 
             'title' => 'Inicio',
             'sliders'=>$sliders,
             'courses'=>$courses,
-            'transparente'=>true
+            'teachers'=>$teachers
         ]);
     }
 
@@ -60,6 +61,20 @@ class PagesController{
             'courses'=>$courses,
             'categories'=>$categories,
             'transparente'=>false
+        ]);
+    }
+
+    public static function terminos():void {
+        Response::render('/public/terminos', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Terminos y condiciones'
+        ]);
+    }
+
+    public static function politica():void {
+        Response::render('/public/politica', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Política de privacidad'
         ]);
     }
 

@@ -1,8 +1,6 @@
 <?php 
-
     $topScripts ='
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     ';
 ?>
 
@@ -105,58 +103,14 @@
         <h3 class="teachers-about__title">Maestros especializados</h3>
         <p class="teachers-about__description">Para nosotros enseñar es más importante que asistir.  Enseñar es dar la oportunidad de crecer en libertad y conocimiento ya que la asistencia es limitante y adictiva. Nuestro objetivo es sembrar en cada participante un conocimiento y métodos de desarrollo en la área económica y personal que El participante eligió.</p>
         
-        <?php if(!empty($teachers)): ?>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <?php foreach($teachers as $teacher): ?>
-                        <div class="swiper-slide">
-                            <div class="profesor-card">
-                                <a href="/profesor/view/<?=$teacher->id_teacher?>">
-                                    <img src="/assets/teachers/<?=$teacher->photo?>" alt="Profesor" class="profesor-foto" />
-                                </a>
-                                <p class="nombre"><?=$teacher->name?></p>
-                                <p class="experiencia"><?=$teacher->experience?> años de experiencia</p>
-                                <a href="/profesor/view/<?=$teacher->id_teacher?>" class="boton-ver-mas">Ver más</a>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <!-- Opcionales: navegación -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        <?php else:?>
-
-        <?php endif;?>
+        <?php include __DIR__.'/../components/teachers.php'; ?>
 
     </section>
     
 </main>
 
 <script>
-  const swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 1,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2
-      },
-      1024: {
-        slidesPerView: 3
-      }
-    }
-  });
+  
 </script>
 
 <?php include_once __DIR__.'/../components/footer.php';?>
@@ -164,8 +118,12 @@
 <?php 
 
     $menuVersion = filemtime('assets/js/menu.js');
+    $swiperVersion = filemtime('assets/js/swiper.js');
+    
     $scripts ='
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
         <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
+        <script src="/assets/js/swiper.js?v='.$swiperVersion.'"></script>
         
     ';
 ?>
