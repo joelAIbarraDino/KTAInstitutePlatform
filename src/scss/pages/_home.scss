@@ -411,17 +411,36 @@
 .main-courses{
     width: 90%;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
     gap: 3rem;
     padding: 2rem 0;
-
-    @include m.tablet{
-        grid-template-columns: repeat(2, 1fr);
+    
+    
+    &.col-5{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        
+        display: grid;
+        @include m.tablet{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+        @include m.computadora{
+            grid-template-columns: repeat(5, 1fr);
+        }
     }
 
-    @include m.computadora{
-        grid-template-columns: repeat(5, 1fr);
+    &.col-4{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        
+        display: grid;
+        @include m.tablet{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+        @include m.computadora{
+            grid-template-columns: repeat(4, 1fr);
+        }
     }
 }
 
@@ -570,11 +589,11 @@
 
 .estadisticas{
     background-color: v.$negro;
-    padding: 4rem 0;
+    padding: 5rem;
     margin-bottom: 3rem;
 
-    @include m.tablet{
-        padding: 17rem 10rem;
+    @include m.computadora{
+        padding: 10rem 0rem;
     }
 
     &__container{
@@ -584,7 +603,7 @@
         align-items: center;
         justify-content: space-evenly;
         flex-direction: column;
-
+        gap: 3rem;
         @include m.computadora{
             flex-direction: row;
             width: 70%;
@@ -595,15 +614,16 @@
 .estadistica{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 2rem;
+    justify-content: space-between;
+    width: 90%;
 
     @include m.computadora{
         justify-content: center;
+        width: auto;
     }
 
     i{
-        font-size: 5.5rem;
+        font-size: 9rem;
         color: v.$dorado;
     }
 
@@ -615,7 +635,7 @@
 
     &__desc{
         margin: 0;
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         color: v.$dorado;
     }
 }
@@ -658,6 +678,7 @@
     background-color: v.$negro;
     height: auto;
     border-radius: .5rem;
+
     &__titulo{
         color: v.$dorado;
         text-align: center;

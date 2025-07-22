@@ -82,7 +82,7 @@
     }
 
     function quizModal(modeEdit = false){
-        const {id_quiz, name, tutorial_id, quiz_mode, show_answers, min_score, max_time, max_attempts} = quiz;
+        const {id_quiz, name, tutorial_id, quiz_mode, show_answers, random_questions, min_score, max_time, max_attempts} = quiz;
 
         const modalWindow = document.createElement("div");
         modalWindow.classList.add("modal");
@@ -227,13 +227,52 @@
         divShowAnswers.appendChild(realInputShowAnswers);
         divShowAnswers.appendChild(inputShowAnswers);
 
+        // Input: show answers
+        const divRandomQuestions = document.createElement("div");
+        divRandomQuestions.classList.add("form__input", "col-12");
+
+        const labelRandomQuestion = document.createElement("label");
+        labelRandomQuestion.textContent = "¿El estudiante puede ver las respuestas al final del exámen?";
+
+        const realInputRandomQuestion = document.createElement("input");
+        realInputRandomQuestion.value  = random_questions;
+        realInputRandomQuestion.type = "hidden";
+
+
+        const inputRandomQuestion = document.createElement("i");
+        inputRandomQuestion.classList.add("bx", "bx-check-square", "field-checkbox");
+        inputRandomQuestion.addEventListener('click', ()=>{
+            
+            if(realInputRandomQuestion.value == "1"){
+                realInputRandomQuestion.value = "0";
+                inputRandomQuestion.classList.remove("bxs-check-square");
+                inputRandomQuestion.classList.add("bx-check-square");
+            }else{
+                realInputRandomQuestion.value = "1";
+                inputRandomQuestion.classList.add("bxs-check-square");
+                inputRandomQuestion.classList.remove("bx-check-square");
+            }
+        });
+
+        if(random_questions == "1"){
+            inputRandomQuestion.classList.remove("bx-check-square");
+            inputRandomQuestion.classList.add("bxs-check-square");
+        }else{
+            inputRandomQuestion.classList.add("bx-check-square");
+            inputRandomQuestion.classList.remove("bxs-check-square");
+        }
+
+        divRandomQuestions.appendChild(labelRandomQuestion);
+        divRandomQuestions.appendChild(realInputRandomQuestion);
+        divRandomQuestions.appendChild(inputRandomQuestion);
+    
         // Input: Min score
         const divMinScore = document.createElement("div");
-        divMinScore.classList.add("form__input", "col-12");
+        divMinScore.classList.add("form__input", "col-4");
 
         const labelMinScore = document.createElement("label");
         labelMinScore.setAttribute("for", "min_score");
-        labelMinScore.textContent = "Score minimo aprobatorio (1 - 100)";
+        labelMinScore.textContent = "Score minimo aprobatorio";
 
         const inputMinScore = document.createElement("input");
         inputMinScore.setAttribute("autocomplete", "off");
@@ -249,11 +288,11 @@
 
         // Input: Max time
         const divMaxTime = document.createElement("div");
-        divMaxTime.classList.add("form__input", "col-12");
+        divMaxTime.classList.add("form__input", "col-4");
 
         const labelMaxTime = document.createElement("label");
         labelMaxTime.setAttribute("for", "max_time");
-        labelMaxTime.textContent = "Tiempo maximo para concluir el examen (en minutos)";
+        labelMaxTime.textContent = "Tiempo para realizar el examen";
 
         const inputMaxTime = document.createElement("input");
         inputMaxTime.setAttribute("autocomplete", "off");
@@ -269,11 +308,11 @@
 
         // Input: Max time
         const divMaxAttempts = document.createElement("div");
-        divMaxAttempts.classList.add("form__input", "col-12");
+        divMaxAttempts.classList.add("form__input", "col-4");
 
         const labelMaxAttempts = document.createElement("label");
         labelMaxAttempts.setAttribute("for", "max_attempts");
-        labelMaxAttempts.textContent = "Numero de intentos maximos para aprobar";
+        labelMaxAttempts.textContent = "Intentos para realizar examen";
 
         const inputMaxAttempts = document.createElement("input");
         inputMaxAttempts.setAttribute("autocomplete", "off");
@@ -292,6 +331,7 @@
         grid.appendChild(divTutorialID);
         grid.appendChild(divQuizMode);
         grid.appendChild(divShowAnswers);
+        grid.appendChild(divRandomQuestions);
         grid.appendChild(divMinScore);
         grid.appendChild(divMaxTime);
         grid.appendChild(divMaxAttempts);
@@ -309,6 +349,7 @@
             const newIDVimeo = inputTutorialID.value.trim();
             const freeMode = realInputQuizMode.value;
             const showAnswers = realInputShowAnswers.value;
+            const randomQuestions = realInputRandomQuestion.value;
             const newMinScore = inputMinScore.value.trim();
             const newMaxTime = inputMaxTime.value.trim();
             const newAttempts = inputMaxAttempts.value.trim();
@@ -365,6 +406,7 @@
                 tutorial_id:newIDVimeo,
                 quiz_mode:freeMode,
                 show_answers:showAnswers,
+                random_questions:randomQuestions,
                 min_score:newMinScore,
                 max_time:newMaxTime,
                 max_attempts:newAttempts,
@@ -431,7 +473,7 @@
                 }, 550);
             }
         });
-
+        document.body.scrollIntoView({ behavior: "smooth", block: "start" });
         document.querySelector("body").appendChild(modalWindow);
     }
 
@@ -806,7 +848,8 @@
                 }, 550);
             }
         });
-
+        
+        document.body.scrollIntoView({ behavior: "smooth", block: "start" });
         document.querySelector("body").appendChild(modalWindow);
     }
 
@@ -846,7 +889,7 @@
 
     async function addQuiz(newQuiz) {
 
-        const {name, tutorial_id, quiz_mode, show_answers, min_score, max_time, max_attempts, id_course} = newQuiz;
+        const {name, tutorial_id, quiz_mode, show_answers, random_questions, min_score, max_time, max_attempts, id_course} = newQuiz;
 
         try {
 
@@ -856,6 +899,7 @@
             formData.append("tutorial_id", tutorial_id);
             formData.append("quiz_mode", quiz_mode);
             formData.append("show_answers", show_answers);
+            formData.append("random_questions", random_questions);
             formData.append("min_score", min_score);
             formData.append("max_time", max_time);
             formData.append("max_attempts", max_attempts);
@@ -893,6 +937,7 @@
                 tutorial_id:tutorial_id,
                 quiz_mode:quiz_mode,
                 show_answers:show_answers,
+                random_questions:random_questions,
                 min_score:min_score,
                 max_time:max_time,
                 max_attempts:max_attempts,
@@ -909,7 +954,7 @@
     }
 
     async function updateQuiz(quizMemory){
-        const {id_quiz, name, tutorial_id, quiz_mode, show_answers, min_score, max_time, max_attempts, id_course} = quizMemory;
+        const {id_quiz, name, tutorial_id, quiz_mode, show_answers, random_questions, min_score, max_time, max_attempts, id_course} = quizMemory;
 
         try {
 
@@ -937,6 +982,7 @@
                     tutorial_id: tutorial_id,
                     quiz_mode: quiz_mode,
                     show_answers: show_answers,
+                    random_questions: random_questions,
                     min_score: min_score,
                     max_time:max_time,
                     max_attempts:max_attempts,
@@ -956,6 +1002,7 @@
             quiz.tutorial_id = tutorial_id;
             quiz.quiz_mode = quiz_mode;
             quiz.show_answers = show_answers;
+            quiz.random_questions = random_questions;
             quiz.min_score = min_score;
             quiz.max_time = max_time;
             quiz.max_attempts = max_attempts;

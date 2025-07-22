@@ -268,14 +268,6 @@
     width: 90%;
     margin: 0 auto;
     padding: 3rem 0;
-
-    @include m.tablet{
-        width: 80%;
-    }
-
-    @include m.computadora{
-        width: 125rem;
-    }
 }
 
 .course-title{
@@ -307,7 +299,7 @@
         }
 
         @include m.computadora{
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(5, 1fr);
         }
     }
 }

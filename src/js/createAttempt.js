@@ -191,9 +191,11 @@
             `;
 
             wrapper.appendChild(answerDiv);
+            document.body.scrollIntoView({ behavior: "smooth", block: "start" });
         });
 
         answersContainer.appendChild(wrapper);
+        document.body.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function getCourseID(){

@@ -4,7 +4,7 @@
         <?php if($title != "Inicio"):?>
             <h3 class="last-courses__title">Ultimos cursos</h3>
         <?php endif;?>
-        <div class="main-courses">
+        <div class="main-courses col-5">
             <?php foreach($courses as $course):?>
                 <?php include __DIR__.'/courseCard.php';?>
             <?php endforeach;?>

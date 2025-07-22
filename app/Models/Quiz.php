@@ -9,14 +9,15 @@ class Quiz extends Model {
     
     protected static string $table = 'quiz';
     protected static string $PK_name = 'id_quiz';
-    protected static array $columns = ['id_quiz', 'name', 'tutorial_id', 'quiz_mode', 'show_answers', 'min_score', 'max_time', 'max_attempts', 'id_course'];
-    protected static array $fillable = ['name', 'tutorial_id', 'quiz_mode', 'show_answers', 'min_score', 'max_time', 'max_attempts', 'id_course'];
+    protected static array $columns = ['id_quiz', 'name', 'tutorial_id', 'quiz_mode', 'show_answers', 'random_questions', 'min_score', 'max_time', 'max_attempts', 'id_course'];
+    protected static array $fillable = ['name', 'tutorial_id', 'quiz_mode', 'show_answers', 'random_questions', 'min_score', 'max_time', 'max_attempts', 'id_course'];
 
     public ?int $id_quiz;
     public string $name;
     public int $tutorial_id;
     public string $quiz_mode;
     public string $show_answers;
+    public int $random_questions;
     public float $min_score;
     public float $max_time;
     public int $max_attempts;
@@ -28,6 +29,7 @@ class Quiz extends Model {
         $this->tutorial_id = $args["tutorial_id"]??0;
         $this->quiz_mode = $args["quiz_mode"]??"";
         $this->show_answers = $args["show_answers"]??"";
+        $this->random_questions = $args["random_questions"]??0;
         $this->min_score = $args["min_score"]??80.0;
         $this->max_time = $args["max_time"]??180;
         $this->max_attempts = $args["max_attempts"]??3;
@@ -39,7 +41,7 @@ class Quiz extends Model {
             Response::json(['ok'=>false, 'message'=>'El nombre del quiz es obligatorio'], 400);
 
         if(!$this->quiz_mode)
-            Response::json(['ok'=>false, 'message'=>'El modol del quiz es obligatorio'], 400);
+            Response::json(['ok'=>false, 'message'=>'El modo del quiz es obligatorio'], 400);
 
         if($this->min_score < 1 || $this->min_score > 100)
             Response::json(['ok'=>false, 'message'=>'El score debe estar en el rango de (1 - 100)'], 400);

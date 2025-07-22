@@ -34,7 +34,7 @@
                 <input 
                     type="text" 
                     id="new_question" 
-                    placeholder="pregunta de examen" 
+                    placeholder="Insertar pregunta de examen" 
                     class="field" 
                 />
                 
