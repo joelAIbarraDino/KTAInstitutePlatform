@@ -33,11 +33,13 @@ class PagesController{
     }
 
     public static function about(): void{
+
+        $teachers = Teacher::all()??[];
         
         Response::render('public/whoarewe', [
             'nameApp'=>APP_NAME, 
             'title' => 'Nosotros',
-            'transparente'=>false
+            'teachers'=>$teachers
         ]);
     }
 

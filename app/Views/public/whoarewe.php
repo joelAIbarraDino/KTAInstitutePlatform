@@ -1,3 +1,11 @@
+<?php 
+
+    $topScripts ='
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    ';
+?>
+
 <?php include_once __DIR__.'/../components/header.php';?>
 
 <main class="about-page">
@@ -58,6 +66,106 @@
             </p>
         </div>
     </section>
+
+    <section class="valores-about">
+        <div class="valores-about__text">
+            <h3 class="valores-about__title">MISIÓN, VISIÓN Y VALORES INSTITUCIONALES</h3>
+
+            <div class="valores-about__valor">
+                <div class="valores-about__icono"><i class='bx bxs-flag-checkered'></i></div>
+                <div class="valores-about__valor-text-container">
+                    <h4 class="valores-about__title-valor">Nuestra Misión:</h4>
+
+                    <p class="valores-about__text-valor">
+                       Brindar educación accesible y de calidad que permita al inmigrante integrarse con éxito al sistema fiscal y profesional de Estados Unidos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="valores-about__valor">
+                <div class="valores-about__icono"><i class='bx bx-show' ></i></div>
+                <div class="valores-about__valor-text-container">
+                    <h4 class="valores-about__title-valor">Nuestra Visión:</h4>
+
+                    <p class="valores-about__text-valor">
+                        Ser el aliado educativo número uno de la comunidad hispana, formando expertos en impuestos y contabilidad con un enfoque práctico y humano.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="valores-about__images">
+            <div class="valores-about__image" style="background-image: url('assets/images/about2.jpg');"></div>
+            <div class="valores-about__image" style="background-image: url('assets/images/about3.jpg');"></div>
+        </div>
+    </section>
+
+    <section class="teachers-about">
+
+        <h3 class="teachers-about__title">Maestros especializados</h3>
+        <p class="teachers-about__description">Para nosotros enseñar es más importante que asistir.  Enseñar es dar la oportunidad de crecer en libertad y conocimiento ya que la asistencia es limitante y adictiva. Nuestro objetivo es sembrar en cada participante un conocimiento y métodos de desarrollo en la área económica y personal que El participante eligió.</p>
+        
+        <?php if(!empty($teachers)): ?>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <?php foreach($teachers as $teacher): ?>
+                        <div class="swiper-slide">
+                            <div class="profesor-card">
+                                <a href="/profesor/view/<?=$teacher->id_teacher?>">
+                                    <img src="/assets/teachers/<?=$teacher->photo?>" alt="Profesor" class="profesor-foto" />
+                                </a>
+                                <p class="nombre"><?=$teacher->name?></p>
+                                <p class="experiencia"><?=$teacher->experience?> años de experiencia</p>
+                                <a href="/profesor/view/<?=$teacher->id_teacher?>" class="boton-ver-mas">Ver más</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- Opcionales: navegación -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        <?php else:?>
+
+        <?php endif;?>
+
+    </section>
+    
 </main>
 
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 1,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2
+      },
+      1024: {
+        slidesPerView: 3
+      }
+    }
+  });
+</script>
+
 <?php include_once __DIR__.'/../components/footer.php';?>
+
+<?php 
+
+    $menuVersion = filemtime('assets/js/menu.js');
+    $scripts ='
+        <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
+        
+    ';
+?>

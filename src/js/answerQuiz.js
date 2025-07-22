@@ -62,7 +62,6 @@
         // Cargar datos del quiz desde la API
         async function loadQuizData() {
             try {
-                // Primero verificar si hay datos en localStorage
                 const savedData = localStorage.getItem(`quizAttempt_${idAttempt}`);
                 
                 if (savedData) {
@@ -72,35 +71,32 @@
                     currentQuestionIndex = parsed.currentQuestionIndex ?? 0;
                     timeLeft = parsed.timeLeft ?? quizData.quiz.max_time * 60;
 
-                    // Cargar datos frescos del servidor pero mantener el tiempo local
-                    const response = await fetch(`/api/quiz/attempt/${idAttempt}`);
-                    if (response.ok) {
-                        const freshData = await response.json();
-                        quizData = freshData; // Actualizar datos pero mantener el tiempo
-                    }
-                    
+                    // No sobreescribas quizData.questions, ya están guardadas en orden anterior.
                     initializeQuiz();
                 } else {
-                    // Cargar datos nuevos si no hay en localStorage
                     const response = await fetch(`/api/quiz/attempt/${idAttempt}`);
                     if (!response.ok) throw new Error('Error al cargar el quiz');
-                    
+
                     quizData = await response.json();
+
+                    // SOLO mezclas si es PRIMERA vez
+                    shuffleArray(quizData.questions);
+
                     timeLeft = quizData.quiz.max_time * 60;
                     initializeQuiz();
                 }
+
             } catch (error) {
                 Swal.fire({
                     title: '¡Error al cargar quiz!',
-                    text: 'Hay un error con la configuración del quiz, por favor de contactar con KTA para alertar de este error',
+                    text: 'Hay un error con la configuración del quiz, por favor contactar con KTA para alertar de este error',
                     icon: 'error',
                     confirmButtonText: 'Entendido'
                 });
-
                 window.location.href = `/quiz/attempts/${uuid}`;
-                
             }
         }
+
         
         // Inicializar el quiz
         function initializeQuiz() {
@@ -236,14 +232,17 @@
             answeredQuestions = Object.keys(userAnswers).length;
             answeredPercentage = (answeredQuestions / totalQuestions) * 100;
 
-            console.log(answeredPercentage);
             // Actualizar botones de navegación
-            btnPrevious.disabled = index === 0;
-            btnNext.disabled = index === quizData.questions.length - 1;
-            
-            // Mostrar botón de enviar si es la última pregunta
-            if (index === quizData.questions.length - 1)
-                btnSubmit.disabled = false;
+            if (quizData.quiz.quiz_mode === 'restringido') {
+                btnPrevious.disabled = true;
+                btnNext.disabled = index === quizData.questions.length - 1 || !isCurrentQuestionAnswered();
+            } else {
+                btnPrevious.disabled = index === 0;
+                btnNext.disabled = index === quizData.questions.length - 1;
+            }
+
+            btnSubmit.disabled = index !== quizData.questions.length - 1;
+
 
             if(answeredPercentage > 50){
                 btnCancel.disabled = true;
@@ -270,6 +269,10 @@
                     userAnswers[questionId] = [optionId]; // Solo permitir una respuesta
                 } else {
                     userAnswers[questionId].splice(index, 1);
+                }
+
+                if (quizData.quiz.quiz_mode === 'restringido') {
+                    btnNext.disabled = currentQuestionIndex === quizData.questions.length - 1 || !isCurrentQuestionAnswered();
                 }
             }
             
@@ -431,7 +434,25 @@
                 console.error('Error:', error);
             }
         }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
         
+        function isCurrentQuestionAnswered() {
+            const currentQuestion = quizData.questions[currentQuestionIndex];
+            const answer = userAnswers[currentQuestion.id_question];
+
+            if (currentQuestion.type_question === 'multiple') {
+                return answer && answer.length > 0;
+            } else {
+                return answer && answer.text && answer.text.trim() !== '';
+            }
+        }
+
         // Iniciar la aplicación
         getUrlParams();
         loadQuizData();
