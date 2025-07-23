@@ -367,6 +367,7 @@
             }
         });
 
+        document.body.scrollIntoView({ behavior: "smooth", block: "start" });
         document.querySelector("body").appendChild(modalWindow);
     }
 

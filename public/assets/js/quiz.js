@@ -193,7 +193,7 @@
         divShowAnswers.classList.add("form__input", "col-12");
 
         const laberShowAnswers = document.createElement("label");
-        laberShowAnswers.textContent = "¿El estudiante puede ver las respuestas al final del exámen?";
+        laberShowAnswers.textContent = "¿El estudiante puede ver las respuestas al final del examen?";
 
         const realInputShowAnswers = document.createElement("input");
         realInputShowAnswers.value  = show_answers;
@@ -232,7 +232,7 @@
         divRandomQuestions.classList.add("form__input", "col-12");
 
         const labelRandomQuestion = document.createElement("label");
-        labelRandomQuestion.textContent = "¿El estudiante puede ver las respuestas al final del exámen?";
+        labelRandomQuestion.textContent = "¿Las preguntas estarán en orden aleatorio?";
 
         const realInputRandomQuestion = document.createElement("input");
         realInputRandomQuestion.value  = random_questions;
@@ -272,7 +272,7 @@
 
         const labelMinScore = document.createElement("label");
         labelMinScore.setAttribute("for", "min_score");
-        labelMinScore.textContent = "Score minimo aprobatorio";
+        labelMinScore.textContent = "Score mínimo aprobatorio";
 
         const inputMinScore = document.createElement("input");
         inputMinScore.setAttribute("autocomplete", "off");
@@ -280,7 +280,6 @@
         inputMinScore.name = "min_score";
         inputMinScore.id = "min_score";
         inputMinScore.classList.add("field");
-        inputMinScore.placeholder = "Puntaje minimo para aprobar (1 - 100)";
         inputMinScore.value = min_score || "";
 
         divMinScore.appendChild(labelMinScore);
@@ -292,7 +291,7 @@
 
         const labelMaxTime = document.createElement("label");
         labelMaxTime.setAttribute("for", "max_time");
-        labelMaxTime.textContent = "Tiempo para realizar el examen";
+        labelMaxTime.textContent = "Minutos para realizar el examen";
 
         const inputMaxTime = document.createElement("input");
         inputMaxTime.setAttribute("autocomplete", "off");
@@ -300,7 +299,6 @@
         inputMaxTime.name = "max_time";
         inputMaxTime.id = "max_time";
         inputMaxTime.classList.add("field");
-        inputMaxTime.placeholder = "Tiempo en minutos para terminar";
         inputMaxTime.value = max_time || "";
 
         divMaxTime.appendChild(labelMaxTime);
@@ -312,7 +310,7 @@
 
         const labelMaxAttempts = document.createElement("label");
         labelMaxAttempts.setAttribute("for", "max_attempts");
-        labelMaxAttempts.textContent = "Intentos para realizar examen";
+        labelMaxAttempts.textContent = "Intentos para realizar el examen";
 
         const inputMaxAttempts = document.createElement("input");
         inputMaxAttempts.setAttribute("autocomplete", "off");
@@ -320,7 +318,6 @@
         inputMaxAttempts.name = "max_attempts";
         inputMaxAttempts.id = "max_attempts";
         inputMaxAttempts.classList.add("field");
-        inputMaxAttempts.placeholder = "Tiempo en minutos para terminar";
         inputMaxAttempts.value = max_attempts || "";
 
         divMaxAttempts.appendChild(labelMaxAttempts);
