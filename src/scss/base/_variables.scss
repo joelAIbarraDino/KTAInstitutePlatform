@@ -1,5 +1,23 @@
+@font-face {
+    font-family: 'GothamRounded';
+    src: url('/assets/fonts/GothamRounded-Medium/GothamRounded-Medium.woff2') format('woff2'),
+         url('/assets/fonts/GothamRounded-Medium/GothamRounded-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FuturaBT';
+    src: url('/assets/fonts/FuturaBT-BookItalic/FuturaBT-BookItalic.woff2') format('woff2'),
+         url('/assets/fonts/FuturaBT-BookItalic/FuturaBT-BookItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 //fuentes
-$fuente_principal: "Lato", sans-serif;
+$fuente_principal: "GothamRounded", sans-serif;
+$fuente_secundaria: "FuturaBT", sans-serif;
 
 //tamaño de fuentes
 $delgada: 300;
