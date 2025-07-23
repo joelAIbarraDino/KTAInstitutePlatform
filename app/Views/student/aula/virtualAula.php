@@ -1,8 +1,10 @@
 <?php 
 
     $topScripts = '
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <link rel="preload" href="https://cdn.plyr.io/3.7.8/plyr.css" as="style"> 
         <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     ';
 ?>
 
@@ -32,15 +34,7 @@
                 </div>
             </div>
 
-
-            <div id="player">
-                <iframe
-                    src="https://player.vimeo.com/video/123456789"
-                    allowfullscreen
-                    allowtransparency
-                    allow="autoplay"
-                ></iframe>
-            </div>
+            <div id="player"  data-plyr-provider="vimeo" data-plyr-embed-id=""></div>
 
             <div class="class__tabs">
                 <button class="class__tab class__tab--active" data-step="1">Descripción</button>
@@ -50,7 +44,7 @@
             <div class="class__extras">
                 
                 <div id="step-1" class="class__extra class__extra--active">
-                    <div class="description" id="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, dolor placeat? Ad fugit suscipit quo vitae magnam itaque molestiae eos nihil pariatur, laborum molestias culpa sunt repellendus officiis commodi incidunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint at possimus placeat dignissimos, vero tenetur earum blanditiis, sapiente consectetur amet labore expedita nesciunt error neque eaque aperiam ut praesentium dolorum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quo suscipit rem, perspiciatis iure ea sit blanditiis. Quia qui accusantium exercitationem consequuntur minus. Consectetur dolore, voluptatum repellendus fuga numquam necessitatibus.</div>
+                    <div class="description" id="description"></div>
                 </div>
 
                 <div id="step-2" class="class__extra">
@@ -128,9 +122,7 @@
     $coursePlayVersion = filemtime('assets/js/coursePlay.js');
 
     $scripts ='
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
         <script src="/assets/js/coursePlay.js?v='.$coursePlayVersion.'"></script>
     ';

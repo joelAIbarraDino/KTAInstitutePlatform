@@ -17,7 +17,7 @@
   let quiz = [];
 
   let currentLesson = 0;
-  let player = new Plyr('#player');
+  let player;
 
   window.addEventListener("DOMContentLoaded", ()=>{
     app();
@@ -172,7 +172,6 @@
     return detailsElement;
   }
 
-
   function createLessionElement(lesson){
     const lessonCont = document.createElement('div');
     lessonCont.classList.add('content-module__lesson');
@@ -253,16 +252,7 @@
 
     description.innerHTML = lesson.description;
 
-    player.source = {
-        type: 'video',
-        sources: [
-            {
-                src: lesson.id_video,
-                provider: 'vimeo',
-            },
-        ],
-    };
-
+    loadVideo(lesson.id_video);
     actionPlayer();
 
   }
@@ -342,7 +332,6 @@
             newElement.classList.add("class__extra--active");
             
             currentStep = newStep;
-
 
             currentBtn.classList.remove("class__tab--active");
             newBtn.classList.add("class__tab--active");
@@ -483,7 +472,7 @@
       formData.append("completed", 1);
       
 
-      const request = await fetcth(url, {
+      const request = await fetch(url, {
         method: 'POST',
         body:formData
       });
@@ -536,6 +525,25 @@
     } catch (error) {
       
     }
+  }
+
+  function loadVideo(videoID){
+
+    if(!player){
+      const playerElement = document.querySelector('#player');
+      playerElement.setAttribute('data-plyr-embed-id', videoID);
+      player = new Plyr('#player');
+    }else{
+
+      player.source = {
+        type: 'video',
+        sources: [{
+          src: videoID,
+          provider: 'vimeo'
+        }]
+      };
+    }
+    
   }
 
   function leccionCompleted(){
