@@ -445,14 +445,20 @@
 }
 
 .last-courses{
-    padding:  1rem 0;
+    padding:  3rem 0;
+
+    &__container{
+        width: 90%;
+        margin: 0 auto;
+    }
 
     &__title{
         color: v.$dorado;
         text-transform: uppercase;
         font-weight: v.$black;
         margin: 0;
-        font-size: 2rem;
+        font-size: 3rem;
+        margin-top: 1rem;
     }
 }
 
@@ -728,6 +734,13 @@
 
 .maestros-index{
     padding: 3rem;
+    width: 95%;
+    margin: 0 auto;
+
+    @include m.tablet{
+        width: 90%;
+    }
+
 
     &__subtitulo{
         color: v.$dorado;

@@ -1,23 +1,26 @@
 (function(){
     const swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
-        spaceBetween: 1,
+        spaceBetween: 20,
         loop: true,
         pagination: {
         el: ".swiper-pagination",
         clickable: true,
-        },
-        navigation: {
+    },
+    navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        480:{
+            slidesPerView: 1
         },
-        breakpoints: {
         768: {
-            slidesPerView: 2
+            slidesPerView: 3
         },
         1024: {
-            slidesPerView: 3
+            slidesPerView: 5
         }
-        }
+    }
     });
 })();
