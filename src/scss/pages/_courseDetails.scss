@@ -62,7 +62,8 @@
     -webkit-background-clip: text;
     color: transparent; 
     word-break: break-word; 
-
+    text-transform: capitalize;
+    
     @include m.tablet{
       font-size: 7.5rem;
     }
@@ -112,7 +113,7 @@
       
       a{
         color: v.$blanco;
-
+        text-transform: capitalize;
         &:hover{
           text-decoration: underline;
         }

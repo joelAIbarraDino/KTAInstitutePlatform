@@ -61,6 +61,9 @@
         "label":"Start, change, or advance your career with KTA as your guide.",
         "all-courses":"All courses"
     },
+    "lives":{
+        "title":"Our online courses"
+    },
     "live-details":{
         "type-content":"<i class='bx bxl-zoom' ></i> <span>Live content</span>",
         "lema":"<strong>This is a live course that will be given on:</strong>"

@@ -61,6 +61,9 @@
         "label":"Empieza, cambia o avanza en tu carrera con KTA como guía.",
         "all-courses":"Todos los cursos"
     },
+    "lives":{
+        "title":"Nuestros cursos en línea"
+    },
     "live-details":{
         "type-content":"<i class='bx bxl-zoom' ></i> <span>Contenido en vivo</span>",
         "lema":"<strong>Este es un curso en vivo que se dara el:</strong>"

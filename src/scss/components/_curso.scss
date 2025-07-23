@@ -185,7 +185,7 @@
 
             a{
                 color: v.$dorado;
-
+                text-transform: capitalize;
                 &:hover{
                     text-decoration: underline;
                 }
