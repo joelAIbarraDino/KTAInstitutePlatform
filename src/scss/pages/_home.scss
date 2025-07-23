@@ -325,7 +325,7 @@
         justify-content: center;
         flex-direction: column;
         padding: 2rem;
-        gap: 1.5rem;
+        gap: 2rem;
 
         @include m.tablet{
             align-items: start;
@@ -347,7 +347,7 @@
         width: 98%;
         max-width: 70rem;
         background-color: rgba(v.$negro, 0.6);
-        padding: 1rem;
+        padding: 2rem 4rem;
 
         @include m.tablet{
             align-items: start;
@@ -359,6 +359,8 @@
         text-align: center;
         font-size: 3.2rem;
         margin: 0;
+        line-height: 5.5rem;
+        letter-spacing: .3rem;
 
         @include m.tablet{
             text-align: left;
@@ -371,6 +373,7 @@
         text-align: center;
         font-size: 1.8rem;
         margin: 0;
+        line-height: 3.2rem;
 
         @include m.tablet{
             text-align: left;
@@ -605,7 +608,7 @@
     }
 
     &__container{
-        width: 90%;
+        width: 95%;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -622,12 +625,15 @@
 .estadistica{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 90%;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+    gap: 2rem;
 
     @include m.computadora{
-        justify-content: center;
         width: auto;
+        flex-direction: row;
+        gap: 1rem;
     }
 
     i{
@@ -639,6 +645,11 @@
         margin: 0;
         font-weight: v.$black;
         color: v.$blanco;
+        text-align: center;
+
+        @include m.computadora{
+            text-align: left;
+        }
     }
 
     &__desc{

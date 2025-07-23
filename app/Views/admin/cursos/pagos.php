@@ -46,7 +46,7 @@ use App\Classes\Helpers;
                                             <span class="dashboard-table__status dashboard-table__status--inactive"><?=$pago->status ?></span>
                                         <?php endif; ?>
                                     </td>
-                                    <td><?=$pago->method?></td>
+                                    <td><?=ucfirst($pago->method)?></td>
                                     <td class="dashboard-table__actions-cell">
                                         <a href="#" class="dashboard-table__action dashboard-table__action--extra"><i class='bx bxs-file-pdf'></i></a>
                                     </td>

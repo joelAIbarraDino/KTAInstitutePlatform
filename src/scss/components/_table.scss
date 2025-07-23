@@ -172,6 +172,7 @@
     border-radius: 20px;
     font-size: 1rem;
     font-weight: v.$bold;
+    text-transform: capitalize;
 
     &--active {
       background: rgba(v.$verde, 0.1);
