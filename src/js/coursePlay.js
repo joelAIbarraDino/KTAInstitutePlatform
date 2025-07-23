@@ -16,7 +16,7 @@
   let lessons = [];
   let quiz = [];
 
-  let currentLesson = 0;
+  let currentLesson = null;
   let player;
 
   window.addEventListener("DOMContentLoaded", ()=>{
@@ -46,14 +46,14 @@
 
       showModules();
 
-      showLesson(modules[currentLesson], modules[currentLesson].lessons[currentLesson]);
+      showLesson(modules[0], modules[0].lessons[0]);
 
     } catch (error) {
         console.log(error);
     }
   }
 
-  function showModules(){
+  function showModules(openModule = 0){
     clearModules();
 
     if(modules.length == 0)
@@ -63,6 +63,11 @@
       let newModule = createModule(module, index);
       modulesContainer.appendChild(newModule);
       beginModule(newModule);
+
+      if(module.id_module == openModule){
+        openAcordion(newModule);
+      }
+
     })
 
     if(quiz.length == 0)
@@ -75,6 +80,9 @@
   }
 
   function createModule(module, index){
+    let noLessions = 0;
+    let finishedLessions = 0;
+
     const detailsElement = document.createElement('details');
     detailsElement.classList.add("content-module");
 
@@ -84,14 +92,32 @@
     const sumaryTitle = document.createElement("div");
     sumaryTitle.classList.add("content-module__title");
 
-    sumaryTitle.innerHTML = `
-      <span>Módulo ${index + 1} - ${module.name}</span>
-      <div class="content-module__progress-container">
-          <p class="content-module__progress-percentage" >10%</p>
-          <progress class="content-module__progress-bar" max="100" value="10"></progress>
-      </div>
-    `;
+    const span = document.createElement('span');
+    span.textContent = `Módulo ${index + 1} - ${module.name}`;
 
+    // Crear contenedor de progreso
+    const progressContainer = document.createElement('div');
+    progressContainer.classList.add('content-module__progress-container');
+
+    // Crear el <p> del porcentaje
+    const percentageText = document.createElement('p');
+    percentageText.classList.add('content-module__progress-percentage');
+    percentageText.textContent = '0%';
+    progressContainer.appendChild(percentageText);
+
+    // Crear la barra de progreso
+    const progressBar = document.createElement('progress');
+    progressBar.classList.add('content-module__progress-bar');
+    progressBar.setAttribute('max', '100');
+    progressBar.setAttribute('value', '0');
+    progressContainer.appendChild(progressBar);
+
+    progressContainer.appendChild(percentageText);
+    progressContainer.appendChild(progressBar);
+
+    sumaryTitle.appendChild(span);
+    sumaryTitle.appendChild(progressContainer);
+    
     const icon = document.createElement('i');
     icon.classList.add("bx", 'bx-chevron-down');
 
@@ -121,15 +147,27 @@
     lessons.forEach(lesson =>{
       let newLesson = createLessionElement(lesson);
       contentModule.appendChild(newLesson);
-
-      newLesson.addEventListener('click', ()=>{
+      
+      newLesson.addEventListener('click', (e)=>{
+        if(!e.target.classList.contains("content-module__lesson"))
+          return;
+        
         showLesson(module, lesson);
       })
+      
+      if(lesson.progress.completed) finishedLessions++;
+      
+      noLessions++;
     });
 
+    const percentage = (finishedLessions / noLessions) * 100;
+
+    percentageText.textContent = `%${percentage.toFixed(0)}`;
+    progressBar.value = percentage.toFixed(2);
+    
     detailsElement.appendChild(summaryElement);
     detailsElement.appendChild(contentModule);
-
+    
     return detailsElement;
   }
 
@@ -191,14 +229,16 @@
       icon.classList.add("bx", 'bxs-check-circle');
     }
     
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', (e)=>{
+      if(!e.target.classList.contains("bx", "bx-check-circle"))
+          return;
+
       if(lesson.progress.length == 0)
         createProgress(lesson);
       else{
         lesson.progress.completed = lesson.progress.completed?0:1;
         updateProgress(lesson);
       }
-
     });
 
     button.appendChild(icon);
@@ -245,19 +285,17 @@
         const lesson = lessons[index];
         
         const currentModule = modules.find(Object => Object.id_module == lesson.id_module)
-        showLesson(currentModule, lessons[index]);
+        showLesson(currentModule, lesson);
 
       })
     })
 
     description.innerHTML = lesson.description;
-
-    loadVideo(lesson.id_video);
-    actionPlayer();
-
+    loadVideo(lesson);
   }
 
   function actionPlayer(){
+
     player.on('timeupdate', () => {
       const current = player.currentTime;
       const duration = player.duration;
@@ -266,8 +304,8 @@
         const percent = (current / duration) * 100;
         
         if(percent > 90 && !videoTerminado){
-            leccionCompleted();
-            videoTerminado = true;
+          leccionCompleted(currentLesson);
+          videoTerminado = true;
         }
 
         if(percent == 100 && videoTerminado){
@@ -299,8 +337,17 @@
             }
 
           }).then((result) => {
-              if (result.dismiss === Swal.DismissReason.timer) {
-                  console.log("cargando DOM de la siguiente clase");
+              if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                const currentCompleteLesson = lessons.find(Object => Object.id_lesson == currentLesson.id_lesson);
+                let currentIndex = lessons.indexOf(currentCompleteLesson);
+
+                if(currentIndex >= 0 && currentIndex < lessons.length -1){
+                  currentIndex++;
+                  const nextSimpleLesson = lessons[currentIndex];
+                  const nextModule = modules.find(Object => Object.id_module == nextSimpleLesson.id_module)
+                  const nextLesson = nextModule.lessons.find(Object => Object.id_lesson == nextSimpleLesson.id_lesson)
+                  showLesson(nextModule, nextLesson);
+                }
               }
           });
 
@@ -492,7 +539,7 @@
       progress = {
         id_progress: response.id_progress,
         completed:1,
-        id_enrollment:id_enrollment,
+        id_enrollment:response.id_enrollment,
         id_lesson:id_lesson
       };
 
@@ -500,7 +547,58 @@
         if(module.id_module == id_module){
           module.lessons.map(lesson=>{
             if(lesson.id_lesson == id_lesson){
-              lesson.progress = [...lesson.progress, progress]
+              lesson.progress = progress;
+            }
+            return lesson;
+          });
+
+        }
+
+        return module;
+      });
+      showModules(id_module);
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function updateProgress(lesson){
+    const {id_module} = lesson;
+    const {id_lesson, id_progress, completed} = lesson.progress;
+    const courseID = getCourseID();
+
+    try {
+      const url = `/api/progress/update/${id_progress}/${courseID}`;
+
+      const request = await fetch(url, {
+        method:"PATCH",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          completed:completed
+        })
+      });
+
+      const response = await request.json();
+
+      if(!response.ok){
+        Swal.fire({
+          icon: "error",
+          title: "Ha ocurrido un error",
+          text: "error al actualizar el progreso, revise su conexion a internet",
+        });
+
+        showModules();
+      }
+
+      modules = modules.map(module=>{
+        if(module.id_module == id_module){
+          module.lessons.map(lesson=>{
+            if(lesson.id_lesson == id_lesson){
+              lesson.progress.completed = completed;
             }
             return lesson;
           });
@@ -510,43 +608,50 @@
         return module;
       });
 
-      showModules();
+    showModules(id_module);
 
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  async function updateProgress(lesson){
-    const {id_lesson, id_module} = lesson;
-    
-    try {
-      const url = ``;
-    } catch (error) {
-      
-    }
+  function openAcordion(modulo){
+    const summary = modulo.querySelector("summary");
+    const content = modulo.querySelector(".content-module__lessons");
+
+    if (!summary || !content) return;
+
+    modulo.setAttribute("open", "");
+    const height = content.scrollHeight;
+    content.style.height = height + "px";
   }
 
-  function loadVideo(videoID){
+  function loadVideo(lesson){
+    videoTerminado = false;
+    currentLesson = lesson;
 
     if(!player){
       const playerElement = document.querySelector('#player');
-      playerElement.setAttribute('data-plyr-embed-id', videoID);
+      playerElement.setAttribute('data-plyr-embed-id', currentLesson.id_video);
       player = new Plyr('#player');
     }else{
-
       player.source = {
         type: 'video',
         sources: [{
-          src: videoID,
+          src: currentLesson.id_video,
           provider: 'vimeo'
         }]
       };
     }
     
+    player.off('timeupdate'); 
+    actionPlayer();
   }
 
-  function leccionCompleted(){
+  function leccionCompleted(lesson){
+    if(lesson.progress.completed)
+        return;
+
     const headerLeccion = document.querySelector(".class__info-container");
 
     const containerMessage = document.createElement("div");
@@ -558,6 +663,14 @@
       headerLeccion.removeChild(containerMessage);
     }, 2500);
 
+    if(lesson.progress.length == 0)
+      createProgress(lesson);
+    else{
+      lesson.progress.completed = 1;
+      updateProgress(lesson);
+    }
+
+    
   }
 
   function getCourseID(){

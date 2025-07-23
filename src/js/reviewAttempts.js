@@ -45,8 +45,8 @@
         
         attempts.forEach(attempt =>{
             let newAttempt = createAttemptElement(attempt);
-            initAccordion(newAttempt);
             attemptsContainer.appendChild(newAttempt);
+            initAccordion(newAttempt);
             
             if(attempt.id_attempt == openAttemptID){
                 openAcordion(newAttempt);

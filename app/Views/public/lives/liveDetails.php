@@ -19,7 +19,7 @@
             </div>
             
             <h1 class="info-curso__name" data-section="live-<?=$live->id_live?>" data-label="name"><?=$live->name?></h1>
-            <p class="info-curso__lema" data-section="live-details" data-label="lema"><strong>Este es un curso en vivo que se dara el:</strong></p>
+            <p class="info-curso__lema" data-section="live-details" data-label="lema"><strong>Este es un curso en vivo que se dará el:</strong></p>
 
             <div class="info-curso__details">
 

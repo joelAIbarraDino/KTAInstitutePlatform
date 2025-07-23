@@ -484,6 +484,7 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 1rem;
+        transition: all 0.4s ease;
 
         &:last-child{
             margin-bottom: 0;
@@ -500,11 +501,13 @@
             border: none;
             background-color: transparent;
             color: v.$dorado;
-            font-size: 2rem;
-            font-weight: v.$black;
-
+            font-size: 2.8rem;
+            font-weight: v.$regular;
+            transition: all 0.5s ease;
+            
             &:hover{
                 cursor: pointer;
+                color: v.$blanco;
             }
         }
 

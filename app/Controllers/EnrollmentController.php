@@ -106,7 +106,7 @@ class EnrollmentController{
         if(!isset($_SESSION))
             session_start();
         
-        if(!Request::isGET())
+        if(!Request::isPOST())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
         $enroll = Enrollment::where('url', '=', $uuid);
@@ -129,6 +129,35 @@ class EnrollmentController{
                 'id_progress'=>$id,
                 'id_enrollment'=>$enroll->id_enrollment,
                 'message'=>'progreso guardado con exito'
+            ]);
+
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+    public static function updateProgess(int $id, string $uuid):void{
+        if(!isset($_SESSION))
+            session_start();
+        
+        if(!Request::isPATCH())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        $progress = ProgressEnrollment::find($id);
+
+        try{
+            $dataPost = Request::getBody();
+            $progress->completed = $dataPost['completed']??0;
+
+            $id = $progress->save();
+
+            if(!$id)
+                Response::json(['ok'=>false,'message'=>'Error al actualizar el progreso, intente mas tarde']);
+
+            Response::json([
+                'ok'=>true,
+                'message'=>'progreso actualizado con exito'
             ]);
 
 

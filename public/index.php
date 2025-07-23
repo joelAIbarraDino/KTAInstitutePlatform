@@ -136,8 +136,8 @@ $dino->router->get('/seguridad-acceso', [UserController::class, 'security'], [ne
 
 //salón virtual
 $dino->router->get('/api/curso/enroll/{uuid}', [EnrollmentController::class, 'getStudentContent'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
-
-//$dino->router->post('/api/progress/new/{uuid}', [EnrollmentController::class, 'newProgress'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
+$dino->router->post('/api/progress/new/{uuid}', [EnrollmentController::class, 'newProgess'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
+$dino->router->patch('/api/progress/update/{id}/{uuid}', [EnrollmentController::class, 'updateProgess'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
 $dino->router->get('/curso/watch/{uuid}', [EnrollmentController::class, 'index'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
