@@ -659,6 +659,80 @@
     }
 }
 
+.reviews{
+    padding: 3rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.review{
+    border-radius: 1rem;
+    padding: 3rem;
+    width: 100%;
+    background-color: v.$negro;
+
+    &__header{
+        display: flex;
+        gap: 1rem;
+        align-items: start;
+        justify-content: start;
+        margin-bottom: 1rem;
+    }
+
+    &__photo{
+        width: 7rem;
+        height: 7rem;
+    }
+
+    &__name-container{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    &__name{
+        color: v.$dorado;
+        font-weight: v.$regular;
+        font-size: 1.6rem;
+    }
+
+    &__time{
+        color: v.$gris;
+        font-size: 1.2rem;
+    }
+
+    &__rating{
+        color: v.$amarillo_lesly;
+        display: flex;
+        gap: .5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__text{
+        font-size: 1.6rem;
+        line-height: 2.5rem;
+        text-align: justify;
+        height: 10rem;
+        color: v.$blanco;
+        overflow-y: hidden;
+        margin-bottom: 2rem;
+    }
+
+    &__link{
+        color: v.$blanco;
+        padding: 1rem 2rem;
+        background-color: v.$dorado;
+        border-radius: .5rem;
+        transition: all .5s ease;
+        text-align: center;
+        font-size: 1.5rem;
+
+        &:hover{
+            background-color: v.$dorado_darken;
+        }
+    }
+}
+
 .membresias-index{ 
     padding-top: 6rem;
 

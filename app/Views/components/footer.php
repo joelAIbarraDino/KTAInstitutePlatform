@@ -81,13 +81,13 @@
         </div>
 
         <div class="footer-middle__links">
-            <a href="/terminos-condiciones">Términos y Condiciones</a>
-            <a href="/politica-privacidad">Política de Privacidad</a>
+            <a href="/terminos-condiciones" data-section="footer" data-label="terminos">Términos y Condiciones</a>
+            <a href="/politica-privacidad" data-section="footer" data-label="privacidad">Política de Privacidad</a>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <p class="footerm-bottom__copy">&copy Copyright <?=date('Y'); ?> K’ta & Associate LLC. Todos los derechos reservados. </p>
+        <p class="footerm-bottom__copy"><span data-section="footer" data-label="copy1">&copy Copyright</span> <?=date('Y'); ?> <span data-section="footer" data-label="copy2">K’ta & Associate LLC. Todos los derechos reservados.</span> </p>
     </div>
 
 </footer>

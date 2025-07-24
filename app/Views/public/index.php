@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use App\Classes\Helpers;
+
     $topScripts ='
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     ';
@@ -101,17 +104,48 @@
     </div>
 </section>
 
-<section>
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
-    <div class="elfsight-app-3d89288d-8b7b-48c8-91cd-90483692c0c2" data-elfsight-app-lazy></div>
-</section>
-
 <section class="maestros-index">
     <p class="maestros-index__subtitulo" data-section="index" data-label="teachers-title">Conoce al equipo KTA</p>
     <h3 class="maestros-index__titulo" data-section="index" data-label="teachers-subtitle">Tenemos a los mejores maestros que te ayudaran a pasar al siguiente nivel</h3>
     <?php include_once __DIR__.'/../components/teachers.php'; ?>
 </section>
 
+<section class="reviews">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <?php foreach($reviews as $review):?>
+                <div class="swiper-slide">
+                    <div class="review">
+                        <div class="review__header">
+                            <img class="review__photo" src="<?=$review->photo?>" alt="<?=$review->photo?>">
+                            
+                            <div class="review__name-container">
+                                <div class="review__name"><?=$review->author_name?></div>
+                                <div class="review__time"><?=$review->relative_time?></div>
+                            </div>
+                        </div>
+
+                        <div class="review__rating">
+                            <?php for($i = 0; $i< $review->rating; $i++):?>
+                                <i class='bx bxs-star'></i>
+                            <?php endfor;?>
+                        </div>
+
+                        <div class="review__text">
+                            <?= Helpers::limitarTexto($review->review, 120) ?>
+                        </div>
+                        
+                        <a class="review__link" href="<?=$review->google_url?>" target="_blank" data-section="index" data-label="google_more">Ver review en Google</a>
+                    </div>
+
+                </div>                
+            <?php endforeach;?>
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+    </div>
+</section>
 
 <section class="membresias-index">
     <p class="membresias-index__subtitulo" data-section="index" data-label="memberships-title">Descubre cómo podemos ayudarte</p>

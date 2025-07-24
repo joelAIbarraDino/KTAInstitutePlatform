@@ -189,5 +189,10 @@ class Helpers{
         ];
     }
 
+    public static function limitarTexto($texto, $longitud = 100) {
+        if (strlen($texto) > $longitud)
+            $texto = substr($texto, 0, $longitud) . '...';
+        return $texto;
+    }
 
 }

@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="ver-profesor__experience">
-                    <?=$teacher->experience?> años de <span>experiencia</span>
+                    <?=$teacher->experience?> <span data-section="teacher-details" data-label="years-experience">años de experiencia</span>
                 </div>
 
                 <div class="ver-profesor__bio" data-section="teacher-<?=$teacher->id_teacher?>" data-label="bio">

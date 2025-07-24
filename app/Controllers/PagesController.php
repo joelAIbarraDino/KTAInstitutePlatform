@@ -2,18 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Models\Category;
-use App\Models\CourseView;
 use App\Models\EnrollmentView;
-use App\Models\FAQ;
-use App\Models\Lesson;
-use App\Models\LiveView;
+use App\Models\CourseView;
 use App\Models\Membership;
-use App\Models\Module;
+use App\Models\Category;
+use App\Models\LiveView;
 use App\Models\Slidebar;
 use App\Models\Teacher;
-use App\Classes\Helpers;
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
+use App\Models\Review;
+use App\Models\Module;
+use App\Models\Lesson;
+use App\Models\FAQ;
+
 use DinoEngine\Http\Response;
 
 class PagesController{
@@ -23,12 +23,14 @@ class PagesController{
         $sliders = Slidebar::all();
         $courses = CourseView::all(5, 'id_course', 'DESC');
         $teachers = Teacher::all()??[];
+        $reviews = Review::all(20);
         
         Response::render('public/index', [
             'nameApp'=>APP_NAME, 
             'title' => 'Inicio',
             'sliders'=>$sliders,
             'courses'=>$courses,
+            'reviews'=>$reviews,
             'teachers'=>$teachers
         ]);
     }

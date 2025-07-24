@@ -15,7 +15,11 @@
         "contact-us":"Contact us",
         "kta-location":"KTA location",
         "contact":"Contact",
-        "phone":"Phone"
+        "phone":"Phone",
+        "terminos":"Terms and Conditions",
+        "privacidad":"Privacy Policy",
+        "copy1":"&copy Copyright",
+        "copy2":"K’ta & Associate LLC. All rights reserved."
     },
     "index": {
         "caract-title-1": "Presencial Seminars",
@@ -26,6 +30,8 @@
         "caract-text-3": "We offer all our courses in On-Demand format so you can study whenever, wherever, and however you prefer. All courses are continuously updated.",
         "caract-title-4": "TAX BOOKS",
         "caract-text-4": "We offer a comprehensive collection of tax books that are constantly updated and edited to reflect the latest fiscal changes and developments.",
+        "teachers-title":"Meet the KTA team",
+        "teachers-subtitle":"We have the best teachers who will help you take it to the next level",
         "stadistic-1": "Successful students",
         "stadistic-2": "Video tutorials",
         "stadistic-3": "Expert instructors",
@@ -36,7 +42,8 @@
         "membership-title-1": "Our Courses",
         "membership-text-1": "Learn from professionals with over 30 years of experience. Join our 2,500+ successful students and start your own business.",
         "membership-title-2": "KTA Membership",
-        "membership-text-2": "Already have experience as a tax preparer and want to take it to the next level? With our <strong>Business Lab Membership<strong> you'll have everything you need to reach the top."
+        "membership-text-2": "Already have experience as a tax preparer and want to take it to the next level? With our <strong>Business Lab Membership<strong> you'll have everything you need to reach the top.",
+        "google_more":"View review on Google"
     },
     "course-details":{
         "return":"<i class='bx bx-left-arrow-alt'></i> Return",
@@ -54,7 +61,8 @@
     },
     "teacher-details":{
         "meet-teacher":"Meet your teacher",
-        "course-by":"Courses by"
+        "course-by":"Courses by",
+        "years-experience":"years of experience"
     },
     "courses":{
         "title":"Our courses",
