@@ -22,6 +22,7 @@ use App\Middlewares\PublicLiveMiddleware;
 use App\Middlewares\ExistsFaqMiddleware;
 use App\Middlewares\ValidIdMiddleware;
 
+use App\Controllers\MembershipContentController;
 use App\Controllers\OptionQuestionController;
 use App\Controllers\AuthProvidersController;
 use App\Controllers\AnswerStudentController;
@@ -153,7 +154,7 @@ $dino->router->get('/quiz/success/{uuid}/{id}', [AttemptController::class, 'succ
 $dino->router->get('/quiz/failed/{uuid}/{id}', [AttemptController::class, 'failedQuiz'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/quiz/completed/{uuid}/{id}', [AttemptController::class, 'completedQuiz'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/certificado/{id}', [AttemptController::class, 'showDiploma'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
-$dino->router->get('/certificado-curso/{id}', [AttemptController::class, 'showDiplomaNoQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->get('/certificado-curso/{id}', [AttemptController::class, 'showDiplomaNoQuiz'], [new StudentLoggedMiddleware('/login')]);
 
 $dino->router->post('/attempts/create/{uuid}', [AttemptController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 
@@ -172,6 +173,20 @@ $dino->router->get('/kta-admin/pago-lives', [DashboardController::class, 'paymen
 
 $dino->router->get('/kta-admin/membresias', [DashboardController::class, 'memberships'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/pago-membresias', [DashboardController::class, 'paymentMemberships'], [AdminLoggedMiddleware::class]);
+
+$dino->router->get('/kta-admin/membership-course/{id}', [MembershipContentController::class, 'CurseContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->get('/kta-admin/membership-live/{id}', [MembershipContentController::class, 'LiveContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+
+$dino->router->get('/kta-admin/membership-courses/{id}', [MembershipContentController::class, 'getCourses'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->get('/kta-admin/membership-lives/{id}', [MembershipContentController::class, 'getLives'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+
+
+$dino->router->post('/kta-admin/membership-course/create', [MembershipContentController::class, 'createCourse'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/membership-live/create', [MembershipContentController::class, 'createLive'], [AdminLoggedMiddleware::class]);
+$dino->router->delete('/kta-admin/membership-course/delete/{id}', [MembershipContentController::class, 'deleteCourse'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+$dino->router->delete('/kta-admin/membership-live/delete/{id}', [MembershipContentController::class, 'deleteLive'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+
+
 
 $dino->router->get('/kta-admin/categorias', [DashboardController::class, 'categories'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/estudiante-membresia', [DashboardController::class, 'studentMemberships'], [AdminLoggedMiddleware::class]);

@@ -35,6 +35,7 @@
                                     <td><?=$membership->max_time_membership?></td>
                                     <td><?=$membership->price?></td>
                                     <td class="dashboard-table__actions-cell">
+                                        <a href="/kta-admin/membership-course/<?=$membership->id_membership ?>" class="dashboard-table__action dashboard-table__action--extra"><i class='bx bxs-widget'></i></i></a>
                                         <a href="/kta-admin/membresia/update/<?=$membership->id_membership?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
                                         <button data-id="<?=$membership->id_membership?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>

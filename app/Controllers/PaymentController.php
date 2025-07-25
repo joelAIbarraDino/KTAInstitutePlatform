@@ -43,7 +43,7 @@ class PaymentController{
             $caratula = '/assets/thumbnails/courses/'.$product->thumbnail;
             $name = $product->name;
         }elseif($type == "membership"){
-            $product = Membership::where('id_membership', '=', $id);
+            $product = Membership::find((int)$id);
             $caratula = '/assets/membresias/'.$product->photo;
             $id_product = $product->id_membership;
             $name = "Membresía ".$product->type;

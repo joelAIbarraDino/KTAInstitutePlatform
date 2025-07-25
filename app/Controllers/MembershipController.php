@@ -35,8 +35,7 @@ class MembershipController{
                 if($id){
                     $atributosTraducibles = ['type', 'caract']; 
                     Helpers::traducirYGuardarJson("membership", $id, $membership, null, $atributosTraducibles, "html");
-                    Helpers::setSwalAlert('success', '¡Genial!', 'Membresia registrada con exito', 3000);
-                    Response::redirect('/kta-admin/membresias');
+                    Response::redirect('/kta-admin/membership-course/'.$id);
                 }else{
                     $alerts['error'][] = 'error al registrar la membresia, intente mas tarde';
                 }

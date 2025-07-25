@@ -358,12 +358,12 @@
                 if(!navigator.onLine)
                     return;
 
-                const request = await fetch(`/api/attempt/cancel/${idAttempt}`, {
-                        method: 'DELETE'
-                });
+                // const request = await fetch(`/api/attempt/cancel/${idAttempt}`, {
+                //         method: 'DELETE'
+                // });
 
-                if(!request.ok)
-                    return;
+                // if(!request.ok)
+                //     return;
                 
                 // Limpiar localStorage y redirigir
                 localStorage.removeItem(`quizAttempt_${idAttempt}`);
