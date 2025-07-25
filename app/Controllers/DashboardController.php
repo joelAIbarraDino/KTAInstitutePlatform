@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Classes\FacturaPDF;
 use DinoEngine\Http\Response;
 
 use App\Models\MembershipView;

@@ -7,11 +7,12 @@ use DinoEngine\Core\Model;
 class PaymentMembershipView extends Model {
     
     protected static string $table = 'payment_membership_view';
-    protected static array $columns = ['id_membership_student', 'type', 'photo', 'student', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
+    protected static array $columns = ['id_membership_student', 'type', 'photo', 'id_student', 'student', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'id_payment', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
 
     public ?int $id_membership_student;
     public string $type;
     public string $photo;
+    public int $id_student;
     public ?string $student;
     public string $email;
     public string $phone;
@@ -19,6 +20,7 @@ class PaymentMembershipView extends Model {
     public string $number_street;
     public string $state;
     public string $cp;
+    public int $id_payment;
     public float $amount;
     public string $currency;
     public string $method;
@@ -30,6 +32,7 @@ class PaymentMembershipView extends Model {
         $this->id_membership_student = $args["id_membership_student"]??null;
         $this->type = $args["type"]??"";
         $this->photo = $args["photo"]??"";
+        $this->id_student = $args["id_student"]??0;
         $this->student = $args["student"]??"";
         $this->email = $args["email"]??"";
         $this->phone = $args['phone']??"";
@@ -37,6 +40,7 @@ class PaymentMembershipView extends Model {
         $this->number_street = $args['number_street']??"";
         $this->state = $args['state']??"";
         $this->cp = $args['cp']??"";
+        $this->id_payment = $args["id_payment"]??0;
         $this->amount = $args["amount"]??0.0;
         $this->currency = $args["currency"]??"";
         $this->method = $args["method"]??"";

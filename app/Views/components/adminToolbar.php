@@ -58,6 +58,13 @@
                     </div>
 
                     <div class="nav">
+                        <p class="nav__title">Pedidos</p>
+                        <a class="nav__link" href="/kta-admin/pago-cursos"> <i class='bx bx-credit-card'></i> Pagos de cursos</a>
+                        <a class="nav__link" href="#"> <i class='bx bx-credit-card'></i> Pagos de lives</a>
+                        <a class="nav__link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Pagos de membresías</a>
+                    </div>
+
+                    <div class="nav">
                         <p class="nav__title">Pagina principal</p>
                         <a class="nav__link" href="/kta-admin/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
                         <!-- <a class="nav__link" href="#"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a> -->
@@ -66,20 +73,17 @@
                     <div class="nav">
                         <p class="nav__title">Cursos</p>
                         <a class="nav__link" href="/kta-admin/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
-                        <a class="nav__link" href="/kta-admin/pago-cursos"> <i class='bx bx-credit-card'></i> Pagos de cursos</a>
                         <a class="nav__link" href="/kta-admin/categorias"> <i class='bx bxs-category'></i> Categorías</a>
                     </div>
 
                     <div class="nav">
                         <p class="nav__title">Lives</p>
                         <a class="nav__link" href="/kta-admin/lives"> <i class='bx bx-chalkboard'></i> Cursos en vivo</a>
-                        <a class="nav__link" href="#"> <i class='bx bx-credit-card'></i> Pagos de lives</a>
                     </div>
 
                     <div class="nav">
                         <p class="nav__title">Membresías</p>
                         <a class="nav__link" href="/kta-admin/membresias"> <i class='bx bxs-certification'></i> Membresías</a>
-                        <a class="nav__link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Pagos de membresías</a>
                         <a class="nav__link" href="/kta-admin/estudiante-membresia"> <i class='bx bxs-user-badge' ></i> Estudiantes con membresías</a>
                     </div>
 

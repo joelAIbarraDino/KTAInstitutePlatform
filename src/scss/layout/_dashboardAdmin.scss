@@ -398,3 +398,21 @@
         margin-bottom: 1.5rem;
     }
 }
+
+.comprobante-actions{
+    display: flex;
+    padding: 3rem 0;
+
+    &__send{
+        padding: 1rem;
+        background-color: v.$dorado;
+        color: v.$blanco;
+        border: none;
+        border-radius: .5rem;
+        transition: all 0.5s ease;
+        
+        &:hover{
+            background-color: v.$dorado_darken;
+        }
+    }
+}

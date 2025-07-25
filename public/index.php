@@ -160,7 +160,11 @@ $dino->router->get('/login-admin', [AuthController::class, 'loginAdmin'], [Admin
 $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/lives', [DashboardController::class, 'lives'], [AdminLoggedMiddleware::class]);
+
 $dino->router->get('/kta-admin/pago-cursos', [DashboardController::class, 'paymentCourses'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/pago-cursos/{id_payment}/{id_student}', [CourseController::class, 'comprobantePagoCurso'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/send_email/pago-cursos', [CourseController::class, 'mailPagoCurso'], [AdminLoggedMiddleware::class]);
+
 $dino->router->get('/kta-admin/categorias', [DashboardController::class, 'categories'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/membresias', [DashboardController::class, 'memberships'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/pago-membresias', [DashboardController::class, 'paymentMemberships'], [AdminLoggedMiddleware::class]);

@@ -7,7 +7,7 @@ use DinoEngine\Core\Model;
 class PaymentLiveView extends Model {
     
     protected static string $table = 'payment_live_view';
-    protected static array $columns = ['id_student_live', 'id_live', 'live', 'id_student', 'student', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
+    protected static array $columns = ['id_student_live', 'id_live', 'live', 'id_student', 'student', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'id_payment', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
 
     public ?int $id_student_live;
     public int $id_live;
@@ -20,6 +20,7 @@ class PaymentLiveView extends Model {
     public string $number_street;
     public string $state;
     public string $cp;
+    public int $id_payment;
     public float $amount;
     public string $currency;
     public string $method;
@@ -39,6 +40,7 @@ class PaymentLiveView extends Model {
         $this->number_street = $args['number_street']??"";
         $this->state = $args['state']??"";
         $this->cp = $args['cp']??"";
+        $this->id_payment = $args["id_payment"]??0;
         $this->amount = $args["amount"]??0;
         $this->currency = $args["currency"]??"";
         $this->method = $args["method"]??"";
