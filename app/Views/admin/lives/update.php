@@ -34,12 +34,14 @@
 
 <?php
     $editorVersion = filemtime('assets/js/editor.js');
+    $scheduleVersion = filemtime('assets/js/editor.js');
 
     $scripts = '
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
         <script src="/assets/js/editor.js?v='.$editorVersion.'"></script>
+        <script src="/assets/js/addSchedule.js?v='.$scheduleVersion.'"></script>
         <script src="/assets/js/btnFile.js"></script>
         <script src="/assets/js/btnFile2.js"></script>
         <script src="/assets/js/menuDashboard.js"></script>
