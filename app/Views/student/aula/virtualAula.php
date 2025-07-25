@@ -38,7 +38,7 @@
 
             <div class="class__tabs">
                 <button class="class__tab class__tab--active" data-step="1">Descripción</button>
-                <button class="class__tab" data-step="2">Material</button>
+                <!-- <button class="class__tab" data-step="2">Material</button> -->
             </div>
 
             <div class="class__extras">

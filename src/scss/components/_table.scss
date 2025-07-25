@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
-    background: v.$dorado;
+    background: v.$negro;
     color: v.$blanco;
   }
 
@@ -35,8 +35,8 @@
   }
 
   &__button {
-    background: v.$azul;
-    color: v.$blanco;
+    background: v.$blanco;
+    color: v.$negro;
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 4px;
@@ -48,7 +48,8 @@
     transition: background 0.3s ease;
 
     &:hover {
-      background: v.$negro;
+      background: v.$dorado;
+      color: v.$blanco;
     }
 
     i {

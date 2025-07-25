@@ -1,14 +1,14 @@
 <?php include_once __DIR__.'/../../components/header.php'; ?>
 
 <main class="cursos-principal">
-    <div class="cursos-banner">
+    <div class="cursos-banner" data-aos="fade">
         <div class="cursos-banner__container">
-            <h2 class="cursos-banner__titulo" data-section="courses" data-label="title">Nuestros cursos</h2>
+            <h2 data-aos="fade-up" class="cursos-banner__titulo" data-section="courses" data-label="title">Nuestros cursos</h2>
             <!-- <p class="cursos-banner__desc" id="main-content" data-section="courses" data-label="label">Empieza, cambia o avanza en tu carrera con KTA como guía.</p> -->
         </div>
     </div>
 
-    <div class="cursos-filtro">
+    <div class="cursos-filtro" data-aos="fade-up" data-aos-delay="50">
         <div class="cursos-filtro__categorias">
             <a class="cursos-filtro__categoria <?=!isset($category_url)?'cursos-filtro__categoria--active':''?>" href="/cursos" data-section="courses" data-label="all-courses">Todos los cursos</a>
             <?php foreach($categories as $category): ?>

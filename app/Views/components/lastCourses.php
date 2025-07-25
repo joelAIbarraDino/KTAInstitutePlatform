@@ -3,9 +3,9 @@
     <section class="last-courses">
 
         <?php if($title == "Inicio"):?>
-            <h3 class="last-courses__title">Nuestros cursos</h3>
+            <h3 data-aos="fade-up" class="last-courses__title">Nuestros cursos</h3>
         <?php else:?>
-                <h3 class="last-courses__title">Próximos Cursos</h3>
+                <h3 data-aos="fade-up" class="last-courses__title">Próximos Cursos</h3>
         <?php endif;?>
         
         <div class="last-courses__container swiper mySwiper">

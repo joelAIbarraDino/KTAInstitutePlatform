@@ -1,14 +1,14 @@
 <?php include_once __DIR__.'/../../components/header.php'; ?>
 
 <main class="cursos-principal">
-    <div class="cursos-banner">
+    <div class="cursos-banner" data-aos="fade">
         <div class="cursos-banner__container">
-            <h2 class="cursos-banner__titulo" data-section="lives" data-label="title">Nuestros cursos en línea</h2>
+            <h2 data-aos="fade-up" class="cursos-banner__titulo" data-section="lives" data-label="title">Nuestros cursos en línea</h2>
             <!-- <p class="cursos-banner__desc" id="main-content" data-section="courses" data-label="label">Empieza, cambia o avanza en tu carrera con KTA como guía.</p> -->
         </div>
     </div>
     
-    <div class="cursos-filtro">
+    <div class="cursos-filtro" data-aos="fade-up" data-aos-delay="50">
 
         <div class="cursos-filtro__categorias">
             <a class="cursos-filtro__categoria <?=!isset($category_url)?'cursos-filtro__categoria--active':''?>" href="/lives" data-section="courses" data-label="all-courses">Todos los cursos</a>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div class="cursos-container">
+    <div class="cursos-container" data-aos="fade">
         
         <div class="cursos-container__grid">
             <?php if(!empty($lives)):?>

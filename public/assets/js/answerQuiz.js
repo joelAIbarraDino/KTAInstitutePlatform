@@ -79,8 +79,10 @@
 
                     quizData = await response.json();
 
-                    // SOLO mezclas si es PRIMERA vez
-                    shuffleArray(quizData.questions);
+                    // Mezclar preguntas solo si el quiz tiene activada la opción random_questions
+                    if (quizData.quiz.random_questions == 1) {
+                        shuffleArray(quizData.questions);
+                    }
 
                     timeLeft = quizData.quiz.max_time * 60;
                     initializeQuiz();

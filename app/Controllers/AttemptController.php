@@ -66,11 +66,26 @@ class AttemptController{
 
         if($enrollment->id_student != $_SESSION['student']['id_student'])
             Response::redirect('/');
-        $attempt = Attempt::where('id_attempt', '=', $id);
 
         $logo = __DIR__."/../../public/assets/images/logoKTA.png";
         $fondo = __DIR__."/../../public/assets/images/backgroundCertificado.jpg";
         $certificado = new CertificadoPDF($_SESSION['student']['nombre'], $attempt->score, date('Y-m-d'), $logo, $fondo);
+
+        $certificado->mostrar('certificado de '.$_SESSION['student']['nombre']);
+    }
+
+        public static function showDiplomaNoQuiz(string $id):void{
+        if(!isset($_SESSION))
+            session_start();
+
+        $enrollment = Enrollment::where('id_enrollment', '=', $id);
+
+        if($enrollment->id_student != $_SESSION['student']['id_student'])
+            Response::redirect('/');
+
+        $logo = __DIR__."/../../public/assets/images/logoKTA.png";
+        $fondo = __DIR__."/../../public/assets/images/backgroundCertificado.jpg";
+        $certificado = new CertificadoPDF($_SESSION['student']['nombre'], '100', date('Y-m-d'), $logo, $fondo);
 
         $certificado->mostrar('certificado de '.$_SESSION['student']['nombre']);
     }

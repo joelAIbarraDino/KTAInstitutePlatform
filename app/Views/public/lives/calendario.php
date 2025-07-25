@@ -7,8 +7,8 @@
 
 <main>
     <div class="calendar-conteiner">
-        <h2 class="calendar-title">Calendario de cursos en vivo KTA</h2>
-        <div id="calendar" class="calendar-desktop"></div>
+        <h2  data-aos="fade-down" class="calendar-title">Calendario de cursos en vivo KTA</h2>
+        <div data-aos="fade-up" id="calendar" class="calendar-desktop"></div>
         <div id="event-list" class="calendar-mobile hidden"></div>
     </div>
 

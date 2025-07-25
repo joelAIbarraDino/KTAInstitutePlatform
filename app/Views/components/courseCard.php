@@ -1,6 +1,6 @@
 <?php if($course->discount): ?>
 
-    <div class="curso">
+    <div class="curso" data-aos="fade-up">
         <div class="curso__imagen-contenedor">
             <a href="/curso/view/<?=$course->url?>">
                 <img src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">
@@ -40,7 +40,7 @@
 
 <?php else: ?>
 
-    <div class="curso">
+    <div class="curso" data-aos="fade-up">
         <div class="curso__imagen-contenedor">
             <a href="/curso/view/<?=$course->url?>">
                 <img src="/assets/thumbnails/courses/<?=$course->thumbnail?>" alt="<?=$course->thumbnail?>" class="curso__imagen">

@@ -153,6 +153,7 @@ $dino->router->get('/quiz/success/{uuid}/{id}', [AttemptController::class, 'succ
 $dino->router->get('/quiz/failed/{uuid}/{id}', [AttemptController::class, 'failedQuiz'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/quiz/completed/{uuid}/{id}', [AttemptController::class, 'completedQuiz'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/certificado/{id}', [AttemptController::class, 'showDiploma'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
+$dino->router->get('/certificado-curso/{id}', [AttemptController::class, 'showDiplomaNoQuiz'], [new StudentLoggedMiddleware('/login'), ValidIdMiddleware::class]);
 
 $dino->router->post('/attempts/create/{uuid}', [AttemptController::class, 'createAttempt'], [new StudentLoggedMiddleware('/login'), EnrollExpiredMiddleware::class]);
 

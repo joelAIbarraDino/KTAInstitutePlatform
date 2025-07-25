@@ -24,7 +24,7 @@
 <?php endif;?>
 
 <header class="header">
-    <div class="header__left">
+    <div class="header__left" data-aos="fade-right" data-aos-delay="">
         <a href="/"><img class="header__logo" src="/assets/images/logoKTA.jpg" alt="logo de KTA"></a>
         <h1 class="header__title">KTA Institute</h1>
     </div>
@@ -34,7 +34,7 @@
             <i class='bx bx-x'></i>
         </div>
 
-        <ul class="header__nav-list">
+        <ul class="header__nav-list" data-aos="fade-up" data-aos-delay="50">
             <li><a class="header__link" href="/" data-section="header" data-label="home">Inicio</a></li>
             <li><a class="header__link" href="/cursos" data-section="header" data-label="self-study">Cursos grabados</a></li>
             <li><a class="header__link" href="/lives" data-section="header" data-label="lives">Cursos en vivo</a></li>
@@ -54,7 +54,7 @@
     
 
 
-    <div class="header__login">
+    <div class="header__login" data-aos="fade-left" data-aos-delay="100">
 
         <?php if(isset($_SESSION['student'])): ?>
             <a class="header__button-login header__button-login--login" href="/mis-cursos" data-section="header" data-label="my-space">Mi espacio</a>

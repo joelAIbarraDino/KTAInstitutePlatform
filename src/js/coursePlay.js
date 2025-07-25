@@ -54,12 +54,16 @@
   }
 
   function showModules(openModule = 0){
+    let totalLessons = 0;
+    let completedLessons = 0;
+
     clearModules();
 
     if(modules.length == 0)
       return;
 
     modules.forEach((module, index)=>{
+      
       let newModule = createModule(module, index);
       modulesContainer.appendChild(newModule);
       beginModule(newModule);
@@ -68,14 +72,34 @@
         openAcordion(newModule);
       }
 
-    })
+       module.lessons.forEach(lesson => {
+        totalLessons++;
+        if (lesson.progress && lesson.progress.completed) {
+          completedLessons++;
+        }
+      });
 
-    if(quiz.length == 0)
-      return;
+    });
 
-    let newQuestion = createQuiz(quiz);
-    modulesContainer.appendChild(newQuestion)
-    beginModule(newQuestion);
+    const globalProgress = (completedLessons / totalLessons) * 100;
+
+    console.log(globalProgress);
+
+    console.log(completedLessons);
+
+    console.log(totalLessons);
+
+    if(globalProgress === 100){
+      if(quiz.length == 0){
+        let newDownload = createCertificateDownload();
+        modulesContainer.appendChild(newDownload);
+        beginModule(newDownload);
+      }else{
+        let newQuestion = createQuiz(quiz);
+        modulesContainer.appendChild(newQuestion)
+        beginModule(newQuestion);
+      }
+    }
 
   }
 
@@ -155,13 +179,13 @@
         showLesson(module, lesson);
       })
       
-      if(lesson.progress.completed) finishedLessions++;
+      if(lesson.progress.completed)finishedLessions++;
       
       noLessions++;
     });
 
     const percentage = (finishedLessions / noLessions) * 100;
-
+    
     percentageText.textContent = `%${percentage.toFixed(0)}`;
     progressBar.value = percentage.toFixed(2);
     
@@ -671,6 +695,44 @@
     }
 
     
+  }
+
+  function createCertificateDownload() {
+    const detailsElement = document.createElement('details');
+    detailsElement.classList.add("content-module");
+
+    const summaryElement = document.createElement('summary');
+    summaryElement.classList.add("content-module__header");
+
+    const sumaryTitle = document.createElement("div");
+    sumaryTitle.classList.add("content-module__title");
+
+    sumaryTitle.innerHTML = `<span>Certificado - Descarga disponible</span>`;
+
+    const icon = document.createElement('i');
+    icon.classList.add("bx", 'bx-chevron-down');
+
+    summaryElement.appendChild(sumaryTitle);
+    summaryElement.appendChild(icon);
+
+    const contentModule = document.createElement('div');
+    contentModule.classList.add('content-module__lessons');
+    contentModule.id = "course-modules";
+
+    const id = getCourseID();
+
+    const pdfLink = document.createElement('a');
+    pdfLink.href = `/certificado-curso/${id}`;
+    pdfLink.classList.add('content-module__quiz-link');
+    pdfLink.textContent = 'Descargar certificado en PDF';
+    pdfLink.target = '_blank'; // abrir en nueva pestaña si deseas
+
+    contentModule.appendChild(pdfLink);
+
+    detailsElement.appendChild(summaryElement);
+    detailsElement.appendChild(contentModule);
+
+    return detailsElement;
   }
 
   function getCourseID(){

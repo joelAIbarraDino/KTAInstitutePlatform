@@ -14,30 +14,30 @@
         <p class="checkout__price">$ <?= number_format($price, 2)?> USD</p>
     </div>
     
-    <form id="payment-form" class="form" method="post">
-        <h2 class="form__title">Completa tu pago</h2>
+    <form id="payment-form" class="form-checkout" method="post">
+        <h2 class="form-checkout__title">Completa tu pago</h2>
 
-        <div class="form__field">
-            <label for="name" class="form__label">Nombre completo</label>
-            <input type="text" id="name" name="name" class="form__input" required />
+        <div class="form-checkout__field">
+            <label for="name" class="form-checkout__label">Nombre completo</label>
+            <input type="text" id="name" name="name" class="form-checkout__input" required />
         </div>
 
-        <div class="form__field">
-            <label for="email" class="form__label">Correo electrónico</label>
-            <input type="email" id="email" name="email" class="form__input" required />
+        <div class="form-checkout__field">
+            <label for="email" class="form-checkout__label">Correo electrónico</label>
+            <input type="email" id="email" name="email" class="form-checkout__input" required />
         </div>
 
-        <div id="payment-element" class="form__field"></div>
+        <div id="payment-element" class="form-checkout__field"></div>
 
-        <div class="form__field form__field--checkbox">
-            <input type="checkbox" id="terms" class="form__checkbox" />
-            <label for="terms" class="form__checkbox-label">
+        <div class="form-checkout__field form-checkout__field--checkbox">
+            <input type="checkbox" id="terms" class="form-checkout__checkbox" />
+            <label for="terms" class="form-checkout__checkbox-label">
                 Acepto los <a href="/terminos-condiciones" target="_blank">términos y condiciones</a>
             </label>
         </div>
 
-        <div class="form__actions">
-            <button type="submit" id="submit" class="form__submit" disabled>Pagar</button>
+        <div class="form-checkout__actions">
+            <button type="submit" id="submit" class="form-checkout__submit" disabled>Pagar</button>
         </div>
     </form>
 
