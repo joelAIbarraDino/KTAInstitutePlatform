@@ -2,11 +2,7 @@
 
     <section class="last-courses">
 
-        <?php if($title == "Inicio"):?>
-            <h3 data-aos="fade-up" class="last-courses__title">Nuestros cursos</h3>
-        <?php else:?>
-                <h3 data-aos="fade-up" class="last-courses__title">Próximos Cursos</h3>
-        <?php endif;?>
+        <h3 data-aos="fade-up" class="last-courses__title" data-section="index"  data-label="next-courses" >Próximos Cursos</h3>
         
         <div class="last-courses__container swiper mySwiper">
             <div class="swiper-wrapper">

@@ -1,7 +1,7 @@
 {
     "header":{
         "home":"Inicio",
-        "self-study":"Cursos grabados",
+        "self-study":"Self study",
         "lives":"Cursos en vivo",
         "calendar":"Calendario",
         "about-us":"¿Quienes somos?",
@@ -22,6 +22,7 @@
         "copy2":"K’ta & Associate LLC. Todos los derechos reservados."
     },
     "index":{
+        "next-courses":"Próximos Cursos",
         "caract-title-1":"Seminarios presenciales",
         "caract-text-1":"Organizamos distintos seminarios presenciales para que pueda continuar con tu formación tributaria en distintas ciudades del país como Los Ángeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc...",
         "caract-title-2":"LIVE WEBINARS",
