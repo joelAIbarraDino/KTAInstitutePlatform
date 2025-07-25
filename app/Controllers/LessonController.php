@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Classes\Helpers;
 use App\Models\Course;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
@@ -39,6 +40,9 @@ class LessonController{
             if(!$id)
                 Response::json(['ok'=>false,'message'=>'Error al registrar la lección, intente mas tarde']);
 
+            $atributosTraducibles = ['name', 'description']; 
+            Helpers::traducirYGuardarJson("lesson", $id, $lesson, null, $atributosTraducibles);
+
             Response::json([
                 'ok'=>true,
                 'id'=>$id,
@@ -57,6 +61,7 @@ class LessonController{
 
         try {
             $lesson = Lesson::find($id);
+            $original = clone $lesson;
             $dataSend = Request::getBody();
 
             $lesson->name = $dataSend['name'];
@@ -69,6 +74,9 @@ class LessonController{
 
             if($rowAffected === 0)
                 Response::json(['ok'=>false,'message'=>'Error al actualizar la lección, intente mas tarde'], 404);
+
+            $atributosTraducibles = ['name', 'description']; 
+            Helpers::traducirYGuardarJson("lesson", $lesson->id_lesson, $lesson, $original, $atributosTraducibles);
 
             Response::json(['ok'=>true,'message'=>'Lección actualizada con exito']);
         } catch (Exception $e) {

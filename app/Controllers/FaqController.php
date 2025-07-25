@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Classes\Helpers;
 use App\Models\Course;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
@@ -30,6 +31,9 @@ class FaqController{
             if(!$id)
                 Response::json(['ok'=>false,'message'=>'Error al registrar el FAQ, intente mas tarde'], 404);
 
+            $atributosTraducibles = ['question', 'answer']; 
+            Helpers::traducirYGuardarJson("faq", $id, $faq, null, $atributosTraducibles);
+
             Response::json([
                 'ok'=>true,
                 'id'=>$id,
@@ -46,6 +50,7 @@ class FaqController{
 
         try {
             $faq = FAQ::find($id);
+            $original = Clone $faq;
             $dataSend = Request::getBody();
             $faq->question = $dataSend['question'];
 
@@ -56,6 +61,9 @@ class FaqController{
 
             if($rowAffected === 0)
                 Response::json(['ok'=>false,'message'=>'Error al actualizar la pregunta, intente mas tarde'], 404);
+
+            $atributosTraducibles = ['name', 'description']; 
+            Helpers::traducirYGuardarJson("faq", $faq->id_FAQ, $faq, $original, $atributosTraducibles);
 
             Response::json(['ok'=>true,'message'=>'Pregunta actualizada con exito']);
         } catch (Exception $e) {

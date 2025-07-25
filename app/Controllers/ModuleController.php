@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Classes\Helpers;
 use App\Models\Course;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
@@ -43,6 +44,9 @@ class ModuleController{
             if(!$id)
                 Response::json(['ok'=>false,'message'=>'Error al registrar el modulo, intente mas tarde']);
 
+            $atributosTraducibles = ['name']; 
+            Helpers::traducirYGuardarJson("module", $id, $module, null, $atributosTraducibles);
+
             Response::json([
                 'ok'=>true,
                 'id'=>$id,
@@ -60,6 +64,7 @@ class ModuleController{
 
         try {
             $module = Module::find($id);
+            $original = clone $module;
             $dataSend = Request::getBody();
             $module->name = $dataSend['name'];
 
@@ -72,6 +77,9 @@ class ModuleController{
 
             if($rowAffected === 0)
                 Response::json(['ok'=>false,'message'=>'Error al actualizar el nombre, intente mas tarde'], 404);
+
+            $atributosTraducibles = ['name']; 
+            Helpers::traducirYGuardarJson("module", $module->id_module, $module, $original, $atributosTraducibles);
 
             Response::json(['ok'=>true,'message'=>'Nombre actualizado con exito']);
         } catch (Exception $e) {
