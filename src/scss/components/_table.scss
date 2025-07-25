@@ -36,8 +36,8 @@
 
   &__button {
     background: v.$blanco;
-    color: v.$negro;
-    border: none;
+    color: v.$dorado;
+    border: solid .2rem v.$dorado;
     padding: 0.8rem 1.5rem;
     border-radius: 4px;
     font-weight: v.$bold;
@@ -45,7 +45,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: background 0.3s ease;
+    transition: background 0.5s ease;
 
     &:hover {
       background: v.$dorado;
