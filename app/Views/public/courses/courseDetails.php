@@ -47,7 +47,7 @@
             </div>
 
             <?php if(!$cursoInscrito):?>
-                <a href="/curso/checkout/<?=$course->url?>" class="info-curso__button" data-section="course-details" data-label="checkout">Comprar ahora</a>
+                <a href="/checkout/course/<?=$course->url?>" class="info-curso__button" data-section="course-details" data-label="checkout">Comprar ahora</a>
             <?php else:?>
                 <a href="/curso/watch/<?=$enroll_url?>" class="info-curso__button" data-section="course-details" data-label="continue">Continuar curso</a>
             <?php endif;?>

@@ -30,6 +30,73 @@ Stripe::setApiKey($_ENV['CLIENT_SECRET_STRIPE']);
 
 class PaymentController{
 
+    public static function checkout(string $type, string $id):void{
+        $id_product = 0;
+        $product = null;
+        $precio = 0;
+        $caratula = null;
+        $name = null;
+
+        if($type == "course"){
+            $product = Course::where('url', '=', $id);
+            $id_product = $product->id_course;
+            $caratula = '/assets/thumbnails/courses/'.$product->thumbnail;
+            $name = $product->name;
+        }elseif($type == "membership"){
+            $product = Membership::where('id_membership', '=', $id);
+            $caratula = '/assets/membresias/'.$product->photo;
+            $id_product = $product->id_membership;
+            $name = "Membresía ".$product->type;
+        }elseif($type == "live"){
+            $product = Live::where('url', '=', $id);
+            $caratula = '/assets/thumbnails/lives/'.$product->thumbnail;
+            $id_product = $product->id_live;
+            $name = $product->name;
+        }
+
+        $precio = (int) round($product->price * 100);
+
+        if(Request::isPOST()){
+            $dataRequest = Request::getPostData();
+
+            $session = Session::create([
+                'payment_method_types' => ['card', 'afterpay_clearpay'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => $name,
+                            'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].$caratula]
+                        ],
+                        'unit_amount' => $precio,
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'metadata' => [
+                    'product_id' => $id_product,
+                    'type_product'=>$type,
+                    'email'=>$dataRequest['email'],
+                    'name'=>$dataRequest['name']
+                ],
+                'customer_email' => $dataRequest['email'],
+                'success_url' => REDIRECT_SUCCESS_STRIPE,
+                'cancel_url' => REDIRECT_CANCEL_STRIPE,
+            ]);
+
+            Response::redirect($session->url);
+        }
+
+        Response::render('public/checkout/form', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Finalizar compra',
+            'type_product'=>$type,
+            'caratula'=>$caratula,
+            'nameProducto'=>$name,
+            'price'=>$precio/100
+        ]);
+    }
+
     public static function checkoutCourse(string $id):void{
 
         if(!Request::isGET())
@@ -157,7 +224,6 @@ class PaymentController{
             Response::render('/public/checkout/success', [
                 'nameApp'=>APP_NAME,
                 'title'=>'Nueva orden exitosa',
-                'transparente'=>false,
                 'product'=>$product,
                 'type_product'=>$type_product,
                 'name'=>$name,
@@ -175,12 +241,9 @@ class PaymentController{
 
         $endpoint_secret = $_SERVER['HTTP_HOST']=='localhost:3000'?$_ENV['LOCAL_SIGN_WEBHOOK_COURSE']:$_ENV['SIGN_WEBHOOK_COURSE'];
 
-        $payload = file_get_contents('php://input');
-        if ($payload === false) Response::json(['ok'=>false, 'message'=> 'Error leyendo payload'], 400);
-        
+        $payload = @file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-        if (!$sig_header)Response::json(['ok'=>false, 'message'=> 'Falta firma de Stripe'], 400);
-        
+
         try{
             
             $event = Webhook::constructEvent(
@@ -189,8 +252,7 @@ class PaymentController{
 
 
             if($event->type == 'checkout.session.completed'){
-                 $session = $event->data->object;
-
+                $session = $event->data->object;
 
                 $session_id = $session->id;
                 $monto = $session->amount_total / 100;
@@ -205,7 +267,7 @@ class PaymentController{
 
                 $email = $session->customer_details->email;
                 $name = $session->customer_details->name;
-                
+
                 $student = Student::where('email', '=', $email)??[];
 
                 if(!$student){
@@ -311,11 +373,10 @@ class PaymentController{
 
                 Response::json(['ok'=>true, 'message'=>'Proceso completado']);
             }
-
-            Response::json(['ok'=>true, 'message'=>'Evento recibido: '. $event->type]);
-
+            
         }catch(UnexpectedValueException $e){
             Response::json(['ok'=>false, 'message'=> $e->getMessage()], 400);
+
         }catch(SignatureVerificationException $e){
             Response::json(['ok'=>false, 'message'=> $e->getMessage()], 400);
         }

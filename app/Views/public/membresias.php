@@ -16,7 +16,7 @@
                 <div data-section="membership-<?=$membresia->id_membership?>" data-label="caract"><?=$membresia->caract; ?></div>
                 
                 <div class="membresia-card__btn-container">
-                    <a class="membresia-card__btn" href="/membresia/checkout/<?=$membresia->id_membership?>" data-section="course-details" data-label="checkout">Comprar ahora</a>
+                    <a class="membresia-card__btn" href="/checkout/membresia/<?=$membresia->id_membership?>" data-section="course-details" data-label="checkout">Comprar ahora</a>
                 </div>
                 
             </article>

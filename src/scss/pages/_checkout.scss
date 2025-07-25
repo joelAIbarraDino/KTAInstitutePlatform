@@ -1,0 +1,150 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.checkout{
+    padding: 5rem 2rem;
+    display: flex;
+    gap: 10rem;
+    align-items: start;
+    justify-content: center;
+
+    &__summary{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__image{
+        width: 40rem;
+        border-radius: 1rem;
+    }
+
+    &__title{
+        color: v.$negro;
+        font-weight: v.$black;
+        text-align: left;
+        font-size: 4rem;
+        margin: 0;
+    }
+
+    &__price{
+        color: v.$dorado;
+        font-weight: v.$black;
+        font-size: 2.5rem;
+        margin: 0;
+    }
+    
+}
+
+.form {
+  width: 95%;
+  background-color: v.$blanco;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+
+  @include m.tablet{
+    width: 50rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: v.$dorado;
+    text-align: center;
+  }
+
+  &__field {
+    margin-bottom: 1.25rem;
+
+    &--checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      color: v.$gris_label;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: v.$gris_label;
+    font-weight: 600;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid v.$border_input;
+    border-radius: 0.5rem;
+
+    &:focus {
+      border-color: v.$dorado;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(205, 160, 45, 0.2); // v.$dorado con opacidad
+    }
+  }
+
+  &__checkbox {
+    accent-color: v.$dorado;
+    transform: scale(1.2);
+  }
+
+  &__checkbox-label {
+    font-size: 1.8rem;
+    a {
+      color: v.$dorado;
+      text-decoration: underline;
+
+      &:hover {
+        color: v.$dorado_darken;
+      }
+    }
+  }
+
+  &__actions {
+    margin-top: 1rem;
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: v.$dorado;
+    color: v.$blanco;
+    font-size: 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover:enabled {
+      background-color: v.$dorado_darken;
+    }
+
+    &:disabled {
+      background-color: v.$gris;
+      cursor: not-allowed;
+    }
+  }
+
+  &__message {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+
+    &--success {
+      color: v.$verde;
+    }
+
+    &--error {
+      color: v.$rojoAlerta;
+    }
+
+    &--info {
+      color: v.$azul;
+    }
+  }
+}

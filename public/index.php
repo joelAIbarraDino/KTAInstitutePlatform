@@ -101,9 +101,12 @@ $dino->router->get('/calendario', [PagesController::class, 'calendario']);
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 
 //proceso de pago de curso
-$dino->router->get('/curso/checkout/{id}', [PaymentController::class, 'checkoutCourse']);
-$dino->router->get('/live/checkout/{id}', [PaymentController::class, 'checkoutLive']);
-$dino->router->get('/membresia/checkout/{id}', [PaymentController::class, 'checkoutMembership']);
+$dino->router->get('/checkout/{type}/{id}', [PaymentController::class, 'checkout']);
+$dino->router->post('/checkout/{type}/{id}', [PaymentController::class, 'checkout']);
+
+// $dino->router->get('/curso/checkout/{id}', [PaymentController::class, 'checkoutCourse']);
+// $dino->router->get('/live/checkout/{id}', [PaymentController::class, 'checkoutLive']);
+// $dino->router->get('/membresia/checkout/{id}', [PaymentController::class, 'checkoutMembership']);
 $dino->router->get('/pago-exitoso', [PaymentController::class, 'success']);
 $dino->router->post('/webhook-stripe', [PaymentController::class, 'webhook']);
 

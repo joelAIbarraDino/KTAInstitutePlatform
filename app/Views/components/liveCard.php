@@ -72,7 +72,7 @@
         </div>
 
         <div class="curso__botones">
-            <a href="/live/checkout/<?=$live->url?>" class="curso__boton curso__boton--venta" data-section="course-details" data-label="checkout">¡Comprar ahora!</a>
+            <a href="/checkout/live/<?=$live->url?>" class="curso__boton curso__boton--venta" data-section="course-details" data-label="checkout">¡Comprar ahora!</a>
             <a href="/live/view/<?=$live->url?>" class="curso__boton curso__boton--ver" data-section="index" data-label="membership-button">Mas detalles</a>
         </div>
     </div>

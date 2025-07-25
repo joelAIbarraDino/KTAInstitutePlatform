@@ -52,7 +52,7 @@
                 <?php endif;?>
             </div>
 
-            <a href="/curso/checkout/<?=$live->url?>" class="info-curso__button" data-section="course-details" data-label="checkout">Comprar ahora</a>
+            <a href="/checkout/live/<?=$live->url?>" class="info-curso__button" data-section="course-details" data-label="checkout">Comprar ahora</a>
 
         </div>
     </div>

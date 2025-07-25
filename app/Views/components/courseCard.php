@@ -75,7 +75,7 @@
         </div>
 
         <div class="curso__botones">
-            <a href="/curso/checkout/<?=$course->url?>" class="curso__boton curso__boton--venta" data-section="course-details" data-label="checkout">¡Comprar ahora!</a>
+            <a href="/checkout/course/<?=$course->url?>" class="curso__boton curso__boton--venta" data-section="course-details" data-label="checkout">¡Comprar ahora!</a>
             <a href="/curso/view/<?=$course->url?>" class="curso__boton curso__boton--ver" data-section="index" data-label="membership-button">Mas detalles</a>
         </div>
     </div>
