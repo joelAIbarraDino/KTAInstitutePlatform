@@ -97,17 +97,12 @@
 
   &__dates{
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: start;
     gap: 1rem;
-    flex-direction: column;
+    flex-direction: row;
     margin: 1rem 0 0 0;
 
-    @include m.tablet{
-      flex-direction: row;
-      align-items: center;
-      justify-content: start;
-    }
   }
 
   &__detail{
