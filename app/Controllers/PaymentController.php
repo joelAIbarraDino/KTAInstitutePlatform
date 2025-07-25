@@ -15,6 +15,8 @@ use App\Models\MembershipStudent;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Classes\Helpers;
+use App\Models\Live;
+use App\Models\StudentLive;
 use Ramsey\Uuid\Uuid;
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\Exception\UnexpectedValueException;
@@ -43,7 +45,7 @@ class PaymentController{
                     'currency' => 'usd',
                     'product_data' => [
                         'name' => $curso->name,
-                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/thumbnails/'.$curso->thumbnail]
+                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/thumbnails/courses/'.$curso->thumbnail]
                     ],
                     'unit_amount' => $precio,
                 ],
@@ -62,6 +64,7 @@ class PaymentController{
     }
 
     public static function checkoutMembership(int $id):void{
+        
         if(!Request::isGET())
             Response::json(['ok'=>false, 'message'=> 'Metodo no soportado'], 400);
 
@@ -75,7 +78,7 @@ class PaymentController{
                     'currency' => 'usd',
                     'product_data' => [
                         'name' => "Membresía ".$membership->type,
-                        
+                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/membresias/'.$membership->photo]
                     ],
                     'unit_amount' => $precio,
                 ],
@@ -85,6 +88,39 @@ class PaymentController{
             'metadata' => [
                 'product_id' => $membership->id_membership,
                 'type_product'=>'membership'
+            ],
+            'success_url' => REDIRECT_SUCCESS_STRIPE,
+            'cancel_url' => REDIRECT_CANCEL_STRIPE,
+        ]);
+
+        Response::redirect($session->url);
+    }
+
+    public static function checkoutLive(string $id):void{
+
+        if(!Request::isGET())
+            Response::json(['ok'=>false, 'message'=> 'Metodo no soportado'], 400);
+
+        $live = Live::where('url', '=', $id);
+        $precio = (int) round($live->price * 100);
+
+        $session = Session::create([
+            'payment_method_types' => ['card', 'afterpay_clearpay'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => $live->name,
+                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/thumbnails/lives/'.$live->thumbnail]
+                    ],
+                    'unit_amount' => $precio,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'metadata' => [
+                'product_id' => $live->id_live,
+                'type_product'=>'live'
             ],
             'success_url' => REDIRECT_SUCCESS_STRIPE,
             'cancel_url' => REDIRECT_CANCEL_STRIPE,
@@ -113,6 +149,8 @@ class PaymentController{
                 $product = Course::find($product_id);
             }elseif($type_product == "membership"){
                 $product = Membership::find($product_id);
+            }elseif($type_product == "live"){
+                $product = Live::find($product_id);
             }
 
 
@@ -137,9 +175,12 @@ class PaymentController{
 
         $endpoint_secret = $_SERVER['HTTP_HOST']=='localhost:3000'?$_ENV['LOCAL_SIGN_WEBHOOK_COURSE']:$_ENV['SIGN_WEBHOOK_COURSE'];
 
-        $payload = @file_get_contents('php://input');
+        $payload = file_get_contents('php://input');
+        if ($payload === false) Response::json(['ok'=>false, 'message'=> 'Error leyendo payload'], 400);
+        
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-
+        if (!$sig_header)Response::json(['ok'=>false, 'message'=> 'Falta firma de Stripe'], 400);
+        
         try{
             
             $event = Webhook::constructEvent(
@@ -165,7 +206,7 @@ class PaymentController{
                 $email = $session->customer_details->email;
                 $name = $session->customer_details->name;
                 
-                $student = Student::where('email', '=', $email);
+                $student = Student::where('email', '=', $email)??[];
 
                 if(!$student){
                     $tempPassword = Helpers::generate_password();
@@ -200,7 +241,7 @@ class PaymentController{
 
                 }
 
-                $payment = Payment::where('stripe_id', '=', $session_id);
+                $payment = Payment::where('stripe_id', '=', $session_id)??[];
 
                 if(!$payment){
                     $payment = new Payment;
@@ -231,23 +272,7 @@ class PaymentController{
                     $newFacturaEmail = new Email($email, $name, 'Comprobante de compra', $html, [['data'=>$pdfData, 'name'=>'factura.pdf']]);
 
                     $newFacturaEmail->sendEmail();
-                }else{
-                    //creamos comprobante PDF
-                    $comprobantePDF = new FacturaPDF($student, $payment);
-                    $pdfData = $comprobantePDF->generarPDFString();
-
-                    //enviamos correo con el comprobante de compra
-                    $html = Helpers::facturaHTML();
-                    
-                    $html = str_replace('{NOMBRE_USUARIO}', Helpers::getFirstName($name), $html);
-                    $html = str_replace('{URL_SOPORTE}', 'https://api.whatsapp.com/send/?phone=17866124893&text=Hola%20KTA,%20tengo%20una%20duda%20y%20necesito%20ayuda', $html);
-
-
-                    $newFacturaEmail = new Email($email, $name, 'Comprobante de compra', $html, [['data'=>$pdfData, 'name'=>'factura.pdf']]);
-
-                    $newFacturaEmail->sendEmail();
                 }
-
                 
                 if($type_product == 'course'){
                     $newEnrollment = new Enrollment;
@@ -273,7 +298,15 @@ class PaymentController{
                         Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
 
                 }else if($type_product == 'live'){
-                    
+                    $studentLive = new StudentLive;
+                    $studentLive->id_live = $product_id;
+                    $studentLive->id_student = $student->id_student;
+                    $studentLive->id_payment = $payment->id_payment;
+
+                    $rows = $studentLive->save();
+
+                    if(!$rows)
+                        Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
                 }
 
                 Response::json(['ok'=>true, 'message'=>'Proceso completado']);

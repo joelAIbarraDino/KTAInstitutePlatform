@@ -31,6 +31,21 @@
                 <a href="/" class="boton secundario">Volver al inicio</a>
             </div>
         </div>
+    <?php elseif($type_product == "live"):?>
+        <div class="mensaje-compra-exitosa">    
+            <h2 class="titulo">¡Gracias por tu compra, <?= $name ?>!</h2>
+            <p class="detalle">
+                Has adquirido un acceso al live: <span><?= $product->name ?></span>
+            </p>
+            <p class="detalle">
+                Cuenta asociada al correo: <span><?= $email ?></span>
+            </p>
+        
+            <div class="acciones">
+                <a href="/login" class="boton">Ver mis compras</a>
+                <a href="/" class="boton secundario">Volver al inicio</a>
+            </div>
+        </div>
     <?php endif;?>
 
 </main>
