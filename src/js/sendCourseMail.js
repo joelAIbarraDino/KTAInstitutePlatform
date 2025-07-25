@@ -6,7 +6,7 @@ async function  enviarCorreo(id_payment, id_student) {
     datos.append('id_student', id_student);
     
     try {
-        const url = `/kta-admin/send_email/pago-cursos`;
+        const url = `/kta-admin/comprobante/send-mail`;
         
         button.style.display = "none";
         document.body.style.cursor = 'wait';

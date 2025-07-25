@@ -9,7 +9,7 @@ use App\Classes\Helpers;
 
     <div class="dashboard-table">
             <div class="dashboard-table__header">
-                <h2 class="dashboard-table__title">Pagos de cursos</h2>
+                <h2 class="dashboard-table__title">Pagos de lives</h2>
                 <div class="dashboard-table__actions">
                 </div>
             </div>
@@ -19,7 +19,7 @@ use App\Classes\Helpers;
                     <thead class="dashboard-table__thead">
                         <tr>
                             <th>Creado el</th>
-                            <th>Curso</th>
+                            <th>Live</th>
                             <th>Nombre de estudiante</th>
                             <th>Email</th>
                             <th>Monto</th>
@@ -35,7 +35,7 @@ use App\Classes\Helpers;
                             <?php foreach($pagos as $pago): ?>
                                 <tr>
                                     <td><?=$pago->created_at?></td>
-                                    <td><?=$pago->name?></td>
+                                    <td><?=$pago->live?></td>
                                     <td><?=$pago->student?></td>
                                     <td><?=$pago->email?></td>
                                     <td>$ <?=$pago->amount.' '.$pago->currency?></td>

@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Classes\Email;
+use App\Classes\FacturaPDF;
 use DinoEngine\Exceptions\QueryException;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
@@ -9,6 +11,9 @@ use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\LiveView;
 use App\Models\Live;
+use App\Models\Payment;
+use App\Models\Student;
+use Exception;
 
 class LiveController{
 

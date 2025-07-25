@@ -18,6 +18,7 @@ use App\Classes\Helpers;
 use App\Models\Live;
 use App\Models\Membership;
 use App\Models\PaymentCourseView;
+use App\Models\PaymentLiveView;
 use App\Models\PaymentMembershipView;
 
 class DashboardController{
@@ -64,6 +65,16 @@ class DashboardController{
             'lives'=>$lives
         ]);
 
+    }
+
+    public static function paymentLives():void{
+        $pagos = PaymentLiveView::all(0, 'created_at', 'DESC');
+
+        Response::render('admin/lives/pagos', [
+            'nameApp' => APP_NAME,
+            'title' => 'Pagos lives',
+            'pagos'=>$pagos
+        ]);
     }
 
     public static function categories():void{
