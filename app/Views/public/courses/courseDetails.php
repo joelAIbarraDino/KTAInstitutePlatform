@@ -140,13 +140,13 @@
                     <?php foreach($faq as $index=>$question):?>
                         <details class="acordeon__modulo width-70">
                             <summary class="module__header">
-                                <span>Pregunta #<?=($index + 1).' - '.$question->question?></span>
+                                <span data-section="faq-<?=$question->id_FAQ?>" data-label="question"><?=$question->question?></span>
                                 <i class='bx bx-chevron-down'></i>
                             </summary>
 
                             <div class="acordeon__contenido">
                                 <ul>
-                                    <li><?=$question->answer?></li>
+                                    <li data-section="faq-<?=$question->id_FAQ?>" data-label="answer"><?=$question->answer?></li>
                                 </ul>
                             </div>
                         </details>

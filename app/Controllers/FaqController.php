@@ -62,7 +62,7 @@ class FaqController{
             if($rowAffected === 0)
                 Response::json(['ok'=>false,'message'=>'Error al actualizar la pregunta, intente mas tarde'], 404);
 
-            $atributosTraducibles = ['name', 'description']; 
+            $atributosTraducibles = ['question', 'answer'];
             Helpers::traducirYGuardarJson("faq", $faq->id_FAQ, $faq, $original, $atributosTraducibles);
 
             Response::json(['ok'=>true,'message'=>'Pregunta actualizada con exito']);
