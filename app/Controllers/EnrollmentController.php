@@ -65,7 +65,10 @@ class EnrollmentController{
                 foreach($lessons as $lesson){
                     
                     $material = Material::belongsTo('id_lesson', $lesson->id_lesson)??[];
-                    $progress = ProgressEnrollment::where('id_lesson', '=', $lesson->id_lesson)??[];
+                    $progress = ProgressEnrollment::multiWhere([
+                        'id_lesson'=>$lesson->id_lesson,
+                        'id_enrollment'=>$enroll->id_enrollment
+                    ])??[];
                     
                     $lessonsMaterial[] = [
                         'id_lesson'=>$lesson->id_lesson,

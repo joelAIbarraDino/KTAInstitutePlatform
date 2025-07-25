@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Classes\Auth;
+use App\Classes\Email;
+use App\Classes\FacturaPDF;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 
@@ -11,7 +14,7 @@ use App\Models\Membership;
 use App\Models\MembershipStudent;
 use App\Models\Payment;
 use App\Models\Student;
-use DinoEngine\Helpers\Helpers;
+use App\Classes\Helpers;
 use Ramsey\Uuid\Uuid;
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\Exception\UnexpectedValueException;
@@ -115,7 +118,7 @@ class PaymentController{
 
             Response::render('/public/checkout/success', [
                 'nameApp'=>APP_NAME,
-                'title'=>'¡¡Compra exitosa!!',
+                'title'=>'Nueva orden exitosa',
                 'transparente'=>false,
                 'product'=>$product,
                 'type_product'=>$type_product,
@@ -165,10 +168,12 @@ class PaymentController{
                 $student = Student::where('email', '=', $email);
 
                 if(!$student){
-                    $student = new Student;
+                    $tempPassword = Helpers::generate_password();
 
+                    $student = new Student;
                     $student->name = $name;
                     $student->email = $email;
+                    $student->password = Auth::encriptPassword($tempPassword);
                     $student->photo = null;
                     $student->oauth_id = null;
                     $student->oauth_provider = null;
@@ -179,22 +184,71 @@ class PaymentController{
 
                     if(!$student->id_student)
                         Response::json(['ok'=>false, 'message'=> 'Estudiante no registrado'], 400);
+
+                    //enviamos correo con el acceso a su cuenta
+                    $html = Helpers::newUserPaymentHTML();
+
+                    $html = str_replace('{NOMBRE_USUARIO}', Helpers::getFirstName($name), $html);
+                    $html = str_replace('{CONTRASENA_GENERADA}', $tempPassword, $html);
+                    $html = str_replace('{URL_TUTORIAL}', 'https://www.youtube.com/watch?v=NpEaa2P7qZI&ab_channel=TristanBrehaut', $html);
+                    $html = str_replace('{EMAIL_SOPORTE}', 'soporte@ktainstitute.com', $html);
+
+
+                    $newUserEmail = new Email($email, $name, 'Bienvenido a KTA Institute', $html);
+
+                    $newUserEmail->sendEmail();
+
                 }
 
-                $payment = new Payment;
+                $payment = Payment::where('stripe_id', '=', $session_id);
 
-                $payment->amount = $monto;
-                $payment->currency = $moneda;
-                $payment->method = $metodo_pago;
-                $payment->status = 'pagado';
-                $payment->stripe_id = $session_id;
+                if(!$payment){
+                    $payment = new Payment;
 
-                $payment->id_payment = $payment->save();
+                    $payment->amount = $monto;
+                    $payment->currency = $moneda;
+                    $payment->method = $metodo_pago;
+                    $payment->status = 'pagado';
+                    $payment->stripe_id = $session_id;
 
-                //pago no registrado
-                if(!$payment->id_payment)
-                    Response::json(['ok'=>false, 'message'=> 'Pago no registrado'], 400);
-            
+                    $payment->id_payment = $payment->save();
+
+                    //pago no registrado
+                    if(!$payment->id_payment)
+                        Response::json(['ok'=>false, 'message'=> 'Pago no registrado'], 400);
+
+                    //creamos comprobante PDF
+                    $comprobantePDF = new FacturaPDF($student, $payment);
+                    $pdfData = $comprobantePDF->generarPDFString();
+
+                    //enviamos correo con el comprobante de compra
+                    $html = Helpers::facturaHTML();
+                    
+                    $html = str_replace('{NOMBRE_USUARIO}', Helpers::getFirstName($name), $html);
+                    $html = str_replace('{URL_SOPORTE}', 'https://api.whatsapp.com/send/?phone=17866124893&text=Hola%20KTA,%20tengo%20una%20duda%20y%20necesito%20ayuda', $html);
+
+
+                    $newFacturaEmail = new Email($email, $name, 'Comprobante de compra', $html, [['data'=>$pdfData, 'name'=>'factura.pdf']]);
+
+                    $newFacturaEmail->sendEmail();
+                }else{
+                    //creamos comprobante PDF
+                    $comprobantePDF = new FacturaPDF($student, $payment);
+                    $pdfData = $comprobantePDF->generarPDFString();
+
+                    //enviamos correo con el comprobante de compra
+                    $html = Helpers::facturaHTML();
+                    
+                    $html = str_replace('{NOMBRE_USUARIO}', Helpers::getFirstName($name), $html);
+                    $html = str_replace('{URL_SOPORTE}', 'https://api.whatsapp.com/send/?phone=17866124893&text=Hola%20KTA,%20tengo%20una%20duda%20y%20necesito%20ayuda', $html);
+
+
+                    $newFacturaEmail = new Email($email, $name, 'Comprobante de compra', $html, [['data'=>$pdfData, 'name'=>'factura.pdf']]);
+
+                    $newFacturaEmail->sendEmail();
+                }
+
+                
                 if($type_product == 'course'){
                     $newEnrollment = new Enrollment;
                     $newEnrollment->url = Uuid::uuid4();
@@ -217,6 +271,9 @@ class PaymentController{
 
                     if(!$rows)
                         Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
+
+                }else if($type_product == 'live'){
+                    
                 }
 
                 Response::json(['ok'=>true, 'message'=>'Proceso completado']);

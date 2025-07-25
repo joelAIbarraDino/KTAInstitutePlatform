@@ -31,7 +31,7 @@ class AuthController
 
     public static function ktaAuth():void{
         if(Request::isPOST()){
-            $credentials = Request::getPostData();
+            $credentials = Request::getPostData(['password']);
 
             //si no existe el estudiante
             $user = Student::where('email', '=', $credentials['email']);
@@ -80,7 +80,7 @@ class AuthController
 
     public static function ktaAuthAdmin():void{
         if(Request::isPOST()){
-            $credentials = Request::getPostData();
+            $credentials = Request::getPostData(['password']);
 
             //si no existe el estudiante
             $user = Admin::where('email', '=', $credentials['email']);

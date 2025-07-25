@@ -195,4 +195,123 @@ class Helpers{
         return $texto;
     }
 
+    public static function generate_password($longitud = 12): string {
+        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-=[]{}|;:,.<>?';
+        $caracteres = str_shuffle($caracteres);
+        $contrasena = '';
+        
+        for ($i = 0; $i < $longitud; $i++) {
+            $contrasena .= $caracteres[rand(0, strlen($caracteres) - 1)];
+        }
+
+        return $contrasena;
+    }
+
+    public static function newUserPaymentHTML():string{
+        return $html = '
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Cuenta creada con éxito</title>
+                </head>
+                <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial, sans-serif;">
+                    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:30px 0;">
+                        <tr>
+                        <td align="center">
+                            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.05);">
+                            <tr>
+                                <td style="background:#CDA02D;padding:20px;text-align:center;color:#ffffff;font-size:24px;">
+                                <strong>¡Tu cuenta ha sido creada!</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:30px;color:#000000;">
+                                <h1 style="margin-top:0;font-size:22px;">Hola{NOMBRE_USUARIO}</h1>
+                                <p style="font-size:16px;line-height:1.5;">
+                                    Gracias por tu compra. Hemos creado automáticamente una cuenta para que puedas acceder a tu producto y administrar tu perfil dentro de nuestra plataforma.
+                                </p>
+                                <p style="font-size:16px;line-height:1.5;">
+                                    Aquí tienes tu contraseña temporal:
+                                </p>
+                                <div style="background:#f7f7f7;padding:12px 18px;margin:20px 0;border-radius:6px;font-size:18px;text-align:center;font-weight:bold;color:#000000;">
+                                    {CONTRASENA_GENERADA}
+                                </div>
+                                <p style="font-size:16px;line-height:1.5;">
+                                    Puedes cambiarla después de iniciar sesión desde tu panel de usuario.
+                                </p>
+                                <div style="text-align:center;margin:30px 0;">
+                                    <a href="{URL_TUTORIAL}" style="background:#CDA02D;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:6px;font-size:16px;display:inline-block;">
+                                    Ver tutorial de uso
+                                    </a>
+                                </div>
+                                <p style="font-size:14px;color:#777777;">
+                                    Si tienes dudas o necesitas ayuda, puedes enviar un correo a {EMAIL_SOPORTE}.
+                                </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background:#eeeeee;padding:15px;text-align:center;font-size:12px;color:#999999;">
+                                © '.date("Y").' KTA Institue. Todos los derechos reservados.
+                                </td>
+                            </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+                </body>
+            </html>';
+
+    }
+
+    public static function facturaHTML():string{
+        return $html = '
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="UTF-8">
+            <title>Resumen de tu compra</title>
+            </head>
+            <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial, sans-serif;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:30px 0;">
+                <tr>
+                <td align="center">
+                    <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.05);">
+                    <tr>
+                        <td style="background:#CDA02D;padding:20px;text-align:center;color:#ffffff;font-size:24px;">
+                        <strong>Resumen de tu compra</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:30px;color:#000000;">
+                        <h1 style="margin-top:0;font-size:22px;">Hola{NOMBRE_USUARIO}</h1>
+                        <p style="font-size:16px;line-height:1.5;">
+                            ¡Gracias por tu compra! Adjuntamos el comprobante de pago en formato PDF con todos los detalles registrados.
+                        </p>
+                        <p style="font-size:16px;line-height:1.5;">
+                            Si necesitas soporte o tienes dudas sobre tu compra, no dudes en contactarnos.
+                        </p>
+                        <div style="text-align:center;margin:30px 0;">
+                            <a href="{URL_SOPORTE}" style="background:#CDA02D;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:6px;font-size:16px;display:inline-block;">
+                            Contactar soporte
+                            </a>
+                        </div>
+                        <p style="font-size:16px;color:#777777;">
+                            Este correo incluye tu comprobante como archivo adjunto.
+                        </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background:#eeeeee;padding:15px;text-align:center;font-size:12px;color:#999999;">
+                        © '.date("Y").' KTA Institute. Todos los derechos reservados.
+                        </td>
+                    </tr>
+                    </table>
+                </td>
+                </tr>
+            </table>
+            </body>
+            </html>';
+
+    }
 }
