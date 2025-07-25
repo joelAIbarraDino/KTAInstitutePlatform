@@ -95,6 +95,21 @@
 
   }
 
+  &__dates{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 1rem;
+    flex-direction: column;
+    margin: 1rem 0 0 0;
+
+    @include m.tablet{
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+    }
+  }
+
   &__detail{
     color: v.$blanco;
     display: flex;
@@ -148,6 +163,7 @@
     color: v.$blanco;
     font-size: 1.7rem;
     text-align: left;
+    margin-top: 1.5rem;
 
     @include m.tablet{
       width: 80%;

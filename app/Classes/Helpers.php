@@ -189,6 +189,21 @@ class Helpers{
         ];
     }
 
+    public static function obtenerFechasYHoras(string $jsonFechas): array {
+        $fechas = json_decode($jsonFechas);
+        $resultado = [];
+
+        foreach ($fechas as $fechaRaw) {
+            $fecha = new DateTime($fechaRaw);
+            $resultado[] = [
+                'fecha' => $fecha->format('j M'),   // Ej: "22 Jul"
+                'hora'  => $fecha->format('H:i')    // Ej: "11:00"
+            ];
+        }
+
+        return $resultado;
+    }
+
     public static function limitarTexto($texto, $longitud = 100) {
         if (strlen($texto) > $longitud)
             $texto = substr($texto, 0, $longitud) . '...';

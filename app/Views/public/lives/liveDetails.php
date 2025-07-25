@@ -3,7 +3,7 @@
     include_once __DIR__.'/../../components/header.php';
     
     use App\Classes\Helpers;
-    $fechas =  Helpers::formatearFechasHoras($live->dates_times);    
+    $fechas =  Helpers::obtenerFechasYHoras($live->dates_times);    
 ?>
 
 <main>
@@ -21,23 +21,17 @@
             <h1 class="info-curso__name" data-section="live-<?=$live->id_live?>" data-label="name"><?=$live->name?></h1>
             <p class="info-curso__lema" data-section="live-details" data-label="lema"><strong>Este es un curso en vivo que se dará el:</strong></p>
 
-            <div class="info-curso__details">
-
-                <?php if($live->enrollment >2): ?>
+            <?php foreach($fechas as $fecha):?>
+                <div class="info-curso__dates">
                     <div class="info-curso__detail">
-                        <i class='bx bxs-graduation'></i> <?=$live->enrollment?> <span data-section="course-details" data-label="students">estudiantes</span>
+                        <i class='bx bx-calendar'></i> <span><?=$fecha['fecha']?></span>
                     </div>
-                <?php endif;?>
-                
-                <div class="info-curso__detail">
-                    <i class='bx bx-calendar'></i> <span><?=$fechas['fechas']?></span>
-                </div>
 
-                <div class="info-curso__detail">
-                    <i class='bx bx-time-five'></i><span><?=$fechas['horas']?></span>
+                    <div class="info-curso__detail">
+                        <i class='bx bx-time-five'></i><span><?=$fecha['hora']?></span>
+                    </div>
                 </div>
-
-            </div>
+            <?php endforeach;?>
 
             <div class="info-curso__description" data-section="live-<?=$live->id_live?>" data-label="description">
                 <?=$live->description ?>
