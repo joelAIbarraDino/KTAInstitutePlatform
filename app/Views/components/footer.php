@@ -40,9 +40,9 @@
                 <div class="information__icon">
                     <i class='bx bxs-map bx-tada' ></i>
                 </div>
-                <a class="information__data" href="https://maps.app.goo.gl/87B5SC9HWp7GHxVL6">
+                <a class="information__data" href="https://maps.app.goo.gl/b3MXiNs2hMAJ4nS46" target="_blank">
                     <p class="information__data-name" data-section="footer" data-label="kta-location">KTA location</p>
-                    <p class="information__data-label">Brandon, Florida</p>
+                    <p class="information__data-label">308 Ave G SW Suite 220, Winter Haven, FL 33880</p>
                 </a>
             </div>
 
