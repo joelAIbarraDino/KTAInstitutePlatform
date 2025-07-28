@@ -60,7 +60,11 @@
     }
 
     &__membresias{
-        padding: 5rem;
+        padding: 2rem;
+
+        @include m.computadora{
+            padding: 5rem;
+        }
 
         &-title{
             color: v.$dorado;
