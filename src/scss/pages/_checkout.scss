@@ -4,14 +4,26 @@
 .checkout{
     padding: 5rem 2rem;
     display: flex;
-    gap: 10rem;
+    gap: 5rem;
     align-items: start;
     justify-content: center;
+    flex-direction: column;
+
+    @include m.computadora{
+      flex-direction: row;
+      gap: 10rem;
+    }
 
     &__summary{
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 2rem;
+        margin: 0 auto;
+
+        @include m.computadora{
+          margin: 0;
+        }
     }
 
     &__image{
@@ -37,15 +49,17 @@
 }
 
 .form-checkout {
-  width: 95%;
+  width: 100%;
   background-color: v.$blanco;
   padding: 2rem;
   border-radius: 0.75rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   font-family: sans-serif;
+  margin: 0 auto;
 
-  @include m.tablet{
+  @include m.computadora{
     width: 50rem;
+    margin: 0;
   }
 
   &__title {

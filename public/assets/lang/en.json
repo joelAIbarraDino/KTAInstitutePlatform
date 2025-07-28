@@ -76,6 +76,13 @@
     "live-details":{
         "type-content":"<i class='bx bxl-zoom' ></i> <span>Live content</span>",
         "lema":"<strong>This is a live course that will be given on:</strong>"
+    },
+    "memberships":{
+        "title":"KTA Memberships",
+        "description":"12-month VIP access to all training, courses, and continuing education. Over 1,000 hours of specialized training.",
+        "CTA":"Get your Membership now!",
+        "title_memberships":"Our KTA Memberships",
+        "title_courses":"Exclusive courses with"
     }
 
 }

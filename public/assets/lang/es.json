@@ -76,6 +76,14 @@
     "live-details":{
         "type-content":"<i class='bx bxl-zoom' ></i> <span>Contenido en vivo</span>",
         "lema":"<strong>Este es un curso en vivo que se dara el:</strong>"
+    },
+    "memberships":{
+        "title":"Membresías KTA",
+        "description":"Acceso VIP durante 12 meses a todas las formaciones, cursos y educación continua. Más de 1000 horas de formación especializada.",
+        "CTA":"¡Consigue tu Membresía ahora!",
+        "title_memberships":"Nuestras membresías KTA",
+        "title_courses":"Cursos exclusivos con"
     }
+
 
 }
