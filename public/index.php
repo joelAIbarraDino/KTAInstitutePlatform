@@ -167,12 +167,15 @@ $dino->router->get('/kta-admin/dashboard', [DashboardController::class, 'index']
 
 $dino->router->get('/kta-admin/cursos', [DashboardController::class, 'courses'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/pago-cursos', [DashboardController::class, 'paymentCourses'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/api/pago-curso/{attribute}/{value}', [CourseController::class, 'searchPagoCurso'], [AdminLoggedMiddleware::class]);
 
 $dino->router->get('/kta-admin/lives', [DashboardController::class, 'lives'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/pago-lives', [DashboardController::class, 'paymentLives'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/api/pago-live/{attribute}/{value}', [LiveController::class, 'searchPagoLive'], [AdminLoggedMiddleware::class]);
 
 $dino->router->get('/kta-admin/membresias', [DashboardController::class, 'memberships'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/pago-membresias', [DashboardController::class, 'paymentMemberships'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/api/pago-membresia/{attribute}/{value}', [MembershipController::class, 'searchPagoMembresia'], [AdminLoggedMiddleware::class]);
 
 $dino->router->get('/kta-admin/membership-course/{id}', [MembershipContentController::class, 'CurseContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->get('/kta-admin/membership-live/{id}', [MembershipContentController::class, 'LiveContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
@@ -192,9 +195,15 @@ $dino->router->get('/kta-admin/categorias', [DashboardController::class, 'catego
 $dino->router->get('/kta-admin/estudiante-membresia', [DashboardController::class, 'studentMemberships'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/inscripciones', [DashboardController::class, 'enrollment'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/slidebar', [DashboardController::class, 'slidebar'], [AdminLoggedMiddleware::class]);
+
 $dino->router->get('/kta-admin/maestros', [DashboardController::class, 'teachers'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/api/maestro/{attribute}/{value}', [TeacherController::class, 'searchTeacher'], [AdminLoggedMiddleware::class]);
+
 $dino->router->get('/kta-admin/administradores', [DashboardController::class, 'admins'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/api/admin/{attribute}/{value}', [AdminController::class, 'searchAdmin'], [AdminLoggedMiddleware::class]);
+
 $dino->router->get('/kta-admin/estudiantes', [DashboardController::class, 'students'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/api/estudiante/{attribute}/{value}', [StudentController::class, 'searchStudent'], [AdminLoggedMiddleware::class]);
 
 $dino->router->get('/kta-admin/comprobante/{id_payment}/{id_student}', [ComprobanteController::class , 'comprobantePago'], [AdminLoggedMiddleware::class]);
 $dino->router->post('/kta-admin/comprobante/send-mail', [ComprobanteController::class, 'mailPago'], [AdminLoggedMiddleware::class]);

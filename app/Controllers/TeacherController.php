@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use DinoEngine\Exceptions\QueryException;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
+use Exception;
 
 class TeacherController{
 
@@ -136,6 +137,34 @@ class TeacherController{
             } catch (QueryException) {
                 Response::json(['ok'=>false]);
             }
+        }
+    }
+
+    public static function searchTeacher(string $attribute, string $value):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        if(!property_exists(Teacher ::class, $attribute))
+            Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
+
+        try{
+
+            $query = Teacher::querySQL('SELECT * FROM teacher WHERE '.$attribute.' LIKE :value', [
+                ':value'=>'%'.$value.'%'
+            ])??[];
+
+            if(!$query){
+                Response::json([
+                    'query'=>[]
+                ]);
+            }
+
+            Response::json([
+                'query'=>$query
+            ]);
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
 }

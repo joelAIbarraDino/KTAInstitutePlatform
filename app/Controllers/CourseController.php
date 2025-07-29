@@ -2,12 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Classes\Email;
-use App\Classes\FacturaPDF;
-use App\Classes\Helpers;
 use DinoEngine\Exceptions\QueryException;
+use App\Models\PaymentCourseView;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
+use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\FAQ;
@@ -17,8 +16,6 @@ use App\Models\OptionQuestion;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\Teacher;
-use App\Models\Payment;
-use App\Models\Student;
 use Exception;
 
 class CourseController{
@@ -236,4 +233,33 @@ class CourseController{
 
         }
     }
+
+    public static function searchPagoCurso(string $attribute, string $value):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        if(!property_exists(PaymentCourseView ::class, $attribute))
+            Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
+
+        try{
+
+            $query = PaymentCourseView::querySQL('SELECT * FROM payment_course_view WHERE '.$attribute.' LIKE :value', [
+                ':value'=>'%'.$value.'%'
+            ])??[];
+
+            if(!$query){
+                Response::json([
+                    'query'=>[]
+                ]);
+            }
+
+            Response::json([
+                'query'=>$query
+            ]);
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
 }

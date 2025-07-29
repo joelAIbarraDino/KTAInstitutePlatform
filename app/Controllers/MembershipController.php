@@ -6,9 +6,10 @@ use DinoEngine\Exceptions\QueryException;
 
 use App\Classes\Helpers;
 use App\Models\Membership;
-
+use App\Models\PaymentMembershipView;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
+use Exception;
 
 class MembershipController{
 
@@ -123,6 +124,34 @@ class MembershipController{
             } catch (QueryException) {
                 Response::json(['ok'=>false]);
             }
+        }
+    }
+
+    public static function searchPagoMembresia(string $attribute, string $value):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        if(!property_exists(PaymentMembershipView::class, $attribute))
+            Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
+
+        try{
+
+            $query = PaymentMembershipView::querySQL('SELECT * FROM payment_membership_view WHERE '.$attribute.' LIKE :value', [
+                ':value'=>'%'.$value.'%'
+            ])??[];
+
+            if(!$query){
+                Response::json([
+                    'query'=>[]
+                ]);
+            }
+
+            Response::json([
+                'query'=>$query
+            ]);
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
 }

@@ -262,4 +262,32 @@ class StudentController{
             }
         }
     }
+
+    public static function searchStudent(string $attribute, string $value):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        if(!property_exists(Student ::class, $attribute))
+            Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
+
+        try{
+
+            $query = Student::querySQL('SELECT * FROM student WHERE '.$attribute.' LIKE :value', [
+                ':value'=>'%'.$value.'%'
+            ])??[];
+
+            if(!$query){
+                Response::json([
+                    'query'=>[]
+                ]);
+            }
+
+            Response::json([
+                'query'=>$query
+            ]);
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
 }

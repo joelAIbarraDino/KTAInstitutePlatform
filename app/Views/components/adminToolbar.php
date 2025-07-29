@@ -84,7 +84,7 @@
                     <div class="nav">
                         <p class="nav__title">Membresías</p>
                         <a class="nav__link" href="/kta-admin/membresias"> <i class='bx bxs-certification'></i> Membresías</a>
-                        <a class="nav__link" href="/kta-admin/estudiante-membresia"> <i class='bx bxs-user-badge' ></i> Estudiantes con membresías</a>
+                        <!-- <a class="nav__link" href="/kta-admin/estudiante-membresia"> <i class='bx bxs-user-badge' ></i> Estudiantes con membresías</a> -->
                     </div>
 
                     <div class="nav">

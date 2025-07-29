@@ -8,6 +8,7 @@ use App\Models\Admin;
 use DinoEngine\Exceptions\QueryException;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
+use Exception;
 
 class AdminController{
 
@@ -117,6 +118,34 @@ class AdminController{
             } catch (QueryException) {
                 Response::json(['ok'=>false]);
             }
+        }
+    }
+
+    public static function searchAdmin(string $attribute, string $value):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        if(!property_exists(Admin ::class, $attribute))
+            Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
+
+        try{
+
+            $query = Admin::querySQL('SELECT * FROM admin WHERE '.$attribute.' LIKE :value', [
+                ':value'=>'%'.$value.'%'
+            ])??[];
+
+            if(!$query){
+                Response::json([
+                    'query'=>[]
+                ]);
+            }
+
+            Response::json([
+                'query'=>$query
+            ]);
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
         }
     }
 }

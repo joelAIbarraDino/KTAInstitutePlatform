@@ -1,10 +1,25 @@
 <?php
     use App\Classes\Helpers;
+
+    $versionSearchCursos = filemtime('assets/js/BuscadorTabla.js');
+
+    $topScripts ='
+        <script src="/assets/js/BuscadorTabla.js?v='.$versionSearchCursos.'"></script>
+    ';    
     include_once __DIR__.'/../../components/adminToolbar.php'; 
 ?>
 
 <main class="main">
     <div class="main__container">
+        <div class="dashboard-search">
+            <label class="dashboard-search__label" for="search-input">Buscar:</label>
+            
+            <div class="dashboard-search__input-container">
+                <input id="search-input" class="dashboard-search__input" type="text" placeholder="Ingrese nombre">
+                <button id="search-btn" class="dashboard-search__enter"><i class='bx bx-subdirectory-left'></i></button>
+            </div>
+        </div>
+
         <div class="dashboard-table">
             <div class="dashboard-table__header">
                 <h2 class="dashboard-table__title">Maestros</h2>
@@ -24,7 +39,7 @@
                             <th class="actions-label">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody class="dashboard-table__tbody">
+                    <tbody class="dashboard-table__tbody" id="search-result">
 
                         <?php if(count($teachers) > 0): ?>
 
@@ -67,6 +82,35 @@
         </div>
     </div>
 </main>
+
+<script>
+    const buscadorPagos = new BuscadorTabla({
+        inputSelector: '#search-input',
+        buttonSelector: '#search-btn',
+        tableSelector: '#search-result',
+        endpoint: '/api/maestro/',
+        columnas: 5,
+        template: `
+            <tr>
+                <td>
+                    <img class="dashboard-table__photo--user" src="/assets/teachers/{{photo}}" alt="foto {{photo}}">
+                </td>
+                <td>{{name}}</td>
+                <td>
+                    <span class="dashboard-table__status dashboard-table__status--info">
+                    {{speciality}}
+                    </span>
+                </td>
+                <td>{{experience}} años</td>
+                <td class="dashboard-table__actions-cell">
+                    <a href="/kta-admin/maestro/update/{{id_teacher}}" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                </td>
+            </tr>
+        `,
+        atributoBusqueda: 'name'
+    });
+
+</script>
 
 <?php
     $scripts = '

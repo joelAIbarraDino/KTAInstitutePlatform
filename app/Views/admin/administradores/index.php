@@ -1,10 +1,26 @@
 <?php
     use App\Classes\Helpers;
+
+    $versionSearchCursos = filemtime('assets/js/BuscadorTabla.js');
+
+    $topScripts ='
+        <script src="/assets/js/BuscadorTabla.js?v='.$versionSearchCursos.'"></script>
+    ';    
     include_once __DIR__.'/../../components/adminToolbar.php'; 
 ?>
 
 <main class="main">
     <div class="main__container">
+
+        <div class="dashboard-search">
+            <label class="dashboard-search__label" for="search-input">Buscar:</label>
+            
+            <div class="dashboard-search__input-container">
+                <input id="search-input" class="dashboard-search__input" type="text" placeholder="Ingrese nombre">
+                <button id="search-btn" class="dashboard-search__enter"><i class='bx bx-subdirectory-left'></i></button>
+            </div>
+        </div>
+
         <div class="dashboard-table">
             <div class="dashboard-table__header">
                 <h2 class="dashboard-table__title">Administradores</h2>
@@ -22,7 +38,7 @@
                             <th class="actions-label">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody class="dashboard-table__tbody">
+                    <tbody class="dashboard-table__tbody" id="search-result">
 
                         <?php if(count($admins) > 0): ?>
 
@@ -63,6 +79,35 @@
         </div>
     </div>
 </main>
+
+<script>
+    const buscadorPagos = new BuscadorTabla({
+        inputSelector: '#search-input',
+        buttonSelector: '#search-btn',
+        tableSelector: '#search-result',
+        endpoint: '/api/admin/',
+        columnas: 3,
+        template: `
+            <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td class="dashboard-table__actions-cell">
+                    <a href="/kta-admin/administrador/update/{{id_admin}}" class="dashboard-table__action dashboard-table__action--edit">
+                    <i class='bx bx-edit'></i>
+                    </a>
+                    <button data-id="{{id_admin}}" class="dashboard-table__action dashboard-table__action--delete">
+                    <i class='bx bx-trash'></i>
+                    </button>
+                </td>
+            </tr>
+        `,
+        atributoBusqueda: function(valor) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor) ? 'email' : 'name';
+        }
+    });
+
+</script>
+
 
 <?php
     $scripts = '

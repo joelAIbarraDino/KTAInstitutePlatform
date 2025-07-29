@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Classes\Email;
-use App\Classes\FacturaPDF;
 use DinoEngine\Exceptions\QueryException;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
@@ -11,8 +9,7 @@ use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\LiveView;
 use App\Models\Live;
-use App\Models\Payment;
-use App\Models\Student;
+use App\Models\PaymentLiveView;
 use Exception;
 
 class LiveController{
@@ -181,5 +178,33 @@ class LiveController{
         }
 
         Response::json($listaEventos);
+    }
+
+    public static function searchPagoLive(string $attribute, string $value):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        if(!property_exists(PaymentLiveView ::class, $attribute))
+            Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
+
+        try{
+
+            $query = PaymentLiveView::querySQL('SELECT * FROM payment_live_view WHERE '.$attribute.' LIKE :value', [
+                ':value'=>'%'.$value.'%'
+            ])??[];
+
+            if(!$query){
+                Response::json([
+                    'query'=>[]
+                ]);
+            }
+
+            Response::json([
+                'query'=>$query
+            ]);
+
+        }catch(Exception $e){
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
     }
 }
