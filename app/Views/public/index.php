@@ -156,7 +156,7 @@ use App\Classes\Helpers;
     <div class="membresias-index__container">
         
         <div class="membresia-index" data-aos="fade-right" data-aos-delay="100">
-            <img class="membresia-index__imagen" src="/assets/images/membresia2.jpg" alt="imagen">
+            <img class="membresia-index__imagen" src="/assets/images/membresia.jpg" alt="imagen">
             <div class="membresia-index__container">
                 <p class="membresia-index__titulo" data-section="index" data-label="membership-title-1">Nuestros cursos</p>
                 <p class="membresia-index__texto" data-section="index" data-label="membership-text-1">
