@@ -4,7 +4,7 @@
         "self-study":"Self study",
         "lives":"Cursos en vivo",
         "calendar":"Calendario",
-        "about-us":"¿Quienes somos?",
+        "about-us":"¿Quiénes somos?",
         "membership":"Membresías",
         "my-space":"Mi espacio",
         "sign-up":"Registrarse",
@@ -68,7 +68,9 @@
     "courses":{
         "title":"Nuestros cursos",
         "label":"Empieza, cambia o avanza en tu carrera con KTA como guía.",
-        "all-courses":"Todos los cursos"
+        "all-courses":"Todos los cursos",
+        "banner-title":"¿No sabes cuál elegir? Agenda una asesoría gratuita aquí 👇",
+        "banner-cta":"¡Quiero una asesoría!"
     },
     "lives":{
         "title":"Nuestros cursos en línea"
@@ -83,6 +85,9 @@
         "CTA":"¡Consigue tu Membresía ahora!",
         "title_memberships":"Nuestras membresías KTA",
         "title_courses":"Cursos exclusivos con"
+    },
+    "calendar":{
+        "title":"Calendario de cursos en vivo"
     }
 
 

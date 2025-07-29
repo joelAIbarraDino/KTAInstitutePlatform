@@ -4,7 +4,7 @@
 
         <h3 data-aos="fade-up" class="last-courses__title" data-section="index"  data-label="next-courses" >Próximos Cursos</h3>
         
-        <div class="last-courses__container swiper mySwiper">
+        <div class="last-courses__container swiper swiper-courses">
             <div class="swiper-wrapper">
                 <?php foreach($courses as $course):?>
                     <div class="swiper-slide">

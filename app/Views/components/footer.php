@@ -25,7 +25,7 @@
                 <ul class="nav">
                     <li class="nav__link"><a href="/" data-section="header" data-label="home">Inicio</a></li>
                     <li class="nav__link"><a href="/cursos" data-section="header" data-label="self-study">Cursos grabados</a></li>
-                    <li class="nav__link"><a href="/nosotros" data-section="header" data-label="about-us">¿Quienes somos?</a></li>
+                    <li class="nav__link"><a href="/nosotros" data-section="header" data-label="about-us">¿Quiénes somos?</a></li>
                     <li class="nav__link"><a href="/membresias" data-section="header" data-label="membership">Membresias</a></li>
                 </ul>
             </nav>

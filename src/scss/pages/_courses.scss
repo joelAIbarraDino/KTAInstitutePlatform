@@ -73,6 +73,10 @@
         border: solid .1rem v.$negro;
         border-radius: 2rem;
         text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
         &:hover{
             background-color: rgba(v.$dorado, 0.5);
             border-color: v.$dorado;

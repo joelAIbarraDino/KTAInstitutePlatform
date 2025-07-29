@@ -101,7 +101,7 @@
     <section class="teachers-about">
 
         <h3 class="teachers-about__title" data-aos="fade-up">Maestros especializados</h3>
-        <p class="teachers-about__description" data-aos="fade-up">Para nosotros enseñar es más importante que asistir.  Enseñar es dar la oportunidad de crecer en libertad y conocimiento ya que la asistencia es limitante y adictiva. Nuestro objetivo es sembrar en cada participante un conocimiento y métodos de desarrollo en la área económica y personal que El participante eligió.</p>
+        <p class="teachers-about__description" data-aos="fade-up">Para nosotros enseñar es más importante que asistir.  Enseñar es dar la oportunidad de crecer en libertad y conocimiento ya que la asistencia es limitante y adictiva. Nuestro objetivo es sembrar en cada participante un conocimiento y métodos de desarrollo en la área económica y personal que el participante eligió.</p>
         
         <?php include __DIR__.'/../components/teachers.php'; ?>
 

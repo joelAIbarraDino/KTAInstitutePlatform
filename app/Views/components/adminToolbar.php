@@ -59,9 +59,9 @@
 
                     <div class="nav">
                         <p class="nav__title">Pedidos</p>
-                        <a class="nav__link" href="/kta-admin/pago-cursos"> <i class='bx bx-credit-card'></i> Pagos de cursos</a>
-                        <a class="nav__link" href="/kta-admin/pago-lives"> <i class='bx bx-credit-card'></i> Pagos de lives</a>
-                        <a class="nav__link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Pagos de membresías</a>
+                        <a class="nav__link" href="/kta-admin/pago-cursos"> <i class='bx bx-credit-card'></i> Cursos</a>
+                        <a class="nav__link" href="/kta-admin/pago-lives"> <i class='bx bx-credit-card'></i> Lives</a>
+                        <a class="nav__link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Membresías</a>
                     </div>
 
                     <div class="nav">

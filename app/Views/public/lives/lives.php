@@ -50,9 +50,9 @@
     </section>
     
     <section class="curso-banner-asesoria">
-        <p class="curso-banner-asesoria__texto">¿No sabes cuál elegir? Agenda una asesoría gratuita aquí 👇</p>
-        <a href="">
-            <div class="curso-banner-asesoria__button">¡Quiero una asesoria!</div>
+        <p class="curso-banner-asesoria__texto" data-section="courses" data-label="banner-title">¿No sabes cuál elegir? Agenda una asesoría gratuita aquí 👇</p>
+        <a href="https://calendly.com/ktainstitute/asesoria-30-minutos">
+            <div class="curso-banner-asesoria__button" data-section="courses" data-label="banner-cta">¡Quiero una asesoria!</div>
         </a>
     </section>
 </main>

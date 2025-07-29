@@ -21,14 +21,14 @@ async function  enviarCorreo(id_payment, id_student) {
         
         if(resultado){
             Swal.fire({
-                title: "¡enviado!",
-                text: "se ha enviado un nuevo correo con exito",
+                title: "¡Enviado!",
+                text: "Se ha enviado un nuevo correo con exito",
                 icon: "success"
             });
         }else{
             Swal.fire({
-                title: "¡error!",
-                text: "ha ocurrido un error al enviar el correo",
+                title: "¡Error!",
+                text: "Ha ocurrido un error al enviar el correo",
                 icon: "error"
             });
         }

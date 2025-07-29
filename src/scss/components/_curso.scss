@@ -151,7 +151,7 @@
         font-weight: v.$bold;
         color: v.$negro;
         margin: 1rem 0 1.5rem 0;
-        text-align: left;
+        text-align: center;
         padding-bottom: .5rem;
 
         &:hover{
@@ -196,6 +196,7 @@
     &__precios {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 1rem;
         margin-bottom: 0.5rem;
     }

@@ -39,7 +39,7 @@
             <li><a class="header__link" href="/cursos" data-section="header" data-label="self-study">Cursos grabados</a></li>
             <li><a class="header__link" href="/lives" data-section="header" data-label="lives">Cursos en vivo</a></li>
             <li><a class="header__link" href="/calendario" data-section="header" data-label="calendar">Calendario</a></li>
-            <li><a class="header__link" href="/nosotros" data-section="header" data-label="about-us">¿Quienes somos?</a></li>
+            <li><a class="header__link" href="/nosotros" data-section="header" data-label="about-us">¿Quiénes somos?</a></li>
             <li><a class="header__link" href="/membresias" data-section="header" data-label="membership">Membresías</a></li>
 
             <?php if(isset($_SESSION['student'])): ?>

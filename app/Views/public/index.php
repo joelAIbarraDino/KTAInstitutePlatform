@@ -5,6 +5,7 @@ use App\Classes\Helpers;
     $topScripts ='
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     ';
 ?>
 
@@ -186,9 +187,37 @@ use App\Classes\Helpers;
     </div>    
 </section>
 
+<script>
+        const swiper = new Swiper(".swiper-courses", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        480:{
+            slidesPerView: 1
+        },
+        768: {
+            slidesPerView: 3
+        },
+        1024: {
+            slidesPerView: 5
+        }
+    }
+    });
+</script>
+
 <?php include_once __DIR__.'/../components/popups.php'; ?>
 
 <?php include_once __DIR__.'/../components/footer.php'; ?>
+
 
 <?php 
 
@@ -199,13 +228,11 @@ use App\Classes\Helpers;
     $swiperVersion = filemtime('assets/js/swiper.js');
 
     $scripts ='
-        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
         <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
         <script src="/assets/js/counter.js?v='.$animationVersion.'"></script>
         <script src="/assets/js/slider.js?v='.$sliderVersion.'"></script>
         <script src="/assets/js/saleAlerts.js?v='.$saleVersion.'"></script>
         <script src="/assets/js/swiper.js?v='.$swiperVersion.'"></script>
-        <script src="/assets/js/animation.js"></script>
     ';
 ?>
 

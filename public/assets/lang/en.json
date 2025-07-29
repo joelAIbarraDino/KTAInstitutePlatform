@@ -68,7 +68,9 @@
     "courses":{
         "title":"Our courses",
         "label":"Start, change, or advance your career with KTA as your guide.",
-        "all-courses":"All courses"
+        "all-courses":"All courses",
+        "banner-title": "Don't know which one to choose? Schedule a free consultation here 👇",
+        "banner-cta": "I want a consultation!"
     },
     "lives":{
         "title":"Our online courses"
@@ -83,6 +85,9 @@
         "CTA":"Get your Membership now!",
         "title_memberships":"Our KTA Memberships",
         "title_courses":"Exclusive courses with"
+    },
+    "calendar":{
+        "title":"Live Course Schedule"
     }
 
 }

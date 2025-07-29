@@ -9,7 +9,7 @@ use App\Classes\Helpers;
 
     <div class="dashboard-table">
             <div class="dashboard-table__header">
-                <h2 class="dashboard-table__title">Pagos de cursos</h2>
+                <h2 class="dashboard-table__title">Pagos de membresías</h2>
                 <div class="dashboard-table__actions">
                 </div>
             </div>
