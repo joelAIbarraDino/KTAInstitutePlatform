@@ -549,6 +549,14 @@
         const lessonRight = document.createElement('div');
         lessonRight.className = 'lesson__right';
 
+        const btnFiles = document.createElement('button');
+        btnFiles.className = 'module__btn module__btn--pendiente';
+        btnFiles.setAttribute('data-id', id_module);
+        btnFiles.innerHTML = "<i class='bx bxs-file-plus'></i>";
+        btnFiles.onclick = function(){
+            fileModal(module, lesson);
+        };
+
         const btnEditar = document.createElement('button');
         btnEditar.className = 'module__btn module__btn--agregar';
         btnEditar.setAttribute('data-id', id_module);
@@ -566,6 +574,7 @@
         }
 
         // Añadir botones al lessonRight
+        // lessonRight.appendChild(btnFiles);
         lessonRight.appendChild(btnEditar);
         lessonRight.appendChild(btnEliminar);
 
@@ -574,6 +583,161 @@
         lessonContainer.appendChild(lessonRight);
 
         return lessonContainer;
+    }
+
+    function fileModal(module, lesson){
+        const {id_module, name} = module;
+
+        const modalWindow = document.createElement("div");
+        modalWindow.classList.add("modal");
+
+        // FORM
+        const form = document.createElement("form");
+        form.classList.add("form", "modal__form");
+        form.enctype = "multipart/form-data";
+
+        // LEGEND
+        const legend = document.createElement("legend");
+        legend.classList.add("form__title");
+        legend.textContent ="Material de lección";
+
+        // Instrucciones
+        const instrucciones = document.createElement("p");
+        instrucciones.classList.add("form__instructions");
+        instrucciones.textContent = "Completa los campos requeridos";
+
+        // Grid contenedor
+        const grid = document.createElement("div");
+        grid.classList.add("grid-elements", "border");
+
+        // Input: Nombre
+        const divNombre = document.createElement("div");
+        divNombre.classList.add("form__input", "col-12");
+
+        const labelNombre = document.createElement("label");
+        labelNombre.setAttribute("for", "name");
+        labelNombre.textContent = " Nombre de archivo(requerido)";
+
+        const inputNombre = document.createElement("input");
+        inputNombre.setAttribute("autocomplete", "off");
+        inputNombre.type = "text";
+        inputNombre.name = "name";
+        inputNombre.id = "name";
+        inputNombre.classList.add("field");
+        inputNombre.placeholder = "Nombre de archivo";
+        inputNombre.value = "";
+
+        divNombre.appendChild(labelNombre);
+        divNombre.appendChild(inputNombre);
+
+        // Input: Archivo
+        const divFile = document.createElement("div");
+        divFile.className = "form__file col-12";
+
+        const label = document.createElement("label");
+        label.setAttribute("for", "file");
+        label.textContent = "Archivo del curso (requerido)";
+
+        const input = document.createElement("input");
+        input.type = "file";
+        input.name = "file";
+        input.id = "file";
+        input.accept = "*/*";
+        input.hidden = true;
+        input.className = "real-btn-file";
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "form__file-btn btn-file";
+        button.textContent = "Seleccionar archivo del curso";
+
+        // Crear el span para el nombre del archivo
+        const span = document.createElement("span");
+        span.className = "form__input-msg name-file";
+
+        // Añadir todos los elementos al div
+        divFile.appendChild(label);
+        divFile.appendChild(input);
+        divFile.appendChild(button);
+        divFile.appendChild(span);
+
+        // Agregar inputs al grid
+        grid.appendChild(divNombre);
+        grid.appendChild(divFile);
+
+        // Submit
+        const divSubmit = document.createElement("div");
+        divSubmit.classList.add("modal__controllers");
+
+        const inputSubmit = document.createElement("input");
+        inputSubmit.type = "submit";
+        inputSubmit.classList.add("submit");
+        inputSubmit.value = "Guardar archivo";
+        inputSubmit.addEventListener('click', function(){
+            
+            const nameMaterial = inputNombre.value.trim();
+            // addMaterial(nameMaterial);
+
+        });
+
+        const inputClose = document.createElement("button");
+        inputClose.classList.add("modal__cancel");
+        inputClose.textContent = "Cancelar";
+        inputClose.addEventListener("click", function(){
+            const form = document.querySelector(".modal__form");
+            form.classList.add("modal-close");
+            
+            setTimeout(() => {
+                modalWindow.remove();
+            }, 550);
+        });
+
+        divSubmit.appendChild(inputClose);
+        divSubmit.appendChild(inputSubmit);
+
+        // Ensamblar el formulario
+        form.appendChild(legend);
+        form.appendChild(instrucciones);
+        form.appendChild(grid);
+        form.appendChild(divSubmit);
+
+        //animación de close
+        modalWindow.addEventListener('click', e =>{
+            e.preventDefault();
+            
+            if(e.target.classList.contains("modal")){
+                const form = document.querySelector(".modal__form");
+                form.classList.add("modal-close");
+                
+                setTimeout(() => {
+                    modalWindow.remove();
+                }, 550);
+            }
+            if(e.target.classList.contains("btn-file")){
+                const realFileInput = document.querySelector('.real-btn-file');
+                const customButton = document.querySelector('.btn-file');
+                const fileName = document.querySelector('.name-file');
+
+                customButton.addEventListener('click', async () => {
+                    realFileInput.click();
+                });
+
+                realFileInput.addEventListener('change', async () => {
+                    if (realFileInput.files.length > 0) {
+                        fileName.textContent = realFileInput.files[0].name;
+                        fileName.classList.add("correct");
+                        fileName.classList.add("show");
+                    } else {
+                        fileName.textContent = 'No se ha seleccionado ningún archivo';
+                        fileName.classList.add("error");
+                    }
+                }); 
+            }
+
+        });
+
+        document.body.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.querySelector("body").appendChild(modalWindow);     
     }
 
     function updateName(module, newName){
