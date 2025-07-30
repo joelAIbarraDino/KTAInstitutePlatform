@@ -2,9 +2,20 @@
     font-family: 'GothamRounded';
     src: url('/assets/fonts/GothamRounded-Medium/GothamRounded-Medium.woff2') format('woff2'),
          url('/assets/fonts/GothamRounded-Medium/GothamRounded-Medium.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GothamRoundedRegular';
+    src: url('/assets/fonts/GothamRounded-Regular/GothamRounded-Book.woff2') format('woff2'),
+         url('/assets/fonts/GothamRounded-Regular/GothamRounded-Book.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
+
 
 @font-face {
     font-family: 'FuturaBT';
@@ -16,7 +27,8 @@
 
 
 //fuentes
-$fuente_principal: "GothamRounded", sans-serif;
+$fuente_menu: "Lato", sans-serif;
+$fuente_principal: "GothamRoundedRegular", sans-serif;
 $fuente_secundaria: "FuturaBT", sans-serif;
 
 //tamaño de fuentes

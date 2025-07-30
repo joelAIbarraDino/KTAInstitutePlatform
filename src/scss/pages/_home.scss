@@ -85,8 +85,8 @@
     &__title{
         margin: 0;
         color: v.$negro;
-        font-size: 1.8rem;
-        font-weight: v.$bold;
+        font-size: 1.7rem;
+        font-weight: v.$regular;
         display: none;
 
         @include m.computadora{
@@ -142,7 +142,7 @@
             align-items: center;
             justify-content: center;
             padding: 0;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         li{
@@ -151,9 +151,9 @@
     }
 
     &__link{
-        color: v.$dorado;
+        color: v.$negro;
         font-weight: v.$regular;
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         text-align: center;
         transition: all 0.4s ease;
 
@@ -272,7 +272,7 @@
     transition: opacity 1s;
 
     @include m.computadora{
-        min-height: 60vh;
+        min-height: 55vh;
     }
 
     &-container{
@@ -399,7 +399,7 @@
 
 .gif{
     margin: 0 auto;
-    width: 90%;
+    width: 90.3%;
 
     &__image{
         width: 100%;
@@ -448,7 +448,7 @@
 }
 
 .last-courses{
-    padding:  3rem 0;
+    padding:  1rem 0;
 
     &__container{
         width: 90%;
@@ -460,8 +460,8 @@
         text-transform: uppercase;
         font-weight: v.$black;
         margin: 0;
-        font-size: 3rem;
-        margin-top: 1rem;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
     }
 }
 

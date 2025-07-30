@@ -137,6 +137,7 @@ $dino->router->get('/logout', [AuthController::class, 'logout']);
 //zona privada del estudiante
 $dino->router->get('/mis-cursos', [UserController::class, 'cursos'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/cursos-pasados', [UserController::class, 'endedCourses'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/mis-certificados', [UserController::class, 'certificados'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/mi-perfil', [UserController::class, 'profile'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/editar-perfil', [UserController::class, 'editProfile'], [new StudentLoggedMiddleware('/login')]);
 $dino->router->get('/editar-direccion', [UserController::class, 'editDirection'], [new StudentLoggedMiddleware('/login')]);

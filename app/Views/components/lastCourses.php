@@ -3,7 +3,8 @@
     <section class="last-courses">
 
         <h3 data-aos="fade-up" class="last-courses__title" data-section="index"  data-label="next-courses" >Próximos Cursos</h3>
-        
+        <hr data-aos="fade-up" class="linea-personalizada">
+
         <div class="last-courses__container swiper swiper-courses">
             <div class="swiper-wrapper">
                 <?php foreach($courses as $course):?>

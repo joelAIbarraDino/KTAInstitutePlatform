@@ -1,0 +1,12 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.linea-personalizada {
+  border: none;
+  height: 5px;
+  background-color: v.$dorado;
+  width: 18rem;
+  margin: 0 auto 1em auto;
+  
+}

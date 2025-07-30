@@ -72,6 +72,31 @@ class UserController{
         ]);
     }
 
+    public static function certificados():void{
+        
+        // if(!isset($_SESSION))
+        //     session_start();
+
+        // $idStudent = $_SESSION['student'];
+        // $currentDate = strtotime(date('Y-m-d'));
+
+        // $myCourses = EnrollmentView::belongsTo('id_student', $idStudent['id_student'])??[];
+
+        // $finalCourses = [];
+
+        // if(!empty($myCourses)){
+        //     foreach($myCourses as $course){
+        //         $quiz = 
+        //     }
+        // }        
+
+        // Response::render('/student/courses/endedCourses',[
+        //     'nameApp'=>APP_NAME,
+        //     'title'=>'Cursos tomados',
+        //     'myCourses'=>$finalCourses
+        // ]);
+    }
+
     public static function profile():void{
 
         if(!isset($_SESSION))
