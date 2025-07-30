@@ -38,7 +38,7 @@
 
             <div class="class__tabs">
                 <button class="class__tab class__tab--active" data-step="1">Descripción</button>
-                <!-- <button class="class__tab" data-step="2">Material</button> -->
+                <button class="class__tab" data-step="2">Material</button>
             </div>
 
             <div class="class__extras">
@@ -50,7 +50,7 @@
                 <div id="step-2" class="class__extra">
                     <div id="material-conteiner" class="material">
 
-                        <div href="#" class="material__element">
+                        <!-- <div href="#" class="material__element">
                             <div class="material__name">
                                 <i class='bx bxs-file-blank'></i>
                                 Nombre de material
@@ -59,7 +59,7 @@
                             <button class="material__download" data-id="10">
                                 Descargar
                                 <i class='bx bx-download' ></i>
-                            </dbuttoniv>
+                            </button>
                         </div>
 
                         <div href="#" class="material__element">
@@ -71,7 +71,7 @@
                             <button class="material__download" data-id="10">
                                 Descargar
                                 <i class='bx bx-download' ></i>
-                            </dbuttoniv>
+                            </button>
                         </div>
 
                         <div href="#" class="material__element">
@@ -83,8 +83,8 @@
                             <button class="material__download" data-id="10">
                                 Descargar
                                 <i class='bx bx-download' ></i>
-                            </dbuttoniv>
-                        </div>
+                            </button>
+                        </div> -->
 
                     </div>
                 </div>

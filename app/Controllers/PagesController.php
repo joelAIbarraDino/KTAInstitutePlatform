@@ -255,7 +255,6 @@ class PagesController{
         Response::render('public/lives/calendario', [
             'nameApp'=>APP_NAME,
             'title'=>'Calendario de eventos'
-        ]);
-        
+        ]);   
     }
 }

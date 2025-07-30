@@ -30,10 +30,11 @@ use App\Controllers\ComprobanteController;
 use App\Controllers\EnrollmentController;
 use App\Controllers\MembershipController;
 use App\Controllers\DashboardController;
-use App\Controllers\PaymentController;
 use App\Controllers\CategoryController;
 use App\Controllers\SlidebarController;
 use App\Controllers\QuestionController;
+use App\Controllers\PaymentController;
+use App\Controllers\MaterialController;
 use App\Controllers\ContentController;
 use App\Controllers\StudentController;
 use App\Controllers\AttemptController;
@@ -66,6 +67,8 @@ define('DIR_MEMBRESIAS',__DIR__.'/assets/membresias');
 define('DIR_PROFESORES',__DIR__.'/assets/teachers');
 define('DIR_SLIDEBAR_PICTURE',__DIR__.'/assets/slidebar');
 define('DIR_GIF',__DIR__.'/assets/gifs');
+
+define('DIR_MATERIAL', __DIR__.'/materials');
 
 define('URI_REDIRECT_GOOGLE', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/auth/google-callback');
 
@@ -223,10 +226,16 @@ $dino->router->delete('/api/curso/delete/{id}', [CourseController::class, 'delet
 
 //administracion de contenido de curso
 $dino->router->get('/kta-admin/course-content/{id}', [ContentController::class, 'content'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
+$dino->router->get('/kta-admin/course-material/{id}', [ContentController::class, 'material'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 $dino->router->get('/kta-admin/course-faq/{id}', [ContentController::class, 'faq'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 $dino->router->get('/kta-admin/course-quiz/{id}', [ContentController::class, 'quiz'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class, new ExistsCourseMiddleware('/kta-admin/cursos')]);
 $dino->router->get('/kta-admin/review-quiz/{id}', [ContentController::class, 'reviewAttempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
 $dino->router->get('/kta-admin/attempts-quiz/{id}', [ContentController::class, 'attempts'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);
+
+//administracion de material de curso
+$dino->router->get('/api/materials/{id}', [ContentController::class, 'getMaterial'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/api/material/create', [MaterialController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->delete('/api/material/delete/{id}', [MaterialController::class, 'delete'], [AdminLoggedMiddleware::class]);
 
 //administración de modulos de curso
 $dino->router->get('/api/curso/content/{id}', [ContentController::class, 'getContent'], [AdminLoggedMiddleware::class, ValidIdMiddleware::class]);

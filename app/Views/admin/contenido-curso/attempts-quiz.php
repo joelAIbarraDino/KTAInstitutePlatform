@@ -12,6 +12,7 @@
         <div class="course-options tabs__container">
             <div class="course-options__links">
                 <a class="course-options__tab" href="/kta-admin/course-content/<?=$course->id_course?>"><i class='bx bxs-videos'></i> Contenido</a>
+                <a class="course-options__tab" href="/kta-admin/course-material/<?=$course->id_course?>"><i class='bx bx-file' ></i> Materiales</a>
                 <a class="course-options__tab" href="/kta-admin/course-faq/<?=$course->id_course?>"><i class='bx bx-question-mark' ></i> FAQ's</a>
                 <a class="course-options__tab" href="/kta-admin/course-quiz/<?=$course->id_course?>"><i class='bx bx-list-check' ></i> Examen</a>
                 <a class="course-options__tab" href="/kta-admin/review-quiz/<?=$course->id_course?>"><i class='bx bx-file-find'></i> Evaluaciones pendientes</a>

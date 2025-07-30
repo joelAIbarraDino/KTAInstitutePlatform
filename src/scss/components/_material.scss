@@ -1,0 +1,26 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.material{
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__element{
+        background-color: v.$negro;
+        color: v.$blanco;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 3rem;
+        border-radius: .5rem;
+
+        p{
+            color: v.$blanco;
+            font-weight: v.$black;
+            font-size: 1.8rem;
+        }
+    }
+}

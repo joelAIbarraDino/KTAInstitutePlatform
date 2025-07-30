@@ -78,9 +78,18 @@ class EnrollmentController{
                         'order_lesson'=>$lesson->order_lesson,
                         'id_module'=>$lesson->id_module,
                         'progress'=>$progress,
-                        'material'=>$material,
+                        'materials'=>$material,
                     ];
-                    $arrayLessons[] = $lesson;
+                    $arrayLessons[] = [
+                        'id_lesson'=>$lesson->id_lesson,
+                        'name'=>$lesson->name,
+                        'description'=>$lesson->description,
+                        'id_video'=>$lesson->id_video,
+                        'order_lesson'=>$lesson->order_lesson,
+                        'id_module'=>$lesson->id_module,
+                        'progress'=>$progress,
+                        'materials'=>$material,
+                    ];
                 }
 
                 $modulesLessons[] = [

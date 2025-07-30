@@ -83,12 +83,6 @@
 
     const globalProgress = (completedLessons / totalLessons) * 100;
 
-    console.log(globalProgress);
-
-    console.log(completedLessons);
-
-    console.log(totalLessons);
-
     if(globalProgress === 100){
       if(quiz.length == 0){
         let newDownload = createCertificateDownload();
@@ -277,6 +271,7 @@
     const nameModule = document.querySelector('.class__module');
     const nameClass = document.querySelector('.class__name');
     const description = document.querySelector('.description');
+    const materials = document.querySelector('#material-conteiner');
     const buttonsContainer = document.querySelector('.class__controls-right');
 
     nameModule.innerHTML = `<span>Módulo:</span> ${module.name}`
@@ -313,10 +308,56 @@
 
       })
     })
-
+    //cargo leccion
     description.innerHTML = lesson.description;
+
+    //cargo materiales
+    clearContainer(materials);
+
+    if(lesson.materials.length > 0){
+      lesson.materials.forEach(material =>{
+        let materialContent = createMaterial(material);
+        materials.appendChild(materialContent);
+      });
+    }
+
     loadVideo(lesson);
   }
+
+  function createMaterial(material) {
+    const { id_material, name, type, url_file } = material;
+
+    // Crear el contenedor principal
+    const container = document.createElement('div');
+    container.classList.add('material__element');
+
+    // Crear el div del nombre del material
+    const nameDiv = document.createElement('div');
+    nameDiv.classList.add('material__name');
+    nameDiv.innerHTML = `<i class="bx bxs-file-blank"></i> ${name}`;
+    container.appendChild(nameDiv);
+
+    // Crear el botón de descarga
+    const downloadButton = document.createElement('button');
+    downloadButton.classList.add('material__download');
+    downloadButton.dataset.id = id_material;
+    downloadButton.innerHTML = `Descargar <i class="bx bx-download"></i>`;
+
+    // Agregar evento para descargar archivo
+    downloadButton.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.href = `/materials/${url_file}`;
+        link.download = name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
+    container.appendChild(downloadButton);
+
+    return container;
+  }
+
 
   function actionPlayer(){
 
@@ -416,7 +457,6 @@
     nightModeBtn.addEventListener("click", (e)=>{
 
       const classSelected = e.target.classList;
-      console.log(e.target.classList);
 
       if(classSelected.contains("dark-mode") || classSelected.contains("bx-moon"))
         darkDOM(false);
@@ -743,5 +783,10 @@
 
     return ID;
   } 
+
+  function clearContainer(element){
+      while(element.firstChild)
+          element.removeChild(element.firstChild);
+  }
 
 })();

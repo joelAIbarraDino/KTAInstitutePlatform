@@ -2,6 +2,7 @@
 @use 'base/mixins' as m;
 
 .modal{
+    
     position: absolute;
     background: rgba(0, 0, 0, 0.1);
     -webkit-backdrop-filter: blur(4px);

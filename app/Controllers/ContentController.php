@@ -103,6 +103,70 @@ class ContentController{
         ]);
     }
 
+    public static function material(int $id):void{
+
+        $course = Course::find($id);
+        $finalLessons = [];
+        
+        try{
+            $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
+
+            foreach($modules as $module){
+                $lessons = Lesson::belongsTo('id_module', $module->id_module, "order_lesson", 'ASC')??[];
+                
+                foreach($lessons as $lesson){
+                    $finalLessons [] = $lesson;
+                }
+                
+            }
+
+        }catch(Exception){
+
+        }
+        
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+
+        Response::render('/admin/contenido-curso/material', [
+            'nameApp'=> APP_NAME,
+            'title'=>'Contenido de curso',
+            'course'=>$course,
+            'lessons'=>$finalLessons
+        ]);
+    }
+
+    public static function getMaterial(int $id):void{
+        if(!Request::isGET())
+            Response::json(['ok'=>true,'message'=>"Método no soportado"]);
+        
+        try{
+            $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
+            $materials = [];
+            $finalLessons = [];
+
+            foreach($modules as $module){
+                $lessons = Lesson::belongsTo('id_module', $module->id_module, "order_lesson", 'ASC')??[];
+                foreach($lessons as $lesson){
+                    
+                    $materialsLesson = Material::belongsTo('id_lesson', $lesson->id_lesson)??[];
+                    $finalLessons [] = $lesson;
+
+                    foreach($materialsLesson as $materialLesson){
+                        if($materialLesson)
+                            $materials [] = $materialLesson;
+                    }
+                    
+                }
+                
+            }
+
+            Response::json(['materials'=>$materials]);
+        }catch (Exception $e) {
+            Response::json(['ok'=>false,'message'=>'Ha ocurrido un error inesperado: '.$e->getMessage()]);
+        }
+    }
+
+
     public static function getContent(int $id):void{
         if(!Request::isGET())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
