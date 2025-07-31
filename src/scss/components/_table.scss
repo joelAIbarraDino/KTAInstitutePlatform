@@ -20,7 +20,7 @@
   &__title {
     margin: 0;
     font-weight: v.$bold;
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     color: v.$blanco;
   }
 
@@ -77,7 +77,7 @@
         font-weight: v.$bold;
         color: v.$gris_label;
         text-transform: uppercase;
-        font-size: 1rem;
+        font-size: 1.5rem;
         letter-spacing: 0.5px;
 
         &.actions-label{
@@ -101,9 +101,10 @@
 
       td {
         padding: 1.2rem 1.5rem;
-        color: v.$gris_label;
-        font-weight: v.$regular;
+        color: #828383;
+        font-weight: 500;
         text-align: center;
+        font-size: 1.5rem;
 
         @include m.telefono {
           &[data-label] {
@@ -126,43 +127,47 @@
   &__action {
     border: none;
     background: transparent;
-    width: 32px;
-    height: 32px;
+    width: 5em;
+    height: 5em;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    border: solid .3rem v.$negro;
 
     i {
-      font-size: 1.2rem;
+      font-size: 3.5rem;
     }
 
     &--edit {
-      color: v.$amarillo-lesly;
-      background: rgba(v.$amarillo-lesly, 0.1);
+      color: white;
+      background: black;
 
       &:hover {
-        background: rgba(v.$amarillo-lesly, 0.2);
+        color: v.$blanco;
+        border: solid .3rem v.$dorado;
       }
     }
 
     &--extra {
-      color: v.$verde;
-      background: rgba(v.$verde, 0.1);
+      color: white;
+      background: black;
 
       &:hover {
-        background: rgba(v.$verde, 0.2);
+        color: v.$blanco;
+        border: solid .3rem v.$dorado;
       }
     }
 
     &--delete {
-      color: v.$rojo;
-      background: rgba(v.$rojo, 0.1);
+      color: white;
+      background: black;
 
       &:hover {
-        background: rgba(v.$rojo, 0.2);
+        color: v.$blanco;
+        border: solid .3rem v.$dorado;
       }
     }
   }
@@ -171,7 +176,7 @@
     display: inline-block;
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: v.$bold;
     text-transform: capitalize;
 
@@ -308,9 +313,11 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0.8rem 1rem;
-          text-align: right;
-          border-bottom: 1px solid v.$border_input;
+          padding: 1.2rem 1.5rem;
+          color: #828383;
+          font-weight: 400;
+          text-align: center;
+          font-size: 1em;
 
           &[data-label]::before {
             content: attr(data-label);
