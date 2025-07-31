@@ -7,9 +7,10 @@ use DinoEngine\Core\Model;
 class PaymentLiveView extends Model {
     
     protected static string $table = 'payment_live_view';
-    protected static array $columns = ['id_student_live', 'id_live', 'live', 'id_student', 'student', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'id_payment', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
+    protected static array $columns = ['id_student_live', 'from_membership', 'id_live', 'live', 'id_student', 'student', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'id_payment', 'amount', 'currency', 'method', 'created_at', 'status', 'stripe_id'];
 
     public ?int $id_student_live;
+    public int $from_membership;
     public int $id_live;
     public string $live;
     public int $id_student;
@@ -30,6 +31,7 @@ class PaymentLiveView extends Model {
     
     public function __construct($args = []){
         $this->id_student_live = $args["id_student_live"]??null;
+        $this->from_membership = $args["from_membership"]??0;
         $this->id_live = $args["id_live"]??0;
         $this->live = $args["live"]??"";
         $this->id_student = $args["id_student"]??0;

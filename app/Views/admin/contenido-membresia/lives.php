@@ -29,7 +29,7 @@
                         <option value="<?=$live->id_live?>"><?=$live->name?></option>
                     <?php endforeach; ?>
                 </select>
-                <button id="add_course_btn" type="button" class="new-module__btn"><i class='bx bx-subdirectory-left'></i></button>
+                <button id="add_course_btn" type="button" class="new-module__btn"><i class='bx bxs-plus-circle'></i></button>
             </div>
             
             <div id="courses-container" class="courses-membership"></div>

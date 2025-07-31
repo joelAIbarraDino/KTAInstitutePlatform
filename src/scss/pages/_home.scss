@@ -463,9 +463,9 @@
     &__title{
         color: v.$dorado;
         text-transform: uppercase;
-        font-weight: v.$black;
+        font-weight: 900;
         margin: 0;
-        font-size: 2.5rem;
+        font-size: 4.5rem;
         margin-top: 2.5rem;
         margin-bottom: 1rem;
     }
@@ -585,7 +585,7 @@
     -moz-box-shadow: 10px 10px 45px 0px rgba(233,233,233,0.75);
 
     &__icon{
-        width: 9rem;
+        width: 16rem;
         margin-bottom: 5rem;
     }
 
