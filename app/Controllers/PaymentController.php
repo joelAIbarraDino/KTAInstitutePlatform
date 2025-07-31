@@ -312,7 +312,7 @@ class PaymentController{
 
                     $payment->amount = $monto;
                     $payment->currency = $moneda;
-                    $payment->method = $metodo_pago;
+                    $payment->method = $metodo_pago; 
                     $payment->status = 'pagado';
                     $payment->stripe_id = $session_id;
 
@@ -339,13 +339,28 @@ class PaymentController{
                 }
                 
                 if($type_product == 'course'){
+                    
                     $newEnrollment = new Enrollment;
                     $newEnrollment->url = Uuid::uuid4();
                     $newEnrollment->id_course = $product_id;
+                    $newEnrollment->from_membership = 0;
                     $newEnrollment->id_student = $student->id_student;
                     $newEnrollment->id_payment = $payment->id_payment;
 
                     $rows = $newEnrollment->save();
+
+                    if(!$rows)
+                        Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
+
+                }else if($type_product == 'live'){
+                    
+                    $studentLive = new StudentLive;
+                    $studentLive->id_live = $product_id;
+                    $studentLive->from_membership = 0;
+                    $studentLive->id_student = $student->id_student;
+                    $studentLive->id_payment = $payment->id_payment;
+
+                    $rows = $studentLive->save();
 
                     if(!$rows)
                         Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
@@ -359,14 +374,15 @@ class PaymentController{
                     $rows = $membership->save();
 
                     //consultar curso de cursos y lives
-                    $courses = MembershipCourse::querySQL("SELECT * FROM membership_course WHERE id_membership = :id_membership", [":id_membership"=>$product_id])??[];
-                    $lives = MembershipLive::querySQL("SELECT * FROM membership_live WHERE id_membership = :id_membership", [":id_membership"=>$product_id])??[];
+                    $courses = MembershipCourse::belongsTo('id_membership', $product_id)??[];
+                    $lives = MembershipLive::belongsTo('id_membership', $product_id)??[];
 
                     //registro de acceso a curso
                     foreach($courses as $course){
                         $newEnrollment = new Enrollment;
                         $newEnrollment->url = Uuid::uuid4();
-                        $newEnrollment->id_course = $course['id_course'];
+                        $newEnrollment->id_course = $course->id_course;
+                        $newEnrollment->from_membership = 1;
                         $newEnrollment->id_student = $student->id_student;
                         $newEnrollment->id_payment = $payment->id_payment;
 
@@ -379,7 +395,8 @@ class PaymentController{
                     //registro de acceso a live
                     foreach($lives as $live){
                         $studentLive = new StudentLive;
-                        $studentLive->id_live = $live['id_live'];
+                        $studentLive->id_live = $live->id_live;
+                        $studentLive->from_membership = 1;
                         $studentLive->id_student = $student->id_student;
                         $studentLive->id_payment = $payment->id_payment;
 
@@ -392,16 +409,6 @@ class PaymentController{
                     if(!$rows)
                         Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
 
-                }else if($type_product == 'live'){
-                    $studentLive = new StudentLive;
-                    $studentLive->id_live = $product_id;
-                    $studentLive->id_student = $student->id_student;
-                    $studentLive->id_payment = $payment->id_payment;
-
-                    $rows = $studentLive->save();
-
-                    if(!$rows)
-                        Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
                 }
 
                 Response::json(['ok'=>true, 'message'=>'Proceso completado']);
