@@ -7,6 +7,7 @@ use App\Models\Live;
 use App\Models\Membership;
 use App\Models\MembershipCourse;
 use App\Models\MembershipLive;
+use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use Exception;
@@ -16,8 +17,14 @@ class MembershipContentController{
     public static function CurseContent(int $id):void{
 
         $membership = Membership::find($id);
-        $cursos = Course::all();
+        $cursos = Course::querySQL('SELECT * FROM course WHERE privacy = "Público"');
+        $finalcourses = [];
 
+        
+        foreach($cursos as $curso){
+            $finalcourses [] = new Course($curso);
+        }
+        
         if(!Request::isGET())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
@@ -25,14 +32,20 @@ class MembershipContentController{
             'nameApp'=> APP_NAME,
             'title'=>'Contenido de membresía',
             'membership'=>$membership,
-            'courses'=>$cursos
+            'courses'=>$finalcourses
         ]);
 
     }
 
     public static function LiveContent(int $id):void{
         $membership = Membership::find($id);
-        $lives = Live::all();
+        $lives = Live::querySQL('SELECT * FROM live WHERE privacy = "Público"');
+        $finalLives = [];
+
+        foreach($lives as $live){
+            $finalLives [] = new Live($live);
+        }
+
 
         if(!Request::isGET())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
@@ -41,7 +54,7 @@ class MembershipContentController{
             'nameApp'=> APP_NAME,
             'title'=>'Contenido de membresía',
             'membership'=>$membership,
-            'lives'=>$lives
+            'lives'=>$finalLives
         ]);
     }
 
@@ -84,6 +97,7 @@ class MembershipContentController{
 
             //validamos entrada de datos
             $membershipLive->validateAPI();
+            $membershipLive->liveExists($dataPost['id_membership'], $dataPost['id_live']);
 
             //registramos modulo y devolvemos ID
             $id = $membershipLive->save();
@@ -141,6 +155,7 @@ class MembershipContentController{
 
             //validamos entrada de datos
             $membershipCourse->validateAPI();
+            $membershipCourse->courseExists($dataPost['id_membership'], $dataPost['id_course']);
 
             //registramos modulo y devolvemos ID
             $id = $membershipCourse->save();

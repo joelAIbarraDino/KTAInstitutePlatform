@@ -6,7 +6,7 @@ use DinoEngine\Core\Model;
 
 class PaymentLiveView extends Model {
     
-    protected static string $table = 'payment_live_view';
+    protected static string $table = 'live_student_view';
     protected static array $columns = ['id_student_live', 'id_student', 'student', 'email', 'phone', 'id_live', 'live'];
 
     public ?int $id_student_live;

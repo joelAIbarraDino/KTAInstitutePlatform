@@ -29,6 +29,12 @@ class MembershipLive extends Model {
 
         if(!$this->id_live)
             Response::json(['ok'=>false, 'message'=>'Debe ingresar la lección a agregar'], 400);
+    }
 
+    public function liveExists(int $id_membership, int $id_live):void{
+        $res = MembershipLive::multiWhere(['id_membership'=>$id_membership, 'id_live'=>$id_live]);
+
+        if($res)
+            Response::json(['ok'=>false, 'message'=>'Este live ya fue agregado a la membresía'], 400);
     }
 }

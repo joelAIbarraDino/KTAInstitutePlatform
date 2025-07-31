@@ -31,4 +31,12 @@ class MembershipCourse extends Model {
             Response::json(['ok'=>false, 'message'=>'Debe ingresar la lección a agregar'], 400);
 
     }
+
+    public function courseExists(int $id_membership, int $id_course):void{
+        $res = MembershipCourse::multiWhere(['id_membership'=>$id_membership, 'id_course'=>$id_course]);
+
+        if($res)
+            Response::json(['ok'=>false, 'message'=>'Este curso ya fue agregado a la membresía'], 400);
+
+    }
 }

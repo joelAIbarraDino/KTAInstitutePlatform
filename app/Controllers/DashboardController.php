@@ -20,6 +20,7 @@ use App\Models\Membership;
 use App\Models\PaymentCourseView;
 use App\Models\PaymentLiveView;
 use App\Models\PaymentMembershipView;
+use DinoEngine\Helpers\Helpers as HelpersHelpers;
 
 class DashboardController{
     
@@ -46,12 +47,18 @@ class DashboardController{
     }
 
     public static function paymentCourses():void{
-        $pagos = PaymentCourseView::all();
 
+        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0");
+        $finalPagos = [];
+
+        foreach($pagos as $pago){
+            $finalPagos[] = new PaymentCourseView($pago);
+        }
+        
         Response::render('admin/cursos/pagos', [
             'nameApp' => APP_NAME,
             'title' => 'Pagos cursos',
-            'pagos'=>$pagos
+            'pagos'=>$finalPagos
         ]);
     }
 
@@ -68,12 +75,19 @@ class DashboardController{
     }
 
     public static function paymentLives():void{
-        $pagos = PaymentLiveView::all(0, 'created_at', 'DESC');
+
+        $pagos = PaymentLiveView::querySQL("SELECT * FROM payment_live_view WHERE from_membership = 0");
+        $finalPagos = [];
+
+        foreach($pagos as $pago){
+            $finalPagos[] = new PaymentLiveView($pago);
+        }
+
 
         Response::render('admin/lives/pagos', [
             'nameApp' => APP_NAME,
             'title' => 'Pagos lives',
-            'pagos'=>$pagos
+            'pagos'=>$finalPagos
         ]);
     }
 
