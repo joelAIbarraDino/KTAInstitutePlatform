@@ -135,6 +135,19 @@
                     font-size: 3rem;
                 }
             }
+
+            &-button{
+                background-color: v.$negro;
+                color: v.$blanco;
+                font-weight: 900;
+                padding: 1rem;
+                border-radius: .5rem;
+                transition: all 0.5s ease;
+
+                &:hover{
+                    background-color: v.$dorado;
+                }
+            }
         }
     }
 }

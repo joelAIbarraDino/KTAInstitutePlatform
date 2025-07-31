@@ -69,7 +69,7 @@ class AttemptController{
 
         $logo = __DIR__."/../../public/assets/images/logoKTA.png";
         $fondo = __DIR__."/../../public/assets/images/backgroundCertificado.jpg";
-        $certificado = new CertificadoPDF($_SESSION['student']['nombre'], $attempt->score, date('Y-m-d'), $logo, $fondo);
+        $certificado = new CertificadoPDF($_SESSION['student']['nombre'], $logo, $fondo);
 
         $certificado->mostrar('certificado de '.$_SESSION['student']['nombre']);
     }
@@ -78,14 +78,14 @@ class AttemptController{
         if(!isset($_SESSION))
             session_start();
 
-        $enrollment = Enrollment::where('id_enrollment', '=', $id);
+        $enrollment = Enrollment::where('url', '=', $id);
 
         if($enrollment->id_student != $_SESSION['student']['id_student'])
             Response::redirect('/');
 
         $logo = __DIR__."/../../public/assets/images/logoKTA.png";
         $fondo = __DIR__."/../../public/assets/images/backgroundCertificado.jpg";
-        $certificado = new CertificadoPDF($_SESSION['student']['nombre'], '100', date('Y-m-d'), $logo, $fondo);
+        $certificado = new CertificadoPDF($_SESSION['student']['nombre'], $logo, $fondo);
 
         $certificado->mostrar('certificado de '.$_SESSION['student']['nombre']);
     }

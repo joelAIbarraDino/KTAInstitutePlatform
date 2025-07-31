@@ -66,5 +66,20 @@
     "membership-2": {
         "type": "KTA Flash",
         "caract": "<p><strong>texto de prueba<\/strong><\/p><ul><li><span class=\"ql-size-large\">caracteristica 1<\/span><\/li><li><span class=\"ql-size-large\">caracteristica 2<\/span><\/li><li><span class=\"ql-size-large\">caracteristica 3<\/span><\/li><li><span class=\"ql-size-large\">caracteristica 4<\/span><\/li><li><span class=\"ql-size-large\">caracteristica 5<\/span><\/li><li><span class=\"ql-size-large\">caracteristica 6<\/span><\/li><\/ul><p><br><\/p>"
+    },
+    "module-4": {
+        "name": "Introducción"
+    },
+    "lesson-6": {
+        "name": "Clase 1",
+        "description": "fdsfasfasfasdf"
+    },
+    "lesson-7": {
+        "name": "Clase 2",
+        "description": "fasdfasdfasdfas"
+    },
+    "faq-3": {
+        "question": "¿pregunta 1?",
+        "answer": "no se"
     }
 }

@@ -53,7 +53,7 @@ class EnrollmentController{
 
         try {
             $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
-            $quiz = Quiz::where('id_course', '=', $id);
+            $quiz = Quiz::where('id_course', '=', $id)??[];
             $modulesLessons = [];
             $lessonsMaterial = [];
             $arrayLessons = [];

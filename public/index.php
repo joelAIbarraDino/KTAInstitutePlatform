@@ -91,6 +91,12 @@ $dino = new Dino(dirname(__DIR__), $runMode, $dbConfig);
 //public zone
 $dino->router->get('/', [PagesController::class, 'index']);
 
+$dino->router->get('/terminos-condiciones', [PagesController::class, 'terminos']);
+$dino->router->get('/politica-privacidad', [PagesController::class, 'politica']);
+$dino->router->get('/membresias', [PagesController::class, 'membership']);
+$dino->router->get('/calendario', [PagesController::class, 'calendario']);
+$dino->router->get('/nosotros', [PagesController::class, 'about']);
+
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);
 $dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails'], [new PublicCourseMiddleware('/')]);
@@ -99,24 +105,14 @@ $dino->router->get('/lives', [PagesController::class, 'lives']);
 $dino->router->get('/lives/categoria/{category_url}', [PagesController::class, 'liveCategory']);
 $dino->router->get('/live/view/{id}', [PagesController::class, 'liveDetails'], [new PublicLiveMiddleware('/') ]);
 
-$dino->router->get('/membresias', [PagesController::class, 'membership']);
-$dino->router->get('/calendario', [PagesController::class, 'calendario']);
-
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 
 //proceso de pago de curso
 $dino->router->get('/checkout/{type}/{id}', [PaymentController::class, 'checkout']);
 $dino->router->post('/checkout/{type}/{id}', [PaymentController::class, 'checkout']);
 
-// $dino->router->get('/curso/checkout/{id}', [PaymentController::class, 'checkoutCourse']);
-// $dino->router->get('/live/checkout/{id}', [PaymentController::class, 'checkoutLive']);
-// $dino->router->get('/membresia/checkout/{id}', [PaymentController::class, 'checkoutMembership']);
 $dino->router->get('/pago-exitoso', [PaymentController::class, 'success']);
 $dino->router->post('/webhook-stripe', [PaymentController::class, 'webhook']);
-
-$dino->router->get('/nosotros', [PagesController::class, 'about']);
-$dino->router->get('/terminos-condiciones', [PagesController::class, 'terminos']);
-$dino->router->get('/politica-privacidad', [PagesController::class, 'politica']);
 
 //login sign-in and sign-up
 $dino->router->get('/login', [AuthController::class, 'login'], [new StudentLoggedMiddleware('/login')]);

@@ -42,6 +42,7 @@
                                 <div class="membresia-page__membresias-card-text-container">
                                     <h3 class="membresia-page__membresias-card-title" data-section="membership-<?=$membresia->id_membership?>" data-label="type" data-aos="fade-left"><?=$membresia->type?></h3>
                                     <div class="membresia-page__membresias-card-desc" data-section="membership-<?=$membresia->id_membership?>" data-label="caract" data-aos="fade-left"><?=$membresia->caract?></div>
+                                    <a class="membresia-page__membresias-card-button" href="/checkout/membership/<?=$membresia->id_membership?>" data-section="course-details" data-label="checkout">Comprar ahora!</a>
                                 </div>
                             </div>
                             

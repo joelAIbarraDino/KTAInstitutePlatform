@@ -2,31 +2,35 @@
 
 namespace App\Controllers;
 
-use App\Classes\Auth;
-use App\Classes\Email;
-use App\Classes\FacturaPDF;
 use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
+use Exception;
 
-use App\Models\Course;
-use App\Models\Enrollment;
-use App\Models\Membership;
-use App\Models\MembershipStudent;
-use App\Models\MembershipCourse;
-use App\Models\MembershipLive;
-use App\Models\Payment;
-use App\Models\Student;
+use App\Classes\FacturaPDF;
 use App\Classes\Helpers;
-use App\Models\Live;
-use App\Models\StudentLive;
-use Ramsey\Uuid\Uuid;
+use App\Classes\Email;
+use App\Classes\Auth;
+
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\Exception\UnexpectedValueException;
 use Stripe\Checkout\Session;
+use Stripe\PaymentIntent;
 use Stripe\Webhook;
 use Stripe\Stripe;
-use \Stripe\PaymentIntent;
-use Exception;
+
+use Ramsey\Uuid\Uuid;
+
+use App\Models\MembershipStudent;
+use App\Models\MembershipCourse;
+use App\Models\MembershipLive;
+use App\Models\StudentLive;
+use App\Models\Membership;
+use App\Models\Enrollment;
+use App\Models\Payment;
+use App\Models\Student;
+use App\Models\Course;
+use App\Models\Live;
+
 
 Stripe::setApiKey($_ENV['CLIENT_SECRET_STRIPE']);
 
@@ -97,105 +101,6 @@ class PaymentController{
             'nameProducto'=>$name,
             'price'=>$precio/100
         ]);
-    }
-
-    public static function checkoutCourse(string $id):void{
-
-        if(!Request::isGET())
-            Response::json(['ok'=>false, 'message'=> 'Metodo no soportado'], 400);
-
-        $curso = Course::where('url', '=', $id);
-        $precio = (int) round($curso->price * 100);
-
-        $session = Session::create([
-            'payment_method_types' => ['card', 'afterpay_clearpay'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'usd',
-                    'product_data' => [
-                        'name' => $curso->name,
-                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/thumbnails/courses/'.$curso->thumbnail]
-                    ],
-                    'unit_amount' => $precio,
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'metadata' => [
-                'product_id' => $curso->id_course,
-                'type_product'=>'course'
-            ],
-            'success_url' => REDIRECT_SUCCESS_STRIPE,
-            'cancel_url' => REDIRECT_CANCEL_STRIPE,
-        ]);
-
-        Response::redirect($session->url);
-    }
-
-    public static function checkoutMembership(int $id):void{
-        
-        if(!Request::isGET())
-            Response::json(['ok'=>false, 'message'=> 'Metodo no soportado'], 400);
-
-        $membership = Membership::find($id);
-        $precio = (int) round($membership->price * 100);
-
-        $session = Session::create([
-            'payment_method_types' => ['card', 'afterpay_clearpay'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'usd',
-                    'product_data' => [
-                        'name' => "Membresía ".$membership->type,
-                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/membresias/'.$membership->photo]
-                    ],
-                    'unit_amount' => $precio,
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'metadata' => [
-                'product_id' => $membership->id_membership,
-                'type_product'=>'membership'
-            ],
-            'success_url' => REDIRECT_SUCCESS_STRIPE,
-            'cancel_url' => REDIRECT_CANCEL_STRIPE,
-        ]);
-
-        Response::redirect($session->url);
-    }
-
-    public static function checkoutLive(string $id):void{
-
-        if(!Request::isGET())
-            Response::json(['ok'=>false, 'message'=> 'Metodo no soportado'], 400);
-
-        $live = Live::where('url', '=', $id);
-        $precio = (int) round($live->price * 100);
-
-        $session = Session::create([
-            'payment_method_types' => ['card', 'afterpay_clearpay'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'usd',
-                    'product_data' => [
-                        'name' => $live->name,
-                        'images' => [(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/assets/thumbnails/lives/'.$live->thumbnail]
-                    ],
-                    'unit_amount' => $precio,
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'metadata' => [
-                'product_id' => $live->id_live,
-                'type_product'=>'live'
-            ],
-            'success_url' => REDIRECT_SUCCESS_STRIPE,
-            'cancel_url' => REDIRECT_CANCEL_STRIPE,
-        ]);
-
-        Response::redirect($session->url);
     }
 
     public static function success():void{

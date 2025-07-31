@@ -48,11 +48,11 @@ class DashboardController{
 
     public static function paymentCourses():void{
 
-        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0");
+        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0")??[];
         $finalPagos = [];
 
         foreach($pagos as $pago){
-            $finalPagos[] = new PaymentCourseView($pago);
+            $finalPagos[] = new PaymentCourseView($pago)??[];
         }
         
         Response::render('admin/cursos/pagos', [
@@ -76,7 +76,7 @@ class DashboardController{
 
     public static function paymentLives():void{
 
-        $pagos = PaymentLiveView::querySQL("SELECT * FROM payment_live_view WHERE from_membership = 0");
+        $pagos = PaymentLiveView::querySQL("SELECT * FROM payment_live_view WHERE from_membership = 0")??[];
         $finalPagos = [];
 
         foreach($pagos as $pago){

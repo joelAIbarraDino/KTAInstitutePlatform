@@ -60,5 +60,20 @@
     "membership-2": {
         "type": "KTA Flash",
         "caract": "<p><strong>test text<\/strong><\/p><ul><li> <span class=\"ql-size-large\">feature 1<\/span><\/li><li> <span class=\"ql-size-large\">feature 2<\/span><\/li><li> <span class=\"ql-size-large\">feature 3<\/span><\/li><li> <span class=\"ql-size-large\">feature 4<\/span><\/li><li> <span class=\"ql-size-large\">feature 5<\/span><\/li><li> <span class=\"ql-size-large\">feature 6<\/span><\/li><\/ul><p><br><\/p>"
+    },
+    "module-4": {
+        "name": "Introduction"
+    },
+    "lesson-6": {
+        "name": "Class 1",
+        "description": "fdsfasfasfasdf"
+    },
+    "lesson-7": {
+        "name": "Class 2",
+        "description": "fasdfasdfasdfas"
+    },
+    "faq-3": {
+        "question": "Question 1?",
+        "answer": "I don't know"
     }
 }

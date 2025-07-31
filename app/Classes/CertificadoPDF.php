@@ -6,20 +6,16 @@ use FPDF;
 
 class CertificadoPDF extends FPDF {
     private string $nombre;
-    private int $score;
-    private string $fecha;
     private ?string $logo;
     private ?string $fondo;
 
-    public function __construct(string $nombre, int $score, string $fecha, ?string $logo = null, ?string $fondo = null) {
+    public function __construct(string $nombre, ?string $logo = null, ?string $fondo = null) {
         // Orientación horizontal ('L'), A4
         parent::__construct('L', 'mm', 'A4');
 
         //$this->AddFont('DancingScript-Regular', '', __DIR__.'/fonts/DancingScript-Regular.php');
 
         $this->nombre = $nombre;
-        $this->score = $score;
-        $this->fecha = $fecha;
         $this->logo = $logo;
         $this->fondo = $fondo;
 
@@ -62,34 +58,34 @@ class CertificadoPDF extends FPDF {
     }
 
     private function generarContenido() {
-        $this->SetY(60);
+        $this->SetY(70);
         $this->SetFont('Arial', '', 16);
         $this->SetTextColor(0);
         $this->MultiCell(0, 10, utf8_decode("Se certifica que:"), 0, 'C');
 
         $this->Ln(4);
-        $this->SetFont('Arial', 'I', 24);
+        $this->SetFont('Arial', 'I', 40);
         $this->SetTextColor(205, 160, 45);
         $this->MultiCell(0, 15, utf8_decode($this->nombre), 0, 'C');
 
         $this->Ln(4);
         $this->SetFont('Arial', '', 14);
         $this->SetTextColor(0);
-        $this->MultiCell(0, 10, utf8_decode("Ha completado satisfactoriamente el examen final del curso."), 0, 'C');
+        $this->MultiCell(0, 10, utf8_decode("Ha completado satisfactoriamente el curso."), 0, 'C');
 
-        $this->Ln(10);
-        $this->SetFont('Arial', '', 12);
-        $this->SetTextColor(255, 255, 255);
-        $this->Cell(0, 10, utf8_decode("Puntaje obtenido:"), 0, 1, 'C');
+        // $this->Ln(10);
+        // $this->SetFont('Arial', '', 12);
+        // $this->SetTextColor(255, 255, 255);
+        // $this->Cell(0, 10, utf8_decode("Puntaje obtenido:"), 0, 1, 'C');
 
-        $this->SetFont('Arial', 'B', 18);
-        $this->SetTextColor(0, 120, 0); // Verde
-        $this->Cell(0, 10, $this->score . ' / 100', 0, 1, 'C');
+        // $this->SetFont('Arial', 'B', 18);
+        // $this->SetTextColor(0, 120, 0); // Verde
+        // $this->Cell(0, 10, $this->score . ' / 100', 0, 1, 'C');
 
-        $this->Ln(10);
-        $this->SetFont('Arial', '', 12);
-        $this->SetTextColor(255, 255, 255);
-        $this->Cell(0, 10, utf8_decode("Fecha de aprobación: ") . $this->fecha, 0, 1, 'C');
+        // $this->Ln(10);
+        // $this->SetFont('Arial', '', 12);
+        // $this->SetTextColor(255, 255, 255);
+        // $this->Cell(0, 10, utf8_decode("Fecha de aprobación: ") . $this->fecha, 0, 1, 'C');
     }
 
     public function mostrar(string $nombreArchivo = 'certificado.pdf') {
