@@ -2,8 +2,8 @@
 
     <section class="last-courses">
 
-        <h3 data-aos="fade-up" class="last-courses__title" data-section="index"  data-label="next-courses" >Próximos Cursos</h3>
-        <hr data-aos="fade-up" class="linea-personalizada">
+        <h3 class="last-courses__title" data-section="index"  data-label="next-courses" >Próximos Cursos</h3>
+        <hr class="linea-personalizada" data-aos="fade">
 
         <div class="last-courses__container swiper swiper-courses">
             <div class="swiper-wrapper">

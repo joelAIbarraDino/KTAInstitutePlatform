@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div class="login-image">
+    <div class="login-image-sigin">
         <div class="login-filter-admin"></div>
     </div>
 

@@ -235,7 +235,7 @@ class StudentController{
         if(!$student->save())
             Response::json(['ok'=>false, 'message'=>'Error al actualizar contraseña, intente mas tarde'], 400);
 
-        Response::json(['ok'=>true, 'message'=>'Contraseña actualizada con exito']);
+        Response::json(['ok'=>true, 'message'=>'Dirección actualizada con exito']);
 
     }
 

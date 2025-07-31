@@ -277,7 +277,7 @@
     transition: opacity 1s;
 
     @include m.computadora{
-        min-height: 55vh;
+        min-height: 60vh;
     }
 
     &-container{
@@ -404,7 +404,7 @@
 
 .gif{
     margin: 0 auto;
-    width: 90.3%;
+    width: 100%;
 
     &__image{
         width: 100%;
@@ -466,7 +466,7 @@
         font-weight: 900;
         margin: 0;
         font-size: 4.5rem;
-        margin-top: 2.5rem;
+        margin-top: 3.5rem;
         margin-bottom: 1rem;
     }
 }
@@ -528,7 +528,8 @@
 }
 
 .caracts-main{
-    padding: 2rem 0;
+    padding: 13rem 0;
+    background-color: #faf8f6;
 
     &__container{
         width: 90%;
@@ -585,29 +586,29 @@
     -moz-box-shadow: 10px 10px 45px 0px rgba(233,233,233,0.75);
 
     &__icon{
-        width: 16rem;
+        width: 15rem;
         margin-bottom: 5rem;
     }
 
     &__title{
         text-transform: uppercase;
         color: v.$dorado;
-        font-size: 2rem;
+        font-size: 2.5rem;
         height: 5rem;
-        font-weight: v.$black;
+        font-weight: 900;
     }
 
     &__text{
         color: v.$negro;
         text-align: center;
         font-size: 1.8rem;
+        font-family: GothamRoundedRegular, sans-serif;
     }
 }
 
 .estadisticas{
     background-color: v.$negro;
     padding: 5rem;
-    margin-bottom: 3rem;
 
     @include m.computadora{
         padding: 10rem 0rem;
@@ -660,22 +661,43 @@
 
     &__desc{
         margin: 0;
-        font-size: 1.7rem;
+        font-size: 1.8rem;
         color: v.$dorado;
+        font-family: GothamRoundedRegular, sans-serif;
     }
 }
 
 .reviews{
-    padding: 3rem;
-    width: 90%;
-    margin: 0 auto;
+    padding: 13rem 0;
+    background-color: #faf8f6;
+
+    &__container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5rem;
+        width: 90%;
+        margin: 0 auto;
+
+        @include m.tablet{
+            flex-direction: row;
+        }
+    }
+
+    &__img-google{
+        width: 25rem;
+        height: 25rem;
+    }
 }
 
 .review{
     border-radius: 1rem;
     padding: 3rem;
     width: 100%;
-    background-color: v.$negro;
+    background-color: v.$blanco;
+    border-radius: 0.8rem;
+    
 
     &__header{
         display: flex;
@@ -686,8 +708,8 @@
     }
 
     &__photo{
-        width: 7rem;
-        height: 7rem;
+        width: 5rem;
+        height: 5rem;
     }
 
     &__name-container{
@@ -699,7 +721,7 @@
     &__name{
         color: v.$dorado;
         font-weight: v.$regular;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     &__time{
@@ -719,7 +741,7 @@
         line-height: 2.5rem;
         text-align: justify;
         height: 10rem;
-        color: v.$blanco;
+        color: v.$negro;
         overflow-y: hidden;
         margin-bottom: 2rem;
     }
@@ -743,17 +765,21 @@
     padding-top: 6rem;
 
     &__titulo{
-        font-size: 4rem;
-        color: v.$negro;
         text-align: center;
+        font-size: 2.5rem;
+        color: #000;
+        font-weight: 400;
+        margin: 3rem 0;
+        font-family: GothamRoundedRegular, sans-serif;
     }
 
     &__subtitulo{
-        color: v.$dorado;
-        margin: 0;
-        font-size: 1.5rem;
-        font-weight: v.$black;
+        color: #cda02d;
         text-align: center;
+        font-weight: 900;
+        margin-top: 3.5rem;
+        margin-bottom: 1rem;
+        font-size: 4.5rem;
     }
     
     &__container{
@@ -779,17 +805,20 @@
     border-radius: .5rem;
 
     &__titulo{
-        color: v.$dorado;
+        color: #cda02d;
         text-align: center;
-        font-weight: v.$black;
+        font-weight: 900;
         margin: 3rem 0;
+        font-size: 2.5rem;
     }
 
     &__texto{
         text-align: center;
-        font-size: 2rem;
-        color: v.$blanco;
+        font-size: 1.8rem;
+        color: #fff;
+        font-weight: 400;
         margin: 0 2rem;
+        font-family: GothamRoundedRegular, sans-serif;
     }
 
     &__imagen{
@@ -825,26 +854,24 @@
 }
 
 .maestros-index{
-    padding: 3rem;
-    width: 95%;
-    margin: 0 auto;
-
-    @include m.tablet{
-        width: 90%;
-    }
-
+    background-color: #faf8f6;
+    padding: 13rem 0;
 
     &__subtitulo{
-        color: v.$dorado;
-        margin: 0;
-        font-size: 1.5rem;
-        font-weight: v.$black;
+        color: #cda02d;
         text-align: center;
+        font-weight: 900;
+        margin-top: 3.5rem;
+        margin-bottom: 1rem;
+        font-size: 4.5rem;
     }
 
     &__titulo{
-        font-size: 4rem;
-        color: v.$negro;
         text-align: center;
+        font-size: 2.5rem;
+        color: #000;
+        font-weight: 400;
+        margin: 3rem 0;
+        font-family: GothamRoundedRegular, sans-serif;
     }
 }

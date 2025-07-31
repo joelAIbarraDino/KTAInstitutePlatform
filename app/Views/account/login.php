@@ -56,7 +56,7 @@
                     <input class="submit-block" type="submit" value="Iniciar sesión">
                 </div>
                 
-                <a class="enlace-signin"href="/sign-in">¿Nuevo en KTA?<span>Registrate</span></a>
+                <a class="enlace-signin"href="/sign-up">¿Nuevo en KTA?<span>Registrate</span></a>
 
                 <div class="login-separator">
                     <hr class="login-line-separator" />
@@ -86,7 +86,7 @@
         </div>
     </div>
 
-    <div class="login-image">
+    <div class="login-image-login">
         <div class="login-filter"></div>
     </div>
 

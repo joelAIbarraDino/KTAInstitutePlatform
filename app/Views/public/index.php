@@ -74,7 +74,7 @@ use App\Classes\Helpers;
         <div class="estadistica" data-aos="fade-right" data-aos-delay="200">
             <i class='bx bxs-award' ></i>
             <div class="estadistica__content">
-                <p class="estadistica__title counter" data-target="2500" data-caract="+" data-caract="+">0</p>
+                <p class="estadistica__title counter">2500+</p>
                 <p class="estadistica__desc" data-section="index" data-label="stadistic-1">Estudiantes exitosos</p>
             </div>
         </div>
@@ -82,7 +82,7 @@ use App\Classes\Helpers;
         <div class="estadistica" data-aos="fade-right" data-aos-delay="200">
             <i class='bx bx-chalkboard' ></i>
             <div class="estadistica__content">
-                <p class="estadistica__title counter" data-target="215" data-caract="">0</p>
+                <p class="estadistica__title counter">215</p>
                 <p class="estadistica__desc" data-section="index" data-label="stadistic-2">Video tutoriales</p>
             </div>
         </div>
@@ -90,7 +90,7 @@ use App\Classes\Helpers;
         <div class="estadistica" data-aos="fade-left" data-aos-delay="200">
             <i class='bx bx-user'></i>
             <div class="estadistica__content">
-                <p class="estadistica__title counter" data-target="4" data-caract="">0</p>
+                <p class="estadistica__title counter">4</p>
                 <p class="estadistica__desc" data-section="index" data-label="stadistic-3">Maestros especializados</p>
             </div>
         </div>
@@ -98,7 +98,7 @@ use App\Classes\Helpers;
         <div class="estadistica" data-aos="fade-left" data-aos-delay="200">
             <i class='bx bx-glasses-alt'></i>
             <div class="estadistica__content">
-                <p class="estadistica__title counter" data-target="18" data-caract="+">0</p>
+                <p class="estadistica__title counter">18+</p>
                 <p class="estadistica__desc" data-section="index" data-label="stadistic-4">Cursos unicos</p>
             </div>
         </div>
@@ -108,49 +108,14 @@ use App\Classes\Helpers;
 
 <section class="maestros-index" data-aos="fade" data-aos-delay="">
     <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo" data-section="index" data-label="teachers-title">Conoce al equipo KTA</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
     <h3 data-aos="fade" data-aos-delay="100" class="maestros-index__titulo" data-section="index" data-label="teachers-subtitle">Tenemos a los mejores maestros que te ayudaran a pasar al siguiente nivel</h3>
     <?php include_once __DIR__.'/../components/teachers.php'; ?>
 </section>
 
-<section class="reviews" data-aos="fade-up">
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <?php foreach($reviews as $review):?>
-                <div class="swiper-slide">
-                    <div class="review">
-                        <div class="review__header">
-                            <img class="review__photo" src="<?=$review->photo?>" alt="<?=$review->photo?>">
-                            
-                            <div class="review__name-container">
-                                <div class="review__name"><?=$review->author_name?></div>
-                                <div class="review__time"><?=$review->relative_time?></div>
-                            </div>
-                        </div>
-
-                        <div class="review__rating">
-                            <?php for($i = 0; $i< $review->rating; $i++):?>
-                                <i class='bx bxs-star'></i>
-                            <?php endfor;?>
-                        </div>
-
-                        <div class="review__text">
-                            <?= Helpers::limitarTexto($review->review, 120) ?>
-                        </div>
-                        
-                        <a class="review__link" href="<?=$review->google_url?>" target="_blank" data-section="index" data-label="google_more">Ver review en Google</a>
-                    </div>
-
-                </div>                
-            <?php endforeach;?>
-        </div>
-
-        <div class="swiper-pagination"></div>
-
-    </div>
-</section>
-
 <section class="membresias-index" data-aos="fade">
     <p data-aos="fade-up" data-aos-delay="100" class="membresias-index__subtitulo" data-section="index" data-label="memberships-title">Descubre cómo podemos ayudarte</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
     <h3 data-aos="fade-up" data-aos-delay="100" class="membresias-index__titulo" data-section="index" data-label="memberships-subtitle">Tenemos la solución adecuada para cada persona</h3>
 
     <div class="membresias-index__container">
@@ -187,8 +152,51 @@ use App\Classes\Helpers;
     </div>    
 </section>
 
+<section class="reviews" data-aos="fade-up">
+    <p data-aos="fade-up" data-aos-delay="100" class="membresias-index__subtitulo" data-section="index" data-label="review_title">Triunfadores Que Confiaron En KTA Institute</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
+
+    <div class="reviews__container">
+        <img class="reviews__img-google" src="/assets/images/EXCELENTE.png" alt="reviews en google">
+
+        <div class="swiper swiper-reviews">
+            <div class="swiper-wrapper">
+                <?php foreach($reviews as $review):?>
+                    <div class="swiper-slide">
+                        <div class="review">
+                            <div class="review__header">
+                                <img class="review__photo" src="<?=$review->photo?>" alt="<?=$review->photo?>">
+                                
+                                <div class="review__name-container">
+                                    <div class="review__name"><?=$review->author_name?></div>
+                                    <div class="review__time"><?=$review->relative_time?></div>
+                                </div>
+                            </div>
+
+                            <div class="review__rating">
+                                <?php for($i = 0; $i< $review->rating; $i++):?>
+                                    <i class='bx bxs-star'></i>
+                                <?php endfor;?>
+                            </div>
+
+                            <div class="review__text">
+                                <?= Helpers::limitarTexto($review->review, 120) ?>
+                            </div>
+                            
+                            <a class="review__link" href="<?=$review->google_url?>" target="_blank" data-section="index" data-label="google_more">Ver review en Google</a>
+                        </div>
+
+                    </div>                
+                <?php endforeach;?>
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
 <script>
-        const swiper = new Swiper(".swiper-courses", {
+    const swiper = new Swiper(".swiper-courses", {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
@@ -212,6 +220,31 @@ use App\Classes\Helpers;
         }
     }
     });
+
+    const swiper2 = new Swiper(".swiper-reviews", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        480:{
+            slidesPerView: 1
+        },
+        768: {
+            slidesPerView: 2
+        },
+        1024: {
+            slidesPerView: 3
+        }
+    }
+    });
 </script>
 
 <?php include_once __DIR__.'/../components/popups.php'; ?>
@@ -229,7 +262,6 @@ use App\Classes\Helpers;
 
     $scripts ='
         <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
-        <script src="/assets/js/counter.js?v='.$animationVersion.'"></script>
         <script src="/assets/js/slider.js?v='.$sliderVersion.'"></script>
         <script src="/assets/js/saleAlerts.js?v='.$saleVersion.'"></script>
         <script src="/assets/js/swiper.js?v='.$swiperVersion.'"></script>
