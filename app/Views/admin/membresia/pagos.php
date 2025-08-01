@@ -61,7 +61,7 @@
                                         </td>
                                         <td><?=$pago->method?></td>
                                         <td class="dashboard-table__actions-cell">
-                                            <a href="#" class="dashboard-table__action dashboard-table__action--extra"><i class='bx bxs-file-pdf'></i></a>
+                                            <a href="/kta-admin/comprobante/<?=$pago->id_payment?>/<?=$pago->id_student?>" class="dashboard-table__action dashboard-table__action--extra"><i class='bx bxs-file-pdf'></i></a>
                                         </td>
                                     </tr>                    
                                 <?php endforeach;?>

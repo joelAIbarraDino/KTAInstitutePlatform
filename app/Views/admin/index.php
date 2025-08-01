@@ -4,7 +4,7 @@
     <div class="main__container">
         <h1 class="top-main__title"><?=$bienvenida?></h1>
 
-        <!-- Primera fila: 3 gráficas de barras -->
+        <!-- Primera fila: 3 gráficas de barras
         <div class="graficas-grid">
             <div class="grafica-container">
                 <canvas id="grafica1"></canvas>
@@ -26,7 +26,7 @@
             </div>
         </div>
         
-        <!-- Sección de tarjetas -->
+        <!-- Sección de tarjetas 
         <div class="tarjetas-grid">
             <div class="tarjeta tarjeta--info">
                 <h3 class="tarjeta__titulo">Ventas Totales</h3>
@@ -43,7 +43,8 @@
                 <p class="tarjeta__valor">120</p>
                 <p class="tarjeta__unidad">Personas</p>
             </div>
-        </div>
+        </div> 
+        -->
 
     </div>
 
