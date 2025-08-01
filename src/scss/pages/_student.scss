@@ -7,12 +7,16 @@
 
 .cover{
     width: 100%;
-    height: 15rem;
+    height: 25rem;
     background-image: url('/assets/images/cover4.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+
+    @include m.computadora{
+        height: 15rem;
+    }
 
     &__content{
         position: absolute;
@@ -47,7 +51,7 @@
 }
 
 .membresia{
-    width: 100rem;
+    width: 95%;
     margin: 2rem auto 7rem auto;
     background-color: v.$negro;
     padding: 2rem;
@@ -58,6 +62,10 @@
     display: flex;
     align-items: start;
     justify-content: space-between;
+
+    @include m.computadora{
+        width: 70%;
+    }
 
     &__datos{
         display: flex;
@@ -147,7 +155,7 @@
 }
 
 .profile{
-    width: 100rem;
+    width: 95%;
     margin: 5rem auto;
     background-color: v.$blanco;
     padding: 7rem 3rem 3rem 3rem;
@@ -156,6 +164,10 @@
     -webkit-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
     -moz-box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
     box-shadow: -2px 20px 36px 0px rgba(201,201,201,1);
+
+    @include m.computadora{
+        width: 70%;
+    }
 
     &__photo{
         width: 10rem;
@@ -206,25 +218,49 @@
     }
 
     &__content{
-        width: 80%;
+        width: 95%;
         margin: 0 auto;
+        padding-top: 2rem;
+
+        @include m.tablet{
+            width: 80%;
+        }
     }
 
     &__data{
         display: flex;
-        align-items: center;
-        gap: 2rem;
+        align-items: start;
+        gap: 0;
+        flex-direction: column;
+
+        @include m.tablet{
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+        }
     }
 
     &__type{
         font-weight: v.$black;
         font-size: 1.8rem;
-        flex:  0 0 15rem;
+        flex: auto;
         text-align: right;
+        margin: 0;
+
+        @include m.tablet{
+            flex:  0 0 15rem;
+            margin: 1rem;
+        }
     }
 
     &__value{
         font-size: 1.8rem;
+        margin: 0;
+        margin-bottom: 1rem;
+
+        @include m.tablet{
+            margin: 1rem;
+        }
     }
 
     &__input-edit{
@@ -235,6 +271,10 @@
         border-radius: .5rem;
         outline: 0;
         width: 100%;
+        margin-bottom: 2rem;
+        @include m.tablet{
+            margin-bottom: 0;
+        }
 
         &:focus{
             border: .2rem solid #cda02d;

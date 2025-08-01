@@ -1,13 +1,6 @@
 <?php include_once __DIR__.'/../../components/estudentToolbar.php'; ?>
 
 <main class="background-profile">
-    
-    <div class="cover">
-        <div class="cover__content">
-            <p class="cover__name">¡Hola, <?=$_SESSION['student']['nombre']?>!</p>
-            <p class="cover__instructions">Gestiona tu información en un solo lugar: datos personales, historial de compras, membresias y cursos</p>
-        </div>
-    </div>
 
     <div class="profile">
         
