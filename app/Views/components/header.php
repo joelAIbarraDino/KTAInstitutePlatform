@@ -17,7 +17,7 @@
         </div>
 
         <div class="admin-header__right">
-            <p class="admin-header__name">Hola, <?=$nameUser?></p>
+            <p class="admin-header__name">Hola<?=$nameUser?></p>
             <a class="admin-header__logout"href="/logout"> <i class="bx bx-log-out"></i></a>
         </div>
     </div>

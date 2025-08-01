@@ -7,7 +7,7 @@
             name="name"
             id="name"
             class="field"
-            placeholder="Nombre del maestro(a)"
+            placeholder="Nombre del administrador(a)"
             value="<?=$admin->name??"" ?>"
             
         >

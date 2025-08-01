@@ -65,16 +65,14 @@
                 if(!response.ok){
                     Swal.fire({
                         icon: "error",
-                        title: "Error al actualizar",
-                        text: response.message,
+                        title: "Error al actualizar"
                     });
                     return;
                 }
                 
                 Swal.fire({
                     icon: "success",
-                    title: "Actualización exitosa",
-                    text: response.message,
+                    title: "Actualización exitosa"
                 });
                 
             } catch (error) {
