@@ -236,6 +236,9 @@ class Helpers{
                         <td align="center">
                             <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.05);">
                             <tr>
+                                <img src="https://dinosistema.ktainstitute.com/assets/images/logoKTA.jpg" alt="logo de KTA" style="width:10%; margin: 15px 0;">
+                            </tr>
+                            <tr>
                                 <td style="background:#CDA02D;padding:20px;text-align:center;color:#ffffff;font-size:24px;">
                                 <strong>¡Tu cuenta ha sido creada!</strong>
                                 </td>
@@ -293,6 +296,10 @@ class Helpers{
                 <td align="center">
                     <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.05);">
                     <tr>
+                        <img src="https://dinosistema.ktainstitute.com/assets/images/logoKTA.jpg" alt="logo de KTA" style="width:10%; margin: 15px auto;">
+                    </tr>
+
+                    <tr>
                         <td style="background:#CDA02D;padding:20px;text-align:center;color:#ffffff;font-size:24px;">
                         <strong>Resumen de tu compra</strong>
                         </td>
@@ -327,6 +334,5 @@ class Helpers{
             </table>
             </body>
             </html>';
-
     }
 }

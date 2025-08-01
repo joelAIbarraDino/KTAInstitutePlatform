@@ -1,0 +1,112 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.certificados{
+    display: flex;
+    gap: 4rem;
+    flex-direction: column;
+
+}
+
+.certificado-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 5rem;
+    height: auto;
+    padding: 3rem;
+    background-color: #faf8f6;
+    border: v.$dorado .2rem solid;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 27px 0px rgba(185,185,185,0.75);
+    -webkit-box-shadow: 10px 10px 27px 0px rgba(185,185,185,0.75);
+    -moz-box-shadow: 10px 10px 27px 0px rgba(185,185,185,0.75);
+
+    @include m.computadora{
+        flex-direction: row;
+    }
+
+    &__left{
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-direction: column;
+
+        @include m.tablet{
+            flex-direction: row;
+            align-items: start;
+        }
+
+    }
+
+    &__data{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__img{
+        width: 15rem;
+        border-radius: .5rem;
+    }
+
+    &__name{
+        color: v.$dorado;
+        font-weight: v.$black;
+        font-size: 2.8rem;
+        margin: 0;
+        margin-bottom: 1.5rem;
+        text-align: center;
+
+        @include m.tablet{
+            text-align: left;
+        }
+    }
+
+    &__date{
+        margin: 0;
+        text-align: center;
+        
+        @include m.tablet{
+            text-align: left;
+        }
+
+        span{
+            font-weight: v.$black;
+        }
+    }
+
+    &__method{
+        margin: 0;
+        text-align: center;
+        
+        @include m.tablet{
+            text-align: left;
+        }
+        span{
+            font-weight: v.$black;
+        }
+    }
+
+    &__card{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__button{
+        background-color: v.$blanco;
+        color: v.$dorado;
+        padding: 2rem;
+        border-radius: .5rem;
+        font-weight: v.$black;
+        border: solid .2rem v.$dorado;
+        transition: all .4s ease;
+        text-align: center;
+
+        &:hover{
+            background-color: v.$negro;
+            color: v.$blanco;
+        }
+    }
+}
