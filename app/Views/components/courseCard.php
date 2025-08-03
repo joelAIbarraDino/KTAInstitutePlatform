@@ -14,7 +14,7 @@
             <div class="curso__tipo curso__tipo--grabado" data-section="course-details" data-label="type-content">
                 <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
             </div>
-            <a href="/curso/view/<?=$course->url?>"><h3 class="curso__nombre" data-section="course-<?=$course->id_course?>" data-label="name"><?=$course->name?></h3></a>
+            <a href="/curso/view/<?=$course->url?>"><h3 class="curso__nombre curso__nombre--student" data-section="course-<?=$course->id_course?>" data-label="name"><?=$course->name?></h3></a>
             
             <div class="curso__detail">
                 <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span data-section="course-details" data-label="access-content">Meses de acceso a material</span>
@@ -53,7 +53,7 @@
             <div class="curso__tipo curso__tipo--grabado" data-section="course-details" data-label="type-content">
                 <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
             </div>
-            <a href="/curso/view/<?=$course->url?>"><h3 class="curso__nombre" data-section="course-<?=$course->id_course?>" data-label="name"><?=$course->name?></h3></a>
+            <a href="/curso/view/<?=$course->url?>"><h3 class="curso__nombre curso__nombre--student" data-section="course-<?=$course->id_course?>" data-label="name"><?=$course->name?></h3></a>
             
             <div class="curso__detail">
                 <i class='bx bx-calendar'></i> <?=$course->max_months_enroll?> <span data-section="course-details" data-label="access-content">Meses de acceso a material</span>

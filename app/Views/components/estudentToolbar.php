@@ -65,18 +65,13 @@
                         <p class="nav__title">Cursos</p>
                         <a class="nav__link nav__link--regular-link" href="/mis-cursos"> <i class='bx bx-chalkboard'></i> Ver mis cursos</a>
                         <a class="nav__link nav__link--regular-link" href="/cursos-pasados"> <i class='bx bxs-flag-checkered'></i>Ver Cursos pasados</a>
-                        <a class="nav__link nav__link--regular-link" href="/mis-certificados"> <i class='bx bxs-award' ></i> Certificados</a>
+                        <a class="nav__link nav__link--regular-link" href="/mis-certificados"> <i class='bx bxs-award' ></i>Ver certificados</a>
                     </div>
 
                     <div class="nav">
                         <p class="nav__title">Perfil</p>
                         <a class="nav__link nav__link--regular-link" href="/mi-perfil"> <i class='bx bxs-cog'></i> Mi configuración</a>
                     </div>
-
-                    <!-- <div class="nav">
-                        <p class="nav__title">Seguridad</p>
-                        <a class="nav__link" href="/seguridad-acceso"> <i class='bx bxs-lock' ></i> Acceso</a>
-                    </div> -->
 
                     <div class="nav">
                         <a class="nav__link nav__link--exit-session" href="/logout"> <i class='bx bx-log-out'></i> Cerrar sesión</a>

@@ -76,8 +76,7 @@
     }
     
     &__contenido {
-        padding: 1.5rem;
-        min-height: 20rem;
+        padding: 0 1.5rem 1.5rem 1.5rem;
     }
     
     &__botones{
@@ -152,14 +151,25 @@
         font-size: 2.5rem;
         font-weight: 700;
         color: v.$negro;
-        margin: 1rem 0 3.5rem 0;
+        
         text-align: center;
         padding-bottom: .5rem;
 
-        &:hover{
-            color: v.$dorado;
-            cursor: pointer;
+        &--regular{
+            margin: 1rem 0 3.5rem 0;
+
+            &:hover{
+                color: v.$dorado;
+                cursor: pointer;
+            }
         }
+
+        &--student{
+            margin: 1rem 0;
+        }
+
+
+        
     }
     
     &__detail{
@@ -215,7 +225,6 @@
         font-size: 1.3rem;
         margin: 0;
         font-weight: v.$bold;
-        width: 7rem;
         color: v.$dorado;
     }
 
@@ -227,7 +236,7 @@
     }
 
     &__progress-bar{
-        width: calc(100% - 14rem);
+        width: 70%;
         accent-color: v.$dorado;
         height: .7rem;
     }
@@ -237,7 +246,6 @@
         color: v.$dorado;
         font-weight: v.$bold;
         margin: 0;
-        width: 7rem;
         text-align: left;
     }
 
@@ -251,23 +259,35 @@
         flex-grow: 1;
         padding: 1rem;
         font-size: 1.4rem;
-        color: v.$dorado;
         font-weight: v.$bold;
-        border: solid .1rem v.$dorado;
         border-radius: .4rem;
         text-align: center;
-        margin: 0;
         transition: all .4s ease;
-        
-        &:hover{
-            cursor: pointer;
-            color: v.$blanco;
-            background-color: v.$dorado;
-        }
+        margin: 0;
 
         &--active{
+            border: solid .1rem v.$dorado;
             background-color: v.$dorado;
             color: v.$blanco;
+
+            &:hover{
+                cursor: pointer;
+                color: v.$blanco;
+                background-color: v.$negro;
+                border: v.$negro;
+            }
+        }
+
+        &--secondary{
+            border: solid .1rem v.$dorado;
+            color: v.$dorado;
+
+            &:hover{
+                cursor: pointer;
+                color: v.$blanco;
+                background-color: v.$negro;
+                border: v.$negro;
+            }
         }
 
         &--disabled{

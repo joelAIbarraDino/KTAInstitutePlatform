@@ -1,4 +1,4 @@
-<?php 
+<?php
 
     $topScripts ='
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
@@ -20,7 +20,12 @@
                 <p class="my-courses__empty">No hay cursos activos</p>
             <?php else: ?>
                 <div class="my-courses__courses">
-                    <?php foreach($myCourses as $course):?>
+                    <?php foreach($myCourses as $courseData):?>
+                            <?php 
+                                $course = $courseData[0];
+                                $percentage = $courseData[1];
+                            ?>
+
                             <?php include __DIR__.'/../../components/estudentCourseCard.php'; ?>
                     <?php endforeach;?>
                 </div>

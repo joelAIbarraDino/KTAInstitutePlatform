@@ -33,9 +33,21 @@ class UserController{
         if(!empty($myCourses)){
             foreach($myCourses as $course){
                 $limitDate = strtotime("+".$course->max_months_enroll. " months", strtotime($course->enrollment_at));
+                
+                if($currentDate < $limitDate){
+                    $lessonsCount = Module::querySQL("select count(*) as no_lessons from module m join lesson l ON m.id_module  = l.id_module join course c ON m.id_course = c.id_course where c.id_course  = :id_course", [
+                        ':id_course'=>$course->id_course
+                    ]);
+                    $noLessons = $lessonsCount[0]['no_lessons'];
+                    $lessonsProgress = ProgressEnrollment::querySQL("select count(*) as no_progress from progress_enrollment WHERE completed = 1 AND id_enrollment = :id_enrollment", [
+                        ':id_enrollment'=>$course->id_enrollment
+                    ]);
+                    $completedLessons = $lessonsProgress[0]['no_progress'];
+                    
+                    $progressPercentage = ($completedLessons/$noLessons) * 100;
 
-                if($currentDate < $limitDate)
-                    $finalCourses[]  = $course;
+                    $finalCourses[]  = [$course, $progressPercentage];
+                }
             }
         }        
 

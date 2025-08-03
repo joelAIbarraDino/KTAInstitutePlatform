@@ -170,14 +170,14 @@
                         border-radius: .5rem;
                         padding: 1rem;
                         display: flex;
-                        gap: 2rem;
                         font-size: 1.6rem;
                         transition: all .4s ease;
 
                         &--regular-link{
                             color: v.$blanco;
                             background-color: transparent;
-
+                            justify-content: start;
+                            gap: 2rem;
                             &:hover{
                                 background-color: v.$dorado;
                                 border-radius: .5rem;
@@ -188,10 +188,13 @@
                             color: v.$negro;
                             background-color: v.$blanco;
                             margin-top: 3rem;
-
+                            justify-content: center;
+                            font-weight: v.$black;
+                            gap: .5rem;
                             &:hover{
                                 background-color: v.$dorado;
                                 border-radius: .5rem;
+                                color: v.$blanco;
                             }
                         }
 

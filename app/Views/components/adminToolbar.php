@@ -24,7 +24,11 @@
         </p>
     </div>
 
-    <div class="toolbar-right"></div>
+    <div class="toolbar-right">
+        <a href="/kta-admin/dashboard" class="toolbar-right__logout">
+            <i class='bx bx-user-circle' ></i>
+        </a>
+    </div>
 
     <div class="toolbar-menu">
                 
@@ -58,7 +62,7 @@
                         <p class="nav__title">Pedidos</p>
                         <a class="nav__link nav__link--regular-link" href="/kta-admin/pago-cursos"> <i class='bx bx-credit-card'></i> Pagos de Cursos</a>
                         <a class="nav__link nav__link--regular-link" href="/kta-admin/pago-lives"> <i class='bx bx-credit-card'></i> Pagos de Lives</a>
-                        <a class="nav__link nav__link--regular-link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Pagos deMembresías</a>
+                        <a class="nav__link nav__link--regular-link" href="/kta-admin/pago-membresias"> <i class='bx bx-credit-card'></i> Pagos de Membresías</a>
                     </div>
 
                     <div class="nav">
