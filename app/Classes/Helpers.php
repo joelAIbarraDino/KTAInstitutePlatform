@@ -81,7 +81,7 @@ class Helpers{
         // Separar la cadena en palabras
         $palabras = explode(' ', $cadena);
         
-        return ', '.$palabras[0]??'';
+        return $palabras[0]??'';
     }
 
     static function traducirYGuardarJson($entidad, $id, $objNuevo, $objOriginal = null, array $atributosTraducibles = [], $format = "text") {
@@ -245,7 +245,7 @@ class Helpers{
                             </tr>
                             <tr>
                                 <td style="padding:30px;color:#000000;">
-                                <h1 style="margin-top:0;font-size:22px;">Hola{NOMBRE_USUARIO}</h1>
+                                <h1 style="margin-top:0;font-size:22px;">Hola, {NOMBRE_USUARIO}</h1>
                                 <p style="font-size:16px;line-height:1.5;">
                                     Gracias por tu compra. Hemos creado automáticamente una cuenta para que puedas acceder a tu producto y administrar tu perfil dentro de nuestra plataforma.
                                 </p>
@@ -306,7 +306,7 @@ class Helpers{
                     </tr>
                     <tr>
                         <td style="padding:30px;color:#000000;">
-                        <h1 style="margin-top:0;font-size:22px;">Hola{NOMBRE_USUARIO}</h1>
+                        <h1 style="margin-top:0;font-size:22px;">Hola, {NOMBRE_USUARIO}</h1>
                         <p style="font-size:16px;line-height:1.5;">
                             ¡Gracias por tu compra! Adjuntamos el comprobante de pago en formato PDF con todos los detalles registrados.
                         </p>

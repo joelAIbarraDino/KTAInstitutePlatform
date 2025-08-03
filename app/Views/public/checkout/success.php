@@ -7,7 +7,7 @@ use App\Classes\Helpers;
 <main>
     <?php if($type_product == "course"):?>
         <div class="mensaje-compra-exitosa">    
-            <h2 class="titulo">¡Gracias por tu compra<?= Helpers::getFirstName($name) ?>!</h2>
+            <h2 class="titulo">¡Gracias por tu compra, <?= Helpers::getFirstName($name) ?>!</h2>
             <p class="detalle">
                 Has adquirido el curso: <span><?= $product->name ?></span>
             </p>
@@ -22,7 +22,7 @@ use App\Classes\Helpers;
         </div>
     <?php elseif($type_product == "membership"):?>
         <div class="mensaje-compra-exitosa">    
-            <h2 class="titulo">¡Gracias por tu compra<?= Helpers::getFirstName($name) ?>!</h2>
+            <h2 class="titulo">¡Gracias por tu compra, <?= Helpers::getFirstName($name) ?>!</h2>
             <p class="detalle">
                 Has adquirido una membresia: <span><?= $product->type ?></span>
             </p>
@@ -37,7 +37,7 @@ use App\Classes\Helpers;
         </div>
     <?php elseif($type_product == "live"):?>
         <div class="mensaje-compra-exitosa">    
-            <h2 class="titulo">¡Gracias por tu compra<?= Helpers::getFirstName($name) ?>!</h2>
+            <h2 class="titulo">¡Gracias por tu compra, <?= Helpers::getFirstName($name) ?>!</h2>
             <p class="detalle">
                 Has adquirido un acceso al live: <span><?= $product->name ?></span>
             </p>

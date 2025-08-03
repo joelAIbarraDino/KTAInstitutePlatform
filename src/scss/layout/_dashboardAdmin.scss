@@ -9,6 +9,7 @@
     height: 7rem;
     width: 100%;
     z-index: 1000;
+
     &-left{
         display: flex;
         gap: 2rem;
@@ -149,18 +150,51 @@
                         color: v.$dorado;
                         font-weight: v.$bold;
                     }
-                    &__link{
+
+                    &__saludo{
+                        margin: 0;
+                        font-size: 1.8rem;
+                        color: v.$dorado;
+                        font-weight: v.$regular;
+                    }
+
+                    &__title-text{
+                        margin: 0;
+                        font-size: 1.5rem;
                         color: v.$blanco;
+                        font-weight: v.$black;
+                    }
+
+                    &__link{
+                        
+                        border-radius: .5rem;
                         padding: 1rem;
                         display: flex;
                         gap: 2rem;
                         font-size: 1.6rem;
                         transition: all .4s ease;
 
-                        &:hover{
-                            background-color: v.$dorado;
-                            border-radius: .5rem;
+                        &--regular-link{
+                            color: v.$blanco;
+                            background-color: transparent;
+
+                            &:hover{
+                                background-color: v.$dorado;
+                                border-radius: .5rem;
+                            }
                         }
+
+                        &--exit-session{
+                            color: v.$negro;
+                            background-color: v.$blanco;
+                            margin-top: 3rem;
+
+                            &:hover{
+                                background-color: v.$dorado;
+                                border-radius: .5rem;
+                            }
+                        }
+
                     }
                 }
 
