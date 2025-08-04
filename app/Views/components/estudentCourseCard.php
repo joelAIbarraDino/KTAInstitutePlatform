@@ -20,7 +20,7 @@
                 <div class="curso__progress">
                     <p class="curso__progress-label">Progreso:</p>
                     <progress class="curso__progress-bar" max="100" value="<?=$percentage?>"></progress>
-                    <p class="curso__progress-percentage"><?=$percentage?>%</p>
+                    <p class="curso__progress-percentage"><?=sprintf("%02.2s", $percentage) ?>%</p>
                 </div>
             <?php endif; ?>                
 
@@ -54,7 +54,7 @@
                 <div class="curso__progress">
                     <p class="curso__progress-label">Progreso:</p>
                     <progress class="curso__progress-bar" max="100" value="<?=$percentage?>"></progress>
-                    <p class="curso__progress-percentage"><?=$percentage?>%</p>
+                    <p class="curso__progress-percentage"><?=sprintf("%02.2s", $percentage)?>%</p>
                 </div>
             <?php endif; ?>                
 

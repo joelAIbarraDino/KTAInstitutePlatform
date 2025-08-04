@@ -32,6 +32,7 @@
 
     <section id="membresia-page__membresias" class="membresia-page__membresias" data-aos="fade">
         <h2 class="membresia-page__membresias-title" data-section="memberships" data-label="title_memberships" data-aos="fade-up">Nuestras membresías KTA</h2>
+        <hr data-aos="fade-up" class="linea-personalizada">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <?php foreach ($membresias as $membresia): ?>

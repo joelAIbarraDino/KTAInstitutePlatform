@@ -11,6 +11,7 @@
         
         <div class="top-about__text-content">
             <h2 data-aos="fade-down" class="top-about__title">¿QUIÉNES SOMOS?</h2>
+            <hr data-aos="fade-up" class="linea-personalizada">
             <p data-aos="fade-up" class="top-about__text">
                 Kta Institute, con 5 años de experiencia, se dedica a apoyar y empoderar a la comunidad hispana en Estados Unidos. 
                 Nuestra educación está basada en experiencias prácticas y reales, diseñadas para prepararte en cada desafío que 
@@ -68,6 +69,7 @@
     <section class="valores-about">
         <div class="valores-about__text">
             <h3 class="valores-about__title" data-aos="fade-up">MISIÓN, VISIÓN Y VALORES INSTITUCIONALES</h3>
+            <hr data-aos="fade-up" class="linea-personalizada">
 
             <div class="valores-about__valor">
                 <div class="valores-about__icono"><i class='bx bxs-flag-checkered'></i></div>
@@ -101,6 +103,7 @@
     <section class="teachers-about">
 
         <h3 class="teachers-about__title" data-aos="fade-up">Maestros especializados</h3>
+        <hr data-aos="fade-up" class="linea-personalizada">
         <p class="teachers-about__description" data-aos="fade-up">Para nosotros enseñar es más importante que asistir.  Enseñar es dar la oportunidad de crecer en libertad y conocimiento ya que la asistencia es limitante y adictiva. Nuestro objetivo es sembrar en cada participante un conocimiento y métodos de desarrollo en la área económica y personal que el participante eligió.</p>
         
         <?php include __DIR__.'/../components/teachers.php'; ?>

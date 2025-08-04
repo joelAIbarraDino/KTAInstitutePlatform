@@ -167,7 +167,7 @@
       contentModule.appendChild(newLesson);
       
       newLesson.addEventListener('click', (e)=>{
-        if(!e.target.classList.contains("content-module__lesson"))
+        if(e.target.classList.contains("bx", "bxs-check-circle", "bx-check-circle"))
           return;
         
         showLesson(module, lesson);

@@ -23,7 +23,7 @@
         
 
         <form class="form form-admin" enctype="multipart/form-data" id="form-material">
-            <legend class="form__title">Nuevo slider</legend>
+            <legend class="form__title">Materiales del curso</legend>
         
             <p class="form__instructions">Completa los campos para crear un nuevo slidebar</p>
 

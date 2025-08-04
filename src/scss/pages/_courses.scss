@@ -97,6 +97,7 @@
     scrollbar-width: thin;
     scrollbar-color: v.$blanco v.$blanco;
     margin-top: 2rem;
+    margin-bottom: 5rem;
     
     @include m.computadora{
         width: 90%;
