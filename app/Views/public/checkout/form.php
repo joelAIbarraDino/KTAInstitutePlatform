@@ -1,9 +1,3 @@
-<?php
-    $topScripts ='
-        <script src="https://js.stripe.com/v3/"></script>
-    ';
-?>
-
 <?php include_once __DIR__.'/../../components/header.php'; ?>
 
 <main class="checkout">

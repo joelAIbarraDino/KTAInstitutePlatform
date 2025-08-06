@@ -24,7 +24,7 @@
                 </div>
             <?php endif; ?>                
 
-            <div class="curso__links">
+            <div class="curso__botones">
                 <a href="/curso/view/<?=$course->course_url?>" class="curso__link curso__link--secondary">Ver detalles</a>
                 <a href="/curso/watch/<?=$course->enroll_url?>" class="curso__link curso__link--active">Continuar</a>
             </div>
@@ -58,7 +58,7 @@
                 </div>
             <?php endif; ?>                
 
-            <div class="curso__links">
+            <div class="curso__botones">
                 <p class="curso__link--disabled">Ver detalles</p>
                 <p class="curso__link--disabled">Iniciar</p>
             </div>

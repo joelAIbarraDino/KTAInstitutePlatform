@@ -331,7 +331,7 @@
         margin: 0 auto;
         display: grid;
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 1.5rem;
 
         @include m.tablet{
             grid-template-columns: repeat(2, 1fr);

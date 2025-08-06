@@ -52,7 +52,7 @@
         "type-content":"<i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>",
         "access-content":"Meses de acceso a material",
         "students":"Estudiantes:",
-        "teacher":"Profesor:",
+        "teacher":"Por:",
         "checkout":"Comprar ahora",
         "continue":"Continuar curso",
         "tab-details":"Detalles",
@@ -70,7 +70,7 @@
         "title":"Nuestros cursos",
         "label":"Empieza, cambia o avanza en tu carrera con KTA como guía.",
         "all-courses":"Todos los cursos",
-        "banner-title":"¿No sabes cuál elegir? Agenda una asesoría gratuita aquí 👇",
+        "banner-title":"¿No sabes cuál elegir? <br> Agenda una asesoría gratuita aquí 👇",
         "banner-cta":"¡Quiero una asesoría!"
     },
     "lives":{

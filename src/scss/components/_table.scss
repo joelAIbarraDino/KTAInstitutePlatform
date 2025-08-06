@@ -211,12 +211,23 @@
 
     &--rectangule{
       width: 25rem;
-      height: 10rem;
+      height: auto;
+
+      @media (min-width: 1400px) {
+        width: 25rem;
+        height: 10rem;
+      }
     }
 
     &--square{
-      width: 15rem;
-      height: 15rem;
+      width: 10rem;
+      height: 10rem;
+
+      @media (min-width: 1400px) {
+        width: 15rem;
+        height: 15rem;
+      }
+
     }
 
   }

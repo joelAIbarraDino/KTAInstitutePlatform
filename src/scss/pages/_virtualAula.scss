@@ -541,3 +541,22 @@
     --plyr-video-progress-buffered-background: #cda02d3f;
     
 }
+
+/* Estilos personalizados para móviles */
+@media (max-width: 768px) {
+  /* Ocultar el control de volumen */
+  .plyr__controls .plyr__volume {
+    display: none !important;
+  }
+
+  /* Asegurar que la barra de progreso use todo el espacio */
+  .plyr__progress {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Prevenir que otros botones colapsen la barra */
+  .plyr__controls .plyr__time {
+    flex: 0 0 auto;
+  }
+}

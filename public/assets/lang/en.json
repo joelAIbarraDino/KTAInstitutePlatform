@@ -52,7 +52,7 @@
         "type-content":"<i class='bx bx-camera-movie'></i> <span>Recorded content</span>",
         "access-content":"Months of access to the material",
         "students":"Students",
-        "teacher":"Teacher:",
+        "teacher":"Por:",
         "checkout":"Buy now",
         "continue":"Continue watch",
         "tab-details":"Details",
@@ -70,7 +70,7 @@
         "title":"Our courses",
         "label":"Start, change, or advance your career with KTA as your guide.",
         "all-courses":"All courses",
-        "banner-title": "Don't know which one to choose? Schedule a free consultation here 👇",
+        "banner-title": "Don't know which one to choose? <br> Schedule a free consultation here 👇",
         "banner-cta": "I want a consultation!"
     },
     "lives":{

@@ -147,12 +147,20 @@ class AuthController
     public static function logout():void{
 
         session_start();
-        session_unset();
-        session_destroy();
+        
+        if(isset($_SESSION['student'])){
+            session_unset();
+            session_destroy();
+            $_SESSION = [];
+            Response::redirect('/login');
+        }else{
+            session_unset();
+            session_destroy();
+            $_SESSION = [];
+            Response::redirect('/login-admin');
+        }
 
-        $_SESSION = [];
 
-        Response::redirect('/login');
 
     }
 

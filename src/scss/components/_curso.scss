@@ -76,7 +76,7 @@
     }
     
     &__contenido {
-        padding: 0 1.5rem 1.5rem 1.5rem;
+        padding: 0 1rem 1rem 1rem;
     }
     
     &__botones{
@@ -175,12 +175,18 @@
     &__detail{
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: center;
         font-size: 1.7rem;
-        gap: 1rem;
+        gap: .5rem;
         color: v.$negro;
         font-weight: 900;
         margin: .5rem;
+
+        @include m.computadora{
+            align-items: center;
+            justify-content: start;
+            gap: 1rem;
+        }
 
         i{
             color: v.$dorado;

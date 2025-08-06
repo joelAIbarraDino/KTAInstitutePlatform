@@ -20,10 +20,17 @@ class EnrollExpiredMiddleware implements HandleInterface{
         if(!$enrollment)
             Response::redirect('/mis-cursos');
     
+        //curso con vigencia
+
         $enrollDate = strtotime($enrollment->enrollment_at."+ ".$enrollment->max_months_enroll. " months");
         $inscrito = $currentDate < $enrollDate?true:false;
 
         if(!$inscrito)
+            Response::redirect('/mis-cursos');
+
+        //curso en modo privado
+
+        if($enrollment->privacy != "Público")
             Response::redirect('/mis-cursos');
 
         $next();

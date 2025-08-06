@@ -128,8 +128,8 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                height: calc(100vh - 17rem);
                 margin-left: 2rem;
+                margin-bottom: 10rem;
 
                 .nav{
 
@@ -187,7 +187,7 @@
                         &--exit-session{
                             color: v.$negro;
                             background-color: v.$blanco;
-                            margin-top: 3rem;
+                            margin-top: 1rem;
                             justify-content: center;
                             font-weight: v.$black;
                             gap: .5rem;

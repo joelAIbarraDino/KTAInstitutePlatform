@@ -40,15 +40,7 @@
     @include m.computadora{
         width: 90%;
     }
-
-    &__titulo{
-        
-    }
-
-    &__desc{
-        
-    }
-
+    
     &__categorias{        
         display: grid;
         gap: .5rem;
@@ -92,10 +84,6 @@
 .cursos-container{
     width: 95%;
     margin: 0 auto;
-    height: 80vh;
-    overflow-y: scroll;   
-    scrollbar-width: thin;
-    scrollbar-color: v.$blanco v.$blanco;
     margin-top: 2rem;
     margin-bottom: 5rem;
     
@@ -137,6 +125,7 @@
         font-weight: v.$black;
         font-size: 4rem;
         font-family: v.$fuente_principal;
+        text-align: center;
     }
 
     &__button{
