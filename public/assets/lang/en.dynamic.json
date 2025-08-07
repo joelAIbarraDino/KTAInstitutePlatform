@@ -75,5 +75,9 @@
     "faq-3": {
         "question": "Question 1?",
         "answer": "I don't know"
+    },
+    "bannerAsesoria-1": {
+        "text_banner": "new text from bannerfasdfasd",
+        "CTA": "fdasfads"
     }
 }

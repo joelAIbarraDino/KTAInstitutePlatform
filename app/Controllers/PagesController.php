@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\BannerAsesoria;
 use App\Models\EnrollmentView;
 use App\Models\CourseView;
 use App\Models\Membership;
@@ -52,6 +53,8 @@ class PagesController{
 
         $courses = CourseView::all();
         $categories = Category::all();
+        $banners = BannerAsesoria::all()??[];
+        $bannerAsesoria = array_pop($banners);
         
         if(!$courses)
             Response::redirect('/');
@@ -64,7 +67,7 @@ class PagesController{
             'title'=>'Cursos',
             'courses'=>$courses,
             'categories'=>$categories,
-            'transparente'=>false
+            'bannerAsesoria'=>$bannerAsesoria
         ]);
     }
 
@@ -85,6 +88,8 @@ class PagesController{
     public static function courseCategory($category_url):void{
         $courses = CourseView::belongsTo('id_category', $category_url)??[];
         $categories = Category::all();
+        $banners = BannerAsesoria::all()??[];
+        $bannerAsesoria = array_pop($banners);
         
         if(!$categories)
             Response::redirect('/');
@@ -95,7 +100,7 @@ class PagesController{
             'courses'=>$courses,
             'categories'=>$categories,
             'category_url'=>$category_url,
-            'transparente'=>false
+            'bannerAsesoria'=>$bannerAsesoria
         ]);
     }
     
@@ -173,6 +178,8 @@ class PagesController{
     public static function lives():void{
         $lives = LiveView::all();
         $categories = Category::all();
+        $banners = BannerAsesoria::all()??[];
+        $bannerAsesoria = array_pop($banners);
                 
         if(!$lives)
             Response::redirect('/');
@@ -184,13 +191,16 @@ class PagesController{
             'nameApp'=>APP_NAME,
             'title'=>'Cursos',
             'lives'=>$lives,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'bannerAsesoria'=>$bannerAsesoria
         ]);
     }
 
     public static function liveCategory(string $category_url):void{
         $lives = LiveView::belongsTo('id_category', $category_url)??[];
         $categories = Category::all();
+        $banners = BannerAsesoria::all()??[];
+        $bannerAsesoria = array_pop($banners);
         
         if(!$categories)
             Response::redirect('/');
@@ -200,7 +210,8 @@ class PagesController{
             'title'=>'Cursos en vivo',
             'lives'=>$lives,
             'categories'=>$categories,
-            'category_url'=>$category_url
+            'category_url'=>$category_url,
+            'bannerAsesoria'=>$bannerAsesoria
         ]);
     }
 

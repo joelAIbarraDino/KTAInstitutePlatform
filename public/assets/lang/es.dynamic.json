@@ -81,5 +81,9 @@
     "faq-3": {
         "question": "¿pregunta 1?",
         "answer": "no se"
+    },
+    "bannerAsesoria-1": {
+        "text_banner": "nuevo texto de bannerfasdfasd",
+        "CTA": "fdasfads"
     }
 }

@@ -15,6 +15,7 @@ use App\Models\Teacher;
 use App\Models\Admin;
 
 use App\Classes\Helpers;
+use App\Models\BannerAsesoria;
 use App\Models\Live;
 use App\Models\Membership;
 use App\Models\PaymentCourseView;
@@ -142,6 +143,16 @@ class DashboardController{
             'nameApp' => APP_NAME,
             'title' => 'Admin slidebar',
             'slidebar'=>$slidebar
+        ]);
+    }
+
+    public static function bannerAsesoria():void{
+        $bannerAsesorias = BannerAsesoria::all();
+
+        Response::render('admin/bannerAsesoria/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin asesoría',
+            'bannerAsesorias'=>$bannerAsesorias
         ]);
     }
 

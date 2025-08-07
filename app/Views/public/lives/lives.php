@@ -49,12 +49,7 @@
         </div>
     </section>
     
-    <section class="curso-banner-asesoria">
-        <p class="curso-banner-asesoria__texto" data-section="courses" data-label="banner-title">¿No sabes cuál elegir? <br> Agenda una asesoría gratuita aquí 👇</p>
-        <a href="https://calendly.com/ktainstitute/asesoria-30-minutos">
-            <div class="curso-banner-asesoria__button" data-section="courses" data-label="banner-cta">¡Quiero una asesoria!</div>
-        </a>
-    </section>
+    <?php include_once __DIR__.'/../../components/bannerAsesorias.php'; ?>
 </main>
 
 <?php include_once __DIR__.'/../../components/footer.php'; ?>
