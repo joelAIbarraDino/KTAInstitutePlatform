@@ -1,6 +1,6 @@
 <?php
-    use App\Classes\Helpers;
-    $fechas =  Helpers::formatearFechasHoras($live->dates_times);
+    // use App\Classes\Helpers;
+    // $fechas =  Helpers::formatearFechasHoras($live->dates_times);
 ?>
 
 <?php if($live->discount): ?>
@@ -16,23 +16,23 @@
         </div>
         <div class="curso__contenido">
             
-            <div class="curso__tipo">
+            <!-- <div class="curso__tipo">
                 <i class='bx bxl-zoom' ></i> <span>Contenido en vivo</span>
-            </div>
+            </div> -->
 
-            <a href="/curso/view/<?=$course->url?>"><h3 class="curso__nombre"><?=$course->name?></h3></a>
+            <a href="/curso/view/<?=$course->url?>"><h3 class="curso__nombre curso__nombre--student"><?=$course->name?></h3></a>
             
-            <?php if($course->enrollment >2): ?>
+            <!-- <?php if($course->enrollment >2): ?>
                 <div class="curso__detail">
                     <i class='bx bxs-graduation'></i> <?=$course->enrollment?> <span>inscritos</span>
                 </div>
-            <?php endif;?>
+            <?php endif;?> -->
 
-            <div class="curso__precios">
+            <!-- <div class="curso__precios">
                 <p class="curso__precio curso__precio--original">$<?=$course->price?></p>
                 <p class="curso__precio curso__precio--oferta">$<?= $course->price * (1 - ($course->discount/100))?> USD</p>
-            </div>
-            <p class="curso__fecha-descuento">Oferta válida hasta: <?= date('F j, Y', strtotime($course->discount_ends_date))?></p>
+            </div> -->
+            <!-- <p class="curso__fecha-descuento">Oferta válida hasta: <?= date('F j, Y', strtotime($course->discount_ends_date))?></p> -->
         </div>
     </div>
 
@@ -47,34 +47,36 @@
             <span class="curso__categoria"><?=$live->category?></span>
         </div>
         <div class="curso__contenido">
-            <div class="curso__tipo curso__tipo--live" data-section="live-details" data-label="type-content">
+            <!-- <div class="curso__tipo curso__tipo--live" data-section="live-details" data-label="type-content">
                 <i class='bx bxl-zoom' ></i> <span>Contenido en vivo</span>
-            </div>
-            <a href="/curso/view/<?=$live->url?>"><h3 class="curso__nombre" data-section="live-<?=$live->id_live?>" data-label="name"><?=$live->name?></h3></a>
+            </div> -->
+
+            <a href="/curso/view/<?=$live->url?>"><h3 class="curso__nombre curso__nombre--student" data-section="live-<?=$live->id_live?>" data-label="name"><?=$live->name?></h3></a>
             
-            <div class="curso__detail">
-                <i class='bx bx-calendar'></i> <?=$fechas['fechas'] ?>
-            </div>
+            <!-- <div class="curso__detail">
+                <i class='bx bx-calendar'></i> <?php //$fechas['fechas'] ?>
+            </div> -->
 
-            <div class="curso__detail">
-                <i class='bx bx-time'></i> <?=$fechas['horas'] ?> <span class="curso__detail-timezone">Hora del este</span>
-            </div>
+            <!-- <div class="curso__detail">
+                <i class='bx bx-time'></i> <?php //$fechas['horas'] ?> <span class="curso__detail-timezone">Hora del este</span>
+            </div> -->
 
-            <?php if($live->enrollment >2): ?>
+            <!-- <?php if($live->enrollment >2): ?>
                 <div class="curso__detail">
                     <i class='bx bxs-graduation'></i> <?=$live->enrollment?> <span>inscritos</span>
                 </div>
-            <?php endif;?>
+            <?php endif;?> -->
 
-            <div class="curso__precios">
+            <!-- <div class="curso__precios">
                 <p class="curso__precio curso__precio--normal">$<?=$live->price?> USD</p>
-            </div>
+            </div> -->
+
         </div>
 
-        <div class="curso__botones">
+        <!-- <div class="curso__botones">
             <a href="/checkout/live/<?=$live->url?>" class="curso__boton curso__boton--venta" data-section="course-details" data-label="checkout">¡Comprar ahora!</a>
             <a href="/live/view/<?=$live->url?>" class="curso__boton curso__boton--ver" data-section="index" data-label="membership-button">Mas detalles</a>
-        </div>
+        </div> -->
     </div>
 
 <?php endif; ?>

@@ -23,6 +23,7 @@ class PagesController{
         $sliders = Slidebar::all();
         $courses = CourseView::all(5, 'id_course', 'DESC');
         $teachers = Teacher::all()??[];
+        $categories = Category::all()??[];
         $reviews = Review::all(20);
         
         Response::render('public/index', [
@@ -31,7 +32,8 @@ class PagesController{
             'sliders'=>$sliders,
             'courses'=>$courses,
             'reviews'=>$reviews,
-            'teachers'=>$teachers
+            'teachers'=>$teachers,
+            'categories'=>$categories
         ]);
     }
 

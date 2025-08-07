@@ -542,6 +542,10 @@
     
 }
 
+.plyr--full-ui video {
+    transform: rotate(90deg);
+}
+
 /* Estilos personalizados para móviles */
 @media (max-width: 768px) {
   /* Ocultar el control de volumen */

@@ -13,6 +13,7 @@
                         allow="autoplay; fullscreen"
                         allowfullscreen
                         class="slider__video"
+                        id="bg-video"
                     ></iframe>
                 <?php endif;?>
                 

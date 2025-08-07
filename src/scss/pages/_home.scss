@@ -580,6 +580,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     
     box-shadow: 10px 10px 45px 0px rgba(233,233,233,0.75);
     -webkit-box-shadow: 10px 10px 45px 0px rgba(233,233,233,0.75);
@@ -603,6 +604,19 @@
         text-align: center;
         font-size: 1.8rem;
         font-family: GothamRoundedRegular, sans-serif;
+    }
+
+    &__enlace{
+        background-color: v.$negro;
+        color: v.$blanco;
+        padding: 1rem;
+        border-radius: .5rem;
+        font-weight: v.$black;
+        transition: all .5s ease;
+
+        &:hover{
+            background-color: v.$dorado;
+        }
     }
 }
 
@@ -664,6 +678,64 @@
         font-size: 1.8rem;
         color: v.$dorado;
         font-family: GothamRoundedRegular, sans-serif;
+    }
+}
+
+.categorias{
+    padding: 5rem 0;
+
+    &__grid{
+        width: 95%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+
+        @include m.tablet{
+            width: 80%;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.computadora{
+            width: 70%;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+.categoria{
+    background-color: v.$fondo_oscuro;
+    text-align: center;
+    padding: 7rem 3rem 0 3rem;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 25rem;
+    
+    &__name{
+        color: v.$blanco;
+        font-size: 4rem;
+        font-weight: v.$black;
+        text-align: center;
+        margin: 0;
+    }
+
+    &__logo-container{
+        background-color: rgba(v.$dorado, 0.2);
+        padding: 1.5rem 1rem 1rem 1rem;
+        width: 7rem;
+        border-radius: 50% 50% 0 0;
+        margin-top: 3rem;
+    }
+
+    &__logo{
+        width: 3rem;
+    }
+    &:hover{
+        background-color: v.$dorado;
     }
 }
 
@@ -756,7 +828,7 @@
         font-size: 1.5rem;
 
         &:hover{
-            background-color: v.$dorado_darken;
+            background-color: v.$negro;
         }
     }
 }
@@ -847,6 +919,8 @@
         padding: 1rem;
         border-radius: .5rem;
         font-weight: v.$black;
+        transition: all .5s ease;
+
         &:hover{
             background-color: v.$dorado_darken;
         }
@@ -873,5 +947,278 @@
         font-weight: 400;
         margin: 3rem 0;
         font-family: GothamRoundedRegular, sans-serif;
+    }
+}
+
+.podcast{
+    padding: 5rem 0 13rem 0;
+
+    &__container{
+        width: 95%;
+        margin: 0 auto;
+        display: grid;
+        gap: 2rem;
+
+        @include m.tablet{
+            width: 90%;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.computadora{
+            width: 80%;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__video{
+        width: 100%; 
+        height: 30rem;
+        border-radius: .5rem;
+
+    }
+
+    &__chanel{
+        margin: 2rem auto;
+        background-color: v.$dorado;
+        padding: 1.5rem;
+        color: v.$blanco;
+        border-radius: .5rem;
+        font-weight: v.$black;
+        font-size: 1.8rem;
+        transition: all 0.5s ease;
+        width: 95%;
+        text-align: center;
+
+        @include m.tablet{
+            width: 25rem;
+        }
+
+        &:hover{
+            background-color: v.$negro;
+        }
+    }
+}
+
+.bienvenida-index{
+    background-color: #faf8f6;
+    padding: 5rem 0;    
+}
+
+.bienvenida-container{
+    background-color: v.$blanco;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+    -webkit-box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+    -moz-box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+
+
+    @include m.tablet{
+        width: 80%;
+    }
+
+    @include m.computadora{
+        width: 75%;
+    }
+
+    &__title{
+        font-weight: v.$black;
+        font-size: 4.5rem;
+        text-align: center;
+        
+        @include m.tablet{
+            text-align: left;
+        }
+
+        span{
+            color: v.$dorado;
+        }
+    }
+
+    &__top{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        @include m.computadora{
+            flex-direction: row;
+        }
+
+        &-left{
+            width: 100%;
+
+            @include m.computadora{
+                width: 50%;
+            }
+        }
+
+        &-right{
+            width: 100%;
+
+            @include m.computadora{
+                width: 50%;
+            }
+        }
+    }
+
+    &__parrafo{
+        font-size: 2rem;
+        line-height: 3rem;
+        text-align: center;
+        
+        @include m.tablet{
+            text-align: left;
+        }
+    }
+}
+
+.bienvenida-lives{
+    display: flex;
+    gap: 3rem;
+    width: 90%;
+    margin:  0 auto;
+    margin-top: 10rem;
+    flex-direction: column;
+
+    @include m.tablet{
+        width: 80%;
+        flex-direction: row;
+    }
+
+    @include m.computadora{
+        width: 75%;
+        flex-direction: row;
+    }
+
+    &__img{
+        width: 100%;
+        border-radius: 1rem;
+        @include m.tablet{
+            width: 50%;
+        }
+    }
+
+    &__text{
+        font-size: 2rem;
+        line-height: 3rem;
+        text-align: center;
+
+        @include m.tablet{
+            text-align: left;
+        }
+    }
+
+    &__caract{
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: start;
+        background-color: v.$blanco;
+        border-radius: 5rem;
+        padding: 1.5rem;
+        box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+        -webkit-box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+        -moz-box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+        margin: 1.5rem 0;
+        transition: all 0.5s ease;
+        
+        &-text{
+            margin: 0;
+        }
+
+        &-icono{
+            border-radius: 50%;
+            background-color: v.$dorado;
+            color: v.$blanco;
+            font-weight: v.$black;
+            font-size: 3.5rem;
+            padding: .5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        &:hover{
+            .bienvenida-lives__caract-text{
+                color: v.$dorado;
+            }
+            
+            .bienvenida-lives__caract-icono{
+                background-color: v.$negro;
+            }
+        }
+    }
+
+}
+
+.membresia-banner{
+    padding: 5rem;
+
+    &__container{
+        margin: 0 auto;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 3rem 1rem;
+        background-color: v.$negro;
+        border-radius: 1rem;
+        flex-direction: column;
+
+        @include m.tablet{
+            flex-direction: row;
+            padding: 3rem 1rem;
+        }
+
+        @include m.computadora{
+            flex-direction: row;
+            padding: 1rem;
+        }
+    }
+
+    &__logo{
+        width: 60%;
+
+        @include m.tablet{
+            width: 25%;
+        }
+    }
+
+    &__text{
+        text-align: center;
+        color: v.$blanco;
+        width: 100%;
+        margin: 0;
+        font-weight: v.$black;
+        font-size: 2.5rem;
+
+        span{
+            color: v.$dorado;
+        }
+
+        @include m.tablet{
+            width: 50%;
+        }
+    }
+
+    &__cta{
+        border-radius: .5rem;
+        background-color: v.$dorado;
+        color: v.$blanco;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.5s ease;
+        box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+        -webkit-box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+        -moz-box-shadow: 10px 10px 59px 0px rgba(164,164,164,0.75);
+        text-transform: uppercase;
+        &:hover{
+            background-color: v.$fondo_oscuro;
+        }
     }
 }

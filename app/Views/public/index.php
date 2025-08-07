@@ -6,6 +6,10 @@ use App\Classes\Helpers;
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+        <link rel="preload" href="https://cdn.plyr.io/3.7.8/plyr.css" as="style"> 
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+        <script src="https://player.vimeo.com/api/player.js"></script>
     ';
 ?>
 
@@ -19,6 +23,91 @@ use App\Classes\Helpers;
 
 <?php include_once __DIR__.'/../components/lastCourses.php'; ?>
 
+<section class="bienvenida-index">
+    <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Selecciona cualquiera de nuestros cursos Online</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
+
+    <div class="bienvenida-container">
+        <div class="bienvenida-container__top">
+            <div class="bienvenida-container__top-left">
+                <h2 class="bienvenida-container__title" >Bienvenidos a <span>KTA Institute</span></h2>
+                <p class="bienvenida-container__parrafo">
+                    Somos una institución constituida por profesionales experimentados en actividades económicas necesarias al desarrollo de empresas y al ser humano. Todos estamos comprometidos a impartir conocimiento y prácticas de una forma íntegra y legal.
+                </p>
+
+                <p class="bienvenida-container__parrafo">
+                    Respectando las normas, reglas y éticas de cada profesión nuestro Instituto lleva a cada participante un certificado de capacitación del curso correspondiente.
+                </p>
+                
+            </div>
+
+            <div class="bienvenida-container__top-right">
+                <div id="player">
+                    <iframe
+                        id="plyr-video"
+                        src="https://player.vimeo.com/video/727556671"
+                        allowfullscreen
+                        allowtransparency
+                        allow="autoplay"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+
+        <p class="bienvenida-container__parrafo">
+            Para nosotros enseñar es más importante que asistir.  Enseñar es una oportunidad de crecer en libertad y conocimiento. Nuestro objetivo es ayudar al inmigrante a una integración total y exitosa en los Estados Unidos, que ese Inmigrante se vuelva un Ciudadano Americano más,  aplicando métodos de desarrollo personal y profesional.
+        </p>
+    </div>
+
+    <div class="bienvenida-lives">
+        
+        <img class="bienvenida-lives__img" src="/assets/images/index-live.jpg" alt="imagen carlos catarino en live">
+
+        <div class="bienvenida-lives__text-container">
+            <h2 class="bienvenida-lives__title">Live Online courses</h2>
+            <p class="bienvenida-lives__text">
+                Cada uno de los encuentros de clases, se realizan mediante la plataforma de conferencias de zoom que nos permite poder interacturar, presentar y resolver en el mismo instante cualquier problema que tengamos.
+            </p>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Mas de 25 cursos en 7 categorias.</p>
+            </div>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Mentorias Personalizadas Proyectos finales y evaluaciones.</p>
+            </div>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Certificaciones completas para crear los profesionales del futuro.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="membresia-banner">
+    <div class="membresia-banner__container">
+        <img class="membresia-banner__logo" src="/assets/images/membresia-banner.jpg" alt="logo de membresia">
+
+        <p class="membresia-banner__text">
+            Se miembro del mejor club de Profesionales donde tendrás cursos, asesorías grupales y personalizadas <span>con EA Carlos Catarino</span> por 12 meses
+       </p>
+
+       <a href="/membresias">
+        <div class="membresia-banner__cta">¡Suscríbete ahora¡</div>
+       </a>
+    </div>
+</section>
+
 <section class="caracts-main">
 
     <div class="caracts-main__container">
@@ -28,6 +117,7 @@ use App\Classes\Helpers;
             <p class="caract-main__text" data-section="index" data-label="caract-text-1">
                 Organizamos distintos seminarios presenciales para que pueda continuar con tu formación tributaria en distintas ciudades del país como Los Ángeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc...
             </p>
+            <a class="caract-main__enlace" href="#" data-section="index" data-label="membership-button">Más detalles</a>
         </div>
 
         <div class="caract-main" data-aos="fade-right" data-aos-delay="200">
@@ -36,6 +126,7 @@ use App\Classes\Helpers;
             <p class="caract-main__text" data-section="index" data-label="caract-text-2">
                 La mayoría de nuestros cursos ofrecen la posibilidad de ser realizados en vivo, permiten la interacción con el instructor y aseguran que los contenidos estén siempre actualizados.
             </p>
+            <a class="caract-main__enlace" href="#" data-section="index" data-label="membership-button">Más detalles</a>
         </div>
 
         <div class="caract-main" data-aos="fade-left" data-aos-delay="200">
@@ -44,6 +135,7 @@ use App\Classes\Helpers;
             <p class="caract-main__text" data-section="index" data-label="caract-text-3">
                 Ofrecemos todos nuestros cursos en formato On Demand para que  estudie cuándo, dónde y cómo desee. Todos los cursos son actualizados permanentemente.
             </p>
+            <a class="caract-main__enlace" href="#" data-section="index" data-label="membership-button">Más detalles</a>
         </div>
 
         <div class="caract-main" data-aos="fade-left" data-aos-delay="200">
@@ -52,6 +144,7 @@ use App\Classes\Helpers;
             <p class="caract-main__text" data-section="index" data-label="caract-text-4">
                 Tenemos a tu disposición una completa colección de libros tributarios constantemente actualizados y editados incorporando así todos los cambios y novedades fiscales.
             </p>
+            <a class="caract-main__enlace" href="#" data-section="index" data-label="membership-button">Más detalles</a>
         </div>
     </div>
 
@@ -104,6 +197,36 @@ use App\Classes\Helpers;
         </div>
 
     </div>
+</section>
+
+<section class="categorias">
+    <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Categorías</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
+
+    <div class="categorias__grid" data-aos="fade-up">
+        <a href="/cursos">
+            <div class="categoria">
+                <p class="categoria__name">Todas las categorías</p>
+                
+                <div class="categoria__logo-container">
+                    <img class="categoria__logo" src="/assets/images/logoKTA.png" alt="">
+                </div>
+            </div>
+        </a>
+
+        <?php foreach($categories as $category ): ?>
+            <a href="/cursos/categoria/<?=$category->id_category?>">
+                <div class="categoria">
+                    <p class="categoria__name"><?=$category->name?></p>
+                    
+                    <div class="categoria__logo-container">
+                        <img class="categoria__logo" src="/assets/images/logoKTA.png" alt="">
+                    </div>
+                </div>
+            </a>
+        <?php endforeach;?>
+    </div>
+
 </section>
 
 <section class="maestros-index" data-aos="fade" data-aos-delay="">
@@ -195,6 +318,22 @@ use App\Classes\Helpers;
     </div>
 </section>
 
+<section class="podcast">
+    <p data-aos="fade-up" data-aos-delay="100" class="membresias-index__subtitulo">Disfruta con nuestro Podcast Nadie es Importante</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
+    
+    <div class="podcast__container">
+        <iframe class="podcast__video" src="https://www.youtube.com/embed/r8HnB7-qszQ?si=S8vWoNHHLcBSg9s0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="podcast__video" src="https://www.youtube.com/embed/ArGNjAur_ow?si=ftHMCxq2gjV71WCI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="podcast__video" src="https://www.youtube.com/embed/uFptyMLZEFE?si=r1gsNYkNHZsQX8hd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <a href="https://www.youtube.com/channel/UCfWEZVbcQ2PEm4CqrG5DWew" target="_blank">
+        <div class="podcast__chanel">Ver canal de Youtube</div>
+    </a>
+
+</section>
+
 <script>
     const swiper = new Swiper(".swiper-courses", {
         slidesPerView: 1,
@@ -245,6 +384,25 @@ use App\Classes\Helpers;
         }
     }
     });
+</script>
+
+<script>
+  // Instancias de Vimeo
+  const bgPlayer = new Vimeo.Player(document.getElementById('bg-video'));
+
+  // Si usas Plyr.js como UI, puedes también instanciar Plyr (aunque no es estrictamente necesario para este control)
+  const plyrUI = new Plyr('#player');
+
+  // Reproducir el de fondo si lo pausa Vimeo al dar play en el de Plyr
+  plyrUI.on('play', () => {
+    setTimeout(() => {
+      bgPlayer.getPaused().then(paused => {
+        if (paused) {
+          bgPlayer.play();
+        }
+      });
+    }, 400); // tiempo breve para esperar la pausa automática
+  });
 </script>
 
 <?php include_once __DIR__.'/../components/popups.php'; ?>
