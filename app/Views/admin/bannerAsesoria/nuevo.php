@@ -3,7 +3,7 @@
 <main class="main">
     <div class="main__container">
         <div class="top-main">
-            <h1 class="top-main__title">Gestión de sliders</h1>
+            <h1 class="top-main__title">Gestión de banners</h1>
             <a class="btn nuevo" href="/kta-admin/banner-asesoria"><i class='bx bx-chevrons-left'></i> Regresar</a>
         </div>
 

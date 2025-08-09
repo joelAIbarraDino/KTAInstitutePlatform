@@ -41,6 +41,7 @@
             <li><a class="header__link" href="/calendario" data-section="header" data-label="calendar">Calendario</a></li>
             <li><a class="header__link" href="/nosotros" data-section="header" data-label="about-us">¿Quiénes somos?</a></li>
             <li><a class="header__link" href="/membresias" data-section="header" data-label="membership">Membresías</a></li>
+            <li><a class="header__link" href="/testimonios" >Testimonios</a></li>
 
             <?php if(isset($_SESSION['student'])): ?>
                 <li><a class="header__button-login header__button-login--nav" href="/mis-cursos" data-section="header" data-label="my-space">Mi espacio</a></li>

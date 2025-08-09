@@ -683,7 +683,7 @@
 
 .categorias{
     padding: 5rem 0;
-
+    background-color: #faf8f6;
     &__grid{
         width: 95%;
         margin: 0 auto;
@@ -698,7 +698,7 @@
 
         @include m.computadora{
             width: 70%;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 }
@@ -706,24 +706,38 @@
 .categoria{
     background-color: v.$fondo_oscuro;
     text-align: center;
-    padding: 7rem 3rem 0 3rem;
+    padding: 4rem 1rem;
     border-radius: 1rem;
     transition: all 0.5s ease;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     flex-direction: column;
-    min-height: 25rem;
+    gap: .5rem;
+    min-height: 27rem;
+    position: relative;
+    transition: all .5s ease;
+
+    &__icono{
+        color: #333333;
+        font-size: 5rem;
+        transition: all .5s ease;
+    }
     
     &__name{
+        -webkit-box-reflect: below -1.5rem linear-gradient(transparent, rgba(0,0,0,0.2));
         color: v.$blanco;
         font-size: 4rem;
         font-weight: v.$black;
         text-align: center;
         margin: 0;
+        transition: all .5s ease;
     }
 
     &__logo-container{
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 3.5rem);
         background-color: rgba(v.$dorado, 0.2);
         padding: 1.5rem 1rem 1rem 1rem;
         width: 7rem;
@@ -735,7 +749,15 @@
         width: 3rem;
     }
     &:hover{
-        background-color: v.$dorado;
+        background-color: rgba(v.$dorado, 0.9);
+
+        .categoria__icono{
+            color: v.$blanco;
+        }
+
+        .categoria__name{
+            color: v.$negro;
+        }
     }
 }
 
@@ -1219,6 +1241,19 @@
         text-transform: uppercase;
         &:hover{
             background-color: v.$fondo_oscuro;
+        }
+    }
+}
+
+.work-flow{
+    padding: 5rem 0;
+
+    &__img{
+        width: 100%;
+        border-radius: 1rem;
+        @include m.tablet{
+            width: 40%;
+            height: 60rem;
         }
     }
 }

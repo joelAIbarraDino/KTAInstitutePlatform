@@ -270,4 +270,14 @@ class PagesController{
             'title'=>'Calendario de eventos'
         ]);   
     }
+
+    public static function testimonios():void{
+        $reviews = Review::all();
+
+        Response::render('public/testimonios', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Testimonios',
+            'reviews'=>$reviews
+        ]);  
+    }
 }

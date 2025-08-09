@@ -24,24 +24,22 @@ use App\Classes\Helpers;
 <?php include_once __DIR__.'/../components/lastCourses.php'; ?>
 
 <section class="bienvenida-index">
-    <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Selecciona cualquiera de nuestros cursos Online</p>
-    <hr data-aos="fade-up" class="linea-personalizada">
-
+    
     <div class="bienvenida-container">
         <div class="bienvenida-container__top">
             <div class="bienvenida-container__top-left">
-                <h2 class="bienvenida-container__title" >Bienvenidos a <span>KTA Institute</span></h2>
-                <p class="bienvenida-container__parrafo">
+                <h2 class="bienvenida-container__title" data-aos="fade-right">Bienvenidos a <span>KTA Institute</span></h2>
+                <p class="bienvenida-container__parrafo" data-aos="fade-right">
                     Somos una institución constituida por profesionales experimentados en actividades económicas necesarias al desarrollo de empresas y al ser humano. Todos estamos comprometidos a impartir conocimiento y prácticas de una forma íntegra y legal.
                 </p>
 
-                <p class="bienvenida-container__parrafo">
+                <p class="bienvenida-container__parrafo" data-aos="fade-right">
                     Respectando las normas, reglas y éticas de cada profesión nuestro Instituto lleva a cada participante un certificado de capacitación del curso correspondiente.
                 </p>
                 
             </div>
 
-            <div class="bienvenida-container__top-right">
+            <div class="bienvenida-container__top-right" data-aos="fade-left">
                 <div id="player">
                     <iframe
                         id="plyr-video"
@@ -54,36 +52,36 @@ use App\Classes\Helpers;
             </div>
         </div>
 
-        <p class="bienvenida-container__parrafo">
+        <p class="bienvenida-container__parrafo" data-aos="fade-up">
             Para nosotros enseñar es más importante que asistir.  Enseñar es una oportunidad de crecer en libertad y conocimiento. Nuestro objetivo es ayudar al inmigrante a una integración total y exitosa en los Estados Unidos, que ese Inmigrante se vuelva un Ciudadano Americano más,  aplicando métodos de desarrollo personal y profesional.
         </p>
     </div>
 
     <div class="bienvenida-lives">
         
-        <img class="bienvenida-lives__img" src="/assets/images/index-live.jpg" alt="imagen carlos catarino en live">
+        <img class="bienvenida-lives__img" src="/assets/images/index-live.jpg" alt="imagen carlos catarino en live" data-aos="fade-right">
 
         <div class="bienvenida-lives__text-container">
-            <h2 class="bienvenida-lives__title">Live Online courses</h2>
-            <p class="bienvenida-lives__text">
+            <h2 class="bienvenida-lives__title" data-aos="fade-down">Live Online courses</h2>
+            <p class="bienvenida-lives__text" data-aos="fade-left">
                 Cada uno de los encuentros de clases, se realizan mediante la plataforma de conferencias de zoom que nos permite poder interacturar, presentar y resolver en el mismo instante cualquier problema que tengamos.
             </p>
 
-            <div class="bienvenida-lives__caract">
+            <div class="bienvenida-lives__caract" data-aos="fade-up">
                 <div class="bienvenida-lives__caract-icono">
                     <i class='bx bx-check'></i>
                 </div>
                 <p class="bienvenida-lives__caract-text">Mas de 25 cursos en 7 categorias.</p>
             </div>
 
-            <div class="bienvenida-lives__caract">
+            <div class="bienvenida-lives__caract" data-aos="fade-up">
                 <div class="bienvenida-lives__caract-icono">
                     <i class='bx bx-check'></i>
                 </div>
                 <p class="bienvenida-lives__caract-text">Mentorias Personalizadas Proyectos finales y evaluaciones.</p>
             </div>
 
-            <div class="bienvenida-lives__caract">
+            <div class="bienvenida-lives__caract" data-aos="fade-up">
                 <div class="bienvenida-lives__caract-icono">
                     <i class='bx bx-check'></i>
                 </div>
@@ -94,7 +92,7 @@ use App\Classes\Helpers;
 
 </section>
 
-<section class="membresia-banner">
+<section class="membresia-banner" data-aos="fade">
     <div class="membresia-banner__container">
         <img class="membresia-banner__logo" src="/assets/images/membresia-banner.jpg" alt="logo de membresia">
 
@@ -199,24 +197,70 @@ use App\Classes\Helpers;
     </div>
 </section>
 
+<section class="work-flow">
+    <div class="bienvenida-lives">
+            
+        <div class="bienvenida-lives__text-container" data-aos="fade-right">
+            <h2 class="bienvenida-lives__title" data-aos="fade-down">Nuestra forma de trabajar es sencilla.</h2>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Ofrecemos cursos en Presencial, Online en Vivo, vía zoom y online pasivos.</p>
+            </div>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Cada participante puede intervenir y participar directamente con los profesores que responderán de inmediato a sus dudas.</p>
+            </div>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Nos aseguramos de que cada encuentro cumpla con una agenda de temas y tareas.</p>
+            </div>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Cada encuentro se hace acompañar de ejemplos prácticas, gráficos y casos reales.</p>
+            </div>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Aseguramos que cada encuentro tenga toda la calidad técnica de audio y video.</p>
+            </div>
+
+            <div class="bienvenida-lives__caract">
+                <div class="bienvenida-lives__caract-icono">
+                    <i class='bx bx-check'></i>
+                </div>
+                <p class="bienvenida-lives__caract-text">Cuando tú decides participar alguno de nuestros cursos, tienes la garantía que tus datos son completamente privados</p>
+            </div>
+        </div>
+
+        <img class="work-flow__img" src="/assets/images/easy-work.jpg" alt="imagen carlos catarino en live" data-aos="fade-left">
+    </div>
+</section>
+
 <section class="categorias">
     <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Categorías</p>
     <hr data-aos="fade-up" class="linea-personalizada">
 
     <div class="categorias__grid" data-aos="fade-up">
-        <a href="/cursos">
-            <div class="categoria">
-                <p class="categoria__name">Todas las categorías</p>
-                
-                <div class="categoria__logo-container">
-                    <img class="categoria__logo" src="/assets/images/logoKTA.png" alt="">
-                </div>
-            </div>
-        </a>
-
+        
         <?php foreach($categories as $category ): ?>
             <a href="/cursos/categoria/<?=$category->id_category?>">
                 <div class="categoria">
+                    <i class="categoria__icono bx <?=$category->icon?>"></i>
+
                     <p class="categoria__name"><?=$category->name?></p>
                     
                     <div class="categoria__logo-container">

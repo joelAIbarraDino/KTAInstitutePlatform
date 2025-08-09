@@ -97,6 +97,7 @@ $dino->router->get('/politica-privacidad', [PagesController::class, 'politica'])
 $dino->router->get('/membresias', [PagesController::class, 'membership']);
 $dino->router->get('/calendario', [PagesController::class, 'calendario']);
 $dino->router->get('/nosotros', [PagesController::class, 'about']);
+$dino->router->get('/testimonios', [PagesController::class, 'testimonios']);
 
 $dino->router->get('/cursos', [PagesController::class, 'courses']);
 $dino->router->get('/cursos/categoria/{category_url}', [PagesController::class, 'courseCategory']);

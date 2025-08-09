@@ -21,15 +21,15 @@
         </div>
         
         <div class="top-about__image-container-side" data-aos="fade-up">
-            <div class="top-about__image" style="background-image: url('assets/images/about1.jpg');"></div>
+            <div class="top-about__image" style="background-image: url('assets/images/fundador.jpg');"></div>
         </div>
 
         <div class="top-about__image-container-center" data-aos="fade-down">
-            <div class="top-about__image" style="background-image: url('assets/images/about2.jpg');"></div>
+            <div class="top-about__image" style="background-image: url('/assets/images/foto3.jpg');"></div>
         </div>
 
         <div class="top-about__image-container-side" data-aos="fade-up">
-            <div class="top-about__image" style="background-image: url('assets/images/about3.jpg');"></div>
+            <div class="top-about__image" style="background-image: url('/assets/images/img-2.jpg');"></div>
         </div>
     </section>
 
@@ -57,7 +57,7 @@
     </section>
 
     <section class="middle-about" data-aos="fade">
-        <img class="middle-about__image" src="/assets/images/about4.jpg" alt="" srcset="">
+        <img class="middle-about__image" src="/assets/images/index-live.jpg" alt="" srcset="">
         <div class="middle-about__text-container">
             <h3 class="middle-about__title">Nuestro modelo educativo</h3>
             <p class="middle-about__text">
@@ -95,7 +95,7 @@
         </div>
         
         <div class="valores-about__images">
-            <div class="valores-about__image" style="background-image: url('assets/images/about2.jpg');" data-aos="fade-left"></div>
+            <div class="valores-about__image" style="background-image: url('assets/images/foto3.jpg');" data-aos="fade-left"></div>
             <div class="valores-about__image" style="background-image: url('assets/images/about3.jpg');" data-aos="fade-left"></div>
         </div>
     </section>
