@@ -25,7 +25,7 @@
         </div>
 
         <div class="top-about__image-container-center" data-aos="fade-down">
-            <div class="top-about__image" style="background-image: url('/assets/images/foto3.jpg');"></div>
+            <div class="top-about__image" style="background-image: url('/assets/images/nosotros-top.png');"></div>
         </div>
 
         <div class="top-about__image-container-side" data-aos="fade-up">

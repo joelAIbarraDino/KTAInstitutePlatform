@@ -14,6 +14,7 @@
     <section class="membresia-page__top" data-aos="fade">
         <div class="membresia-page__top-left" data-aos="fade-right">
             <h2 class="membresia-page__top-title" data-section="memberships" data-label="title">Membresías KTA</h2>
+            <hr data-aos="fade-up" class="linea-personalizada">
             <p class="membresia-page__top-text" data-section="memberships" data-label="description">
                 Acceso VIP durante 12 meses a todas las formaciones, cursos y educación continua. Más de 1000 horas de formación especializada.
             </p>
@@ -25,7 +26,7 @@
         </div>
 
         <div>
-            <img data-aos="fade-left" class="membresia__top-image" src="/assets/images/membresia-top.jpg" alt="" srcset="foto membresia">
+            <img data-aos="fade-left" class="membresia-page__top-image" src="/assets/images/membresia-top.jpg" alt="" srcset="foto membresia">
         </div>
         
     </section>

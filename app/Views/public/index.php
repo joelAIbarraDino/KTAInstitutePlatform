@@ -23,6 +23,133 @@ use App\Classes\Helpers;
 
 <?php include_once __DIR__.'/../components/lastCourses.php'; ?>
 
+<section class="categorias">
+    <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Categorías</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
+
+    <div class="categorias__grid" data-aos="fade-up">
+        
+        <?php foreach($categories as $category ): ?>
+            <a href="/cursos/categoria/<?=$category->id_category?>">
+                <div class="categoria">
+                    <i class="categoria__icono bx <?=$category->icon?>"></i>
+
+                    <p class="categoria__name"><?=$category->name?></p>
+                    
+                    <div class="categoria__logo-container">
+                        <img class="categoria__logo" src="/assets/images/logoKTA.png" alt="">
+                    </div>
+                </div>
+            </a>
+        <?php endforeach;?>
+    </div>
+
+    <div class="caracts-main__irs">
+        <a href="https://www.ceprovider.us/public/default/listing" data-aos="fade-up" data-aos-delay="200">
+            <img class="caracts-main__irs-logo" src="/assets/images/certificado1.jpg">
+        </a> 
+        
+        <a href="https://ctec.org/taxpreparers/find-education-provider/?nav=tax-professionals" data-aos="fade-up" data-aos-delay="200">
+            <img class="caracts-main__irs-logo" src="/assets/images/certificado2.jpg">
+        </a>
+    </div>
+</section>
+
+<section class="membresia-banner" data-aos="fade">
+    <div class="membresia-banner__container">
+        <img class="membresia-banner__logo" src="/assets/images/membresia-banner.jpg" alt="logo de membresia">
+
+        <p class="membresia-banner__text">
+            Se miembro del mejor club de Profesionales donde tendrás cursos, asesorías grupales y personalizadas <span>con EA Carlos Catarino</span> por 12 meses
+       </p>
+
+       <a href="/membresias">
+        <div class="membresia-banner__cta">¡Suscríbete ahora¡</div>
+       </a>
+    </div>
+</section>
+
+<section class="reviews" data-aos="fade-up">
+    <p data-aos="fade-up" data-aos-delay="100" class="membresias-index__subtitulo" data-section="index" data-label="review_title">Triunfadores Que Confiaron En KTA Institute</p>
+    <hr data-aos="fade-up" class="linea-personalizada">
+
+    <div class="reviews__container">
+        <img class="reviews__img-google" src="/assets/images/EXCELENTE.png" alt="reviews en google">
+
+        <div class="swiper swiper-reviews">
+            <div class="swiper-wrapper">
+                <?php foreach($reviews as $review):?>
+                    <div class="swiper-slide">
+                        <div class="review">
+                            <div class="review__header">
+                                <img class="review__photo" src="<?=$review->photo?>" alt="<?=$review->photo?>">
+                                
+                                <div class="review__name-container">
+                                    <div class="review__name"><?=$review->author_name?></div>
+                                    <div class="review__time"><?=$review->relative_time?></div>
+                                </div>
+                            </div>
+
+                            <div class="review__rating">
+                                <?php for($i = 0; $i< $review->rating; $i++):?>
+                                    <i class='bx bxs-star'></i>
+                                <?php endfor;?>
+                            </div>
+
+                            <div class="review__text">
+                                <?= Helpers::limitarTexto($review->review, 120) ?>
+                            </div>
+                            
+                            <a class="review__link" href="<?=$review->google_url?>" target="_blank" data-section="index" data-label="google_more">Ver review en Google</a>
+                        </div>
+
+                    </div>                
+                <?php endforeach;?>
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="estadisticas" data-aos="fade" data-aos-delay="100">
+
+    <div class="estadisticas__container">
+        <div class="estadistica" data-aos="fade-right" data-aos-delay="200">
+            <i class='bx bxs-award' ></i>
+            <div class="estadistica__content">
+                <p class="estadistica__title counter">2500+</p>
+                <p class="estadistica__desc" data-section="index" data-label="stadistic-1">Estudiantes exitosos</p>
+            </div>
+        </div>
+
+        <div class="estadistica" data-aos="fade-right" data-aos-delay="200">
+            <i class='bx bx-chalkboard' ></i>
+            <div class="estadistica__content">
+                <p class="estadistica__title counter">215</p>
+                <p class="estadistica__desc" data-section="index" data-label="stadistic-2">Video tutoriales</p>
+            </div>
+        </div>
+
+        <div class="estadistica" data-aos="fade-left" data-aos-delay="200">
+            <i class='bx bx-user'></i>
+            <div class="estadistica__content">
+                <p class="estadistica__title counter">4</p>
+                <p class="estadistica__desc" data-section="index" data-label="stadistic-3">Maestros especializados</p>
+            </div>
+        </div>
+
+        <div class="estadistica" data-aos="fade-left" data-aos-delay="200">
+            <i class='bx bx-glasses-alt'></i>
+            <div class="estadistica__content">
+                <p class="estadistica__title counter">18+</p>
+                <p class="estadistica__desc" data-section="index" data-label="stadistic-4">Cursos unicos</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <section class="bienvenida-index">
     
     <div class="bienvenida-container">
@@ -92,20 +219,6 @@ use App\Classes\Helpers;
 
 </section>
 
-<section class="membresia-banner" data-aos="fade">
-    <div class="membresia-banner__container">
-        <img class="membresia-banner__logo" src="/assets/images/membresia-banner.jpg" alt="logo de membresia">
-
-        <p class="membresia-banner__text">
-            Se miembro del mejor club de Profesionales donde tendrás cursos, asesorías grupales y personalizadas <span>con EA Carlos Catarino</span> por 12 meses
-       </p>
-
-       <a href="/membresias">
-        <div class="membresia-banner__cta">¡Suscríbete ahora¡</div>
-       </a>
-    </div>
-</section>
-
 <section class="caracts-main">
 
     <div class="caracts-main__container">
@@ -146,55 +259,6 @@ use App\Classes\Helpers;
         </div>
     </div>
 
-    <div class="caracts-main__irs">
-        <a href="https://www.ceprovider.us/public/default/listing" data-aos="fade-up" data-aos-delay="200">
-            <img class="caracts-main__irs-logo" src="/assets/images/certificado1.jpg">
-        </a> 
-        
-        <a href="https://ctec.org/taxpreparers/find-education-provider/?nav=tax-professionals" data-aos="fade-up" data-aos-delay="200">
-            <img class="caracts-main__irs-logo" src="/assets/images/certificado2.jpg">
-        </a>
-    </div>
-
-
-</section>
-
-<section class="estadisticas" data-aos="fade" data-aos-delay="100">
-
-    <div class="estadisticas__container">
-        <div class="estadistica" data-aos="fade-right" data-aos-delay="200">
-            <i class='bx bxs-award' ></i>
-            <div class="estadistica__content">
-                <p class="estadistica__title counter">2500+</p>
-                <p class="estadistica__desc" data-section="index" data-label="stadistic-1">Estudiantes exitosos</p>
-            </div>
-        </div>
-
-        <div class="estadistica" data-aos="fade-right" data-aos-delay="200">
-            <i class='bx bx-chalkboard' ></i>
-            <div class="estadistica__content">
-                <p class="estadistica__title counter">215</p>
-                <p class="estadistica__desc" data-section="index" data-label="stadistic-2">Video tutoriales</p>
-            </div>
-        </div>
-
-        <div class="estadistica" data-aos="fade-left" data-aos-delay="200">
-            <i class='bx bx-user'></i>
-            <div class="estadistica__content">
-                <p class="estadistica__title counter">4</p>
-                <p class="estadistica__desc" data-section="index" data-label="stadistic-3">Maestros especializados</p>
-            </div>
-        </div>
-
-        <div class="estadistica" data-aos="fade-left" data-aos-delay="200">
-            <i class='bx bx-glasses-alt'></i>
-            <div class="estadistica__content">
-                <p class="estadistica__title counter">18+</p>
-                <p class="estadistica__desc" data-section="index" data-label="stadistic-4">Cursos unicos</p>
-            </div>
-        </div>
-
-    </div>
 </section>
 
 <section class="work-flow">
@@ -250,29 +314,6 @@ use App\Classes\Helpers;
     </div>
 </section>
 
-<section class="categorias">
-    <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Categorías</p>
-    <hr data-aos="fade-up" class="linea-personalizada">
-
-    <div class="categorias__grid" data-aos="fade-up">
-        
-        <?php foreach($categories as $category ): ?>
-            <a href="/cursos/categoria/<?=$category->id_category?>">
-                <div class="categoria">
-                    <i class="categoria__icono bx <?=$category->icon?>"></i>
-
-                    <p class="categoria__name"><?=$category->name?></p>
-                    
-                    <div class="categoria__logo-container">
-                        <img class="categoria__logo" src="/assets/images/logoKTA.png" alt="">
-                    </div>
-                </div>
-            </a>
-        <?php endforeach;?>
-    </div>
-
-</section>
-
 <section class="maestros-index" data-aos="fade" data-aos-delay="">
     <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo" data-section="index" data-label="teachers-title">Conoce al equipo KTA</p>
     <hr data-aos="fade-up" class="linea-personalizada">
@@ -317,49 +358,6 @@ use App\Classes\Helpers;
         </div>
 
     </div>    
-</section>
-
-<section class="reviews" data-aos="fade-up">
-    <p data-aos="fade-up" data-aos-delay="100" class="membresias-index__subtitulo" data-section="index" data-label="review_title">Triunfadores Que Confiaron En KTA Institute</p>
-    <hr data-aos="fade-up" class="linea-personalizada">
-
-    <div class="reviews__container">
-        <img class="reviews__img-google" src="/assets/images/EXCELENTE.png" alt="reviews en google">
-
-        <div class="swiper swiper-reviews">
-            <div class="swiper-wrapper">
-                <?php foreach($reviews as $review):?>
-                    <div class="swiper-slide">
-                        <div class="review">
-                            <div class="review__header">
-                                <img class="review__photo" src="<?=$review->photo?>" alt="<?=$review->photo?>">
-                                
-                                <div class="review__name-container">
-                                    <div class="review__name"><?=$review->author_name?></div>
-                                    <div class="review__time"><?=$review->relative_time?></div>
-                                </div>
-                            </div>
-
-                            <div class="review__rating">
-                                <?php for($i = 0; $i< $review->rating; $i++):?>
-                                    <i class='bx bxs-star'></i>
-                                <?php endfor;?>
-                            </div>
-
-                            <div class="review__text">
-                                <?= Helpers::limitarTexto($review->review, 120) ?>
-                            </div>
-                            
-                            <a class="review__link" href="<?=$review->google_url?>" target="_blank" data-section="index" data-label="google_more">Ver review en Google</a>
-                        </div>
-
-                    </div>                
-                <?php endforeach;?>
-            </div>
-
-            <div class="swiper-pagination"></div>
-        </div>
-    </div>
 </section>
 
 <section class="podcast">

@@ -8,13 +8,14 @@
     &__top{
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        gap: 2rem;
+        gap: 3rem;
         padding: 5rem;
         background-color: v.$fondo_claro;
-
+        width: 65%;
+        margin: 0 auto;
+        border-radius: 1rem;
         @include m.computadora{
             grid-template-columns: repeat(2,1fr);
-            padding: 5rem 20rem;
         }
 
         &-title{
@@ -22,20 +23,12 @@
             text-align: center;
             font-size: 4rem;
             font-weight: v.$black;
-
-            @include m.computadora{
-                text-align: left;
-            }
         }
 
         &-text{
             font-size: 2.1rem;
             line-height: 2.6rem;
-            text-align: center;
-
-            @include m.computadora{
-                text-align: left;
-            }
+            text-align: justify;
         }
 
         &-CTA{
@@ -46,9 +39,9 @@
             transition: all 0.5s ease;
             width: 100%;
             text-align: center;
-
+            margin: 0 auto;
             @include m.computadora{
-                width: 80%;
+                width: 70%;
             }
 
             &:hover{
@@ -57,6 +50,9 @@
             }
         }
 
+        &-image{
+            border-radius: 1rem;
+        }
     }
 
     &__membresias{

@@ -153,7 +153,7 @@
     &__link{
         color: v.$dorado;
         font-weight: 500;
-        font-size: 1.9rem;
+        font-size: 1.6rem;
         text-align: center;
         
 
@@ -462,12 +462,10 @@
 
     &__title{
         color: v.$dorado;
-        text-transform: uppercase;
         font-weight: 900;
-        margin: 0;
         font-size: 4.5rem;
-        margin-top: 3.5rem;
-        margin-bottom: 1rem;
+        width: 90%;
+        margin: 4.5rem auto 3.5rem auto;
     }
 }
 
@@ -551,6 +549,7 @@
 
     &__irs{
         padding: 3rem 0;
+        margin-top: 3rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -560,7 +559,7 @@
 
         @include m.tablet{
             flex-direction: row;
-            gap: 10rem;
+            gap: 8rem;
         }
     }
 
@@ -682,22 +681,22 @@
 }
 
 .categorias{
-    padding: 5rem 0;
+    padding: 1.5rem 0 5rem 0;
     background-color: #faf8f6;
     &__grid{
         width: 95%;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        gap: 2rem;
+        gap: 1rem;
 
         @include m.tablet{
-            width: 80%;
+            width: 90%;
             grid-template-columns: repeat(2, 1fr);
         }
 
         @include m.computadora{
-            width: 70%;
+            width: 90%;
             grid-template-columns: repeat(4, 1fr);
         }
     }
@@ -706,7 +705,7 @@
 .categoria{
     background-color: v.$fondo_oscuro;
     text-align: center;
-    padding: 4rem 1rem;
+    padding: 5rem 1rem;
     border-radius: 1rem;
     transition: all 0.5s ease;
     display: flex;
@@ -714,20 +713,21 @@
     justify-content: start;
     flex-direction: column;
     gap: .5rem;
-    min-height: 27rem;
+    min-height: 35rem;
+    width: 100%;
     position: relative;
     transition: all .5s ease;
 
     &__icono{
         color: #333333;
-        font-size: 5rem;
+        font-size: 7rem;
         transition: all .5s ease;
     }
     
     &__name{
         -webkit-box-reflect: below -1.5rem linear-gradient(transparent, rgba(0,0,0,0.2));
         color: v.$blanco;
-        font-size: 4rem;
+        font-size: 4.5rem;
         font-weight: v.$black;
         text-align: center;
         margin: 0;
@@ -871,8 +871,8 @@
         color: #cda02d;
         text-align: center;
         font-weight: 900;
-        margin-top: 3.5rem;
-        margin-bottom: 1rem;
+        width: 90%;
+        margin: 3.5rem auto 1rem auto;
         font-size: 4.5rem;
     }
     
@@ -957,9 +957,10 @@
         color: #cda02d;
         text-align: center;
         font-weight: 900;
-        margin-top: 3.5rem;
-        margin-bottom: 1rem;
         font-size: 4.5rem;
+        width: 90%;
+        margin: 3.5rem auto 1rem auto;
+
     }
 
     &__titulo{
@@ -1178,7 +1179,7 @@
 }
 
 .membresia-banner{
-    padding: 5rem;
+    padding: 5rem .5rem;
 
     &__container{
         margin: 0 auto;
@@ -1186,15 +1187,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
-        padding: 3rem 1rem;
+        gap: 2rem;
+        padding: 3rem;
         background-color: v.$negro;
         border-radius: 1rem;
         flex-direction: column;
 
         @include m.tablet{
             flex-direction: row;
-            padding: 3rem 1rem;
         }
 
         @include m.computadora{
@@ -1216,6 +1216,7 @@
         color: v.$blanco;
         width: 100%;
         margin: 0;
+        margin-bottom: 2rem;
         font-weight: v.$black;
         font-size: 2.5rem;
 
@@ -1225,6 +1226,7 @@
 
         @include m.tablet{
             width: 50%;
+            margin-bottom: 0;
         }
     }
 
