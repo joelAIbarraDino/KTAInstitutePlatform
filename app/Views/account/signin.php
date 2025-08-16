@@ -89,6 +89,11 @@
                     data-shape="rectangular"
                     data-logo_alignment="left">
                 </div>
+
+                <div class="credit-kta">
+                    <p class="credit-kta__text">Powered by </p>
+                    <img src="/assets/images/logoKTA.jpg" alt="logo kta" class="credit-kta__logo">
+                </div>
             </form>
         </div>
     </div>

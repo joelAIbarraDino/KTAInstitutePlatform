@@ -12,23 +12,24 @@
 <main class="membresia-page">
 
     <section class="membresia-page__top" data-aos="fade">
-        <div class="membresia-page__top-left" data-aos="fade-right">
-            <h2 class="membresia-page__top-title" data-section="memberships" data-label="title">Membresías KTA</h2>
-            <hr data-aos="fade-up" class="linea-personalizada">
-            <p class="membresia-page__top-text" data-section="memberships" data-label="description">
-                Acceso VIP durante 12 meses a todas las formaciones, cursos y educación continua. Más de 1000 horas de formación especializada.
-            </p>
+        <div class="membresia-page__top-container">
+            <div class="membresia-page__top-left" data-aos="fade-right">
+                <h2 class="membresia-page__top-title" data-section="memberships" data-label="title">Membresías KTA</h2>
+                <hr data-aos="fade-up" class="linea-personalizada">
+                <p class="membresia-page__top-text" data-section="memberships" data-label="description">
+                    Acceso VIP durante 12 meses a todas las formaciones, cursos y educación continua. Más de 1000 horas de formación especializada.
+                </p>
 
-            <a href="#membresia-page__membresias" class="membresia-page__top-link">
-                <div class="membresia-page__top-CTA" data-section="memberships" data-label="CTA">¡Consigue tu Membresía ahora!</div>
-            </a>
+                <a href="#membresia-page__membresias" class="membresia-page__top-link">
+                    <div class="membresia-page__top-CTA" data-section="memberships" data-label="CTA">¡Consigue tu Membresía ahora!</div>
+                </a>
 
+            </div>
+
+            <div>
+                <img data-aos="fade-left" class="membresia-page__top-image" src="/assets/images/membresia-top.jpg" alt="" srcset="foto membresia">
+            </div>
         </div>
-
-        <div>
-            <img data-aos="fade-left" class="membresia-page__top-image" src="/assets/images/membresia-top.jpg" alt="" srcset="foto membresia">
-        </div>
-        
     </section>
 
     <section id="membresia-page__membresias" class="membresia-page__membresias" data-aos="fade">

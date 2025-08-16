@@ -31,12 +31,17 @@
                     <input class="submit-block" type="submit" value="Enviar correo">
                 </div>
 
+                <div class="credit-kta">
+                    <p class="credit-kta__text">Powered by </p>
+                    <img src="/assets/images/logoKTA.jpg" alt="logo kta" class="credit-kta__logo">
+                </div>
+
             </form>
         </div>
     </div>
 
-    <div class="login-image">
-        <div class="login-filter"></div>
+    <div class="login-image-sigin">
+        <div class="login-filter-admin"></div>
     </div>
 
 </main>

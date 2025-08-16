@@ -7,19 +7,25 @@
 }
 
 .top-about{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: row wrap;
-    width: 95%;
+    
+    width: 100%;
     margin: 0 auto;
-    gap: 2rem;
+    
     padding: 5rem 3rem;
     background-color: v.$fondo_claro;
-    border-radius: 1rem;
 
-    @include m.computadora{
-        width: 65%;
+    &__container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
+        gap: 2rem;
+        width: 90%;
+        margin: 0 auto;
+
+        @include m.computadora{
+            width: 65%;
+        }
     }
 
     &__text-content{
@@ -36,7 +42,8 @@
     }
 
     &__title{
-        color: v.$dorado;
+        color: v.$negro;
+        text-transform: lowercase;
         margin: 0;
         font-size: 4.5rem;
     }
@@ -121,12 +128,17 @@
         justify-content: center;
 
         @include m.computadora{
-            width: 40%;
+            width: 45%;
         }
     }
 
     &__image{
         border-radius: 1rem;
+        height: auto;
+
+        @include m.tablet{
+            height: 100%;
+        }
     }
 
     &__text-container{
@@ -138,7 +150,7 @@
         flex-direction: column;
 
         @include m.computadora{
-            width: 60%;
+            width: 65%;
         }
     }
 
@@ -167,8 +179,9 @@
     }
 
     &__title{
-        color: v.$dorado;
+        color: v.$negro;
         font-weight: v.$black;
+        text-transform: lowercase;
         text-align: center;
         margin: 0 0 2.5rem 0;
         font-size: 4.5rem;
@@ -186,7 +199,7 @@
     &__icono{
         width: 7rem;
         height: 7rem;
-        background-color: v.$negro;
+        background-color: v.$dorado;
         padding: 1rem;
         color: v.$blanco;
         font-size: 4.5rem;
@@ -197,6 +210,7 @@
         margin: 0;
         color: v.$negro;
         font-size: 2.5rem;
+        margin-bottom: .5rem;
     }
 
     &__text-valor{
@@ -300,7 +314,7 @@
     }
 
     &__title{
-        color: v.$dorado;
+        color: v.$negro;
         font-size: 4.5rem;
     }
 

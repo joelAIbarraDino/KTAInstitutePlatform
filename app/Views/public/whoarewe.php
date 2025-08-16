@@ -8,29 +8,31 @@
 
 <main class="about-page">
     <section class="top-about">
-        
-        <div class="top-about__text-content">
-            <h2 data-aos="fade-down" class="top-about__title">¿QUIÉNES SOMOS?</h2>
-            <hr data-aos="fade-up" class="linea-personalizada">
-            <p data-aos="fade-up" class="top-about__text">
-                Kta Institute, con 5 años de experiencia, se dedica a apoyar y empoderar a la comunidad hispana en Estados Unidos. 
-                Nuestra educación está basada en experiencias prácticas y reales, diseñadas para prepararte en cada desafío que 
-                enfrentarás como profesional de impuestos. Además, nuestros cursos cuentan con la aprobación del IRS, lo que garantiza una 
-                formación de calidad y respaldo. ¡No dudes en comunicarte con nuestro centro de atención en Tampa.
-            </p>
-        </div>
-        
-        <div class="top-about__image-container-side" data-aos="fade-up">
-            <div class="top-about__image" style="background-image: url('assets/images/fundador.jpg');"></div>
-        </div>
+        <div class="top-about__container">
+            <div class="top-about__text-content">
+                <h2 data-aos="fade-down" class="top-about__title">¿QUIÉNES SOMOS?</h2>
+                <hr data-aos="fade-up" class="linea-personalizada">
+                <p data-aos="fade-up" class="top-about__text">
+                    Kta Institute, con 5 años de experiencia, se dedica a apoyar y empoderar a la comunidad hispana en Estados Unidos. 
+                    Nuestra educación está basada en experiencias prácticas y reales, diseñadas para prepararte en cada desafío que 
+                    enfrentarás como profesional de impuestos. Además, nuestros cursos cuentan con la aprobación del IRS, lo que garantiza una 
+                    formación de calidad y respaldo. ¡No dudes en comunicarte con nuestro centro de atención en Tampa.
+                </p>
+            </div>
+            
+            <div class="top-about__image-container-side" data-aos="fade-up">
+                <div class="top-about__image" style="background-image: url('assets/images/fundador.jpg');"></div>
+            </div>
 
-        <div class="top-about__image-container-center" data-aos="fade-down">
-            <div class="top-about__image" style="background-image: url('/assets/images/nosotros-top.png');"></div>
-        </div>
+            <div class="top-about__image-container-center" data-aos="fade-down">
+                <div class="top-about__image" style="background-image: url('/assets/images/nosotros-top.png');"></div>
+            </div>
 
-        <div class="top-about__image-container-side" data-aos="fade-up">
-            <div class="top-about__image" style="background-image: url('/assets/images/img-2.jpg');"></div>
+            <div class="top-about__image-container-side" data-aos="fade-up">
+                <div class="top-about__image" style="background-image: url('/assets/images/img-2.jpg');"></div>
+            </div>
         </div>
+        
     </section>
 
     <section class="text-about">
@@ -41,7 +43,7 @@
 
     <section class="text-image-about">
         <div class="text-image-about__image-container">
-            <img  class="text-image-about__image" src="/assets/images/fundadores1.jpg" alt="" srcset="" data-aos="fade-right">
+            <img  class="text-image-about__image" src="/assets/images/fundadores-about.jpg" alt="" srcset="" data-aos="fade-right">
         </div>
 
         <div class="text-image-about__text-container">
@@ -95,8 +97,8 @@
         </div>
         
         <div class="valores-about__images">
-            <div class="valores-about__image" style="background-image: url('assets/images/foto3.jpg');" data-aos="fade-left"></div>
-            <div class="valores-about__image" style="background-image: url('assets/images/about3.jpg');" data-aos="fade-left"></div>
+            <div class="valores-about__image" style="background-image: url('/assets/images/nosotros-top.png');" data-aos="fade-left"></div>
+            <div class="valores-about__image" style="background-image: url('/assets/images/index-live2.jpg');" data-aos="fade-left"></div>
         </div>
     </section>
 

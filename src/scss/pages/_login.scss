@@ -167,3 +167,20 @@
         }
     }
 }
+
+.credit-kta{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    align-items: center;
+    justify-content: center;
+
+    &__text{
+        color: #666;
+        font-size: 1.4rem;
+    }
+
+    &__logo{
+        width: 3.5rem;
+    }
+}

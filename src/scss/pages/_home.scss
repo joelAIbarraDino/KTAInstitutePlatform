@@ -461,11 +461,11 @@
     }
 
     &__title{
-        color: v.$dorado;
+        color: v.$negro;
         font-weight: 900;
         font-size: 4.5rem;
         width: 90%;
-        margin: 4.5rem auto 3.5rem auto;
+        margin: 4.5rem auto 1rem auto;
     }
 }
 
@@ -868,7 +868,7 @@
     }
 
     &__subtitulo{
-        color: #cda02d;
+        color: v.$negro;
         text-align: center;
         font-weight: 900;
         width: 90%;
@@ -954,7 +954,7 @@
     padding: 13rem 0;
 
     &__subtitulo{
-        color: #cda02d;
+        color: v.$negro;
         text-align: center;
         font-weight: 900;
         font-size: 4.5rem;

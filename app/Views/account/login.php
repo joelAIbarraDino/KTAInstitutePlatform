@@ -70,7 +70,7 @@
                     data-login_uri="<?=$googleCallBack?>"
                     data-auto_prompt="false"
                 ></div>
-                <div style="display: flex; justify-content: center; flex-direction:column">
+                <div>
                     <div class="g_id_signin"
                         data-type="standard"
                         data-size="large"
@@ -80,6 +80,11 @@
                         data-logo_alignment="left"
                         data-width="400px">
                     </div>
+                </div>
+
+                <div class="credit-kta">
+                    <p class="credit-kta__text">Powered by </p>
+                    <img src="/assets/images/logoKTA.jpg" alt="logo kta" class="credit-kta__logo">
                 </div>
 
             </form>            

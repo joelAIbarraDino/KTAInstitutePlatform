@@ -124,7 +124,7 @@ $dino->router->post('/auth/login-callback', [AuthController::class, 'ktaAuth']);
 $dino->router->post('/auth/login-callback-admin', [AuthController::class, 'ktaAuthAdmin']);
 $dino->router->post('/auth/google-callback', [AuthProvidersController::class, 'googleAuth']);
 
-$dino->router->get('/forgot', [AuthController::class, 'forgot'], [new StudentLoggedMiddleware('/login')]);
+$dino->router->get('/forgot', [AuthController::class, 'forgot']);
 $dino->router->post('/forgot', [AuthController::class, 'forgot']);
 
 $dino->router->get('/sign-up', [AuthController::class, 'signIn']);
