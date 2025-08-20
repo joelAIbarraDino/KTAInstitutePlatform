@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="keywords" content="Cursos de Impuestos aprobados por el IRS de Contabilidad, QB, Inmigración, bookkeeping y mas">
 	<meta name="description" content="Cursos de Impuestos aprobados por el IRS de Contabilidad, QB, Inmigración, bookkeeping y mas">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="INDEX,FOLLOW">
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Indie+Flower&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&family=Playwrite+HU:wght@100..400&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <?= $topScripts??''; ?>
     <?php $cssVersion = filemtime('assets/css/app.css'); ?>

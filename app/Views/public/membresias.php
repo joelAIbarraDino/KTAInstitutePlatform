@@ -59,6 +59,8 @@
                     </div>
                 <?php endforeach; ?>
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
         </div>
         
@@ -75,6 +77,10 @@
             delay:4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
         pagination: {
             el: ".swiper-pagination",

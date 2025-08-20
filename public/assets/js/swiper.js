@@ -21,6 +21,10 @@
         1024: {
             slidesPerView: 4
         }
+    },
+    autoplay: {
+        delay: 5000,
     }
+    
     });
 })();

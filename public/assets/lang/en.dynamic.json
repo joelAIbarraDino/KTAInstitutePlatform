@@ -79,5 +79,9 @@
     "bannerAsesoria-1": {
         "text_banner": "new text from bannerfasdfasd",
         "CTA": "fdasfads"
+    },
+    "slidebar-4": {
+        "title": "extra test slider",
+        "subtitle": "fdasfasd"
     }
 }

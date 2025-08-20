@@ -23,8 +23,10 @@
         width: 90%;
         margin: 0 auto;
 
+
         @include m.computadora{
             width: 65%;
+            flex-flow: row nowrap;
         }
     }
 
@@ -43,7 +45,6 @@
 
     &__title{
         color: v.$negro;
-        text-transform: lowercase;
         margin: 0;
         font-size: 4.5rem;
     }
@@ -61,8 +62,8 @@
         background-repeat: no-repeat;
         background-size: cover;
         min-width: 15rem;
-        width: 25rem;
-        height: 25rem;
+        width: 40rem;
+        height: 40rem;
         content: '';
         border-radius: 1rem;
 
@@ -134,11 +135,6 @@
 
     &__image{
         border-radius: 1rem;
-        height: auto;
-
-        @include m.tablet{
-            height: 100%;
-        }
     }
 
     &__text-container{
@@ -181,7 +177,6 @@
     &__title{
         color: v.$negro;
         font-weight: v.$black;
-        text-transform: lowercase;
         text-align: center;
         margin: 0 0 2.5rem 0;
         font-size: 4.5rem;

@@ -10,7 +10,7 @@
     <section class="top-about">
         <div class="top-about__container">
             <div class="top-about__text-content">
-                <h2 data-aos="fade-down" class="top-about__title">¿QUIÉNES SOMOS?</h2>
+                <h2 data-aos="fade-down" class="top-about__title">¿Quiénes somos?</h2>
                 <hr data-aos="fade-up" class="linea-personalizada">
                 <p data-aos="fade-up" class="top-about__text">
                     Kta Institute, con 5 años de experiencia, se dedica a apoyar y empoderar a la comunidad hispana en Estados Unidos. 
@@ -70,7 +70,7 @@
 
     <section class="valores-about">
         <div class="valores-about__text">
-            <h3 class="valores-about__title" data-aos="fade-up">MISIÓN, VISIÓN Y VALORES INSTITUCIONALES</h3>
+            <h3 class="valores-about__title" data-aos="fade-up">Misión, Visión y Valores Institucionales</h3>
             <hr data-aos="fade-up" class="linea-personalizada">
 
             <div class="valores-about__valor">
