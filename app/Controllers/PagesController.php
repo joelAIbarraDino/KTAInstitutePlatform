@@ -38,7 +38,7 @@ class PagesController{
         ]);
     }
 
-        public static function home1(): void{
+    public static function home1(): void{
 
         $sliders = Slidebar::all();
         $courses = CourseView::all(5, 'id_course', 'DESC');
@@ -50,6 +50,27 @@ class PagesController{
         Response::render('public/home1', [
             'nameApp'=>APP_NAME, 
             'title' => 'Inicio 1',
+            'sliders'=>$sliders,
+            'courses'=>$courses,
+            'reviews'=>$reviews,
+            'teachers'=>$teachers,
+            'categories'=>$categories,
+            'lives'=>$lives
+        ]);
+    }
+
+    public static function home2(): void{
+
+        $sliders = Slidebar::all();
+        $courses = CourseView::all(5, 'id_course', 'DESC');
+        $lives = LiveView::all(3, 'created_at', 'DESC');
+        $teachers = Teacher::all()??[];
+        $categories = Category::all()??[];
+        $reviews = Review::all(20);
+        
+        Response::render('public/home2', [
+            'nameApp'=>APP_NAME, 
+            'title' => 'Inicio 2',
             'sliders'=>$sliders,
             'courses'=>$courses,
             'reviews'=>$reviews,

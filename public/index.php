@@ -92,6 +92,7 @@ $dino = new Dino(dirname(__DIR__), $runMode, $dbConfig);
 //public zone
 $dino->router->get('/', [PagesController::class, 'index']);
 $dino->router->get('/home1', [PagesController::class, 'home1']);
+$dino->router->get('/home2', [PagesController::class, 'home2']);
 
 $dino->router->get('/terminos-condiciones', [PagesController::class, 'terminos']);
 $dino->router->get('/politica-privacidad', [PagesController::class, 'politica']);
