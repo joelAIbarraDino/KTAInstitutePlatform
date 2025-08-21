@@ -466,6 +466,7 @@
         font-size: 4.5rem;
         width: 90%;
         margin: 4.5rem auto 1rem auto;
+        text-align: center;
     }
 }
 
@@ -720,6 +721,12 @@
 
     &__icono{
         color: #333333;
+        font-size: 7rem;
+        transition: all .5s ease;
+    }
+
+    &__icono-2{
+        color: v.$dorado;
         font-size: 7rem;
         transition: all .5s ease;
     }

@@ -583,12 +583,7 @@ const initializeSwipers = () => {
 		},
 	});
 };
-const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
-tabs.forEach(tab => {
-	tab.addEventListener('shown.bs.tab', () => {
-		initializeSwipers();
-	});
-});
+
 window.addEventListener('load', initializeSwipers);
 
 // Team Class Slider

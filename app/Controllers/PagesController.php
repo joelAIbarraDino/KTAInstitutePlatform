@@ -63,10 +63,10 @@ class PagesController{
 
         $sliders = Slidebar::all();
         $courses = CourseView::all(5, 'id_course', 'DESC');
-        $lives = LiveView::all(3, 'created_at', 'DESC');
         $teachers = Teacher::all()??[];
         $categories = Category::all()??[];
         $reviews = Review::all(20);
+        $membresias = Membership::all()??[];
         
         Response::render('public/home2', [
             'nameApp'=>APP_NAME, 
@@ -76,7 +76,7 @@ class PagesController{
             'reviews'=>$reviews,
             'teachers'=>$teachers,
             'categories'=>$categories,
-            'lives'=>$lives
+            'membresias'=>$membresias
         ]);
     }
 
