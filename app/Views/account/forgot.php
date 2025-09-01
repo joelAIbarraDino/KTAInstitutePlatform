@@ -14,8 +14,10 @@
             <form method="post" class="form no-background">
                 <legend class="form__title">Recuperar acceso</legend>
                 
-                <p class="form__instructions">Ingresa tu correo electronico para enviar un codigo de verificación</p>
-        
+                <p class="form__instructions">Ingresa tu correo electronico para recuperar el acceso a tu cuenta</p>
+
+                <?php include_once __DIR__.'/../components/alerts.php'; ?>
+
                 <div class="form__input">
                     <label for="email">Correo</label>
                     <input 

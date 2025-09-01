@@ -84,6 +84,61 @@ class Helpers{
         return $palabras[0]??'';
     }
 
+    static function hideText(string $text, int $caractDisplayable = 5, string $alignment = "S", string $char = '*'):string{
+        $textLenght = strlen($text);
+        $toHide = 0;
+
+        //if the string is empty, return an empty string
+        if($textLenght == 0)
+            return "";
+
+        //if the string is shorter than the characters to display, show only the last character of the input string
+        if($textLenght < $caractDisplayable)
+            $caractDisplayable = 1;
+        
+        //number of characters to hide
+        $toHide = $textLenght - $caractDisplayable;
+
+        switch(strtoupper($alignment)){
+            //start hidden
+            case 'S':
+                return str_repeat($char, $toHide).substr($text, -$caractDisplayable);
+            break;
+            //Hide center
+            case 'C':
+                $leftVisible  = intdiv($caractDisplayable, 2);
+                $rightVisible = $caractDisplayable - $leftVisible;
+                return substr($text, 0, $leftVisible).str_repeat($char, $toHide).substr($text, -$rightVisible);
+            break;
+            //End hidden
+            case 'E':
+                return substr($text, 0, $caractDisplayable).str_repeat($char, $toHide);
+            break;
+            //email hidden
+            case 'M':
+                // Return star hidden if the text isn't a valid email
+                if (!str_contains($text, '@'))
+                    return str_repeat($char, $toHide).substr($text, -$caractDisplayable);
+                
+                //get user and email's domain
+                [$user, $domain] = explode('@', $text, 2);
+                $userLength = strlen($user);
+
+                // Show first char only if too short
+                if ($userLength <= $caractDisplayable)
+                    $caractDisplayable = 1;
+                
+                $hiddenPart = str_repeat($char, $userLength - $caractDisplayable);
+
+                return substr($user, 0, $caractDisplayable) . $hiddenPart . '@' . $domain;
+            break;
+            //by default start hidden
+            default:
+                return str_repeat($char, $toHide).substr($text, -$caractDisplayable);
+            
+        }
+    }
+
     static function traducirYGuardarJson($entidad, $id, $objNuevo, $objOriginal = null, array $atributosTraducibles = [], $format = "text") {
         $clavesTraducidas = [];
         $clavesOriginales = [];
@@ -220,6 +275,63 @@ class Helpers{
         }
 
         return $contrasena;
+    }
+
+    public static function forgotPasswordHTML():string{
+        return $html = '
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Recuperación de acceso a cuenta KTA</title>
+                </head>
+                <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial, sans-serif;">
+                    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:30px 0;">
+                        <tr>
+                        <td align="center">
+                            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.05);">
+                            <tr>
+                                <img src="https://dinosistema.ktainstitute.com/assets/images/logoKTA.jpg" alt="logo de KTA" style="width:10%; margin: 15px 0;">
+                            </tr>
+                            <tr>
+                                <td style="background:#CDA02D;padding:20px;text-align:center;color:#ffffff;font-size:24px;">
+                                <strong>¡Este es tu contraseña temporal!</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:30px;color:#000000;">
+                                <h1 style="margin-top:0;font-size:22px;">Hola, {NOMBRE_USUARIO}</h1>
+                                <p style="font-size:16px;line-height:1.5;">
+                                    Has solicitado recuperar tu acceso a KTA, te enviamos una contraseña temporal para acceder a tu cuenta.
+                                </p>
+                                <p style="font-size:16px;line-height:1.5;">
+                                    Aquí tienes tu contraseña temporal:
+                                </p>
+                                <div style="background:#f7f7f7;padding:12px 18px;margin:20px 0;border-radius:6px;font-size:18px;text-align:center;font-weight:bold;color:#000000;">
+                                    {CONTRASENA_GENERADA}
+                                </div>
+                                <p style="font-size:16px;line-height:1.5;">
+                                    Puedes cambiarla después de iniciar sesión desde tu panel de usuario.
+                                </p>
+
+                                </div>
+                                <p style="font-size:14px;color:#777777;">
+                                    Si tienes dudas o necesitas ayuda, puedes enviar un correo a {EMAIL_SOPORTE}.
+                                </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background:#eeeeee;padding:15px;text-align:center;font-size:12px;color:#999999;">
+                                © '.date("Y").' KTA Institue. Todos los derechos reservados.
+                                </td>
+                            </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+                </body>
+            </html>';
+
     }
 
     public static function newUserPaymentHTML():string{

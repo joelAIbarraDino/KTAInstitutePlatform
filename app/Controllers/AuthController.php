@@ -3,9 +3,11 @@
 namespace App\Controllers;
 
 use App\Classes\Auth;
+use App\Classes\Email;
 use App\Classes\Helpers;
 use App\Models\Admin;
 use App\Models\Student;
+use DinoEngine\Helpers\Helpers as HelpersHelpers;
 use DinoEngine\Http\Request;
 use DinoEngine\Http\Response;
 
@@ -127,11 +129,46 @@ class AuthController
     }
 
     public static function forgot(): void{
+        $alerts = [];
+
+        if(Request::isPOST()){
+            $dataSend = Request::getPostData();
+            
+            if(!$dataSend['email'])
+                $alerts['error'][] = 'Debe ingresar su email';
+
+            $user = Student::where('email', '=', $dataSend['email']);
+
+            //send email with a new random password
+            if($user){
+                $tempPassword = Helpers::generate_password();
+                $user->password = Auth::encriptPassword($tempPassword);
+
+                if(!$user->save()){
+                    $alerts['error'][] = 'Ha ocurrido un error; intente nuevamente más tarde.';
+                }
+                
+                //enviamos correo con el acceso a su cuenta
+                $html = Helpers::forgotPasswordHTML();
+
+                $html = str_replace('{NOMBRE_USUARIO}', Helpers::getFirstName($user->name), $html);
+                $html = str_replace('{CONTRASENA_GENERADA}', $tempPassword, $html);
+                $html = str_replace('{EMAIL_SOPORTE}', 'soporte@ktainstitute.com', $html);
+
+                $newUserEmail = new Email($user->email, $user->name, 'Recuperación de acceso a cuenta KTA', $html);
+
+                $newUserEmail->sendEmail();
+
+                $alerts['success'][] = 'Se ha enviado un correo a '. Helpers::hideText($user->email, 5, 'M');
+            }else{
+                $alerts['error'][] = 'El correo no tiene una cuenta asociada';
+            }
+        }
 
         Response::render('account/forgot', [
             'nameApp'=>APP_NAME, 
             'title' => 'Login',
-            'transparente'=>false
+            'alerts'=>$alerts
         ]);
     }
 
