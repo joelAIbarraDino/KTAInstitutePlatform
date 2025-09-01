@@ -638,7 +638,7 @@
 
 <!-- Start of Footer section
 ============================================= -->
-<footer id="ed-footer-1" class="ed-footer-section-1" data-background="/assets/img2/bg/ftr-bg.jpg">
+<footer id="ed-footer-1" class="ed-footer-section-1" data-background="/assets/img2/bg/ftr-bg2.jpg">
     <div class="container">
         <div class="ed-footer-content">
             <div class="ed-footer-widget-area d-flex justify-content-between">
