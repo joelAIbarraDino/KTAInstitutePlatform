@@ -90,7 +90,7 @@ $runMode = $_SERVER['HTTP_HOST'] == 'localhost:3000'?Dino::DEVELOPMENT_MODE:Dino
 $dino = new Dino(dirname(__DIR__), $runMode, $dbConfig);
 
 //public zone
-$dino->router->get('/', [PagesController::class, 'index']);
+$dino->router->get('/', [PagesController::class, 'home']);
 $dino->router->get('/home1', [PagesController::class, 'home1']);
 $dino->router->get('/home2', [PagesController::class, 'home2']);
 

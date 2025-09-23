@@ -8,45 +8,47 @@
         </div>
     </section>
 
-    <section class="cursos-filtro" data-aos="fade-up" data-aos-delay="50">
-        <div class="cursos-filtro__categorias">
-            <a class="cursos-filtro__categoria <?=!isset($category_url)?'cursos-filtro__categoria--active':''?>" href="/cursos" data-section="courses" data-label="all-courses">Todos los cursos</a>
-            <?php foreach($categories as $category): ?>
+    <?php if(!isset($category_url)):?>
+        <section class="categorias">
+            <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Categorías</p>
+            <hr data-aos="fade-up" class="linea-personalizada">
 
-                <?php if(isset($category_url)):?>
-                    <a 
-                        class="cursos-filtro__categoria  <?=$category_url == $category->id_category?'cursos-filtro__categoria--active':''?>"
-                        href="/cursos/categoria/<?=$category->id_category?>"
-                        ><?=$category->name?>
+            <div class="categorias__grid" data-aos="fade-up">
+                
+                <?php foreach($categories as $category ): ?>
+                    <a href="/cursos/categoria/<?=$category->id_category?>">
+                        <div class="categoria">
+                            <i class="categoria__icono bx <?=$category->icon?>"></i>
+
+                            <p class="categoria__name"><?=$category->name?></p>
+                            
+                            <div class="categoria__logo-container">
+                                <img class="categoria__logo" src="/assets/images/logoKTA.png" alt="">
+                            </div>
+                        </div>
                     </a>
+                <?php endforeach;?>
+            </div>
 
+        </section>
+    <?php endif;?>
+
+    <?php if (isset($category_url)):?>
+        <section class="cursos-container" data-aos="fade">        
+            <div class="cursos-container__grid">
+                <?php if(!empty($courses)):?>
+                    <?php foreach($courses as $course):?>
+                        <?php if($course->privacy == 'Público'):?>
+                            <?php include __DIR__.'/../../components/courseCard.php'; ?>
+                        <?php endif;?>
+                    <?php endforeach;?>
                 <?php else:?>
-                    <a 
-                        class="cursos-filtro__categoria"
-                        href="/cursos/categoria/<?=$category->id_category?>"
-                        ><?=$category->name?>
-                    </a>
+                    <p class="cursos-container__empty">No hay cursos en vivo de esta categoria</p>
                 <?php endif;?>
                 
-            <?php endforeach ;?>
-        </div>
-    </section>
-
-    <section class="cursos-container">
-        
-        <div class="cursos-container__grid">
-            <?php if(!empty($courses)):?>
-                <?php foreach($courses as $course):?>
-                    <?php if($course->privacy == 'Público'):?>
-                        <?php include __DIR__.'/../../components/courseCard.php'; ?>
-                    <?php endif;?>
-                <?php endforeach;?>
-            <?php else:?>
-                <p class="cursos-container__empty">No hay cursos de esta categoria</p>
-            <?php endif;?>
-            
-        </div>
-    </section>    
+            </div>
+        </section>
+    <?php endif;?>
 
     <?php include_once __DIR__.'/../../components/bannerAsesorias.php'; ?>
 </main>

@@ -9673,6 +9673,9 @@ blockquote.vs-quote span::before {
 }
 .feature-style1 .feature-title {
   text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 .feature-style1 .feature-icon {
   height: 168px;

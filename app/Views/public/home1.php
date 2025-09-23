@@ -376,7 +376,7 @@
         </div>
     </section>
 
-        <!--==============================
+    <!--==============================
     Categorias
     ==============================-->
     <section class="categorias">
@@ -746,6 +746,28 @@
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Main Js File -->
     <script src="/assets/js/main.js"></script>
+
+    <!-- For Js Library -->
+    <script src="assets/js2/jquery-3.7.0.min.js"></script>
+    <script src="assets/js2/bootstrap.bundle.min.js"></script>
+    <script src="assets/js2/swiper-bundle.min.js"></script>
+    <script src="assets/js2/wow.min.js"></script>
+    <script src="assets/js2/appear.js"></script>
+    <script src="assets/js2/gsap.min.js"></script>
+    <script src="assets/js2/knob.js"></script>
+    <script src="assets/js2/jquery.counterup.min.js"></script>
+    <script src="assets/js2/isotope.pkgd.min.js"></script>
+    <script src="assets/js2/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js2/waypoints.min.js"></script>
+    <script src="assets/js2/jqueryui.js"></script>
+    <script src="assets/js2/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js2/jquery.marquee.min.js"></script>
+    <script src="assets/js2/lenis.min.js"></script>
+    <script src="assets/js2/split-type.min.js"></script>
+    <script src="assets/js2/ScrollTrigger.min.js"></script>
+    <script src="assets/js2/SplitText.min.js"></script>
+    <script src="assets/js2/jquery.nice-select.min.js"></script>
+    <script src="assets/js2/script.js"></script>
 
     <?php 
         $saleVersion = filemtime('assets/js/saleAlerts.js');

@@ -14,10 +14,32 @@ use App\Models\Review;
 use App\Models\Module;
 use App\Models\Lesson;
 use App\Models\FAQ;
-
+use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 
 class PagesController{
+
+    public static function home():void{
+        $sliders = Slidebar::all();
+        $courses = CourseView::all(5, 'id_course', 'DESC');
+        $lives = LiveView::all(3, 'created_at', 'DESC');
+        $membresias = Membership::all()??[];
+        $teachers = Teacher::all()??[];
+        $categories = Category::all()??[];
+        $reviews = Review::all(20);
+        
+        Response::render('public/home', [
+            'nameApp'=>APP_NAME, 
+            'title' => 'Inicio',
+            'sliders'=>$sliders,
+            'courses'=>$courses,
+            'reviews'=>$reviews,
+            'teachers'=>$teachers,
+            'categories'=>$categories,
+            'membresias'=>$membresias,
+            'lives'=>$lives
+        ]);
+    }
 
     public static function index(): void{
 

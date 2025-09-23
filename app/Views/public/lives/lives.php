@@ -7,48 +7,49 @@
             <!-- <p class="cursos-banner__desc" id="main-content" data-section="courses" data-label="label">Empieza, cambia o avanza en tu carrera con KTA como guía.</p> -->
         </div>
     </section>
+
+    <?php if(!isset($category_url)):?>
+        <section class="categorias">
+            <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Categorías</p>
+            <hr data-aos="fade-up" class="linea-personalizada">
+
+            <div class="categorias__grid" data-aos="fade-up">
+                
+                <?php foreach($categories as $category ): ?>
+                    <a href="/lives/categoria/<?=$category->id_category?>">
+                        <div class="categoria">
+                            <i class="categoria__icono bx <?=$category->icon?>"></i>
+
+                            <p class="categoria__name"><?=$category->name?></p>
+                            
+                            <div class="categoria__logo-container">
+                                <img class="categoria__logo" src="/assets/images/logoKTA.png" alt="">
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach;?>
+            </div>
+
+        </section>
+    <?php endif;?>
     
-    <section class="cursos-filtro" data-aos="fade-up" data-aos-delay="50">
-
-        <div class="cursos-filtro__categorias">
-            <a class="cursos-filtro__categoria <?=!isset($category_url)?'cursos-filtro__categoria--active':''?>" href="/lives" data-section="courses" data-label="all-courses">Todos los cursos</a>
-            <?php foreach($categories as $category): ?>
-
-                <?php if(isset($category_url)):?>
-                    <a 
-                        class="cursos-filtro__categoria  <?=$category_url == $category->id_category?'cursos-filtro__categoria--active':''?>"
-                        href="/lives/categoria/<?=$category->id_category?>"
-                        ><?=$category->name?>
-                    </a>
-
+    <?php if (isset($category_url)):?>
+        <section class="cursos-container" data-aos="fade">        
+            <div class="cursos-container__grid">
+                <?php if(!empty($lives)):?>
+                    <?php foreach($lives as $live):?>
+                        <?php if($live->privacy == 'Público'):?>
+                            <?php include __DIR__.'/../../components/liveCard.php'; ?>
+                        <?php endif;?>
+                    <?php endforeach;?>
                 <?php else:?>
-                    <a 
-                        class="cursos-filtro__categoria"
-                        href="/lives/categoria/<?=$category->id_category?>"
-                        ><?=$category->name?>
-                    </a>
+                    <p class="cursos-container__empty">No hay cursos en vivo de esta categoria</p>
                 <?php endif;?>
                 
-            <?php endforeach ;?>
-        </div>
-    </section>
+            </div>
+        </section>
+    <?php endif;?>
 
-    <section class="cursos-container" data-aos="fade">
-        
-        <div class="cursos-container__grid">
-            <?php if(!empty($lives)):?>
-                <?php foreach($lives as $live):?>
-                    <?php if($live->privacy == 'Público'):?>
-                        <?php include __DIR__.'/../../components/liveCard.php'; ?>
-                    <?php endif;?>
-                <?php endforeach;?>
-            <?php else:?>
-                <p class="cursos-container__empty">No hay cursos en vivo de esta categoria</p>
-            <?php endif;?>
-            
-        </div>
-    </section>
-    
     <?php include_once __DIR__.'/../../components/bannerAsesorias.php'; ?>
 </main>
 
