@@ -3,13 +3,18 @@
 
 .swiper {
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
   padding: 1.5rem 1.5rem 5rem 1.5rem;
+}
+
+.swiper-wrapper{
+  margin: 0 auto;
 }
 
 .swiper-slide {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .swiper-button-next,

@@ -35,14 +35,59 @@
 <?php include_once __DIR__.'/../components/header.php'; ?>
 <?php include_once __DIR__.'/../components/sliderFinal.php'; ?>
 
+
+<!--==============================
+    Features
+==============================-->
+
+<section class="features">
+    <div class="features__container">
+        <div class="feature__card ed-price-item">
+            <div class="feature__icon">
+                <img class="feature__image" src="/assets/images/reunion.png" alt="Feature Icon">
+            </div>
+            <h4 class="feature__title"><a href="/lives">CURSOS EN VIVO</a></h4>
+            <p class="feature__text">La mayoría de nuestros cursos ofrecen la posibilidad de ser realizados en vivo, permiten la interacción con el instructor y aseguran que los contenidos estén siempre actualizados.</p>
+            <div class="item-btn btn-spin text-center">
+                <a href="/lives">¡Ver lives!</a>
+            </div>
+        </div>
+
+        <div class="feature__card ed-price-item">
+            <div class="feature__icon">
+                <img class="feature__image" src="/assets/images/conferencia.png" alt="Feature Icon">
+                <div class="feature__circle"></div>
+            </div>
+            <h4 class="feature__title"><a href="#">Seminarios presenciales</a></h4>
+            <p class="feature__text">Organizamos distintos seminarios presenciales para que pueda continuar con tu formación tributaria en distintas ciudades del país como Los Ángeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc...</p>
+            <div class="item-btn btn-spin text-center">
+                <a href="#">¡Ver seminarios!</a>
+            </div>
+        </div>
+
+        <div class="feature__card ed-price-item">
+            <div class="feature__icon">
+                <img class="feature__image" src="/assets/images/online.png" alt="Feature Icon">
+                <div class="feature__circle"></div>
+            </div>
+            <h4 class="feature__title"><a href="/cursos">Cursos self study</a></h4>
+            <p class="feature__text">Ofrecemos todos nuestros cursos en formato self study para que estudie cuándo, dónde y cómo desee. Todos los cursos son actualizados permanentemente.</p>
+            <div class="item-btn btn-spin text-center">
+                <a href="/cursos">¡Ver cursos!</a>
+            </div>
+        </div>
+
+    </div>    
+
+</section>
 <!--==============================
 CTA Area
 ==============================-->
-<section class="space-top space-extra-bottom" data-bg-src="assets/img/bg/blog-single-divider-bg-1-1.jpg">
+<section style="padding-top:5rem; padding-bottom:5rem;" data-bg-src="assets/img/bg/blog-single-divider-bg-1-1.jpg">
     <div class="container">
         <div class="row justify-content-between text-center text-lg-start">
             <div class="col-lg-6 mb-40 mb-lg-0">
-                <h2 class="mt-n2 h2 mb-3">Cursos Certificados y Avalados</h2>
+                <h2 class="mt-n2 h2 mb-3" style="font-size:3rem; font-weight:700;">Cursos Certificados y Avalados</h2>
                 <p class=" mb-4 pb-2 fs-md col-xl-11">Somos IRS Approved Provider y CTEC Certified, lo que asegura que tu capacitación esté reconocida y validada oficialmente en EE. UU.</p>
                 <a href="/nosotros" class="vs-btn style2"><i class="far fa-angle-right"></i>¿Quienes somos?</a>
             </div>
@@ -62,7 +107,7 @@ CTA Area
 <!--==============================
     About Area
 ==============================-->
-<section class=" space-bottom">
+<section class="space-top space-bottom">
     <div class="container">
         <div class="row align-items-center justify-content-center justify-content-xl-between flex-row-reverse">
             <div class="col-xl-5 col-xxl-auto wow fadeInUp" data-wow-delay="0.3s">
@@ -125,12 +170,14 @@ CTA Area
 <!--==============================
     price Area
 ==============================-->
-
-<section id="ed-price" class="ed-price-section pt-120 pb-140">
+<section id="ed-price" class="ed-price-section space-top">
     <div class="container">
-        <div class="ed-sec-title text-center headline pera-content">
-            <div class="subtitle wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">Membresías KTA</div>
-            <h2 class="sec_title ed-sec-tt-anim ed-has-anim">Nuestras Membresías KTA</h2>
+        <div class="title-area text-center wow fadeInUp" data-wow-delay="0.3s">
+            <div class="sec-icon">
+                <div class="vs-circle"></div>
+            </div>
+            <span class="sec-subtitle">Membresías KTA</span>
+            <h2 class="sec-title">Nuestras Membresías KTA</h2>
         </div>
         <div class="ed-price-content mt-45">
             <div class="row justify-content-center">
@@ -172,11 +219,11 @@ CTA Area
                 <div class="vs-circle"></div>
             </div>
             <span class="sec-subtitle">Conoce al equipo KTA</span>
-            <h2 class="sec-title h1">Tenemos a los mejores maestros que te ayudaran a pasar al siguiente nivel</h2>
+            <h2 class="sec-title">Tenemos a los mejores maestros que te ayudaran a pasar al siguiente nivel</h2>
         </div>
-        <div class="row vs-carousel wow fadeInUp gx-40" data-wow-delay="0.4s" data-slide-show="3" data-lg-slide-show="2" data-md-slide-show="2" data-sm-slide-show="2" data-center-mode="true">
         
-            <?php foreach($teachers as $teacher):?>
+        <div class="row vs-carousel wow fadeInUp gx-40" data-wow-delay="0.4s" data-slide-show="3" data-lg-slide-show="2" data-md-slide-show="2" data-sm-slide-show="2" data-center-mode="true">
+            <!-- <?php foreach($teachers as $teacher):?>
                 <div class="col-sm-6 col-lg-4">
                     <div class="team-style1">
                         <div class="team-img">
@@ -190,57 +237,18 @@ CTA Area
                         </div>
                     </div>
                 </div>    
-            <?php endforeach;?>
+            <?php endforeach;?> -->    
         </div>
+        <?php include_once __DIR__.'/../components/teachers.php'; ?>
     </div>
 </section> 
-
-<!--==============================
-    Features
-==============================-->
-<section class="space-top space-extra-bottom">
-    <div class="container">
-        <div class="row vs-carousel wow fadeInUp" data-wow-delay="0.4s" data-slide-show="3" data-lg-slide-show="2" data-md-slide-show="2" data-sm-slide-show="2" data-center-mode="true" data-xl-center-mode="true" data-ml-center-mode="true">
-            <div class="col-sm-6 col-xl-4">
-                <div class="feature-style1">
-                    <div class="feature-icon">
-                        <img src="/assets/images/reunion.png" alt="Feature Icon">
-                        <div class="vs-circle"></div>
-                    </div>
-                    <h4 class="feature-title"><a href="/lives">CURSOS EN VIVO</a></h4>
-                    <p class="feature-text">La mayoría de nuestros cursos ofrecen la posibilidad de ser realizados en vivo, permiten la interacción con el instructor y aseguran que los contenidos estén siempre actualizados.</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-4">
-                <div class="feature-style1">
-                    <div class="feature-icon">
-                        <img src="/assets/images/conferencia.png" alt="Feature Icon">
-                        <div class="vs-circle"></div>
-                    </div>
-                    <h4 class="feature-title"><a href="/lives">Seminarios presenciales</a></h4>
-                    <p class="feature-text">Organizamos distintos seminarios presenciales para que pueda continuar con tu formación tributaria en distintas ciudades del país como Los Ángeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc...</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-4">
-                <div class="feature-style1">
-                    <div class="feature-icon">
-                        <img src="/assets/images/online.png" alt="Feature Icon">
-                        <div class="vs-circle"></div>
-                    </div>
-                    <h4 class="feature-title"><a href="/cursos">Cursos self study</a></h4>
-                    <p class="feature-text">Ofrecemos todos nuestros cursos en formato self study para que estudie cuándo, dónde y cómo desee. Todos los cursos son actualizados permanentemente.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!--==============================
     Upcoming Events Area
 ==============================-->
 
 <?php if(!is_null($lives)):?>
-    <section class="overflow-hidden space-top space-extra-bottom">
+    <section class="overflow-hidden space-top space-extra-bottom pt-30">
         <div class="event-shape1"></div>
         <div class="shape-mockup jump d-none d-xxl-block" data-bottom="26%" data-right="-270px">
             <div class="vs-border-circle"></div>
@@ -260,20 +268,23 @@ CTA Area
 
                     <?php foreach($lives as $live):?>
                         <?php $fechas =  Helpers::formatearFechasHoras($live->dates_times);?>
-                        <div class="event-style1">
-                            <div class="event-date">
-                                <?php $fechaIndividual = explode(',', $fechas['fechas']) ?>
-                                <?php $dataFecha = explode(' ', $fechaIndividual[0])?>
-                                <span class="day"><?=$dataFecha['0']?></span><span class="month"><?=$dataFecha['1']?></span>
-                            </div>
-                            <div class="event-body">
-                                <h4 class="event-title"><a href="/live/view/<?=$live->url?>" class="text-reset"><?=$live->name?></a></h4>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-clock"></i><?= $fechas['horas'] ?> <span class="curso__detail-timezone">Hora del este</span></span>
-                                    <span><i class="far fa-map"></i>Online</span>
+                        <a href="/live/view/<?=$live->url?>" style="width:100%">
+                            <div class="event-style1">
+                                <div class="event-date">
+                                    <?php $fechaIndividual = explode(',', $fechas['fechas']) ?>
+                                    <?php $dataFecha = explode(' ', $fechaIndividual[0])?>
+                                    <span class="day"><?=$dataFecha['0']?></span><span class="month"><?=$dataFecha['1']?></span>
+                                </div>
+                                <div class="event-body">
+                                    <h4 class="event-title"><?=$live->name?></h4>
+                                    <div class="event-meta">
+                                        <span><i class="fas fa-clock"></i><?= $fechas['horas'] ?> <span class="curso__detail-timezone">Hora del este</span></span>
+                                        <span><i class="far fa-map"></i>Online</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+                        
                     <?php endforeach;?>
                 </div>
             </div>
@@ -284,13 +295,13 @@ CTA Area
 <!--==============================
 Reviews
 ==============================-->
-<section class="reviews">
+<section class="reviews mt-40">
     <div class="row justify-content-center text-center">
         <div class="col-xl-9 wow fadeInUp" data-wow-delay="0.3s">
             <div class="title-area">
                 <div class="sec-icon"><span class="vs-circle"></span></div>
                 <span class="sec-subtitle">Reviews</span>
-                <h2 class="sec-title h1">Triunfadores Que Confiaron En KTA Institute</h2>
+                <h2 class="sec-title">Triunfadores Que Confiaron En KTA Institute</h2>
             </div>
         </div>
     </div>
@@ -339,9 +350,14 @@ Reviews
 Podcast
 ==============================-->
 <section class="podcast">
-    <p data-aos="fade-up" data-aos-delay="100" class="membresias-index__subtitulo">Disfruta con nuestro Podcast Nadie es Importante</p>
-    <hr data-aos="fade-up" class="linea-personalizada">
-    
+    <div class="title-area text-center wow fadeInUp" data-wow-delay="0.3s">
+        <div class="sec-icon">
+            <div class="vs-circle"></div>
+        </div>
+        <span class="sec-subtitle">Nuestro podcast</span>
+        <h2 class="sec-title">Disfruta con nuestro Podcast Nadie es Importante</h2>
+    </div>
+
     <div class="podcast__container">
         <iframe class="podcast__video" src="https://www.youtube.com/embed/r8HnB7-qszQ?si=S8vWoNHHLcBSg9s0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <iframe class="podcast__video" src="https://www.youtube.com/embed/ArGNjAur_ow?si=ftHMCxq2gjV71WCI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -351,6 +367,34 @@ Podcast
 
 <?php include_once __DIR__.'/../components/popups.php'; ?>
 <?php include_once __DIR__.'/../components/footerFinal.php'; ?>
+
+<script>
+    
+    const swiper1 = new Swiper(".mySwiper", {
+            slidesPerView: 2,  
+            spaceBetween: 10,
+            loop: false,
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            480:{
+                slidesPerView: 1
+            },
+            768: {
+                slidesPerView: 2
+            },
+            1024: {
+                slidesPerView: 3
+            }
+        }
+    });
+</script>
 
 <script>
     
@@ -420,10 +464,12 @@ Podcast
 <script src="assets/js2/script.js"></script>
 
 <?php 
+    $menuVersion = filemtime('assets/js/menu.js');
     $saleVersion = filemtime('assets/js/saleAlerts.js');
     $swiperVersion = filemtime('assets/js/swiper.js');
 
     $scripts ='
+        <script src="/assets/js/menu.js?v='.$menuVersion.'"></script>
         <script src="/assets/js/saleAlerts.js?v='.$saleVersion.'"></script>
         <script src="/assets/js/swiper.js?v='.$swiperVersion.'"></script>
     ';

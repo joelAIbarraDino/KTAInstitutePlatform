@@ -21,6 +21,16 @@ Font load
   src: url("https://db.onlinewebfonts.com/t/99e780e86b2e7ff1e6b7e171034011ee.eot");
   src: url("https://db.onlinewebfonts.com/t/99e780e86b2e7ff1e6b7e171034011ee.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/99e780e86b2e7ff1e6b7e171034011ee.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/99e780e86b2e7ff1e6b7e171034011ee.woff") format("woff"), url("https://db.onlinewebfonts.com/t/99e780e86b2e7ff1e6b7e171034011ee.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/99e780e86b2e7ff1e6b7e171034011ee.svg#Golden Hopes PERSONAL USE ONLY Regular") format("svg");
 }
+
+@font-face {
+    font-family: 'GothamRoundedRegular';
+    src: url('/assets/fonts/GothamRounded-Regular/GothamRounded-Book.woff2') format('woff2'),
+         url('/assets/fonts/GothamRounded-Regular/GothamRounded-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
   --ed-body-color: #565656;
   --ed-body-color-2: #4b4b4b;
@@ -30,8 +40,8 @@ Font load
   --ed-red-color: #dd3924;
   --ed-yellow-color: #fccc42;
   --ed-purple-color: #be94f5;
-  --ed-heading: "Urbanist", sans-serif;
-  --ed-body-font: "Urbanist", sans-serif;
+  --ed-heading: "GothamRoundedRegular", sans-serif;
+  --ed-body-font: "GothamRoundedRegular", sans-serif;
   --ed-heading-2: "Inter", sans-serif;
   --ed-heading-3: "Fredoka", sans-serif;
   --ed-heading-4: "Epilogue", sans-serif;
@@ -6886,6 +6896,8 @@ select:visited {
 /*----------------------------------------------------*/
 .ed-price-section {
   overflow: hidden;
+  background-color:#faf8f6;
+  padding-bottom: 8rem;
 }
 .ed-price-section .ed-sec-title {
   margin: 0 auto;

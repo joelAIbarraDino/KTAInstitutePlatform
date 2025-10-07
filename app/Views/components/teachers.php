@@ -7,9 +7,9 @@
                         <a href="/profesor/view/<?=$teacher->id_teacher?>">
                             <img src="/assets/teachers/<?=$teacher->photo?>" alt="Profesor" class="profesor-foto" />
                         </a>
-                        <p class="nombre"><?=$teacher->name?></p>
+                        <a href="/profesor/view/<?=$teacher->id_teacher?>" class="nombre"><?=$teacher->name?></a>
+                        <p class="experiencia"><?=$teacher->speciality?></p>
                         <p class="experiencia"><?=$teacher->experience?> <span data-section="teacher-details" data-label="years-experience">años de experiencia </span></p>
-                        <a href="/profesor/view/<?=$teacher->id_teacher?>" class="boton-ver-mas" data-section="index" data-label="membership-button">Más detalles</a>
                     </div>
                 </div>
             <?php endforeach; ?>

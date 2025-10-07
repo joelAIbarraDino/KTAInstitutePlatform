@@ -1267,3 +1267,79 @@
         }
     }
 }
+
+.features{
+    padding: 2rem;
+    background-color: #faf8f6;
+
+    @include m.computadora{
+        padding: 5rem;
+    }
+
+    &__container{
+        width: 95%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+
+        @include m.tablet{
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.computadora{
+            width: 90%;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+.feature{
+    
+    &__card{
+        background-color: v.$blanco;
+        border: solid .2rem v.$gris;
+        width: 100%;
+        border-radius: 1rem;
+        padding: 3rem 5rem;
+        min-height: 100%;
+        transition: all .5s ease;
+
+        &:hover{
+            border: solid .2rem v.$dorado;
+            -webkit-box-shadow: 4px 8px 12px 7px #CECECE; 
+            box-shadow: 4px 8px 12px 7px #CECECE;
+        }
+    }
+
+    &__icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    &__image{
+        width: 45%;
+        text-align: center;
+    }
+
+    &__title{
+        text-align: center;
+        font-weight: v.$black;
+        font-size: 3rem;
+        text-transform: uppercase;
+        color: v.$negro;
+        margin-bottom: 2rem;
+
+        &:hover{
+            color: v.$dorado;
+        }
+    }
+
+    &__text{
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+}
