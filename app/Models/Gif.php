@@ -38,26 +38,57 @@ class Gif extends Model{
         return self::$alerts;
     }
 
-    public function subirImagen(array $imagen):array{   
+    public function subirImagen(array $imagen): array{
+        
         // Eliminar la imagen anterior si existe
-        if ($this->file_url && Storage::exists(DIR_GIF.'/'.$this->file_url))
-            Storage::delete(DIR_GIF.'/'.$this->file_url);
-        
-        // Generar un nombre único para la imagen
-        $nombreImagen = Storage::uniqName(".gif");
-        
-        // Procesar la imagen con Intervention Image
-        $manager = new ImageManager(Driver::class);
-        $processImage = $manager->read($imagen['tmp_name']);
-
-        if(!is_dir(DIR_GIF))
-            mkdir(DIR_GIF);
-        
-        $processImage->toGif()->save(DIR_GIF.'/'.$nombreImagen);
-
-        // Actualizar el atributo del modelo
-        $this->file_url = $nombreImagen;
-
+        if ($this->file_url && Storage::exists(DIR_GIF . '/' . $this->file_url)) {
+            Storage::delete(DIR_GIF . '/' . $this->file_url);
+        }
+    
+        // Validar que el archivo exista y no esté vacío
+        if (!isset($imagen['tmp_name']) || $imagen['size'] == 0 || !is_uploaded_file($imagen['tmp_name'])) {
+            self::setAlerts('error', 'No se ha recibido un archivo válido');
+            return self::$alerts;
+        }
+    
+        // Verificar MIME real (no confiar solo en $_FILES['type'])
+        $mime = mime_content_type($imagen['tmp_name']);
+        if ($mime !== 'image/gif') {
+            self::setAlerts('error', 'El archivo no es un GIF válido');
+            return self::$alerts;
+        }
+    
+        // Verificar que el archivo empieza con "GIF"
+        $fh = fopen($imagen['tmp_name'], 'rb');
+        $header = fread($fh, 6);
+        fclose($fh);
+        if ($header !== 'GIF87a' && $header !== 'GIF89a') {
+            self::setAlerts('error', 'El archivo GIF está dañado o mal generado');
+            return self::$alerts;
+        }
+    
+        // Generar nombre único
+        $nombreImagen = Storage::uniqName('.gif');
+    
+        // Crear carpeta si no existe
+        if (!is_dir(DIR_GIF)) {
+            mkdir(DIR_GIF, 0777, true);
+        }
+    
+        try {
+            // Procesar la imagen con Intervention
+            $manager = new \Intervention\Image\ImageManager(\Intervention\Image\Drivers\Gd\Driver::class);
+            $processImage = $manager->read($imagen['tmp_name']);
+            $processImage->toGif()->save(DIR_GIF . '/' . $nombreImagen);
+            $this->file_url = $nombreImagen;
+    
+        } catch (\Throwable $e) {
+            // Si falla la lectura, mover el archivo sin procesar
+            move_uploaded_file($imagen['tmp_name'], DIR_GIF . '/' . $nombreImagen);
+            $this->file_url = $nombreImagen;
+            error_log("GIF inválido procesado directamente: " . $e->getMessage());
+        }
+    
         return self::$alerts;
     }
 
