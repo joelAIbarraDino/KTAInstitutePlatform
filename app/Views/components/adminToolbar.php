@@ -69,7 +69,7 @@
                         <p class="nav__title">Pagina principal</p>
                         <a class="nav__link nav__link--regular-link" href="/kta-admin/slidebar"> <i class='bx bxs-message-dots'></i> Slidebar</a>
                         <a class="nav__link nav__link--regular-link" href="/kta-admin/banner-asesoria"> <i class='bx bxs-user-voice'></i> Banner asesoría</a>
-                        <!-- <a class="nav__link nav__link--regular-link" href="#"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a> -->
+                        <a class="nav__link nav__link--regular-link" href="/kta-admin/gifs"> <i class='bx bxs-message-dots'></i>Anuncio Gif</a>
                     </div>
 
                     <div class="nav">

@@ -14,6 +14,8 @@ use App\Models\Review;
 use App\Models\Module;
 use App\Models\Lesson;
 use App\Models\FAQ;
+use App\Models\Gif;
+
 use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 
@@ -28,6 +30,13 @@ class PagesController{
         $categories = Category::all()??[];
         $reviews = Review::all(20);
         
+        $gifs = Gif::all();
+        $gif = null;
+
+        if(count($gifs) > 0){
+            $gif = array_shift($gifs);
+        }
+        
         Response::render('public/home', [
             'nameApp'=>APP_NAME, 
             'title' => 'Inicio',
@@ -37,7 +46,8 @@ class PagesController{
             'teachers'=>$teachers,
             'categories'=>$categories,
             'membresias'=>$membresias,
-            'lives'=>$lives
+            'lives'=>$lives,
+            'gif'=>$gif
         ]);
     }
 

@@ -13,6 +13,7 @@ use App\Models\Slidebar;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Admin;
+use App\Models\Gif;
 
 use App\Classes\Helpers;
 use App\Models\BannerAsesoria;
@@ -145,6 +146,18 @@ class DashboardController{
             'slidebar'=>$slidebar
         ]);
     }
+
+
+    public static function gifs():void{
+        $gifs = Gif::all();
+
+        Response::render('admin/gifs/index', [
+            'nameApp' => APP_NAME,
+            'title' => 'Admin gif',
+            'gifs'=>$gifs
+        ]);
+    }
+
 
     public static function bannerAsesoria():void{
         $bannerAsesorias = BannerAsesoria::all();

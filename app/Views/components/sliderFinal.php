@@ -37,5 +37,9 @@
 </section>
 
 <div class="gif">
+<?php if(is_null($gif)):?>
     <img src="/assets/images/gif.gif" alt="gif" class="gif__image">
+<?php else:?>
+    <img src="/assets/gifs/<?=$gif->file_url?>" alt="gif" class="gif__image"> 
+<?php endif;?>
 </div>

@@ -25,15 +25,15 @@ class Gif extends Model{
 
     public function validateImage(?array $file):array{
 
-        if($file['file_url']['size'] == 0){
+        if($file['gif_file']['size'] == 0){
             self::setAlerts('error', 'No se ha subido una imagen');
             return self::$alerts;
         }
         
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $allowedTypes = ['image/gif'];
 
-        if(!Storage::validateFormat($file['file_url']['type'], $allowedTypes))
-            self::setAlerts('error', 'Solo se permiten imágenes (JPEG, PNG, GIF)');
+        if(!Storage::validateFormat($file['gif_file']['type'], $allowedTypes))
+            self::setAlerts('error', 'Solo se permiten imágenes gif');
 
         return self::$alerts;
     }
@@ -53,10 +53,10 @@ class Gif extends Model{
         if(!is_dir(DIR_GIF))
             mkdir(DIR_GIF);
         
-        $processImage->toPng()->save(DIR_GIF.'/'.$nombreImagen);
+        $processImage->toGif()->save(DIR_GIF.'/'.$nombreImagen);
 
         // Actualizar el atributo del modelo
-        $this->background = $nombreImagen;
+        $this->file_url = $nombreImagen;
 
         return self::$alerts;
     }

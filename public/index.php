@@ -50,6 +50,7 @@ use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\QuizController;
 use App\Controllers\FaqController;
+use App\Controllers\GifController;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -198,6 +199,7 @@ $dino->router->get('/kta-admin/categorias', [DashboardController::class, 'catego
 $dino->router->get('/kta-admin/estudiante-membresia', [DashboardController::class, 'studentMemberships'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/inscripciones', [DashboardController::class, 'enrollment'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/slidebar', [DashboardController::class, 'slidebar'], [AdminLoggedMiddleware::class]);
+$dino->router->get('/kta-admin/gifs', [DashboardController::class, 'gifs'], [AdminLoggedMiddleware::class]);
 $dino->router->get('/kta-admin/banner-asesoria', [DashboardController::class, 'bannerAsesoria'], [AdminLoggedMiddleware::class]);
 
 $dino->router->get('/kta-admin/maestros', [DashboardController::class, 'teachers'], [AdminLoggedMiddleware::class]);
@@ -355,6 +357,12 @@ $dino->router->post('/kta-admin/banner-asesoria/create', [BannerAsesoriaControll
 $dino->router->get('/kta-admin/banner-asesoria/update/{id}', [BannerAsesoriaController::class, 'update'], [AdminLoggedMiddleware::class]);
 $dino->router->post('/kta-admin/banner-asesoria/update/{id}', [BannerAsesoriaController::class, 'update'], [AdminLoggedMiddleware::class]);
 
+//administracion de gif
+$dino->router->get('/kta-admin/gif/create', [GifController::class, 'create'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/gif/create', [GifController::class, 'create'], [AdminLoggedMiddleware::class]);
+
+$dino->router->get('/kta-admin/gif/update/{id}', [GifController::class, 'update'], [AdminLoggedMiddleware::class]);
+$dino->router->post('/kta-admin/gif/update/{id}', [GifController::class, 'update'], [AdminLoggedMiddleware::class]);
 
 //administración de membership
 $dino->router->get('/kta-admin/membresia/create', [MembershipController::class, 'create'], [AdminLoggedMiddleware::class]);
