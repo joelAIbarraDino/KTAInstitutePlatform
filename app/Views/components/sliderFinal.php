@@ -35,11 +35,14 @@
         <?php endforeach;?>
     </div>
 </section>
-
-<div style="width:100%; height:8rem">
+<div class="gif-container">
     <?php if(is_null($gif)):?>
-        <img src="/assets/images/gif.gif" alt="gif" >
+        <div class="gif-banner" style="background-image: url('/assets/images/gif.gif');"></div>
     <?php else:?>
-        <img src="/assets/gifs/<?=$gif->file_url?>" alt="gif" style="width:100%; height:100%"> 
+        <div class="gif-banner" style="background-image: url('/assets/gifs/<?=$gif->file_url?>');"></div>
     <?php endif;?>
 </div>
+
+
+
+

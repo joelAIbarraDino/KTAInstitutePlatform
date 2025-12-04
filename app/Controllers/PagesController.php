@@ -16,15 +16,15 @@ use App\Models\Lesson;
 use App\Models\FAQ;
 use App\Models\Gif;
 
-use DinoEngine\Helpers\Helpers;
 use DinoEngine\Http\Response;
 
 class PagesController{
 
     public static function home():void{
+        $currentDate = strtotime(date('Y-m-d'));
         $sliders = Slidebar::all();
         $courses = CourseView::all(5, 'id_course', 'DESC');
-        $lives = LiveView::all(3, 'created_at', 'DESC');
+        $lives = LiveView::where('created_at', '>=', $currentDate)??null;
         $membresias = Membership::all()??[];
         $teachers = Teacher::all()??[];
         $categories = Category::all()??[];

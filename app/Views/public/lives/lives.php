@@ -10,10 +10,7 @@
 
     <?php if(!isset($category_url)):?>
         <section class="categorias">
-            <p data-aos="fade-up" data-aos-delay="100" class="maestros-index__subtitulo">Categorías</p>
-            <hr data-aos="fade-up" class="linea-personalizada">
-
-            <div class="categorias__grid" data-aos="fade-up">
+            <div class="categorias__grid-3" data-aos="fade-up">
                 
                 <?php foreach($categories as $category ): ?>
                     <a href="/lives/categoria/<?=$category->id_category?>">

@@ -402,18 +402,30 @@
 
 }
 
-.gif{
-    margin: 0 auto;
+.gif-container {
     width: 100%;
+    height: 6rem;
+    box-shadow: 5px 0 8px -8px black;
+}
 
-    &__image{
-        width: 100%;
-        height: 10rem;
+.gif-banner{
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-        @include m.tablet{
-            height: 10rem;
-        }
+/* MÓVIL */
+@media (max-width: 768px) {
+    .gif-banner{
+        background-size: 160% 110%;
     }
+
+    .gif-container {
+        height: 4rem;
+    }
+
 }
 
 .main-courses{
@@ -699,6 +711,25 @@
         @include m.computadora{
             width: 90%;
             grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__grid-3{
+        width: 95%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem;
+        padding: 0 1rem;
+
+        @include m.tablet{
+            width: 90%;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.computadora{
+            width: 90%;
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 }

@@ -88,7 +88,7 @@ CTA Area
         <div class="row justify-content-between text-center text-lg-start">
             <div class="col-lg-6 mb-40 mb-lg-0">
                 <h2 class="mt-n2 h2 mb-3" style="font-size:3rem; font-weight:700;">Cursos Certificados y Avalados</h2>
-                <p class=" mb-4 pb-2 fs-md col-xl-11">Somos IRS Approved Provider y CTEC Certified, lo que asegura que tu capacitación esté reconocida y validada oficialmente en EE. UU.</p>
+                <p class=" mb-4 pb-2 fs-md col-xl-11">Somos IRS Approved Provider, lo que asegura que tu capacitación esté reconocida y validada oficialmente en EE. UU.</p>
                 <a href="/nosotros" class="vs-btn style2"><i class="far fa-angle-right"></i>¿Quienes somos?</a>
             </div>
             <div class="col-auto d-none d-lg-block">
@@ -97,7 +97,7 @@ CTA Area
             <div class="col-lg-auto">
                 <div class="mini-avater">
                     <a href="https://www.ceprovider.us/public/default/listing"><img src="/assets/images/certificado1.jpg" alt="avater"></a>
-                    <a href="https://ctec.org/taxpreparers/find-education-provider/?nav=tax-professionals"><img src="/assets/images/certificado2.jpg" alt="avater"></a>
+                    <!-- <a href="https://ctec.org/taxpreparers/find-education-provider/?nav=tax-professionals"><img src="/assets/images/certificado2.jpg" alt="avater"></a> -->
                 </div>
             </div>
         </div>
@@ -247,25 +247,24 @@ CTA Area
     Upcoming Events Area
 ==============================-->
 
-<?php if(!is_null($lives)):?>
-    <section class="overflow-hidden space-top space-extra-bottom pt-30">
-        <div class="event-shape1"></div>
-        <div class="shape-mockup jump d-none d-xxl-block" data-bottom="26%" data-right="-270px">
-            <div class="vs-border-circle"></div>
-        </div>
-        <div class="container">
-            <div class="row gx-80">
-                <div class="col-lg-6 col-xxl-5 pb-3 pb-lg-0 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="picture-box1">
-                        <div class="picture-1 mega-hover"><img src="/assets/images/fundadores1.jpg" alt="picture"></div>
-                    </div>
+<section class="overflow-hidden space-top space-extra-bottom pt-30">
+    <div class="event-shape1"></div>
+    <div class="shape-mockup jump d-none d-xxl-block" data-bottom="26%" data-right="-270px">
+        <div class="vs-border-circle"></div>
+    </div>
+    <div class="container">
+        <div class="row gx-80">
+            <div class="col-lg-6 col-xxl-5 pb-3 pb-lg-0 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="picture-box1">
+                    <div class="picture-1 mega-hover"><img src="/assets/images/fundadores1.jpg" alt="picture"></div>
                 </div>
-                <div class="col-lg-6 col-xxl-7 align-self-center wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="title-area mb-40 text-center text-md-start">
-                        <span class="sec-subtitle text-white">Cursos en vivo</span>
-                        <h2 class="sec-title h1 text-white">Proximas clases</h2>
-                    </div>
-
+            </div>
+            <div class="col-lg-6 col-xxl-7 align-self-center wow fadeInUp" data-wow-delay="0.2s">
+                <div class="title-area mb-40 text-center text-md-start">
+                    <span class="sec-subtitle text-white">Cursos en vivo</span>
+                    <h2 class="sec-title h1 text-white">Proximas clases</h2>
+                </div>
+                <?php if(is_null($lives)):?>
                     <?php foreach($lives as $live):?>
                         <?php $fechas =  Helpers::formatearFechasHoras($live->dates_times);?>
                         <a href="/live/view/<?=$live->url?>" style="width:100%">
@@ -286,12 +285,17 @@ CTA Area
                         </a>
                         
                     <?php endforeach;?>
-                </div>
+                <?php else:?>
+                    <div class="event-style1">
+                        <div class="event-body">
+                            <h4 class="event-title">No hay eventos proximamente</h4>
+                        </div>
+                    </div>
+                <?php endif;?>
             </div>
         </div>
-    </section>
-<?php endif;?>
-
+    </div>
+</section>
 <!--==============================
 Reviews
 ==============================-->
