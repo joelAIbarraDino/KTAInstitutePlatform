@@ -264,7 +264,7 @@ CTA Area
                     <span class="sec-subtitle text-white">Cursos en vivo</span>
                     <h2 class="sec-title h1 text-white">Proximas clases</h2>
                 </div>
-                <?php if(is_null($lives)):?>
+                <?php if(count($lives) > 0):?>
                     <?php foreach($lives as $live):?>
                         <?php $fechas =  Helpers::formatearFechasHoras($live->dates_times);?>
                         <a href="/live/view/<?=$live->url?>" style="width:100%">

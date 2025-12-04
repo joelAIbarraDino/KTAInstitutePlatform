@@ -15,16 +15,17 @@ use App\Models\Module;
 use App\Models\Lesson;
 use App\Models\FAQ;
 use App\Models\Gif;
+use DinoEngine\Helpers\Helpers;
 
 use DinoEngine\Http\Response;
 
 class PagesController{
 
     public static function home():void{
-        $currentDate = strtotime(date('Y-m-d'));
+        $currentDate = time();
         $sliders = Slidebar::all();
         $courses = CourseView::all(5, 'id_course', 'DESC');
-        $lives = LiveView::where('created_at', '>=', $currentDate)??null;
+        $lives = LiveView::all();
         $membresias = Membership::all()??[];
         $teachers = Teacher::all()??[];
         $categories = Category::all()??[];
@@ -32,6 +33,25 @@ class PagesController{
         
         $gifs = Gif::all();
         $gif = null;
+
+        $finalLives = [];
+
+        foreach ($lives as $live) {
+
+            $fechasArray = json_decode($live->dates_times, true);
+
+            if (!is_array($fechasArray)) continue;
+
+            foreach ($fechasArray as $fecha) {
+                
+                
+                if ($currentDate < $fecha) {
+                    $finalLives[] = $live;
+                    break;
+                }
+            }
+        };
+
 
         if(count($gifs) > 0){
             $gif = array_shift($gifs);
@@ -46,7 +66,7 @@ class PagesController{
             'teachers'=>$teachers,
             'categories'=>$categories,
             'membresias'=>$membresias,
-            'lives'=>$lives,
+            'lives'=>$finalLives,
             'gif'=>$gif
         ]);
     }
