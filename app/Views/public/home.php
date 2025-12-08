@@ -48,7 +48,7 @@
             </div>
             <h4 class="feature__title"><a href="/lives">CURSOS EN VIVO</a></h4>
             <p class="feature__text">La mayoría de nuestros cursos ofrecen la posibilidad de ser realizados en vivo, permiten la interacción con el instructor y aseguran que los contenidos estén siempre actualizados.</p>
-            <div class="item-btn btn-spin text-center">
+            <div class="item-btn-2 btn-spin text-center">
                 <a href="/lives">¡Ver lives!</a>
             </div>
         </div>
@@ -60,7 +60,7 @@
             </div>
             <h4 class="feature__title"><a href="#">Seminarios presenciales</a></h4>
             <p class="feature__text">Organizamos distintos seminarios presenciales para que pueda continuar con tu formación tributaria en distintas ciudades del país como Los Ángeles, Orlando, Houston, Phoenix, San Diego, New York, Miami, etc...</p>
-            <div class="item-btn btn-spin text-center">
+            <div class="item-btn-2 btn-spin text-center">
                 <a href="#">¡Ver seminarios!</a>
             </div>
         </div>
@@ -72,7 +72,7 @@
             </div>
             <h4 class="feature__title"><a href="/cursos">Cursos self study</a></h4>
             <p class="feature__text">Ofrecemos todos nuestros cursos en formato self study para que estudie cuándo, dónde y cómo desee. Todos los cursos son actualizados permanentemente.</p>
-            <div class="item-btn btn-spin text-center">
+            <div class="item-btn-2 btn-spin text-center">
                 <a href="/cursos">¡Ver cursos!</a>
             </div>
         </div>

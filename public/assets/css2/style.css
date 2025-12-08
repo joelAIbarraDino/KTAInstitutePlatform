@@ -6981,6 +6981,36 @@ select:visited {
   -webkit-box-shadow: 0 -4px 0 0 var(--ed-tt-color);
           box-shadow: 0 -4px 0 0 var(--ed-tt-color);
 }
+
+.ed-price-item .item-btn-2 {
+  margin-bottom: 0;
+}
+.ed-price-item .item-btn-2 a {
+  width: 100%;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 10px 15px;
+  border-radius: 100px;
+  background-color: #fff;
+  color: var(--ed-tt-coloe);
+  border: 3px solid var(--ed-tt-color);
+  -webkit-box-shadow: 0 4px 0 0 var(--ed-tt-color);
+          box-shadow: 0 4px 0 0 var(--ed-tt-color);
+}
+.ed-price-item .item-btn-2 a span {
+  display: inline-block;
+  pointer-events: none;
+}
+.ed-price-item .item-btn-2 a span.ed-spin {
+  -webkit-animation: ed-spin 0.5s 1;
+  animation: ed-spin 0.5s 1;
+  -webkit-transform-origin: bottom;
+  transform-origin: bottom;
+}
+.ed-price-item .item-btn-2 a:hover {
+  -webkit-box-shadow: 0 -4px 0 0 var(--ed-tt-color);
+          box-shadow: 0 -4px 0 0 var(--ed-tt-color);
+}
 .ed-price-item .item-list li {
   font-size: 18px;
   font-weight: 800;

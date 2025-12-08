@@ -6323,7 +6323,7 @@ blockquote.vs-quote span::before {
   }
   .media-style3 .media-icon {
     --icon-size: 80px;
-    font-size: 80px;
+    font-size: 50px;
   }
   .img-box2 .vs-circle {
     right: 0;
@@ -9389,7 +9389,7 @@ blockquote.vs-quote span::before {
   }
   .event-style1 .event-date {
     margin: 0 auto 20px auto;
-    width: max-content;
+    width: 40%;
   }
   .event-style1.layout2 {
     text-align: left;
