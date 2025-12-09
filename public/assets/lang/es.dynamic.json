@@ -89,5 +89,69 @@
     "slidebar-4": {
         "title": "slider extra de prueba",
         "subtitle": "fdasfasd"
+    },
+    "live-11": {
+        "name": "test",
+        "description": " fdsafasdasfsa fdsafasdasfsa fdsafasdasfsafdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa",
+        "details": "<p>fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa fdsafasdasfsa<\/p>",
+        "watchword": "test de lema"
+    },
+    "live-12": {
+        "name": "nuevo live EDITADO",
+        "watchword": "test de live xd xd",
+        "description": "fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas",
+        "details": "<p>fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfasfdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas<\/p><p><br><\/p><p>fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas<\/p><p>fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas fdsfasdfdasfasfasdfas<\/p>"
+    },
+    "module-5": {
+        "name": "Clase 1"
+    },
+    "module-6": {
+        "name": "Test 1"
+    },
+    "lesson-8": {
+        "name": "Test leccion con live",
+        "description": "fdsaf"
+    },
+    "lesson-9": {
+        "name": "Test leccion",
+        "description": "fdfsasdafaf"
+    },
+    "lesson-10": {
+        "name": "FasdfaS",
+        "description": "DSFAASDFFA"
+    },
+    "lesson-11": {
+        "name": "Fdasf",
+        "description": "fdasfasdfasdfas"
+    },
+    "lesson-12": {
+        "name": "Fdsafas",
+        "description": "fdsafasfasdfasfasd"
+    },
+    "lesson-13": {
+        "name": "Fdsaf",
+        "description": "fasdfdasfas"
+    },
+    "module-7": {
+        "name": "Modulo 2"
+    },
+    "lesson-14": {
+        "name": "Fsdafas",
+        "description": "fasdfasdf"
+    },
+    "module-8": {
+        "name": "Intro"
+    },
+    "lesson-15": {
+        "name": "Test",
+        "description": "fasdfasdfasdf fasdf fsda fasd"
+    },
+    "lesson-16": {
+        "name": "Fasdfas",
+        "description": "fsdaf"
+    },
+    "lesson-17": {
+        "name": "Nueva leccion con tipo de curso",
+        "description": "fgsdafgfdsafsa"
     }
 }

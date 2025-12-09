@@ -7,9 +7,11 @@ use DinoEngine\Http\Response;
 use DinoEngine\Http\Request;
 use App\Classes\Helpers;
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\LiveView;
 use App\Models\Live;
 use App\Models\PaymentLiveView;
+use App\Models\Teacher;
 use Exception;
 
 class LiveController{
@@ -18,8 +20,9 @@ class LiveController{
 
         $alerts = [];
         $categories = Category::all();
+        $teachers = Teacher::all();
 
-        $live = new Live;
+        $live = new Course;
         $fechas = [];
 
         if(Request::isPOST()){
@@ -30,7 +33,7 @@ class LiveController{
             $live->sincronize($datosEnviados, false);
             $fechas = $datosEnviados['schedules']??[];
 
-            $alerts == $live->validateDates($fechas);
+            $alerts = $live->validateDates($fechas);
             $alerts = $live->validate();
             $alerts = $live->validateFileThumbnail($_FILES);
             $alerts = $live->validateFileBackground($_FILES);
@@ -38,12 +41,13 @@ class LiveController{
             if(empty($alerts)){
                 $live->uploadImageThumbnail($_FILES['thumbnail'], 1000, 1000);
                 $live->uploadImageBackground($_FILES['background'], 1280, 720);
-                $live->generateURL();
+                $live->type = "live";
                 $live->dates_times = json_encode($fechas);
+                $live->generateURL();
 
                 $id = $live->save();
                 if($id){
-                    $atributosTraducibles = ['name', 'description', 'details']; 
+                    $atributosTraducibles = ['name', 'watchword', 'description', 'details']; 
                     Helpers::traducirYGuardarJson("live", $id, $live, null, $atributosTraducibles, "html");
 
                     Response::redirect("/kta-admin/lives");
@@ -59,6 +63,7 @@ class LiveController{
             'nameApp'=> APP_NAME,
             'title'=>'Nuevo live',
             'live'=>$live,
+            'teachers'=> $teachers,
             'categories' => $categories,
             'alerts'=>$alerts,
             'fechas'=>$fechas
@@ -68,7 +73,7 @@ class LiveController{
 
     public static function update($id):void{
         
-        $live = Live::find($id);
+        $live = Course::find($id);
         $original = clone $live;
         $fechas = json_decode($live->dates_times);
         $alerts = [];
@@ -76,16 +81,27 @@ class LiveController{
         if(!$live)
             Response::redirect('/kta-admin/cursos');
         
+        $teachers = Teacher::all();
         $categories = Category::all();
 
         if(Request::isPOST()){
             $alerts = [];
             $datosEnviados = Request::getPostData(['details']);
 
-            $live->sincronize($datosEnviados, false);
-            
+            $live->name = $datosEnviados['name'];
+            $live->watchword = $datosEnviados['watchword'];
+            $live->max_months_enroll = $datosEnviados['max_months_enroll'];
+            $live->price = $datosEnviados['price'];
+            $live->discount = $datosEnviados['discount'];
+            $live->discount_ends_date = $datosEnviados['discount_ends_date'];
+            $live->discount_ends_time = $datosEnviados['discount_ends_time'];
+            $live->id_teacher = $datosEnviados['id_teacher'];
+            $live->id_category = $datosEnviados['id_category'];
+            $live->description = $datosEnviados['description'];
+            $live->details = $datosEnviados['details'];
+
             $fechas = $datosEnviados['schedules']??[];
-            $alerts == $live->validateDates($fechas);
+            $alerts = $live->validateDates($fechas);
             $alerts = $live->validate();
 
             if($_FILES['thumbnail']['size'] > 0)
@@ -111,7 +127,7 @@ class LiveController{
                     Helpers::setSwalAlert('success', '¡Genial!', 'Live actualizado con exito');
                     
                     $atributosTraducibles = ['name', 'watchword', 'description', 'details']; 
-                    Helpers::traducirYGuardarJson("live", $live->id_live, $live, $original, $atributosTraducibles, "html");
+                    Helpers::traducirYGuardarJson("live", $live->id_course, $live, $original, $atributosTraducibles, "html");
 
                     Response::redirect('/kta-admin/lives');
                 }else{
@@ -119,14 +135,13 @@ class LiveController{
                 }
 
             }
-            
-
         }
 
         Response::render('/admin/lives/update', [
             'nameApp'=> APP_NAME,
-            'title'=>'Nuevo curso',
+            'title'=>'Nuevo live',
             'live'=>$live,
+            'teachers'=> $teachers,
             'categories' => $categories,
             'alerts'=>$alerts,
             'fechas'=>$fechas
@@ -137,7 +152,7 @@ class LiveController{
         
         if(Request::isDELETE()){
             try {
-                $live = Live::find($id);
+                $live = Course::find($id);
 
                 if(!$live)
                     Response::json(['ok'=>false]);
@@ -155,7 +170,6 @@ class LiveController{
             } catch (QueryException) {
                 Response::json(['ok'=>false]);
             }
-
         }
     }
 

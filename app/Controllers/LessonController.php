@@ -22,7 +22,12 @@ class LessonController{
             
             //sincronizamos datos enviados por js para la nueva clase
             $dataPost = Request::getPostData();
-            $lesson->sincronize($dataPost);
+
+            $lesson->name = $dataPost['name'];
+            $lesson->description = $dataPost['description'];
+
+            $lesson->id_video = empty($dataPost['id_video'])?null:$dataPost['id_video'];
+            $lesson->url_live = empty($dataPost['url_live'])?null:$dataPost['url_live'];
 
             //obtenemos el ultimo orden registrado en la base de datos 
             $currentOrder = Lesson::max('order_lesson', 'id_module', '=', $id);
@@ -67,6 +72,7 @@ class LessonController{
             $lesson->name = $dataSend['name'];
             $lesson->description = $dataSend['description'];
             $lesson->id_video = $dataSend['id_video'];
+            $lesson->url_live = $dataSend['url_live'];
 
             $lesson->validateAPI();
 

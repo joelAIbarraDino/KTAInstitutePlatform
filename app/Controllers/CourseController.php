@@ -29,7 +29,7 @@ class CourseController{
 
         if(Request::isPOST()){
             $alerts = [];
-            $datosEnviados = Request::getPostData(['details']);
+            $datosEnviados = Request::getPostData(['details', 'dates_times']);
 
             
             $course->sincronize($datosEnviados);
@@ -41,6 +41,8 @@ class CourseController{
             if(empty($alerts)){
                 $course->uploadImageThumbnail($_FILES['thumbnail'], 1000, 1000);
                 $course->uploadImageBackground($_FILES['background'], 1280, 720);
+                $course->type = "grabado";
+                $course->dates_times= null;
                 $course->generateURL();
                 
                 $id = $course->save();
@@ -80,7 +82,6 @@ class CourseController{
         
         $teachers = Teacher::all();
         $categories = Category::all();
-        $modules = [];
 
         if(Request::isPOST()){
             $alerts = [];
@@ -136,9 +137,7 @@ class CourseController{
         Response::render('/admin/cursos/update', [
             'nameApp'=> APP_NAME,
             'title'=>'Nuevo curso',
-            'arrayStatus'=>Course::PRIVACY,
             'course'=>$course,
-            'modules'=>$modules,
             'teachers'=> $teachers,
             'categories' => $categories,
             'alerts'=>$alerts

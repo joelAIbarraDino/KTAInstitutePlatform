@@ -12,7 +12,7 @@ class Course extends Model {
     protected static string $table = 'course';
     protected static string $PK_name = 'id_course';
     protected static array $columns = [ 
-        'id_course', 'name', 'watchword', 'thumbnail', 'background', 'description', 'details', 
+        'id_course', 'name', 'watchword', 'thumbnail', 'type', 'background', 'description', 'details', 'dates_times',
         'price','discount', 'discount_ends_date', 'discount_ends_time', 
         'max_months_enroll', 'created_at', 'url', 
         'privacy', 'id_category', 'id_teacher'
@@ -24,17 +24,19 @@ class Course extends Model {
         'max_months_enroll', 
         'privacy', 'id_category', 'id_teacher'
     ];
-    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time', 'url'];
+    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time', 'url', 'dates_times', 'watchword'];
 
     public ?int $id_course;
     public string $name;
-    public string $watchword;
+    public ?string $watchword;
     public string $background;
     public string $thumbnail;
+    public string $type;
     public string $description;
     public string $details;
-    public float $price;
-    public float $discount;
+    public ?string $dates_times;
+    public ?float $price;
+    public ?float $discount;
     public ?string $discount_ends_date;
     public ?string $discount_ends_time;
     public int $max_months_enroll;
@@ -42,7 +44,7 @@ class Course extends Model {
     public ?string $url;
     public string $privacy;
     public int $id_category;
-    public int $id_teacher;
+    public ?int $id_teacher;
 
     public const PRIVACY = ['Editando', 'Privado', 'Público', 'Desactivado'];
 
@@ -55,8 +57,9 @@ class Course extends Model {
         $this->thumbnail = $args["thumbnail"]??"";
         $this->description = $args["description"]??"";
         $this->details = $args["details"]??"";
-        $this->price = $args["price"]??0.0;
-        $this->discount = $args["discount"]??0;
+        $this->dates_times = $args["dates_times"]??null;
+        $this->price = $args["price"]??null;
+        $this->discount = $args["discount"]??null;
         $this->discount_ends_date = $args["discount_ends_date"]??null;
         $this->discount_ends_time = $args["discount_ends_time"]??null;
         $this->max_months_enroll = $args["max_months_enroll"]??6;
@@ -64,7 +67,7 @@ class Course extends Model {
         $this->url = $args["url"]??null;
         $this->privacy = $args["privacy"]??self::PRIVACY[0];
         $this->id_category = $args["id_category"]??0;
-        $this->id_teacher = $args["id_teacher"]??0;
+        $this->id_teacher = $args["id_teacher"]??null;
     }
 
     public function validate():array{
@@ -109,6 +112,21 @@ class Course extends Model {
 
         if(!$this->id_teacher)
             self::setAlerts("error", "Debe seleccionar un maestro");
+
+        return self::$alerts;
+    }
+
+    public function validateDates($array):array{
+        if(empty($array)){
+            self::setAlerts("error", "Debe ingresar por lo menos una fecha al curso en vivo");
+        }
+
+        foreach($array as $element){
+            if(!$element){
+                self::setAlerts("error", "La fecha ingresada no esta configurada");
+                break;
+            }
+        }
 
         return self::$alerts;
     }

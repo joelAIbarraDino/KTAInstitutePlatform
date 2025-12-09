@@ -5,6 +5,7 @@
     const modulesContainer = document.querySelector("#modules-container");
     const moduleName = document.querySelector("#new_module_name");
     const courseID = getCourseID();
+    let course = {};
     const containerAlert = document.querySelector("#container-alert");
 
     let modules = [];
@@ -28,7 +29,7 @@
             const request = await fetch(url);
             const response = await request.json();
             modules = response.modules;
-
+            course = response.course;
             showModules();
 
         } catch (error) {
@@ -229,7 +230,7 @@
         divDescripcion.appendChild(textareaDescripcion);
         divDescripcion.appendChild(spanMsgDesc);
 
-        // Input: Nombre
+        // Input: ID vimeo
         const divIdVideo = document.createElement("div");
         divIdVideo.classList.add("form__input", "col-12");
 
@@ -254,10 +255,44 @@
         divIdVideo.appendChild(inputIdVideo);
         divIdVideo.appendChild(spanMsgIdVideo);
 
+        // Input: URL de clase
+        const divLinkClass = document.createElement("div");
+        divLinkClass.classList.add("form__input", "col-12");
+
+        const labelLinkClass = document.createElement("label");
+        labelLinkClass.setAttribute("for", "linkClass");
+        labelLinkClass.textContent = "Link de clase";
+
+        const inputLinkClass = document.createElement("input");
+        inputLinkClass.setAttribute("autocomplete", "off");
+        inputLinkClass.type = "text";
+        inputLinkClass.name = "linkClass";
+        inputLinkClass.id = "linkClass";
+        inputLinkClass.classList.add("field");
+        inputLinkClass.placeholder = "Link de Zoom donde se llevara el curso en vivo";
+        inputLinkClass.value = lesson.url_live || "";
+
+        const spanMsgLinkClass = document.createElement("span");
+        spanMsgLinkClass.id = "msg-linkClass";
+        spanMsgLinkClass.classList.add("form__input-msg");
+
+        divLinkClass.appendChild(labelLinkClass);
+        divLinkClass.appendChild(inputLinkClass);
+        divLinkClass.appendChild(spanMsgLinkClass);
+
         // Agregar inputs al grid
-        grid.appendChild(divNombre);
-        grid.appendChild(divIdVideo);
-        grid.appendChild(divDescripcion);
+
+        if(course.type=="grabado"){
+            grid.appendChild(divNombre);
+            grid.appendChild(divIdVideo);
+            grid.appendChild(divDescripcion);
+        }else{
+            grid.appendChild(divNombre);
+            grid.appendChild(divIdVideo);
+            grid.appendChild(divLinkClass);
+            grid.appendChild(divDescripcion);
+        }
+
 
         // Submit
         const divSubmit = document.createElement("div");
@@ -271,7 +306,12 @@
             
             const newNameLesson = inputNombre.value.trim();
             const newDescription = textareaDescripcion.value.trim();
-            const newIDVideo = inputIdVideo.value.trim();
+            const newIDVideo = inputIdVideo.value.trim()??"";
+            let newLinkClass = "";
+
+            if(course.type == "live"){
+                newLinkClass = inputLinkClass.value.trim();
+            }
 
             if(newNameLesson.length === 0){
                 Swal.fire({
@@ -291,14 +331,18 @@
                 return;
             }
 
-            if(!newIDVideo ||!Number.isInteger( Number(newIDVideo))){
-                Swal.fire({
-                    icon: "error",
-                    title: "Vimeo ID invalido",
-                    text: "El ID ingresado es invalido",
-                });
-                return;
+            
+            if( course.type == "grabado"){
+                if(!newIDVideo || !Number.isInteger( Number(newIDVideo))){
+                    Swal.fire({
+                        icon: "error",
+                        title: "Vimeo ID invalido",
+                        text: "El ID ingresado es invalido",
+                    });
+                    return;
+                }
             }
+            
 
             if(modeEdit){
                 const objectLesson = {
@@ -306,17 +350,19 @@
                     name:newNameLesson,
                     description:newDescription,
                     id_video:newIDVideo,
+                    url_live:newLinkClass,
                     id_module:id_module
                 };
                 
                 updateLesson(objectLesson);
                 return;
             }
-            
+        
             const objectLesson = {
                 name:newNameLesson,
                 description:newDescription,
                 id_video:newIDVideo,
+                url_live:newLinkClass,
                 id_module:id_module
             };
 
@@ -372,7 +418,7 @@
     }
 
     async function addLesson(lesson){
-        const {name, description, id_video, id_module} = lesson;
+        const {name, description, id_video, url_live, id_module} = lesson;
 
         try {
 
@@ -381,6 +427,7 @@
             formData.append("name", name);
             formData.append("description", description);
             formData.append("id_video", id_video);
+            formData.append("url_live", url_live);
             
             const url = `/api/lesson/create/${id_module}`;
 
@@ -422,6 +469,7 @@
                 name:name,
                 description:description,
                 id_video:id_video,
+                url_live:url_live,
                 order_lesson:response.order_lesson,
                 id_module:id_module,
                 material:[]
@@ -442,7 +490,7 @@
     }
 
     async function updateLesson(lesson) {
-        const {id_lesson, name, description, id_video, id_module} = lesson;
+        const {id_lesson, name, description, id_video, url_live, id_module} = lesson;
 
         try {
 
@@ -457,7 +505,8 @@
                 body: JSON.stringify({
                     name: name,
                     description: description,
-                    id_video:id_video
+                    id_video:id_video,
+                    url_live:url_live
                 })
             });
 
@@ -493,9 +542,10 @@
                 if(module.id_module == id_module){
                     module.lessons = module.lessons.map(lesson =>{
                         if(lesson.id_lesson == id_lesson){
-                            lesson.name = name,
-                            lesson.description = description
-                            lesson.id_video = id_video
+                            lesson.name = name;
+                            lesson.description = description;
+                            lesson.id_video = id_video;
+                            lesson.url_live = url_live;
                         }
                         return lesson;
                     });
@@ -531,11 +581,21 @@
         nombre.className = 'lesson__name';
         nombre.textContent = name;
 
+        
+
         const enlace = document.createElement('a');
-        enlace.className = 'lesson__video-link link-active';
-        enlace.href = `https://vimeo.com/${id_video}`;
-        enlace.target = '_blank';
-        enlace.textContent = 'Ver clase en vimeo';
+        
+        if(id_video != null){
+            enlace.className = 'lesson__video-link link-active';
+            enlace.href = `https://vimeo.com/${id_video}`;
+            enlace.target = '_blank';
+            enlace.textContent = 'Ver clase en vimeo';
+
+        }else{
+            enlace.className = 'lesson__video-link link-active';
+            enlace.href = '#';
+            enlace.textContent = 'No hay una clase cargada';
+        }
 
         // Añadir elementos al dataContent
         dataContent.appendChild(nombre);
@@ -956,7 +1016,10 @@
 
     function btnExitMessage(){
         btnExit.addEventListener('click', () =>{
-            window.location = "/kta-admin/cursos";
+            if(course.type == "grabado")
+                window.location = "/kta-admin/cursos";
+            else
+                window.location = "/kta-admin/lives";
         });
     }
 

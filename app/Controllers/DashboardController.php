@@ -17,6 +17,7 @@ use App\Models\Gif;
 
 use App\Classes\Helpers;
 use App\Models\BannerAsesoria;
+use App\Models\Course;
 use App\Models\Live;
 use App\Models\Membership;
 use App\Models\PaymentCourseView;
@@ -38,7 +39,7 @@ class DashboardController{
 
     public static function courses():void{
 
-        $courses = CourseView::all();
+        $courses = CourseView::belongsTo('type', 'grabado', 'id_course', 'ASC')??[];
 
         Response::render('admin/cursos/index', [
             'nameApp' => APP_NAME,
@@ -66,7 +67,7 @@ class DashboardController{
 
     public static function lives():void{
 
-        $lives = Live::all();
+        $lives = CourseView::belongsTo('type', 'live', 'id_course', 'ASC')??[];
 
         Response::render('admin/lives/index', [
             'nameApp' => APP_NAME,
@@ -147,7 +148,6 @@ class DashboardController{
         ]);
     }
 
-
     public static function gifs():void{
         $gifs = Gif::all();
 
@@ -157,7 +157,6 @@ class DashboardController{
             'gifs'=>$gifs
         ]);
     }
-
 
     public static function bannerAsesoria():void{
         $bannerAsesorias = BannerAsesoria::all();

@@ -25,7 +25,7 @@ class Live extends Model {
         'created_at', 'url', 
         'privacy', 'id_category'
     ];
-    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time', 'url'];
+    protected static array $nulleable = ['dates_times', 'discount', 'discount_ends_date', 'discount_ends_time', 'url'];
 
     public ?int $id_live;
     public string $name;
@@ -33,7 +33,7 @@ class Live extends Model {
     public string $thumbnail;
     public string $description;
     public string $details;
-    public string $dates_times;
+    public ?string $dates_times;
     public int $places;
     public float $price;
     public float $discount;

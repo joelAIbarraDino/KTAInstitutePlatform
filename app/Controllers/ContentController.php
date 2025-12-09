@@ -172,6 +172,7 @@ class ContentController{
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
         try {
+            $course = Course::find($id);
             $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
             $modulesLessons = [];
             $lessonsMaterial = [];
@@ -207,6 +208,7 @@ class ContentController{
             }
 
             Response::json([
+                'course'=>$course,
                 'modules'=>$modulesLessons,
             ]);      
         } catch (Exception $e) {

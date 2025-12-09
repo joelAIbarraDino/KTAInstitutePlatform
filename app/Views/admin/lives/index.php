@@ -21,8 +21,11 @@
                         <tr>
                             <th>Caratula</th>
                             <th>Nombre</th>
-                            <th>Creado el </th>
+                            <th>Privacidad</th>
+                            <th>Inscritos</th>
+                            <th>Acceso a contenido</th>
                             <th>Horario(s) de evento</th>
+                            <th>Maestro</th>
                             <th class="actions-label">Acciones</th>
                         </tr>
                     </thead>
@@ -32,9 +35,12 @@
 
                             <?php foreach($lives as $live): ?>
                                 <tr>
-                                    <td><a href="/live/view/<?=$live->url?>"  target="_blank"><img class="dashboard-table__photo--square" src="/assets/thumbnails/lives/<?=$live->thumbnail?>" alt="foto <?=$live->thumbnail?>"></a></td>
+                                    <td><a href="/live/view/<?=$live->url?>"  target="_blank"><img class="dashboard-table__photo--square" src="/assets/thumbnails/courses/<?=$live->thumbnail?>" alt="foto <?=$live->thumbnail?>"></a></td>
                                     <td><?=$live->name?></td>
-                                    <td><?=$live->created_at?></td>
+                                    <td><span class="dashboard-table__status dashboard-table__status--info"><?=$live->privacy ?></span></td>
+                                    <td><?=$live->enrollment?></td>
+                                    <td><span class="dashboard-table__status dashboard-table__status--pending"><?=$live->max_months_enroll ?> meses</span></td>
+                                    <td class="dashboard-table__link"><a href="/kta-admin/maestro/update/<?=$live->id_teacher?>"><?=$live->teacher ?></a></td>
                                     <td>
                                         <?php $fechas = json_decode($live->dates_times);
                                         foreach($fechas as $key=>$fecha):?>
@@ -43,15 +49,16 @@
                                         <?php endforeach;?>
                                     </td>
                                     <td class="dashboard-table__actions-cell">
-                                        <a href="/kta-admin/live/update/<?=$live->id_live ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
-                                        <button data-id="<?=$live->id_live?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
+                                        <a href="/kta-admin/course-content/<?=$live->id_course ?>" class="dashboard-table__action dashboard-table__action--extra"><i class='bx bxs-widget'></i></i></a>
+                                        <a href="/kta-admin/live/update/<?=$live->id_course ?>" class="dashboard-table__action dashboard-table__action--edit"><i class='bx bx-edit'></i></a>
+                                        <button data-id="<?=$live->id_course?>" class="dashboard-table__action dashboard-table__action--delete"><i class='bx bx-trash'></i></button>
                                     </td>
                                 </tr>                    
                             <?php endforeach;?>
                         <?php else: ?>
 
                             <tr>
-                                <td colspan="5" class="dashboard-table__no-result">no hay registros</td>
+                                <td colspan="9" class="dashboard-table__no-result">no hay registros</td>
                             </tr>     
                         <?php endif; ?>               
                     </tbody>
