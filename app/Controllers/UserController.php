@@ -2,17 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Models\Attempt;
-use App\Models\CourseView;
-use App\Models\EnrollmentView;
-use App\Models\Membership;
-use App\Models\MembershipStudent;
-use App\Models\MembershipView;
-use App\Models\Module;
 use App\Models\ProgressEnrollment;
-use App\Models\Quiz;
+use App\Models\EnrollmentView;
+use App\Models\MembershipView;
+use App\Models\CourseView;
 use App\Models\Student;
-use DinoEngine\Helpers\Helpers;
+use App\Models\Attempt;
+use App\Models\Module;
+use App\Models\Quiz;
+
 use DinoEngine\Http\Response;
 
 class UserController{

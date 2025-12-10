@@ -9,6 +9,8 @@
 
   const modulesContainer = document.querySelector('.aside__modules');
 
+  
+  let typeCourse = null;
   let currentStep = 1;
   let videoTerminado = false;
 
@@ -43,6 +45,7 @@
       modules = response.modules;
       lessons = response.lessons;
       quiz = response.quiz;
+      typeCourse = response.type_course;
 
       showModules();
 
@@ -321,7 +324,98 @@
       });
     }
 
-    loadVideo(lesson);
+    // Manejo para cursos en vivo: mostrar link de la clase o mensaje si está vacío.
+    // También, si es live y no hay id_video (null o 0), no inicializar reproductor y mostrar mensaje.
+    try {
+      // Preparar contenedor para info de live/video junto al player si existe
+      const playerEl = document.querySelector('#player');
+      let infoContainer = null;
+
+      if (playerEl && playerEl.parentElement) {
+        infoContainer = playerEl.parentElement.querySelector('#live-info');
+        if(!infoContainer){
+          infoContainer = document.createElement('div');
+          infoContainer.id = 'live-info';
+          infoContainer.classList.add('class__live-info');
+          // Insert before the player element so message/link appears above the player
+          playerEl.parentElement.insertBefore(infoContainer, playerEl);
+        }
+      } else {
+        // fallback: intentar buscar un contenedor principal de la clase
+        infoContainer = document.querySelector('#live-info');
+        if(!infoContainer){
+          infoContainer = document.createElement('div');
+          infoContainer.id = 'live-info';
+          infoContainer.classList.add('class__live-info');
+          // añadir al header de la lección si existe
+          const header = document.querySelector('.class__info-container');
+          if(header) header.appendChild(infoContainer);
+        }
+      }
+
+      // Default clear
+      infoContainer.innerHTML = '';
+
+      if(typeCourse === 'live'){
+        // Mostrar link si existe, si es cadena vacía mostrar mensaje
+        if(lesson.url_live && String(lesson.url_live).trim() !== ''){
+          const a = document.createElement('a');
+          a.href = lesson.url_live;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.classList.add('class__live-link');
+          a.textContent = 'Unirse a la clase en vivo';
+          infoContainer.appendChild(a);
+        }else{
+          const p = document.createElement('p');
+          p.classList.add('class__no-live-link');
+          p.textContent = 'No hay un link de clase disponible.';
+          infoContainer.appendChild(p);
+        }
+
+        // Si no hay video cargado (null o 0), no inicializar player
+        if(!lesson.id_video || lesson.id_video == 0){
+          // destruir reproductor existente si estaba inicializado
+          if(player && typeof player.destroy === 'function'){
+            try{ player.destroy(); }catch(e){}
+            player = null;
+          }
+
+          // ocultar el elemento del player si existe
+          const playerElement = document.querySelector('#player');
+          if(playerElement) playerElement.style.display = 'none';
+
+          // Mostrar mensaje indicando que no hay video todavía
+          let videoMsg = infoContainer.querySelector('.class__no-video');
+          if(!videoMsg){
+            videoMsg = document.createElement('p');
+            videoMsg.classList.add('class__no-video');
+            videoMsg.textContent = 'No hay un video cargado todavía.';
+            infoContainer.appendChild(videoMsg);
+          }
+
+          return; // no cargamos el reproductor
+        }else{
+          // Si hay id_video, asegurarnos que el player está visible y cargarlo
+          const playerElement = document.querySelector('#player');
+          if(playerElement) playerElement.style.display = '';
+          loadVideo(lesson);
+          return;
+        }
+
+      }else{
+        // curso grabado/normal: eliminar mensajes live y asegurarse de mostrar el player
+        if(infoContainer) infoContainer.innerHTML = '';
+        const playerElement = document.querySelector('#player');
+        if(playerElement) playerElement.style.display = '';
+        loadVideo(lesson);
+        return;
+      }
+    } catch (error) {
+      console.log('Error manejando live/video:', error);
+      // Fallback: intentar cargar normalmente
+      loadVideo(lesson);
+    }
   }
 
   function createMaterial(material) {

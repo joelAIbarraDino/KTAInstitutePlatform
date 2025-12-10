@@ -52,6 +52,7 @@ class EnrollmentController{
         $id = $enroll->id_course;
 
         try {
+            $course = Course::find($id);
             $modules = Module::belongsTo('id_course', $id, "order_module", 'ASC')??[];
             $quiz = Quiz::where('id_course', '=', $id)??[];
             $modulesLessons = [];
@@ -75,6 +76,7 @@ class EnrollmentController{
                         'name'=>$lesson->name,
                         'description'=>$lesson->description,
                         'id_video'=>$lesson->id_video,
+                        'url_live'=>$lesson->url_live,
                         'order_lesson'=>$lesson->order_lesson,
                         'id_module'=>$lesson->id_module,
                         'progress'=>$progress,
@@ -85,6 +87,7 @@ class EnrollmentController{
                         'name'=>$lesson->name,
                         'description'=>$lesson->description,
                         'id_video'=>$lesson->id_video,
+                        'url_live'=>$lesson->url_live,
                         'order_lesson'=>$lesson->order_lesson,
                         'id_module'=>$lesson->id_module,
                         'progress'=>$progress,
@@ -104,6 +107,7 @@ class EnrollmentController{
             }
 
             Response::json([
+                'type_course'=>$course->type,
                 'modules'=>$modulesLessons,
                 'lessons'=>$arrayLessons,
                 'quiz'=>$quiz

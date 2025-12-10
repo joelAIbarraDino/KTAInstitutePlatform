@@ -190,6 +190,7 @@ class ContentController{
                         'name'=>$lesson->name,
                         'description'=>$lesson->description,
                         'id_video'=>$lesson->id_video,
+                        'url_live'=>$lesson->url_live,
                         'order_lesson'=>$lesson->order_lesson,
                         'id_module'=>$lesson->id_module,
                         'material'=>$material

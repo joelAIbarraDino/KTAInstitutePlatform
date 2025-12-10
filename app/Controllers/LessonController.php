@@ -71,8 +71,8 @@ class LessonController{
 
             $lesson->name = $dataSend['name'];
             $lesson->description = $dataSend['description'];
-            $lesson->id_video = $dataSend['id_video'];
-            $lesson->url_live = $dataSend['url_live'];
+            $lesson->id_video = empty($dataSend['id_video'])?null:$dataSend['id_video'];
+            $lesson->url_live = empty($dataSend['url_live'])?null:$dataSend['url_live'];
 
             $lesson->validateAPI();
 

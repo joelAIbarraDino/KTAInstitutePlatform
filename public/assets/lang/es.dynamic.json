@@ -157,5 +157,13 @@
     "faq-4": {
         "question": "¿deberia de quitar este requisito?",
         "answer": "yo creo que si deberia quitarlo"
+    },
+    "lesson-18": {
+        "name": "Clase 1 nueva",
+        "description": "pronto tendremos el link de la clase y despues cargamos el video"
+    },
+    "lesson-19": {
+        "name": "Clase 2",
+        "description": "ya paso el primer dia, vamos con el segundo, supongamos que ya tenemos el video de la clase 1 y ya habiamos puesto la url de la clase anterior"
     }
 }

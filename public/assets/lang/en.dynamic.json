@@ -150,5 +150,13 @@
     "faq-4": {
         "question": "Should I remove this requirement?",
         "answer": "I think I should remove it"
+    },
+    "lesson-18": {
+        "name": "New Class 1",
+        "description": "We'll have the link to the class soon, and then we'll upload the video."
+    },
+    "lesson-19": {
+        "name": "Class 2",
+        "description": "The first day has passed, let's move on to the second. Let's assume we already have the video from class 1 and we had already entered the URL from the previous class."
     }
 }

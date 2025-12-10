@@ -48,45 +48,7 @@
                 </div>
 
                 <div id="step-2" class="class__extra">
-                    <div id="material-conteiner" class="material">
-
-                        <!-- <div href="#" class="material__element">
-                            <div class="material__name">
-                                <i class='bx bxs-file-blank'></i>
-                                Nombre de material
-                            </div>
-
-                            <button class="material__download" data-id="10">
-                                Descargar
-                                <i class='bx bx-download' ></i>
-                            </button>
-                        </div>
-
-                        <div href="#" class="material__element">
-                            <div class="material__name">
-                                <i class='bx bxs-file-blank'></i>
-                                Nombre de material
-                            </div>
-
-                            <button class="material__download" data-id="10">
-                                Descargar
-                                <i class='bx bx-download' ></i>
-                            </button>
-                        </div>
-
-                        <div href="#" class="material__element">
-                            <div class="material__name">
-                                <i class='bx bxs-file-blank'></i>
-                                Nombre de material
-                            </div>
-
-                            <button class="material__download" data-id="10">
-                                Descargar
-                                <i class='bx bx-download' ></i>
-                            </button>
-                        </div> -->
-
-                    </div>
+                    <div id="material-conteiner" class="material"></div>
                 </div>
 
             </div>

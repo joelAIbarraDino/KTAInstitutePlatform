@@ -53,11 +53,6 @@ class PaymentController{
             $caratula = '/assets/membresias/'.$product->photo;
             $id_product = $product->id_membership;
             $name = "Membresía ".$product->type;
-        }elseif($type == "live"){
-            $product = Live::where('url', '=', $id);
-            $caratula = '/assets/thumbnails/lives/'.$product->thumbnail;
-            $id_product = $product->id_live;
-            $name = $product->name;
         }
 
         $precio = (int) round($product->price * 100);
@@ -257,19 +252,6 @@ class PaymentController{
                     if(!$rows)
                         Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
 
-                }else if($type_product == 'live'){
-                    
-                    $studentLive = new StudentLive;
-                    $studentLive->id_live = $product_id;
-                    $studentLive->from_membership = 0;
-                    $studentLive->id_student = $student->id_student;
-                    $studentLive->id_payment = $payment->id_payment;
-
-                    $rows = $studentLive->save();
-
-                    if(!$rows)
-                        Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
-
                 }else if($type_product == 'membership'){
                     $membership = new MembershipStudent;
                     $membership->id_membership = $product_id;
@@ -280,7 +262,6 @@ class PaymentController{
 
                     //consultar curso de cursos y lives
                     $courses = MembershipCourse::belongsTo('id_membership', $product_id)??[];
-                    $lives = MembershipLive::belongsTo('id_membership', $product_id)??[];
 
                     //registro de acceso a curso
                     foreach($courses as $course){
@@ -295,20 +276,6 @@ class PaymentController{
 
                         if(!$rows)
                             Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);
-                    }
-
-                    //registro de acceso a live
-                    foreach($lives as $live){
-                        $studentLive = new StudentLive;
-                        $studentLive->id_live = $live->id_live;
-                        $studentLive->from_membership = 1;
-                        $studentLive->id_student = $student->id_student;
-                        $studentLive->id_payment = $payment->id_payment;
-
-                        $rows = $studentLive->save();
-
-                        if(!$rows)
-                            Response::json(['ok'=>false, 'message'=> 'Inscripcion incorrecta'], 400);    
                     }
 
                     if(!$rows)
