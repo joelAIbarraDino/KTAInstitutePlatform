@@ -26,7 +26,7 @@
             <div class="form__input new-module__form">
                 <select name="live-cb" id="live-cb" class="field" >
                     <?php foreach($lives as $live): ?>
-                        <option value="<?=$live->id_live?>"><?=$live->name?></option>
+                        <option value="<?=$live->id_course?>"><?=$live->name?></option>
                     <?php endforeach; ?>
                 </select>
                 <button id="add_course_btn" type="button" class="new-module__btn"><i class='bx bxs-plus-circle'></i></button>

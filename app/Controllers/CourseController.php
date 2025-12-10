@@ -242,7 +242,7 @@ class CourseController{
 
         try{
 
-            $query = PaymentCourseView::querySQL('SELECT * FROM payment_course_view WHERE '.$attribute.' LIKE :value', [
+            $query = PaymentCourseView::querySQL('SELECT * FROM payment_course_view WHERE type="grabado" AND from_membership = 0 AND '.$attribute.' LIKE :value', [
                 ':value'=>'%'.$value.'%'
             ])??[];
 

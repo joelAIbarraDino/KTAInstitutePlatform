@@ -4,15 +4,12 @@
     <section class="cursos-banner" data-aos="fade">
         <div class="cursos-banner__container">
             <h2 data-aos="fade-up" class="cursos-banner__titulo" data-section="courses" data-label="title">Nuestros cursos</h2>
-            <!-- <p class="cursos-banner__desc" id="main-content" data-section="courses" data-label="label">Empieza, cambia o avanza en tu carrera con KTA como guía.</p> -->
         </div>
     </section>
 
     <?php if(!isset($category_url)):?>
         <section class="categorias">
-
             <div class="categorias__grid-3" data-aos="fade-up">
-                
                 <?php foreach($categories as $category ): ?>
                     <a href="/cursos/categoria/<?=$category->id_category?>">
                         <div class="categoria">
@@ -27,7 +24,6 @@
                     </a>
                 <?php endforeach;?>
             </div>
-
         </section>
     <?php endif;?>
 
@@ -36,12 +32,10 @@
             <div class="cursos-container__grid">
                 <?php if(!empty($courses)):?>
                     <?php foreach($courses as $course):?>
-                        <?php if($course->privacy == 'Público'):?>
-                            <?php include __DIR__.'/../../components/courseCard.php'; ?>
-                        <?php endif;?>
+                        <?php include __DIR__.'/../../components/courseCard.php'; ?>
                     <?php endforeach;?>
                 <?php else:?>
-                    <p class="cursos-container__empty">No hay cursos en vivo de esta categoria</p>
+                    <p class="cursos-container__empty">No hay cursos de esta categoria</p>
                 <?php endif;?>
                 
             </div>

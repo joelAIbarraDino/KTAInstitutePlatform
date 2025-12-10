@@ -73,20 +73,15 @@
                     </div>
 
                     <div class="nav">
-                        <p class="nav__title">Cursos</p>
-                        <a class="nav__link nav__link--regular-link" href="/kta-admin/cursos"> <i class='bx bx-chalkboard'></i> Ver Cursos</a>
+                        <p class="nav__title">Productos</p>
+                        <a class="nav__link nav__link--regular-link" href="/kta-admin/membresias"> <i class='bx bxs-certification'></i> Membresías</a>
+                        <a class="nav__link nav__link--regular-link" href="/kta-admin/cursos"> <i class='bx bx-chalkboard'></i> Cursos</a>
+                        <a class="nav__link nav__link--regular-link" href="/kta-admin/lives"> <i class='bx bx-chalkboard'></i> Cursos en vivo</a>
+                    </div>
+
+                    <div class="nav">
+                        <p class="nav__title">Categorias</p>
                         <a class="nav__link nav__link--regular-link" href="/kta-admin/categorias"> <i class='bx bxs-category'></i> Ver Categorías</a>
-                    </div>
-
-                    <div class="nav">
-                        <p class="nav__title">Lives</p>
-                        <a class="nav__link nav__link--regular-link" href="/kta-admin/lives"> <i class='bx bx-chalkboard'></i> Ver Cursos en vivo</a>
-                    </div>
-
-                    <div class="nav">
-                        <p class="nav__title">Membresías</p>
-                        <a class="nav__link nav__link--regular-link" href="/kta-admin/membresias"> <i class='bx bxs-certification'></i> Ver Membresías</a>
-                        <!-- <a class="nav__link nav__link--regular-link" href="/kta-admin/estudiante-membresia"> <i class='bx bxs-user-badge' ></i> Estudiantes con membresías</a> -->
                     </div>
 
                     <div class="nav">

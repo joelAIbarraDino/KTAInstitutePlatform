@@ -9,8 +9,8 @@ use App\Classes\Helpers;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\LiveView;
-use App\Models\Live;
-use App\Models\PaymentLiveView;
+use App\Models\PaymentCourseView;
+use App\Models\CourseView;
 use App\Models\Teacher;
 use Exception;
 
@@ -175,18 +175,18 @@ class LiveController{
 
     public static function lives():void{
 
-        $eventos = LiveView::all();
+        $eventos = CourseView::querySQL('SELECT * FROM course_view WHERE type="live" AND privacy = "Público"')??[];
         $listaEventos = [];
 
         foreach($eventos as $evento){
             
-            $fechas = json_decode($evento->dates_times);
+            $fechas = json_decode($evento['dates_times']);
 
             foreach($fechas as $fecha){
                 $listaEventos[] =[
-                    'title'=>$evento->name,
+                    'title'=>$evento['name'],
                     'start'=>$fecha,
-                    'url'=>'/live/view/'.$evento->url
+                    'url'=>'/curso/view/'.$evento['url']
                 ];
             }
         }
@@ -198,12 +198,12 @@ class LiveController{
         if(!Request::isGET())
             Response::json(['ok'=>true,'message'=>"Método no soportado"]);
 
-        if(!property_exists(PaymentLiveView ::class, $attribute))
+        if(!property_exists(PaymentCourseView ::class, $attribute))
             Response::json(['ok'=>true,'message'=>"Attributo invalido"]);
 
         try{
 
-            $query = PaymentLiveView::querySQL('SELECT * FROM payment_live_view WHERE '.$attribute.' LIKE :value', [
+            $query = PaymentCourseView::querySQL('SELECT * FROM payment_course_view WHERE type="live" AND from_membership = 0 AND '.$attribute.' LIKE :value', [
                 ':value'=>'%'.$value.'%'
             ])??[];
 

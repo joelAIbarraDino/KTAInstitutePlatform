@@ -65,7 +65,7 @@
             try {
                 const res = await fetch(`/kta-admin/membership-courses/${id_membership}`);
                 const data = await res.json();
-                const lives = data.lives;
+                const lives = data.courses;
                 if (Array.isArray(lives)) {
                     lives.forEach(course => {
                         createCourseElement(course.id_membership_course, course.name);

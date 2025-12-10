@@ -92,8 +92,6 @@ $dino = new Dino(dirname(__DIR__), $runMode, $dbConfig);
 
 //public zone
 $dino->router->get('/', [PagesController::class, 'home']);
-$dino->router->get('/home1', [PagesController::class, 'home1']);
-$dino->router->get('/home2', [PagesController::class, 'home2']);
 
 $dino->router->get('/terminos-condiciones', [PagesController::class, 'terminos']);
 $dino->router->get('/politica-privacidad', [PagesController::class, 'politica']);
@@ -108,7 +106,7 @@ $dino->router->get('/curso/view/{id}', [PagesController::class, 'courseDetails']
 
 $dino->router->get('/lives', [PagesController::class, 'lives']);
 $dino->router->get('/lives/categoria/{category_url}', [PagesController::class, 'liveCategory']);
-$dino->router->get('/live/view/{id}', [PagesController::class, 'liveDetails'], [new PublicLiveMiddleware('/') ]);
+// $dino->router->get('/live/view/{id}', [PagesController::class, 'liveDetails'], [new PublicLiveMiddleware('/') ]);
 
 $dino->router->get('/profesor/view/{id}', [PagesController::class, 'teacherDetails']);
 

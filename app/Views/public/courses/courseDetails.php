@@ -1,4 +1,15 @@
-<?php include_once __DIR__.'/../../components/header.php';?>
+<?php 
+include_once __DIR__.'/../../components/header.php';
+
+use App\Classes\Helpers;
+
+$fechas = [];
+
+if($course->type === "live"){
+    $fechas =  Helpers::obtenerFechasYHoras($course->dates_times);    
+}
+
+?>
 
 <main>
 
@@ -7,13 +18,36 @@
 
         <div class="info-curso__cover">
             <a class="info-curso__return" href="javascript:history.back()" data-section="course-details" data-label="return"><i class='bx bx-left-arrow-alt'></i> Regresar</a>
-            
-            <div class="info-curso__type" data-section="course-details" data-label="type-content">
-                <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
-            </div>
+            <?php if($course->type === "grabado"):?>
+                <div class="info-curso__type" data-section="course-details" data-label="type-content">
+                    <i class='bx bx-camera-movie'></i> <span>Contenido grabado</span>
+                </div>
+            <?php else:?>
+                <div class="info-curso__type" data-section="live-details" data-label="type-content">
+                    <i class='bx bxl-zoom' ></i> <span>Contenido en vivo</span>
+                </div>
+            <?php endif;?>
             
             <h1 class="info-curso__name" data-section="course-<?=$course->id_course?>" data-label="name"><?=$course->name?></h1>
-            <p class="info-curso__lema" data-section="course-<?=$course->id_course?>" data-label="watchword"><?=$course->watchword?></p>
+
+            <?php if($course->type === "grabado"):?>
+                <p class="info-curso__lema" data-section="course-<?=$course->id_course?>" data-label="watchword"><?=$course->watchword?></p>
+            <?php else: ?>
+                <p class="info-curso__lema" data-section="live-details" data-label="lema"><strong>Este es un curso en vivo que se dará el:</strong></p>
+
+                <?php foreach($fechas as $fecha):?>
+                    <div class="info-curso__dates">
+                        <div class="info-curso__detail">
+                            <i class='bx bx-calendar'></i> <span><?=$fecha['fecha']?></span>
+                        </div>
+
+                        <div class="info-curso__detail">
+                            <i class='bx bx-time-five'></i><span><?=$fecha['hora']?></span>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+
+            <?php endif; ?>
 
             <div class="info-curso__details">
 

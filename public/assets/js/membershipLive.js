@@ -65,10 +65,10 @@
             try {
                 const res = await fetch(`/kta-admin/membership-lives/${id_membership}`);
                 const data = await res.json();
-                const lives = data.lives;
+                const lives = data.courses;
                 if (Array.isArray(lives)) {
                     lives.forEach(course => {
-                        createCourseElement(course.id_membership_live, course.name);
+                        createCourseElement(course.id_membership_course, course.name);
                     });
                 }
             } catch (err) {
@@ -82,7 +82,7 @@
             const id_membership = getMembershipIdFromURL();
 
             const formData = new FormData();
-            formData.append('id_live', id_live);
+            formData.append('id_course', id_live);
             formData.append('id_membership', id_membership);
 
             try {

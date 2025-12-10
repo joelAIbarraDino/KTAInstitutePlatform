@@ -146,5 +146,9 @@
     "lesson-17": {
         "name": "New lesson with course type",
         "description": "fgsdafgfdsafsa"
+    },
+    "faq-4": {
+        "question": "Should I remove this requirement?",
+        "answer": "I think I should remove it"
     }
 }

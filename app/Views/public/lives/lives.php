@@ -3,8 +3,7 @@
 <main class="cursos-principal">
     <section class="cursos-banner" data-aos="fade">
         <div class="cursos-banner__container">
-            <h2 data-aos="fade-up" class="cursos-banner__titulo" data-section="lives" data-label="title">Nuestros cursos en línea</h2>
-            <!-- <p class="cursos-banner__desc" id="main-content" data-section="courses" data-label="label">Empieza, cambia o avanza en tu carrera con KTA como guía.</p> -->
+            <h2 data-aos="fade-up" class="cursos-banner__titulo" data-section="lives" data-label="title">Nuestros cursos en vivo</h2>
         </div>
     </section>
 
@@ -33,11 +32,9 @@
     <?php if (isset($category_url)):?>
         <section class="cursos-container" data-aos="fade">        
             <div class="cursos-container__grid">
-                <?php if(!empty($lives)):?>
-                    <?php foreach($lives as $live):?>
-                        <?php if($live->privacy == 'Público'):?>
-                            <?php include __DIR__.'/../../components/liveCard.php'; ?>
-                        <?php endif;?>
+                <?php if(!empty($courses)):?>
+                    <?php foreach($courses as $course):?>
+                        <?php include __DIR__.'/../../components/courseCard.php'; ?>
                     <?php endforeach;?>
                 <?php else:?>
                     <p class="cursos-container__empty">No hay cursos en vivo de esta categoria</p>

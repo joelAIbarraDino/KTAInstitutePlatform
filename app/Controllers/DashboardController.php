@@ -2,9 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Classes\FacturaPDF;
 use DinoEngine\Http\Response;
-
 use App\Models\MembershipView;
 use App\Models\EnrollmentView;
 use App\Models\CourseView;
@@ -14,16 +12,11 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Admin;
 use App\Models\Gif;
-
 use App\Classes\Helpers;
 use App\Models\BannerAsesoria;
-use App\Models\Course;
-use App\Models\Live;
 use App\Models\Membership;
 use App\Models\PaymentCourseView;
-use App\Models\PaymentLiveView;
 use App\Models\PaymentMembershipView;
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
 
 class DashboardController{
     
@@ -51,7 +44,7 @@ class DashboardController{
 
     public static function paymentCourses():void{
 
-        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0")??[];
+        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0 AND type = 'grabado'")??[];
         $finalPagos = [];
 
         foreach($pagos as $pago){
@@ -79,11 +72,11 @@ class DashboardController{
 
     public static function paymentLives():void{
 
-        $pagos = PaymentLiveView::querySQL("SELECT * FROM payment_live_view WHERE from_membership = 0")??[];
+        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0 AND type = 'live'")??[];
         $finalPagos = [];
 
         foreach($pagos as $pago){
-            $finalPagos[] = new PaymentLiveView($pago);
+            $finalPagos[] = new PaymentCourseView($pago)??[];
         }
 
 

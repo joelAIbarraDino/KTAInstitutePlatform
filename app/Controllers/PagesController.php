@@ -71,67 +71,6 @@ class PagesController{
         ]);
     }
 
-    public static function index(): void{
-
-        $sliders = Slidebar::all();
-        $courses = CourseView::all(5, 'id_course', 'DESC');
-        $teachers = Teacher::all()??[];
-        $categories = Category::all()??[];
-        $reviews = Review::all(20);
-        
-        Response::render('public/index', [
-            'nameApp'=>APP_NAME, 
-            'title' => 'Inicio',
-            'sliders'=>$sliders,
-            'courses'=>$courses,
-            'reviews'=>$reviews,
-            'teachers'=>$teachers,
-            'categories'=>$categories
-        ]);
-    }
-
-    public static function home1(): void{
-
-        $sliders = Slidebar::all();
-        $courses = CourseView::all(5, 'id_course', 'DESC');
-        $lives = LiveView::all(3, 'created_at', 'DESC');
-        $teachers = Teacher::all()??[];
-        $categories = Category::all()??[];
-        $reviews = Review::all(20);
-        
-        Response::render('public/home1', [
-            'nameApp'=>APP_NAME, 
-            'title' => 'Inicio 1',
-            'sliders'=>$sliders,
-            'courses'=>$courses,
-            'reviews'=>$reviews,
-            'teachers'=>$teachers,
-            'categories'=>$categories,
-            'lives'=>$lives
-        ]);
-    }
-
-    public static function home2(): void{
-
-        $sliders = Slidebar::all();
-        $courses = CourseView::all(5, 'id_course', 'DESC');
-        $teachers = Teacher::all()??[];
-        $categories = Category::all()??[];
-        $reviews = Review::all(20);
-        $membresias = Membership::all()??[];
-        
-        Response::render('public/home2', [
-            'nameApp'=>APP_NAME, 
-            'title' => 'Inicio 2',
-            'sliders'=>$sliders,
-            'courses'=>$courses,
-            'reviews'=>$reviews,
-            'teachers'=>$teachers,
-            'categories'=>$categories,
-            'membresias'=>$membresias
-        ]);
-    }
-
     public static function about(): void{
 
         $teachers = Teacher::all()??[];
@@ -140,28 +79,6 @@ class PagesController{
             'nameApp'=>APP_NAME, 
             'title' => 'Nosotros',
             'teachers'=>$teachers
-        ]);
-    }
-
-    public static function courses():void{
-
-        $courses = CourseView::all();
-        $categories = Category::all();
-        $banners = BannerAsesoria::all()??[];
-        $bannerAsesoria = array_pop($banners);
-        
-        if(!$courses)
-            Response::redirect('/');
-
-        if(!$categories)
-            Response::redirect('/');
-        
-        Response::render('/public/courses/courses', [
-            'nameApp'=>APP_NAME,
-            'title'=>'Cursos',
-            'courses'=>$courses,
-            'categories'=>$categories,
-            'bannerAsesoria'=>$bannerAsesoria
         ]);
     }
 
@@ -179,8 +96,30 @@ class PagesController{
         ]);
     }
 
+    public static function courses():void{
+
+        $categories = Category::all();
+        $banners = BannerAsesoria::all()??[];
+        $bannerAsesoria = array_pop($banners);
+        
+        if(!$categories)
+            Response::redirect('/');
+        
+        Response::render('/public/courses/courses', [
+            'nameApp'=>APP_NAME,
+            'title'=>'Cursos Self Study',
+            'categories'=>$categories,
+            'bannerAsesoria'=>$bannerAsesoria
+        ]);
+    }
+
     public static function courseCategory($category_url):void{
-        $courses = CourseView::belongsTo('id_category', $category_url)??[];
+        $coursesTmpt = CourseView::querySQL('SELECT * FROM course_view WHERE type="grabado" AND privacy ="Público" AND id_category = :id_category', [
+            ':id_category'=>$category_url
+        ])??[];
+        
+        $courses = array_map(fn($row) => new CourseView($row), $coursesTmpt);
+
         $categories = Category::all();
         $banners = BannerAsesoria::all()??[];
         $bannerAsesoria = array_pop($banners);
@@ -201,60 +140,62 @@ class PagesController{
     public static function courseDetails($id):void{
 
         session_start();
-        
+
         $inscrito = false;
         $enroll_url = null;
 
-        //si un estudiante tiene la sesion iniciada
-        if(isset($_SESSION['student'])){
-            $id_student = $_SESSION['student']['id_student'];
+        // Si hay sesión de estudiante
+        if (!empty($_SESSION['student'])) {
+
+            $id_student  = $_SESSION['student']['id_student'];
             $currentDate = strtotime(date("Y-m-d"));
-            
-            $enrollment = EnrollmentView::multiWhere(['id_student'=>$id_student, 'course_url'=>$id]);
-            $enrollment = EnrollmentView::querySQL(
-                'SELECT * FROM enrollment_view WHERE id_student = :id_student AND course_url = :course_url',
-                [':id_student'=>$id_student, ':course_url'=>$id]
-            );
 
-            if($enrollment){
-                foreach($enrollment as $enroll){
-                    $enrollDate = strtotime("+".$enroll['max_months_enroll']. " months", strtotime($enroll['enrollment_at']));
-                    $inscrito = $currentDate < $enrollDate?true:false;
+            $enrollments = EnrollmentView::querySQL('SELECT * FROM enrollment_view WHERE id_student = :id_student AND course_url = :course_url',[
+                ':id_student' => $id_student,
+                ':course_url' => $id
+            ])??[];
 
-                    if($inscrito){
-                        $enroll_url = $enroll['enroll_url'];
-                        break;
-                    }
+            foreach ($enrollments as $enroll) {
+
+                $enrollDate = strtotime("+" . $enroll['max_months_enroll'] . " months", strtotime($enroll['enrollment_at']));
+
+                if ($currentDate < $enrollDate) {
+                    $inscrito   = true;
+                    $enroll_url = $enroll['enroll_url'];
+                    break;
                 }
-            }        
+            }
         }
 
+        // Consulta del curso
         $course = CourseView::where('url', '=', $id);
 
-        if(!$course)
+        if (!$course) {
             Response::redirect('/');
+        }
 
+        // Consulta del profesor
         $teacher = Teacher::where('id_teacher', '=', $course->id_teacher);
 
-        if(!$teacher)
+        if (!$teacher) {
             Response::redirect('/');
+        }
 
-        $modules = Module::belongsTo('id_course', $course->id_course, "order_module", 'ASC')??[];
+        // Módulos del curso
+        $modules = Module::belongsTo('id_course', $course->id_course, 'order_module', 'ASC') ?? [];
         $faq = FAQ::belongsTo('id_course', $course->id_course);
-        $modulesLessons = [];
-        
-        //por cada modulo obtengo sus lecciones que tiene
-        foreach($modules as $module){
-            //consulto las lecciones que tiene el modulo
-            $lessons =  Lesson::belongsTo('id_module', $module->id_module, 'order_lesson', 'ASC')??[];
-            
-            //lleno los datos del modulo a mi array final y los cursos del modulo que tiene
-            $modulesLessons[] = [
-                'name'=>$module->name,
-                'lessons'=>array_map(fn($obj) => $obj->name, $lessons )
+
+        $modulesLessons = array_map(function($module) {
+
+            $lessons = Lesson::belongsTo('id_module', $module->id_module, 'order_lesson', 'ASC') ?? [];
+
+            return [
+                'name'    => $module->name,
+                'lessons' => array_map(fn($obj) => $obj->name, $lessons)
             ];
 
-        }
+        }, $modules);
+
 
         Response::render('public/courses/courseDetails', [
             'nameApp'=>APP_NAME,
@@ -270,28 +211,28 @@ class PagesController{
     }
 
     public static function lives():void{
-        $lives = LiveView::all();
         $categories = Category::all();
         $banners = BannerAsesoria::all()??[];
         $bannerAsesoria = array_pop($banners);
-                
-        if(!$lives)
-            Response::redirect('/');
 
         if(!$categories)
             Response::redirect('/');
         
         Response::render('/public/lives/lives', [
             'nameApp'=>APP_NAME,
-            'title'=>'Cursos',
-            'lives'=>$lives,
+            'title'=>'Cursos en vivo',
             'categories'=>$categories,
             'bannerAsesoria'=>$bannerAsesoria
         ]);
     }
 
-    public static function liveCategory(string $category_url):void{
-        $lives = LiveView::belongsTo('id_category', $category_url)??[];
+    public static function liveCategory($category_url):void{
+        $coursesTmpt = CourseView::querySQL('SELECT * FROM course_view WHERE type="live" AND privacy ="Público" AND id_category = :id_category', [
+            ':id_category'=>$category_url
+        ])??[];
+        
+        $courses = array_map(fn($row) => new CourseView($row), $coursesTmpt);
+
         $categories = Category::all();
         $banners = BannerAsesoria::all()??[];
         $bannerAsesoria = array_pop($banners);
@@ -302,7 +243,7 @@ class PagesController{
         Response::render('/public/lives/lives', [
             'nameApp'=>APP_NAME,
             'title'=>'Cursos en vivo',
-            'lives'=>$lives,
+            'courses'=>$courses,
             'categories'=>$categories,
             'category_url'=>$category_url,
             'bannerAsesoria'=>$bannerAsesoria
@@ -311,16 +252,16 @@ class PagesController{
 
     public static function liveDetails($id):void{
     
-        $live = LiveView::where('url', '=', $id);
+        // $live = CourseView::where('url', '=', $id);
 
-        if(!$live)
-            Response::redirect('/');
+        // if(!$live)
+        //     Response::redirect('/');
 
-        Response::render('public/lives/liveDetails', [
-            'nameApp'=>APP_NAME,
-            'title'=>$live->name,
-            'live'=>$live
-        ]);
+        // Response::render('public/lives/liveDetails', [
+        //     'nameApp'=>APP_NAME,
+        //     'title'=>$live->name,
+        //     'live'=>$live
+        // ]);
     }
 
     public static function membership():void{

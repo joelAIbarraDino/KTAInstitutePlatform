@@ -153,5 +153,9 @@
     "lesson-17": {
         "name": "Nueva leccion con tipo de curso",
         "description": "fgsdafgfdsafsa"
+    },
+    "faq-4": {
+        "question": "¿deberia de quitar este requisito?",
+        "answer": "yo creo que si deberia quitarlo"
     }
 }

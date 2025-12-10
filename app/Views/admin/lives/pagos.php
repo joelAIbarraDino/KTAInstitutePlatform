@@ -50,7 +50,7 @@
                                 <?php foreach($pagos as $pago): ?>
                                     <tr>
                                         <td><?=$pago->created_at?></td>
-                                        <td><?=$pago->live?></td>
+                                        <td><?=$pago->name?></td>
                                         <td><?=$pago->student?></td>
                                         <td><?=$pago->email?></td>
                                         <td>$ <?=$pago->amount.' '.$pago->currency?></td>
@@ -107,7 +107,7 @@
         template: `
             <tr>
                 <td>{{created_at}}</td>
-                <td>{{live}}</td>
+                <td>{{name}}</td>
                 <td>{{student}}</td>
                 <td>{{email}}</td>
                 <td>$ {{amount}} {{currency}}</td>
