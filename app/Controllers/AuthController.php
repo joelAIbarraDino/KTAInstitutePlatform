@@ -7,7 +7,6 @@ use App\Classes\Email;
 use App\Classes\Helpers;
 use App\Models\Admin;
 use App\Models\Student;
-use DinoEngine\Helpers\Helpers as HelpersHelpers;
 use DinoEngine\Http\Request;
 use DinoEngine\Http\Response;
 
@@ -123,7 +122,7 @@ class AuthController
             Response::json([
                 'ok'=>true,
                 'message'=>'Autenticación correcta',
-                'redirect_url'=>'/kta-admin/dashboard'
+                'redirect_url'=>'/kta-admin/cursos'
             ]);
         }
     }

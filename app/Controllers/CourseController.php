@@ -116,6 +116,8 @@ class CourseController{
                 if($_FILES['background']['size'] > 0)
                     $course->uploadImageBackground($_FILES['background'], 1280, 720);
                 
+                $course->generateURL();
+
                 $id = $course->save();
 
                 if($id){

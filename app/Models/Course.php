@@ -24,13 +24,13 @@ class Course extends Model {
         'max_months_enroll', 
         'privacy', 'id_category', 'id_teacher'
     ];
-    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time', 'url', 'dates_times', 'watchword'];
+    protected static array $nulleable = ['discount', 'discount_ends_date', 'discount_ends_time', 'url', 'dates_times', 'watchword', 'thumbnail', 'background'];
 
     public ?int $id_course;
     public string $name;
     public ?string $watchword;
-    public string $background;
-    public string $thumbnail;
+    public ?string $background;
+    public ?string $thumbnail;
     public string $type;
     public string $description;
     public string $details;
@@ -53,8 +53,8 @@ class Course extends Model {
         $this->id_course = $args["id_course"]??null;
         $this->name = $args["name"]??"";
         $this->watchword = $args["watchword"]??"";
-        $this->background = $args["background"]??"";
-        $this->thumbnail = $args["thumbnail"]??"";
+        $this->background = $args["background"]??null;
+        $this->thumbnail = $args["thumbnail"]??null;
         $this->description = $args["description"]??"";
         $this->details = $args["details"]??"";
         $this->dates_times = $args["dates_times"]??null;
@@ -83,8 +83,8 @@ class Course extends Model {
         if(strlen($this->watchword) > 200)
             self::setAlerts("error", "El lema debe tener menos de 200 caracteres");
         
-        if(strlen($this->description) < 80)
-            self::setAlerts("error", "La descripción debe tener mas de 80 caracteres");
+        // if(strlen($this->description) < 80)
+        //     self::setAlerts("error", "La descripción debe tener mas de 80 caracteres");
 
         if(strlen($this->details) === 0)
             self::setAlerts("error", "El curso no tiene detalles agregados");

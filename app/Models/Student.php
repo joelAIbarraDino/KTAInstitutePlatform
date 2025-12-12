@@ -11,12 +11,12 @@ class Student extends Model {
     protected static string $PK_name = 'id_student';
     protected static array $columns = ['id_student', 'name', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret', 'totp_active', 'user_confirmed'];
     protected static array $fillable = ['name', 'email', 'phone', 'street', 'number_street', 'state', 'cp', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret', 'totp_active', 'user_confirmed'];
-    protected static array $nulleable = ['street', 'number_street', 'state', 'cp', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret'];
+    protected static array $nulleable = ['phone','street', 'number_street', 'state', 'cp', 'password', 'photo', 'oauth_provider', 'oauth_id', 'totp_secret'];
 
     public ?int $id_student;
     public string $name;
     public string $email;
-    public string $phone;
+    public ?string $phone;
     public ?string $street;
     public ?string $number_street;
     public ?string $state;
@@ -34,7 +34,7 @@ class Student extends Model {
         $this->id_student = $args["id_student"]??null;
         $this->name = $args["name"]??"";
         $this->email = $args["email"]??"";
-        $this->phone = $args['phone']??"";
+        $this->phone = $args['phone']??null;
         $this->street = $args['street']??null;
         $this->number_street = $args['number_street']??null;
         $this->state = $args['state']??null;
@@ -59,8 +59,8 @@ class Student extends Model {
         if(!$this->password)
             self::setAlerts('error', "La contraseña es obligatoria");
 
-        if(!$this->phone)
-            self::setAlerts('error', "El teléfono es obligatorio");
+        // if(!$this->phone)
+        //     self::setAlerts('error', "El teléfono es obligatorio");
 
         return self::$alerts;
     }
@@ -109,8 +109,8 @@ class Student extends Model {
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
             Response::json(['ok'=>false, 'message'=>'Debe ingresar un correo valido'], 400);
 
-        if(!$this->photo)
-            Response::json(['ok'=>false, 'message'=>'El teléfono es obligatorio'], 400);
+        // if(!$this->phone)
+        //     Response::json(['ok'=>false, 'message'=>'El teléfono es obligatorio'], 400);
 
     }
 

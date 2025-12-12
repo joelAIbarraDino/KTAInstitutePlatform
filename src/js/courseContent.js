@@ -305,7 +305,7 @@
         inputSubmit.addEventListener('click', function(){
             
             const newNameLesson = inputNombre.value.trim();
-            const newDescription = textareaDescripcion.value.trim();
+            const newDescription = textareaDescripcion.value.trim()??"";
             const newIDVideo = inputIdVideo.value.trim()??"";
             let newLinkClass = "";
 
@@ -322,14 +322,14 @@
                 return;
             }
             
-            if(newDescription.length === 0){
-                Swal.fire({
-                    icon: "error",
-                    title: "Descripción invalido",
-                    text: "La descripción de la lección es obligatoria",
-                });
-                return;
-            }
+            // if(newDescription.length === 0){
+            //     Swal.fire({
+            //         icon: "error",
+            //         title: "Descripción invalido",
+            //         text: "La descripción de la lección es obligatoria",
+            //     });
+            //     return;
+            // }
 
             
             if( course.type == "grabado"){

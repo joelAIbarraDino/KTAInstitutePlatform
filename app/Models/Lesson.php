@@ -11,11 +11,11 @@ class Lesson extends Model {
     protected static string $PK_name = 'id_lesson';
     protected static array $columns = ['id_lesson', 'name', 'description', 'id_video', 'url_live', 'order_lesson', 'id_module'];
     protected static array $fillable = ['name', 'description', 'id_video', 'url_live', 'order_lesson'];
-    protected static array $nulleable = ['url_live', 'id_video'];
+    protected static array $nulleable = ['url_live', 'id_video', 'description'];
 
     public ?int $id_lesson;
     public string $name;
-    public string $description;
+    public ?string $description;
     public ?int $id_video;
     public ?string $url_live;
     public int $order_lesson;
@@ -24,7 +24,7 @@ class Lesson extends Model {
     public function __construct($args = []){
         $this->id_lesson = $args["id_lesson"]??null;
         $this->name = $args["name"]??"";
-        $this->description = $args["description"]??"";
+        $this->description = $args["description"]??null;
         $this->id_video = $args["id_video"]??null;
         $this->url_live = $args["url_live"]??null;
         $this->order_lesson = $args["order_lesson"]??0;
@@ -35,10 +35,7 @@ class Lesson extends Model {
 
         if(!$this->name)
             Response::json(['ok'=>false, 'message'=>'Debe ingresar un nombre a la lección'], 400);
-
-        if(!$this->description)
-            Response::json(['ok'=>false, 'message'=>'Debe ingresar la descripción de la lección'], 400);
-
+        
         if(!$this->order_lesson)
             Response::json(['ok'=>false, 'message'=>'Debe ingresar el orden de la lección'], 400);
 

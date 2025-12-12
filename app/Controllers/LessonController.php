@@ -24,8 +24,8 @@ class LessonController{
             $dataPost = Request::getPostData();
 
             $lesson->name = $dataPost['name'];
-            $lesson->description = $dataPost['description'];
 
+            $lesson->description = empty($dataPost['description'])?null:$dataPost['description'];
             $lesson->id_video = empty($dataPost['id_video'])?null:$dataPost['id_video'];
             $lesson->url_live = empty($dataPost['url_live'])?null:$dataPost['url_live'];
 
@@ -70,7 +70,7 @@ class LessonController{
             $dataSend = Request::getBody();
 
             $lesson->name = $dataSend['name'];
-            $lesson->description = $dataSend['description'];
+            $lesson->description = empty($dataSend['description'])?null:$dataSend['description'];
             $lesson->id_video = empty($dataSend['id_video'])?null:$dataSend['id_video'];
             $lesson->url_live = empty($dataSend['url_live'])?null:$dataSend['url_live'];
 

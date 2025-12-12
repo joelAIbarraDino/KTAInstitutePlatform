@@ -29,8 +29,8 @@ class Category extends Model {
         if(strlen($this->name) > 30)
             self::setAlerts('error', 'El nombre de la categoria no debe tener mas de 30 caracteres');
 
-        if(!$this->icon)
-            self::setAlerts('error', 'El icono de la categoria es obligatorio');
+        // if(!$this->icon)
+        //     self::setAlerts('error', 'El icono de la categoria es obligatorio');
 
         return self::$alerts;
     }

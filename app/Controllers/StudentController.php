@@ -167,7 +167,7 @@ class StudentController{
         $student->validateAPI();
 
         if(!$student->save())
-            Response::json(['ok'=>false, 'message'=>'Error al actualizar nombre, intente mas tarde'], 400);
+            Response::json(['ok'=>false, 'message'=>'Error al actualizar perfin, intente mas tarde'], 400);
 
         Response::json(['ok'=>true, 'message'=>'Nombre actualizado con exito']);
 
