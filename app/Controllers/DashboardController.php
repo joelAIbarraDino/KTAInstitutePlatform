@@ -13,10 +13,13 @@ use App\Models\Teacher;
 use App\Models\Admin;
 use App\Models\Gif;
 use App\Classes\Helpers;
+use App\Classes\Paginador;
 use App\Models\BannerAsesoria;
 use App\Models\Membership;
 use App\Models\PaymentCourseView;
 use App\Models\PaymentMembershipView;
+use DinoEngine\Helpers\Helpers as DinoEngineHelpers;
+use DinoEngine\Http\Request;
 
 class DashboardController{
     
@@ -32,19 +35,48 @@ class DashboardController{
 
     public static function courses():void{
 
-        $courses = CourseView::belongsTo('type', 'grabado', 'id_course', 'ASC')??[];
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/cursos?page=1');
+        }
+
+        $total = CourseView::count('id_course', 'type', '=', 'grabado');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/cursos?page=1');
+        }
+
+        $courses = CourseView::pagination($paginacion->registrosPorPagina, $paginacion->offset(), 'type', '=', 'grabado')??[];
 
         Response::render('admin/cursos/index', [
             'nameApp' => APP_NAME,
             'title' => 'Admin cursos',
-            'courses'=>$courses
+            'courses'=>$courses,
+            'paginacion'=>$paginacion->paginacion()
         ]);
 
     }
 
     public static function paymentCourses():void{
 
-        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0 AND type = 'grabado'")??[];
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/pago-cursos?page=1');
+        }
+
+        $total = PaymentCourseView::count('id_enrollment', 'type', '=', 'grabado');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/pago-cursos?page=1');
+        }
+
+        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0 AND type = 'grabado' LIMIT ".$paginacion->registrosPorPagina." OFFSET ".$paginacion->offset())??[];
         $finalPagos = [];
 
         foreach($pagos as $pago){
@@ -54,47 +86,95 @@ class DashboardController{
         Response::render('admin/cursos/pagos', [
             'nameApp' => APP_NAME,
             'title' => 'Pagos cursos',
-            'pagos'=>$finalPagos
+            'pagos'=>$finalPagos,
+            'paginacion'=>$paginacion->paginacion()
         ]);
     }
 
     public static function lives():void{
 
-        $lives = CourseView::belongsTo('type', 'live', 'id_course', 'ASC')??[];
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/lives?page=1');
+        }
+
+        $total = CourseView::count('id_course', 'type', '=', 'live');
+        $paginacion = new Paginador($paginaActual, $total, 1);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/lives?page=1');
+        }
+
+        $lives = CourseView::pagination($paginacion->registrosPorPagina, $paginacion->offset(), 'type', '=', 'live')??[];
+
 
         Response::render('admin/lives/index', [
             'nameApp' => APP_NAME,
             'title' => 'Admin lives',
-            'lives'=>$lives
+            'lives'=>$lives,
+            'paginacion'=>$paginacion->paginacion()
         ]);
 
     }
 
     public static function paymentLives():void{
 
-        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0 AND type = 'live'")??[];
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/pago-lives?page=1');
+        }
+
+        $total = PaymentCourseView::count('id_enrollment', 'type', '=', 'live');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/pago-lives?page=1');
+        }
+
+        $pagos = PaymentCourseView::querySQL("SELECT * FROM payment_course_view WHERE from_membership = 0 AND type = 'live' LIMIT ".$paginacion->registrosPorPagina." OFFSET ".$paginacion->offset())??[];
         $finalPagos = [];
 
         foreach($pagos as $pago){
             $finalPagos[] = new PaymentCourseView($pago)??[];
         }
 
-
         Response::render('admin/lives/pagos', [
             'nameApp' => APP_NAME,
             'title' => 'Pagos lives',
-            'pagos'=>$finalPagos
+            'pagos'=>$finalPagos,
+            'paginacion'=>$paginacion->paginacion()
         ]);
     }
 
     public static function categories():void{
         
-        $categories = Category::all();
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/categorias?page=1');
+        }
+
+        $total = Category::count('id_category');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/categorias?page=1');
+        }
+
+        $categories = Category::pagination($paginacion->registrosPorPagina, $paginacion->offset())??[];
+        
+
 
         Response::render('admin/categorias/index', [
             'nameApp' => APP_NAME,
             'title' => 'Admin categorias',
-            'categories'=>$categories
+            'categories'=>$categories,
+            'paginacion'=>$paginacion->paginacion()
         ]);
     }
 
@@ -111,12 +191,28 @@ class DashboardController{
 
     public static function paymentMemberships():void{
         
-        $pagos = PaymentMembershipView::all();
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/pago-membresias?page=1');
+        }
+
+        $total = PaymentMembershipView::count('id_membership_student');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/pago-membresias?page=1');
+        }
+
+        $pagos = PaymentMembershipView::pagination($paginacion->registrosPorPagina, $paginacion->offset())??[];
+
 
         Response::render('admin/membresia/pagos', [
             'nameApp' => APP_NAME,
             'title' => 'Pagos membresias',
-            'pagos'=>$pagos
+            'pagos'=>$pagos,
+            'paginacion'=>$paginacion->paginacion()
         ]);
     }
 
@@ -173,35 +269,80 @@ class DashboardController{
     }
 
     public static function teachers():void{
-        
-        $teachers = Teacher::all();
 
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/maestros?page=1');
+        }
+
+        $total = Teacher::count('id_teacher');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/maestros?page=1');
+        }
+
+        $teachers = Teacher::pagination($paginacion->registrosPorPagina, $paginacion->offset())??[];
+        
         Response::render('admin/maestros/index', [
             'nameApp' => APP_NAME,
             'title' => 'Admin maestros',
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            'paginacion'=>$paginacion->paginacion()
         ]);
     }
 
     public static function students():void{
-        
-        $students = Student::all();
 
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/estudiantes?page=1');
+        }
+
+        $total = Student::count('id_student');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/estudiantes?page=1');
+        }
+
+        $students = Student::pagination($paginacion->registrosPorPagina, $paginacion->offset())??[];
+    
         Response::render('admin/estudiantes/index', [
             'nameApp' => APP_NAME,
             'title' => 'Admin estudiantes',
-            'students' => $students
+            'students' => $students,
+            'paginacion'=>$paginacion->paginacion()
         ]);
     }
 
     public static function admins():void{
-        
-        $admins = Admin::all();
 
+        $queryParams = Request::getQueryParams();
+        $paginaActual = filter_var($queryParams['page']??'', FILTER_VALIDATE_INT);
+
+        if(!$paginaActual || $paginaActual < 1){
+            Response::redirect('/kta-admin/administradores?page=1');
+        }
+
+        $total = Admin::count('id_admin');
+        $paginacion = new Paginador($paginaActual, $total);
+
+        if($paginacion->totalPaginas() < $paginaActual){
+            Response::redirect('/kta-admin/administradores?page=1');
+        }
+
+        $admins = Admin::pagination($paginacion->registrosPorPagina, $paginacion->offset())??[];
+        
         Response::render('admin/administradores/index', [
             'nameApp' => APP_NAME,
             'title' => 'Admin de super usuarios',
-            'admins' => $admins
+            'admins' => $admins,
+            'paginacion'=>$paginacion->paginacion()
         ]);
     }
 }

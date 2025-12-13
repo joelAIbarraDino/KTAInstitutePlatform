@@ -74,19 +74,7 @@
                 </table>
             </div>
             
-            <div class="dashboard-table__footer">
-                <div class="dashboard-table__pagination">
-                <button class="dashboard-table__page-button">
-                    <i class='bx bx-chevron-left'></i>
-                </button>
-                <span class="dashboard-table__page-info">Página 1 de 5</span>
-                <button class="dashboard-table__page-button">
-                    <i class='bx bx-chevron-right'></i>
-                </button>
-                </div>
-            </div>
-            </div>
-
+            <?=$paginacion?>
         </div>
     </div>
 </main>
